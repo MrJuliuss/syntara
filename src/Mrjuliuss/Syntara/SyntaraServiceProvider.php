@@ -1,4 +1,4 @@
-<?php namespace Mrjuliuss\Syntara;
+<?php namespace MrJuliuss\Syntara;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +24,17 @@ class SyntaraServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register(){}
+	public function register()
+	{
+		// add the user seed command to the application
+		$this->app['create:user'] = $this->app->share(function($app)
+		{
+			return new Commands\UserSeedCommand($app);
+		});
+		
+		//Add commands
+		$this->commands('create:user');
+	}
 
 	/**
 	 * Get the services provided by the provider.
@@ -35,5 +45,5 @@ class SyntaraServiceProvider extends ServiceProvider {
 	{
 		return array();
 	}
-
+	
 }

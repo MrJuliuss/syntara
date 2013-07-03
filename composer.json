@@ -13,9 +13,14 @@
 	"cartalyst/sentry": "2.0.*"
     },
     "autoload": {
+        "classmap": [
+            "src/commands",
+			"src/migrations"
+        ],
         "psr-0": {
             "Mrjuliuss\\Syntara": "src/"
         }
     },
+
     "minimum-stability": "dev"
 }
