@@ -14,8 +14,7 @@
     },
     "autoload": {
         "classmap": [
-            "src/commands",
-			"src/migrations"
+            "src/commands"
         ],
         "psr-0": {
             "Mrjuliuss\\Syntara": "src/"

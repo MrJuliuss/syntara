@@ -3,7 +3,6 @@
 namespace MrJuliuss\Syntara\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
 class UserSeedCommand extends Command {
@@ -39,17 +38,31 @@ class UserSeedCommand extends Command {
 	 */
 	public function fire()
 	{
-		
+        try 
+        {
+            // Create the user
+            $user = \Sentry::getUserProvider()->create(array(
+                'email'    => $this->argument('email'),
+                'password' => $this->argument('password'),
+            ));
+
+            $activationCode = $user->getActivationCode();
+            $user->attemptActivation($activationCode);
+        }
+        catch (Cartalyst\Sentry\Users\UserExistsException $e){}
 	}
 
-	/**
+    /**
 	 * Get the console command arguments.
 	 *
 	 * @return array
 	 */
 	protected function getArguments()
 	{
-		return array();
+		return array(
+			array('email',    InputArgument::REQUIRED, 'User email'),
+			array('password', InputArgument::REQUIRED, 'User password')
+		);
 	}
 
 	/**
