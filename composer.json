@@ -14,7 +14,8 @@
     },
     "autoload": {
         "classmap": [
-            "src/commands"
+            "src/commands",
+	    "src/controllers"
         ],
         "psr-0": {
             "Mrjuliuss\\Syntara": "src/"
