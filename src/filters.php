@@ -5,9 +5,9 @@
  */
 Route::filter('auth', function()
 {
-	if(Sentry::check()) 
+	if(!Sentry::check()) 
     {
-        
+        return Redirect::route('getLogin');
     }
 });
 
@@ -18,6 +18,6 @@ Route::filter('notAuth', function()
 {
     if(Sentry::check())
     {
-        
+        return Redirect::route('indexDashboard');
     }
 });
