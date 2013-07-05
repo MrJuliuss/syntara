@@ -1,2 +1,4 @@
-syntara
+Syntara
 =======
+
+Work in progress...
