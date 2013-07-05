@@ -1,0 +1,440 @@
+/** BEGIN **/
+
+* {
+	outline:none !important;
+	-moz-outline: none !important;
+}
+
+:-moz-placeholder {
+  color: #c9c9c9 !important;
+  font-size: 13px;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+  font-size: 13px;
+}
+
+/* Main */
+body {
+	overflow-x: hidden;
+    margin-top: -9px;
+    background-color: #494949;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.form-horizontal .form-actions {
+    text-align: right;
+    padding-right:65px;
+}
+
+.label {
+    margin-top: 4px;
+}
+
+
+/* HEADER */
+
+#header {
+	background-color: #2b2927;
+    border-bottom: 1px solid #555555; 
+    margin-top:10px;
+    height: 63px;
+    position: relative;
+    width: 100%;
+    z-index: -9;
+}
+
+#header h1 {
+    height: 31px;
+    left: 15px;
+    line-height: 600px;
+    overflow: hidden;
+    position: relative;
+    top:8px; 
+    width: 191px;
+}
+
+#header h1 a {
+    display: block;
+}
+
+/* Loggued user Navigation */ 
+
+#user-nav {
+    position: absolute;
+    right:0px;
+    top: 5px;
+    z-index: 20;
+    margin: 0; 
+}
+#user-nav > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#user-nav > ul > li {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    position: relative;
+    padding:6px 0;
+}
+#user-nav > ul > li:hover { 
+    background:#000;
+}
+
+#user-nav > ul > li > a {
+	padding: 13px 10px; 
+	display: block;
+	font-size: 12px;
+}
+
+#user-nav > ul > li > a:hover, #user-nav > ul > li.open > a {
+	color: #ffffff;
+}
+
+#user-nav > ul > li > a > i, #sidebar li a i {
+	vertical-align: top;
+	background-image: url('../img/glyphicons-halflings-white.png');
+	margin-top: 2px;
+}
+#user-nav > ul > li > a:hover > i, #user-nav > ul > li.open > a > i {
+	opacity: 1;
+}
+
+#user-nav > ul ul > li > a:hover {
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+
+
+
+/* Navigation */
+#sidebar { 
+    width:100%; 
+    background:none;  
+    position:absolute; 
+    clear:both; 
+    top:65px;
+}
+
+#sidebar > ul { 
+    margin:0px; 
+    padding:0px; 
+    width:100%; 
+    display:block; 
+    z-index:999;
+} 
+
+#sidebar > ul > li { 
+    list-style-type:none; 
+    float:left; 
+    display:block; 
+    margin:0px; 
+    border-right:1px dotted #6b6b6b; 
+    position:relative; 
+    padding:10px; 
+    cursor:pointer
+} 
+
+#sidebar > ul > li:hover ul { 
+    display:block; 
+} 
+
+#sidebar > ul > li:hover { 
+    background-color:#2b2b2b;
+}
+
+#sidebar > ul > li:hover a { 
+    background:none;
+}
+
+#sidebar > ul li ul { 
+    margin:0px; 
+    padding:0px; 
+    display:none; 
+    z-index:999;  
+    position:absolute; 
+    border-radius:3px; 
+    left:0px; top:40px;  
+    background:#2b2b2b; 
+    min-width:200px;
+} 
+
+#sidebar > ul li ul li { 
+    list-style-type:none; 
+    margin:0px; 
+    font-size:12px; 
+    line-height:30px;  
+} 
+
+#sidebar > ul li ul li a { 
+    display:block; 
+    padding:5px 10px; 
+    color:#fff; 
+    text-decoration:none; 
+    font-weight:bold; 
+} 
+
+#sidebar > ul li ul li:hover a { 
+    background-color:#606060; 
+    border-radius:3px;
+} 
+
+#sidebar > ul li span { 
+    cursor:pointer; 
+    margin:0px 2px 0 5px; 
+    font-weight:bold; 
+    color:#fff; 
+    font-size:11px; 
+}
+
+#sidebar > ul li a i { 
+    background-image: url("../img/glyphicons-halflings-white.png");     
+    margin-top:4px;    
+    vertical-align: top;
+}
+
+/* Dropbdown */
+.dropdown-menu li a:hover,
+.dropdown-menu .active a,
+.dropdown-menu .active a:hover {
+    color: #eeeeee;
+	background:#F77825;
+}
+
+/* Forms part */
+form {
+	margin-bottom: 0;
+}
+
+.form-horizontal .control-group {
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #eeeeee;
+	margin-bottom: 0;
+}
+
+.form-horizontal .control-group:last-child {
+	border-bottom: 0;
+}
+
+.form-horizontal .control-label {
+	padding-top: 15px;
+	width: 150px;
+}
+
+.form-horizontal .controls {
+	margin-left: 200px;
+	padding: 10px 0;
+}
+
+.form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea {
+	
+}
+
+.form-horizontal .form-actions {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/* Content part */
+#content {
+    background: none repeat scroll 0 0 #fff;
+    margin-left:0px;
+    margin-right: 0;
+	margin-top:80px;
+    padding-bottom: 25px;
+    position: relative;
+    min-height: 500px;
+    width: auto;
+}
+
+#content-header {
+	position: abslute;
+    width: 100%;
+    margin-top: -38px;
+    z-index: 20;
+}
+
+#content-header h1 {
+    color: #555555;
+    font-size: 28px;
+    font-weight: normal;
+    float: none;
+    text-shadow: 0 1px 0 #ffffff;
+    margin-left: 20px;
+    position: relative;
+}
+
+#content-header h1, #content-header .btn-group {
+	margin-top: 20px;
+}
+
+#content-header .btn-group .btn {
+	padding: 11px 14px 9px;
+}
+
+.container-fluid .row-fluid:first-child {
+	margin-top: 20px;
+}
+
+/* Breadcrumb part */
+#breadcrumb {
+	background-color: #e5e5e5;
+	border-bottom: 1px solid #d6d6d6;
+	padding-left: 10px;
+}
+
+#breadcrumb a {
+	padding: 8px 20px 8px 10px;
+	display: inline-block;
+	background-image: url('../img/breadcrumb.png');
+	background-position: center right;
+	background-repeat: no-repeat;
+	font-size: 11px;
+	color: #666666;
+}
+
+#breadcrumb a:hover {
+	color: #333333;
+}
+
+#breadcrumb a:last-child {
+	background-image:none;
+}
+
+#breadcrumb a.current {
+	font-weight: bold;
+	color: #444444;
+}
+
+#breadcrumb a i {
+	margin-right: 5px;
+    margin-top: -1px;
+	opacity: .6;
+}
+
+#breadcrumb a:hover i {
+	margin-right: 5px;
+	opacity: .8;
+}
+
+/* Widgets */
+.widget-box {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #CDCDCD;
+    border-left: 1px solid #CDCDCD;
+    border-right: 1px solid #CDCDCD;
+    clear: both;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.widget-box.widget-calendar
+    overflow:hidden !important;
+}
+
+.widget-box.widget-plain {
+	background: transparent;
+	border: none;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.widget-title, .modal-header, .table th, div.dataTables_wrapper .ui-widget-header {
+	background-color: #efefef;
+	
+    border-bottom: 1px solid #CDCDCD;
+    height: 36px;
+}
+
+.widget-title .nav-tabs {
+    border-bottom: 0 none;
+}
+
+.widget-title .nav-tabs li a {
+    border-bottom: medium none !important;
+    border-left: 1px solid #DDDDDD;
+    border-radius: 0 0 0 0;
+    border-right: 1px solid #DDDDDD;
+    border-top: medium none;
+    color: #999999;
+    margin: 0;
+    outline: medium none;
+    padding: 9px 10px 8px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.widget-title .nav-tabs li:first-child a{
+    border-left: medium none !important;
+}
+
+.widget-title .nav-tabs li a:hover {
+    background-color: transparent !important;
+    border-color: #D6D6D6;
+    border-width: 0 1px;
+    color: #666666;
+}
+
+.widget-title .nav-tabs li.active a {
+    background-color: #F9F9F9 !important;
+    color: #444444;
+}
+
+.widget-title span.icon {
+	border-right: 1px solid #cdcdcd;
+	padding: 9px 10px 7px 11px;
+	float: left;
+	opacity: .7;
+}
+
+.widget-title h5 {
+    color: #666666;
+	text-shadow: 0 1px 0 #ffffff;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px;
+    line-height: 12px;
+    margin: 0;
+}
+
+.widget-title .buttons {
+	float: right;
+	margin: 8px 10px 0 0;
+}
+
+.widget-title .label {
+	padding: 3px 5px 2px;
+	float: right;
+	margin: 9px 11px 0 0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset, 0 1px 0 #ffffff;
+}
+
+.widget-calendar .widget-title .label {
+	margin-right: 190px;
+}
+
+.widget-content {
+	padding: 12px 15px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.widget-box.widget-plain .widget-content {
+	padding: 12px 0 0;
+}
+
+.widget-box.collapsible .collapse.in .widget-content {
+    border-bottom: 1px solid #CDCDCD;
+}
+
+/** DIVERS */
+.nopadding {	
+	padding: 0 !important;
+}
