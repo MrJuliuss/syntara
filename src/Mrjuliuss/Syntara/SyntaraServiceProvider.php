@@ -1,6 +1,7 @@
 <?php namespace MrJuliuss\Syntara;
 
 use Illuminate\Support\ServiceProvider;
+use Config;
 
 class SyntaraServiceProvider extends ServiceProvider {
 
@@ -31,7 +32,10 @@ class SyntaraServiceProvider extends ServiceProvider {
 		{
 			return new Commands\UserSeedCommand($app);
 		});
-		
+        
+        // register helpers
+		$this->registerHelpers();
+        
 		//Add commands
 		$this->commands('create:user');
 	}
@@ -46,4 +50,22 @@ class SyntaraServiceProvider extends ServiceProvider {
 		return array();
 	}
 	
+    /**
+     * Register helpers in app
+     */
+    public function registerHelpers()
+    {
+        $this->app['breadcrumbs'] = $this->app->share(function()
+		{
+			return new \MrJuliuss\Syntara\Helpers\Breadcrumbs();
+		});
+        
+        // Shortcut so developers don't need to add an Alias in app/config/app.php
+        $this->app->booting(function()
+        {
+            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+            $loader->alias('Breadcrumbs', 'MrJuliuss\Syntara\Facades\Breadcrumbs');
+        });        
+    }
+    
 }

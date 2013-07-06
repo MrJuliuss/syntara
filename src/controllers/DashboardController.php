@@ -7,11 +7,11 @@ use Sentry;
 class DashboardController extends BaseController 
 {
     /**
-     * 
+     * Index loggued page
      */
     public function index()
     {
-        echo "index dashboard";
+        $this->layout = View::make('syntara::dashboard.index');
     }
     
     /**
