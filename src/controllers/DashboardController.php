@@ -3,6 +3,7 @@
 use View;
 use Input;
 use Sentry;
+use Redirect;
 
 class DashboardController extends BaseController 
 {
@@ -46,5 +47,15 @@ class DashboardController extends BaseController
         }
         
         return json_encode(array('logged' => true));
+    }
+    
+    /**
+     * Logout user
+     */
+    public function logout()
+    {
+        Sentry::logout();
+        
+        return Redirect::route('indexDashboard'); 
     }
 }
