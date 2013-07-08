@@ -1,5 +1,6 @@
 <?php namespace MrJuliuss\Syntara\Controllers;
 
+use View;
 use Sentry;
 
 class UserController extends BaseController {
@@ -11,9 +12,9 @@ class UserController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = Sentry::getUserProvider()->findAll();
-        
-        // 
+		$users =  Sentry::getUserProvider()->getEmptyUser()->paginate(5);
+
+		$this->layout = View::make('syntara::user.index', array('users' => $users));
 	}
 
 	/**

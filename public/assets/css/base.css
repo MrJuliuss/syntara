@@ -350,7 +350,7 @@ form {
 	background-color: #efefef;
 	
     border-bottom: 1px solid #CDCDCD;
-    height: 36px;
+    height: 31px;
 }
 
 .widget-title .nav-tabs {
@@ -400,7 +400,7 @@ form {
     float: left;
     font-size: 12px;
     font-weight: bold;
-    padding: 12px;
+    padding: 10px;
     line-height: 12px;
     margin: 0;
 }
@@ -438,3 +438,12 @@ form {
 .nopadding {	
 	padding: 0 !important;
 }
+
+/** TABLE **/
+
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered thead:first-child tr:first-child > th:first-child, 
+.table-bordered tbody:last-child tr:last-child > td:first-child {
+	border-radius: 0;
+}
+
