@@ -20,7 +20,6 @@ class UserController extends BaseController {
         $datas['users'] = $users;
         if(Request::ajax())
         {
-            
 			$html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
             
 			return Response::json(array('html' => $html));
