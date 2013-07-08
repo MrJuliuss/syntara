@@ -1,6 +1,8 @@
 <?php namespace MrJuliuss\Syntara\Controllers;
 
 use View;
+use Response;
+use Request;
 use Sentry;
 
 class UserController extends BaseController {
@@ -14,7 +16,17 @@ class UserController extends BaseController {
 	{
 		$users =  Sentry::getUserProvider()->getEmptyUser()->paginate(5);
 
-		$this->layout = View::make('syntara::user.index', array('users' => $users));
+        $datas['links'] = $users->links();
+        $datas['users'] = $users;
+        if(Request::ajax())
+        {
+            
+			$html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
+            
+			return Response::json(array('html' => $html));
+        }
+        
+		$this->layout = View::make('syntara::user.index', array('datas' => $datas));
 	}
 
 	/**

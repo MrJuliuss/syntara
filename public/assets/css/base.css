@@ -15,6 +15,10 @@ body {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.0004);
 }
 
+a {
+    color: #727476;
+}
+
 a:hover {
 	text-decoration: none;
 }
@@ -302,6 +306,10 @@ a:hover {
     border-bottom-left-radius: 0px;
 }
 
+.table-select {
+    width: 50px;
+}
+
 /* Forms part */
 form {
 	margin: 0;
@@ -391,4 +399,17 @@ input[type="color"],
   -webkit-border-radius: 0 0 2px 2px;
   -moz-border-radius: 0 0 2px 2px;
   border-radius: 0 0 2px 2px;
+}
+
+.module .module-body .upper-menu {
+    margin: 10px;
+}
+
+.module .module-body [class*="span"] {
+    margin-left: 0px;
+}
+
+.pagination {
+    float:right;
+    margin: 0px;
 }

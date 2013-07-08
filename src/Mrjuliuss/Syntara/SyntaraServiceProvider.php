@@ -27,6 +27,9 @@ class SyntaraServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+        //Load package config
+		$this->app['config']->package('mrjuliuss/syntara', __DIR__.'/../../config');
+        
 		// add the user seed command to the application
 		$this->app['create:user'] = $this->app->share(function($app)
 		{

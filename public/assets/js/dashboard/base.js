@@ -84,4 +84,20 @@ $(document).ready(function()
 		ul.css({'display':'block'});
 	}
     
+    $(document).on('click', '.pagination a', function()
+    {
+        var currentUrl = $(this).attr('href');
+        $.ajax(
+        {
+            url: currentUrl,
+            type: "get",
+            datatype: "html"
+        })
+        .done(function(data)
+        {
+            $(".ajax-content").empty().html(data.html);
+        });
+        
+        return false;
+    });
 });
