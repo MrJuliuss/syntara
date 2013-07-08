@@ -17,9 +17,6 @@
 		float: none;
 	}
 	
-	#my_menu{ display:none;}
-	#my_menu_input{ display:block;}
-	.stat-boxes2{ background:none; width:100%;  margin:-30px 0 20px 0; padding:0px; position:relative; top:13px; right:10px;}
 	#user-nav > ul {
 		right: 0px; margin-left:15%!important;
 		margin-top:0px; width:100%; background:#000;
@@ -69,32 +66,7 @@
 #sidebar > ul li a i{ background-image: url("../img/glyphicons-halflings-white.png");  margin-top:4px;  vertical-align: top;}	
 #sidebar > a { padding: 9px 20px 9px 15px; display: block !important; text-transform: uppercase; color: #eeeeee; float:none !important;	font-size:12px;	}
 #sidebar > ul > li > a { padding:5px;	display:block; 	color: #AAAAAA;}
-.widget-title .buttons > .btn {
-		width: 11px;
-		white-space: nowrap;
-		overflow: hidden;
-	}
-    .form-horizontal .control-label {
-        padding-left: 30px;
-    }
-    .form-horizontal .controls {
-        margin-left: 0;
-        padding: 10px 30px;
-    }
-    .form-actions {
-        text-align: center;
-    }
-	.panel-right2 {
-	width: 100%;
-	background-color: #fff;
-	border-right: 1px solid #dddddd;
-	position: relative;
-	left: 0; overflow:auto;
-	top:0px;
-	height:87%; width:100%;
-}
-.panel-left2{ margin-left:0px;}
-.dataTables_paginate .ui-button,  .pagination.alternate li a { padding:4px 4px!important;}
+
 .table th {	padding: 5px 4px 2px;}
 }
 
@@ -102,10 +74,7 @@
 	#header h1 {
 		top: 3px;
 	}
-	#my_menu{ display:none;}
-	#my_menu_input{ display:block;}
 	#content{ margin-top:41px;}
-	.stat-boxes2{ background:none; width:100%;  padding:60px 0 20px 0; margin:0 auto; position:relative; top:13px; right:10px;}
 	#sidebar > ul > li{ float:none;}
 	#sidebar > ul > li:hover ul{ display:block;}
 	#sidebar, #sidebar > ul {
@@ -156,24 +125,6 @@
 		margin-left: 43px;
 	}
 }
-@media (max-width: 600px) {
-	.widget-title .buttons {
-		float: left;
-	}
-	.panel-left {
-		margin-right: 0;
-	}
-	.panel-right {
-		border-top: 1px solid #DDDDDD;
-		border-left: none;
-		position: relative;
-		top: auto;
-		right: auto;
-		height: auto;
-		width: auto;
-	}
-
-}
 @media (max-width: 767px) {
 	body {
 		padding: 0 !important;
@@ -184,27 +135,6 @@
 	}
 	#user-nav > ul > li > a > span.text {
 		display: none;
-	}
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-	[class*="span"], .row-fluid [class*="span"] {
-		display: block;
-		float: none;
-		margin-left: 0;
-		width: auto;
-	}
-}
-
-@media (max-width: 979px) {
-	div.dataTables_wrapper .ui-widget-header {
-		height: 68px;
-	}
-	.dataTables_filter {
-		position: relative;
-	}
-	.dataTables_filter, .dataTables_paginate {
-		text-align: center;
 	}
 }
 

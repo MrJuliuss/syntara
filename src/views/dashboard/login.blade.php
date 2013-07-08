@@ -5,31 +5,20 @@
 <script type="text/javascript" src="{{ asset('packages/mrjuliuss/syntara/assets/js/forms/check.js') }}"></script>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span4 offset4">
-            <div class="widget-box">
-                <div class="widget-title">
-                    <h5>Login</h5>
-                </div>
-                <div class="widget-content nopadding">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span4 offset4">
                     <form id="login-form" method="post" class="form-horizontal">
-                        <div class="control-group">
-                            <label class="control-label">Login :</label>
-                            <div class="controls">
-                                <input type="text" id="userLogin" name="userLogin"  placeholder="Login" class="span10">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">Password : </label>
-                            <div class="controls">
-                                <input type="password" id="userPass" name="userPass" placeholder="Password" class="span10">
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" name="commit" class="btn btn-success">Login</button>
-                        </div>
+                        <p class="account-username">
+                            <input type="text" class="span12" placeholder="Username" name="userLogin" id="userLogin">
+                        </p>
+                        <p class="account-password">
+                            <input type="password" class="span12" placeholder="Password" name="userPass" id="userPass">
+                        </p>
+                        <button class="btn btn-block btn-large btn-primary">Sign In</button>
                     </form>
                 </div>
-            </div>						
+            </div>
         </div>
     </div>
 </div>
