@@ -1,5 +1,4 @@
 /** BEGIN **/
-
 * {
 	outline:none !important;
 	-moz-outline: none !important;
@@ -22,6 +21,10 @@ body {
     background-color: #494949;
 }
 
+.nopadding {	
+	padding: 0 !important;
+}
+
 a:hover {
 	text-decoration: none;
 }
@@ -34,7 +37,6 @@ a:hover {
 .label {
     margin-top: 4px;
 }
-
 
 /* HEADER */
 
@@ -254,7 +256,6 @@ form {
 }
 
 #content-header {
-	position: abslute;
     width: 100%;
     margin-top: -38px;
     z-index: 20;
@@ -282,7 +283,7 @@ form {
 	margin-top: 20px;
 }
 
-/* Breadcrumb part */
+/** Breadcrumb part **/
 #breadcrumb {
 	background-color: #e5e5e5;
 	border-bottom: 1px solid #d6d6d6;
@@ -323,6 +324,7 @@ form {
 	opacity: .8;
 }
 
+
 /* Widgets */
 .widget-box {
     background: none repeat scroll 0 0 #F9F9F9;
@@ -348,7 +350,6 @@ form {
 
 .widget-title, .modal-header, .table th, div.dataTables_wrapper .ui-widget-header {
 	background-color: #efefef;
-	
     border-bottom: 1px solid #CDCDCD;
     height: 31px;
 }
@@ -434,16 +435,21 @@ form {
     border-bottom: 1px solid #CDCDCD;
 }
 
-/** DIVERS */
-.nopadding {	
-	padding: 0 !important;
-}
-
 /** TABLE **/
-
-.table-bordered thead:first-child tr:first-child > th:last-child,
-.table-bordered thead:first-child tr:first-child > th:first-child, 
-.table-bordered tbody:last-child tr:last-child > td:first-child {
-	border-radius: 0;
+.table th {
+	height: auto;
+	font-size: 12px;
+	padding: 5px 10px 2px;
+	border-bottom: 0;
+	text-align: center;
+	color: #666;
 }
 
+.table td {
+	height: auto;
+	font-size: 11px;
+	padding: 5px 10px 2px;
+	border-bottom: 0;
+	text-align: center;
+	color: #666;
+}
