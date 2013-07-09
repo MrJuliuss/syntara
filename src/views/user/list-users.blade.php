@@ -24,8 +24,8 @@
         </td>
         <td style="width:30px; text-align: center;">{{ $user->getId() }}</td>
         <td>{{ $user->getLogin() }}</td>
-        <td>Test</td>
-        <td>Test</td>
+        <td>{{ $user->last_name }}</td>
+        <td>{{ $user->first_name }}</td>
     </tr>
     @endforeach
 </tbody>

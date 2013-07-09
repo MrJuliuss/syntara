@@ -28,10 +28,17 @@ class UserController extends BaseController {
         
 		$this->layout = View::make('syntara::user.index', array('datas' => $datas));
 	}
+    
+    /**
+     * Create new user
+     */
+    public function create()
+    {
+        
+    }
 
     /**
      * Delete a user
-     * @param int $id
      */
     public function delete()
     {
