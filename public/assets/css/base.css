@@ -410,6 +410,6 @@ input[type="color"],
 }
 
 .pagination {
-    float:right;
+    float:left;
     margin: 0px;
 }

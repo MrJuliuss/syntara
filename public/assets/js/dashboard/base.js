@@ -86,18 +86,37 @@ $(document).ready(function()
     
     $(document).on('click', '.pagination a', function()
     {
-        var currentUrl = $(this).attr('href');
-        $.ajax(
-        {
-            url: currentUrl,
-            type: "get",
-            datatype: "html"
-        })
-        .done(function(data)
-        {
-            $(".ajax-content").empty().html(data.html);
-        });
+		ajaxContent($(this).attr('href'), ".ajax-content");
         
         return false;
-    });
+	});
+	
+	
+	$(document).on('change', '.check-all', function()
+	{
+		var parent = $(this).parents('.table');
+		if($(this).is(':checked'))
+		{
+			parent.find("tbody tr td input:checkbox").prop('checked', true);
+		}
+		else
+		{
+			parent.find("tbody > tr > td > input:checkbox").prop("checked", false);
+		}
+	});
 });
+
+var ajaxContent = function(url, content, options)
+{
+	$.ajax(
+	{
+		url: url,
+		type: "get",
+		datatype: "html",
+		data: options
+	})
+	.done(function(data)
+	{
+		$(content).empty().html(data.html);
+	});
+};

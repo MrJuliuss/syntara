@@ -1,15 +1,5 @@
 <div class="row upper-menu">
-            <div class="span4">
-                Show
-                <select class="table-select">
-                    <option>5</option>
-                    <option selected="selected">10</option>
-                    <option>20</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select> entries
-            </div>
-            {{ $datas['users']->links(); }}
+	{{ $datas['users']->links(); }}
 </div>
 <table class="table table-striped table-bordered table-condensed">
 <thead>

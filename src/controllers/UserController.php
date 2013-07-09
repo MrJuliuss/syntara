@@ -14,8 +14,8 @@ class UserController extends BaseController {
 	 */
 	public function index()
 	{
-		$users =  Sentry::getUserProvider()->getEmptyUser()->paginate(5);
-
+		$users =  Sentry::getUserProvider()->getEmptyUser()->paginate(20);
+		
         $datas['links'] = $users->links();
         $datas['users'] = $users;
         if(Request::ajax())
