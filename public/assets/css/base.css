@@ -355,6 +355,18 @@ input[type="color"],
     background: #006dcc;
 }
 
+.btn-danger {
+    background: none repeat scroll 0 0 #DA4F49;
+}
+
+.btn-info {
+    background: none repeat scroll 0 0 #49AFCD;
+}
+
+.btn-vertical-list {
+    margin-right: 20px;
+}
+
 /** Module part **/ 
 
 .module {

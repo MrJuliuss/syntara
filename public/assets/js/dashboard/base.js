@@ -91,19 +91,49 @@ $(document).ready(function()
         return false;
 	});
 	
-	
+	$(document).on('change', '.table tbody tr td input:checkbox', function()
+    {
+        var parent = $(this).parents('.table'); 
+        if(parent.find("tbody tr td input:checkbox:checked").length >= 1)
+        {
+            $('#delete-users').show();
+        }
+        else
+        {
+             $('#delete-users').hide();
+        }
+    });
+    
 	$(document).on('change', '.check-all', function()
 	{
 		var parent = $(this).parents('.table');
 		if($(this).is(':checked'))
 		{
 			parent.find("tbody tr td input:checkbox").prop('checked', true);
+            $('#delete-users').show();
 		}
 		else
 		{
 			parent.find("tbody > tr > td > input:checkbox").prop("checked", false);
+            $('#delete-users').hide();
 		}
 	});
+    
+    $(document).on('click', '#delete-users', function()
+    {
+        $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
+        {
+            $.ajax(
+            {
+                url: '/dashboard/user/delete',
+                type: "POST",
+                datatype: "json",
+                data: {'userId' : $(this).data('user-id')}
+            });
+        });
+        
+        ajaxContent($(this).attr('href'), ".ajax-content");
+    });
 });
 
 var ajaxContent = function(url, content, options)
