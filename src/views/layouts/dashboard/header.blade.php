@@ -21,6 +21,7 @@
         <li class="submenu"><a href="#"><i class="icon icon-user"></i><span>Users</span></a>
             <ul>    
                 <li><a href="{{ URL::to('dashboard/users'); }}">All users</a></li>
+                <li><a href="{{ URL::to('dashboard/user/new'); }}">New user</a></li>
             </ul>
         </li>
     </ul>
