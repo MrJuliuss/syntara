@@ -10,7 +10,7 @@ class DashboardController extends BaseController
     /**
      * Index loggued page
      */
-    public function index()
+    public function getIndex()
     {
         $this->layout = View::make('syntara::dashboard.index');
     }
@@ -52,7 +52,7 @@ class DashboardController extends BaseController
     /**
      * Logout user
      */
-    public function logout()
+    public function getLogout()
     {
         Sentry::logout();
         

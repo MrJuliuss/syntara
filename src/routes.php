@@ -2,11 +2,12 @@
 
 Route::group(array('before' => 'auth'), function()
 {
-    Route::get('dashboard', array('as' => 'indexDashboard', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@index'));
-    Route::get('dashboard/logout', array('as' => 'logout', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@logout'));
-    Route::get('dashboard/users', array('as' => 'listUsers', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@index'));
+    Route::get('dashboard', array('as' => 'indexDashboard', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getIndex'));
+    Route::get('dashboard/logout', array('as' => 'logout', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getLogout'));
+    Route::get('dashboard/users', array('as' => 'listUsers', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getIndex'));
     Route::post('dashboard/user/delete', array('as' => 'deleteUsers', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@delete'));
-    Route::post('dashboard/user/new', array('as' => 'newUser', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@create'));
+	Route::post('dashboard/user/new', array('as' => 'newUserPost', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@postCreate'));
+    Route::get('dashboard/user/new', array('as' => 'newUser', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getCreate'));
 });
 
 Route::group(array('before' => 'notAuth'), function()

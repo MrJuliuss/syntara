@@ -13,7 +13,7 @@ class UserController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
 		$users =  Sentry::getUserProvider()->getEmptyUser()->paginate(20);
 		
@@ -30,13 +30,21 @@ class UserController extends BaseController {
 	}
     
     /**
-     * Create new user
+     * Show new user form view
      */
-    public function create()
+    public function getCreate()
     {
-        
+		$this->layout = View::make('syntara::user.new');
     }
 
+    /**
+	 * Create new user
+	 */
+	public function postCreate()
+	{
+		
+	}
+    
     /**
      * Delete a user
      */
