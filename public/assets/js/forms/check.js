@@ -6,18 +6,18 @@ function showRegisterFormAjaxErrors(errors)
     }
 }
 
-//function loginIsValidated(login)
-//{
-//    var loginRules = /^[a-zA-Z0-9_-]{3,16}$/;
-//    if(!loginRules.test(login))
-//    {
-//        return false;
-//    }
-//    else
-//    {
-//        return true;
-//    }
-//}
+function loginIsValidated(login)
+{
+    var loginRules = /^[a-zA-Z0-9_-]{3,16}$/;
+    if(!loginRules.test(login))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 function emailIsValidated(email)
 {
