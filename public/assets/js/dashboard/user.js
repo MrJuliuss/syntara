@@ -4,11 +4,12 @@ $(function()
 	{
 		$.ajax({
             "type": "POST",
-            "url": "new",
-            data: '',
+            "url": 'new',
+            data: {"userName" : $('#userName').val(), "userEmail" : $('#userEmail').val(), "userPass" : $('#userPass').val()},
             "dataType": "json",
             success: function(result) 
-            { 
+            {
+				
             }
         });
 		

@@ -369,6 +369,14 @@ input[type="color"],
     margin-right: 20px;
 }
 
+/** BADGE **/
+
+.label {
+	margin-top: 5px;
+	border-radius: 2px;
+	padding: 5px;
+}
+
 /** Module part **/ 
 
 .module {
