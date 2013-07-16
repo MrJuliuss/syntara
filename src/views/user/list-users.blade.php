@@ -11,6 +11,7 @@
     <tr>
         <th style="width:25px; text-align: center;"><input type="checkbox" class="check-all"></th>
         <th style="width:30px; text-align: center;">Id</th>
+        <th style="width:250px;">Username</th>
         <th style="width:250px;">Email</th>
         <th style="width:250px;">Last Name</th>
         <th style="width:250px;">First Name</th>
@@ -23,9 +24,10 @@
             <input type="checkbox" data-user-id="{{ $user->getId(); }}">
         </td>
         <td style="width:30px; text-align: center;">{{ $user->getId() }}</td>
-        <td>{{ $user->getLogin() }}</td>
-        <td>{{ $user->last_name }}</td>
-        <td>{{ $user->first_name }}</td>
+        <td>&nbsp;{{ $user->username }}</td>
+        <td>&nbsp;{{ $user->getLogin() }}</td>
+        <td>&nbsp;{{ $user->last_name }}</td>
+        <td>&nbsp;{{ $user->first_name }}</td>
     </tr>
     @endforeach
 </tbody>

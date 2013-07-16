@@ -48,8 +48,8 @@ class UserController extends BaseController {
                 'email'    => Input::get('userEmail'),
                 'password' => Input::get('userPass'),
                 'username' => Input::get('userName'),
-                'last_name' => Input::get('userLastName'),
-                'first_name' => Input::get('userFirstName')
+                'last_name' => (string)Input::get('userLastName'),
+                'first_name' => (string)Input::get('userFirstName')
             ));
         }
         catch (\RuntimeException $e)
