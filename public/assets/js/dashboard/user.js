@@ -5,14 +5,23 @@ $(function()
 		if(!checkNewUserFormInput())
 			return false;
 		
+        var errors = new Array();
 		$.ajax({
             "type": "POST",
             "url": 'new',
-            data: {"userName" : $('#userName').val(), "userEmail" : $('#userEmail').val(), "userPass" : $('#userPass').val()},
+            data: {"userName" : $('#userName').val(), "userEmail" : $('#userEmail').val(), "userPass" : $('#userPass').val(), "userLastName" : $('#userLastName').val(), "userFirstName" : $('#userFirstName').val()},
             "dataType": "json",
             success: function(result) 
             {
-				
+				if(result.userCreated === false)
+                {
+                    errors['userPass'] = 'Can not create user...';
+                    showRegisterFormAjaxErrors(errors);
+                }
+                else
+                {
+                    window.location = "/dashboard/users";
+                }
             }
         });
 		

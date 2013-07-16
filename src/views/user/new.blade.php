@@ -19,7 +19,7 @@
 						<div class="controls">
 							<p><input class="input-xxlarge" type="text" placeholder="User name" id="userName" name="userName"></p>
 							<p><input class="input-xxlarge" type="text" placeholder="Email" id="userEmail" name="userEmail"></p>
-							<p><input class="input-xxlarge" type="text" placeholder="Password" id="userPass" name="userPass"></p>
+							<p><input class="input-xxlarge" type="password" placeholder="Password" id="userPass" name="userPass"></p>
 						</div>
 					</div>
 				</div>
@@ -27,8 +27,8 @@
 					<div class="control-group">
 						<label class="control-label">Profile informations</label>
 						<div class="controls">
-							<p><input class="input-xxlarge" type="text" placeholder="Last name"></p>
-							<p><input class="input-xxlarge" type="text" placeholder="First name"></p>
+							<p><input class="input-xxlarge" type="text" placeholder="Last name" id="userLastName" name="userLastName"></p>
+							<p><input class="input-xxlarge" type="text" placeholder="First name" id="userFirstName" name="userFirstName"></p>
 						</div>
 					</div>
 				</div>

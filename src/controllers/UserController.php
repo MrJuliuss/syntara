@@ -42,7 +42,22 @@ class UserController extends BaseController {
 	 */
 	public function postCreate()
 	{
-		
+        try
+        {
+            $user = Sentry::getUserProvider()->create(array(
+                'email'    => Input::get('userEmail'),
+                'password' => Input::get('userPass'),
+                'username' => Input::get('userName'),
+                'last_name' => Input::get('userLastName'),
+                'first_name' => Input::get('userFirstName')
+            ));
+        }
+        catch (\RuntimeException $e)
+        {
+            return json_encode(array('userCreated' => false));
+        }
+        
+        return json_encode(array('userCreated' => true));
 	}
     
     /**
