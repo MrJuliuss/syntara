@@ -335,6 +335,8 @@ input[type="color"],
     font-family: 'Roboto',Arial,sans-serif;
     font-size: 13px;
     margin-bottom: 0;
+	border-radius: 2px;
+	height: 25px;
 }
 
 /** BUTTON **/
