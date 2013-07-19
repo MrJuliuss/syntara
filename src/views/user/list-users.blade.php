@@ -15,6 +15,7 @@
         <th style="width:250px;">Email</th>
         <th style="width:250px;">Last Name</th>
         <th style="width:250px;">First Name</th>
+        <th style="width:30px; text-align: center;">Show</th>
     </tr>
 </thead>
 <tbody>
@@ -28,6 +29,7 @@
         <td>&nbsp;{{ $user->getLogin() }}</td>
         <td>&nbsp;{{ $user->last_name }}</td>
         <td>&nbsp;{{ $user->first_name }}</td>
+        <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
     </tr>
     @endforeach
 </tbody>
