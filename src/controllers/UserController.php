@@ -51,6 +51,9 @@ class UserController extends BaseController {
                 'last_name' => (string)Input::get('userLastName'),
                 'first_name' => (string)Input::get('userFirstName')
             ));
+			
+			$activationCode = $user->getActivationCode();
+			$user->attemptActivation($activationCode);
         }
         catch (\RuntimeException $e)
         {
@@ -76,4 +79,25 @@ class UserController extends BaseController {
         }
         return Response::json(array('deletedUser' => true));
     }
+	
+	/**
+	 * View user account
+	 * @param int $userId
+	 */
+	public function getShow($userId)
+	{
+		try
+		{
+			$user = Sentry::getUserProvider()->findById($userId);
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			
+		}
+	}
+	
+	public function putShow()
+	{
+		
+	}
 }
