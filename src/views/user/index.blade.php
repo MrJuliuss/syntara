@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('packages/mrjuliuss/syntara/assets/css/dashboard/users.css') }}" />
 {{ Breadcrumbs::create(array(array('title' => 'Users', 'link' => "dashboard/users", 'icon' => 'icon-user'))); }}
 
-<section class="module" style="margin: 20px;">
+<section class="module">
     <div class="module-head">
         <b>All users</b>
     </div>
