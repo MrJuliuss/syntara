@@ -94,6 +94,8 @@ class UserController extends BaseController {
 		{
 			
 		}
+		
+		$this->layout = View::make('syntara::user.show');
 	}
 	
 	public function putShow()
