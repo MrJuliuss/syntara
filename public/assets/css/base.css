@@ -315,6 +315,10 @@ form {
 	margin: 0;
 }
 
+.form-horizontal .control-label {
+    padding-top: 0;
+}
+
 select, 
 textarea, 
 input[type="text"], 
