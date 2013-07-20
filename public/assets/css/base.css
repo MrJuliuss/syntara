@@ -435,3 +435,7 @@ input[type="color"],
     float:left;
     margin: 0px;
 }
+
+.alert {
+    border-radius: 2px;
+}

@@ -91,11 +91,10 @@ class UserController extends BaseController {
 			$user = Sentry::getUserProvider()->findById($userId);
             $this->layout = View::make('syntara::user.show', array('user' => $user));
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-			
+            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, user not found ! '));
 		}
-		
 	}
 	
 	public function putShow()
