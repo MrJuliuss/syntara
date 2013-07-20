@@ -75,6 +75,11 @@
                         <label>Last login : </label><p>{{ $user->last_login }}</p>
                     </div>   
                 </div>
+                 <div class="control-group">
+                    <div class="controls">
+                        <label>Ip adress : </label><p>{{ $throttle->ip_address }}</p> 
+                    </div>
+                </div>
             </div>
         </div>
     </div>
