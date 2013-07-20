@@ -34,7 +34,7 @@ class UserController extends BaseController {
      */
     public function getCreate()
     {
-		$this->layout = View::make('syntara::user.new');
+		$this->layout = View::make('syntara::user.new-user');
     }
 
     /**

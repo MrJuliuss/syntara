@@ -20,8 +20,8 @@
         <li class="active"><a href="{{ URL::to('dashboard'); }}"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
         <li class="submenu"><a href="#"><i class="icon icon-user"></i><span>Users</span></a>
             <ul>    
-                <li><a href="{{ URL::to('dashboard/users'); }}">All users</a></li>
-                <li><a href="{{ URL::to('dashboard/user/new'); }}">New user</a></li>
+                <li><a href="{{ URL::to('dashboard/users'); }}">Users</a></li>
+                <li><a href="{{ URL::to('dashboard/groups'); }}">Groups</a></li>
             </ul>
         </li>
     </ul>
