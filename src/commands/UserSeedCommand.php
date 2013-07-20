@@ -44,6 +44,7 @@ class UserSeedCommand extends Command {
             $user = \Sentry::getUserProvider()->create(array(
                 'email'    => $this->argument('email'),
                 'password' => $this->argument('password'),
+                'username' => $this->argument('username'),
             ));
 
             $activationCode = $user->getActivationCode();
@@ -61,7 +62,8 @@ class UserSeedCommand extends Command {
 	{
 		return array(
 			array('email',    InputArgument::REQUIRED, 'User email'),
-			array('password', InputArgument::REQUIRED, 'User password')
+			array('password', InputArgument::REQUIRED, 'User password'),
+			array('username', InputArgument::REQUIRED, 'User name')
 		);
 	}
 
