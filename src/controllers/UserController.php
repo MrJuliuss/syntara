@@ -73,10 +73,11 @@ class UserController extends BaseController {
             $user = Sentry::getUserProvider()->findById(Input::get('userId'));
             $user->delete();
         }
-        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
             return Response::json(array('deletedUser' => false));
         }
+        
         return Response::json(array('deletedUser' => true));
     }
 	
@@ -97,8 +98,45 @@ class UserController extends BaseController {
 		}
 	}
 	
-	public function putShow()
+    /**
+     * Update user account
+     * @param int $userId
+     * @return Response
+     */
+	public function putShow($userId)
 	{
-		
+		try
+        {
+            // Find the user using the user id
+            $user = Sentry::getUserProvider()->findById($userId);
+            $user->username = Input::get('userName');
+            $user->email = Input::get('userEmail');
+            $user->last_name = Input::get('userLastName');
+            $user->first_name = Input::get('userFirstName');
+            
+            $pass = Input::get('userPass');
+            if(!empty($pass))
+            {
+                $user->password = $pass;
+            }
+            
+            // Update the user
+            if($user->save())
+            {
+                return Response::json(array('userUpdated' => true));
+            }
+            else 
+            {
+                return Response::json(array('userUpdated' => false, 'errorMessage' => 'Can not update this user, please try again.'));
+            }
+        }
+        catch(\Cartalyst\Sentry\Users\UserExistsException $e)
+        {   
+            return Response::json(array('userUpdated' => false, 'errorMessage' => 'A user with this email already exists.'));
+        }
+        catch(\Exception $e)
+        {
+            return Response::json(array('userUpdated' => false, 'errorMessage' => 'A user with this username already exists.'));
+        }
 	}
 }

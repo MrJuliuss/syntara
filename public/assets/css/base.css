@@ -206,6 +206,7 @@ a:hover {
     width: 100%;
     margin-top: -38px;
     z-index: 20;
+    height: 100%;
 }
 
 #content-header h1 {
@@ -224,10 +225,6 @@ a:hover {
 
 #content-header .btn-group .btn {
 	padding: 11px 14px 9px;
-}
-
-.container-fluid .row-fluid:first-child {
-	margin-top: 20px;
 }
 
 /** Breadcrumb part **/
@@ -378,13 +375,16 @@ input[type="color"],
 }
 
 /** Module part **/ 
+.container-fluid {
+    margin: 20px;
+}
 
 .module {
   border: 1px solid #d2d4d8;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 .module .module-head {
@@ -438,4 +438,5 @@ input[type="color"],
 
 .alert {
     border-radius: 2px;
+    margin-bottom: 0px;
 }

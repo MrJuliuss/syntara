@@ -150,3 +150,20 @@ var ajaxContent = function(url, content, options)
 		$(content).empty().html(data.html);
 	});
 };
+
+var showStatusMessage = function(message, type)
+{
+    $('.status-message').remove();
+    
+    var html = '<div class="row-fluid status-message">\n\
+                    <div class="row-fluid">\n\
+                        <div class="span12">\n\
+                            <div class="alert alert-'+type+'">\n\
+                                '+message+'\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>';
+            
+    $(html).prependTo('#main-container').hide().fadeIn(900);
+};
