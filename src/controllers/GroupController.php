@@ -27,4 +27,23 @@ class GroupController extends BaseController {
     {
         
     }
+    
+    /**
+     * Delete groupe
+     * @return Response
+     */
+    public function delete()
+    {
+        try
+        {
+            $group = Sentry::getGroupProvider()->findById(Input::get('userId'));
+            $group->delete();
+        }
+        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            return Response::json(array('deletedGroup' => false));
+        }
+        
+        return Response::json(array('deletedGroup' => true));
+    }
 }
