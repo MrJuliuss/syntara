@@ -12,26 +12,30 @@
                 </div>
                 <div class="module-body">
                     <form class="form-horizontal" id="create-group-form" method="PUT">
-                        <div class="span6">
-                            <div class="control-group">
-                               <label class="control-label">Group name</label>
-                               <div class="controls">
-                                   <input class="span12" type="text" id="groupName" name="groupName">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="control-group">
+                                   <label class="control-label">Group name</label>
+                                   <div class="controls">
+                                       <input class="span12" type="text" id="groupName" name="groupName">
+                                   </div>
                                </div>
-                           </div>
-                        </div>
-                        <div class="span6">
-                            <div class="control-group">
-                                <label class="control-label">Permissions</label>
-                                <div class="controls">
-                                    <input class="span12" type="text" id="groupPermission" name="groupPermission">
+                            </div>
+                            <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label">Permissions</label>
+                                    <div class="controls">
+                                        <input class="span12" type="text" id="groupPermission" name="groupPermission">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <button id="create-group" class="btn btn-primary">Create</button>
-                            </div>   
+                            <div class="span12">
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button id="create-group" class="btn btn-primary">Create</button>
+                                    </div>   
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
