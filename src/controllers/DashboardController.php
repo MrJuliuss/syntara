@@ -8,24 +8,24 @@ use Redirect;
 class DashboardController extends BaseController 
 {
     /**
-     * Index loggued page
-     */
+    * Index loggued page
+    */
     public function getIndex()
     {
         $this->layout = View::make('syntara::dashboard.index');
     }
     
     /**
-     * Login page
-     */
+    * Login page
+    */
     public function getLogin()
     {
         $this->layout = View::make('syntara::dashboard.login');
     }
 
     /**
-     * Login post authentication
-     */
+    * Login post authentication
+    */
     public function postLogin()
     {
         $userLogin = Input::get('userLogin');
@@ -50,8 +50,8 @@ class DashboardController extends BaseController
     }
     
     /**
-     * Logout user
-     */
+    * Logout user
+    */
     public function getLogout()
     {
         Sentry::logout();

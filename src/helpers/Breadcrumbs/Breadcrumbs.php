@@ -3,15 +3,15 @@
 use Illuminate\Support\Facades\URL;
 
 /**
- * Breadcrumb class
- */
+* Breadcrumb class
+*/
 class Breadcrumbs 
 {
     /**
-     * Create breadcrumb
-     * @param array $items breadcrumb items
-     * @return string
-     */
+    * Create breadcrumb
+    * @param array $items breadcrumb items
+    * @return string
+    */
     public static function create($items)
     {
         if(empty($items))
@@ -38,11 +38,11 @@ class Breadcrumbs
     }
     
     /**
-     * Render the current item
-     * @param array $item part of the breadcrumb
-     * @param boolean $active current breadcrumb is active
-     * @return string
-     */
+    * Render the current item
+    * @param array $item part of the breadcrumb
+    * @param boolean $active current breadcrumb is active
+    * @return string
+    */
     public static function renderItem($item, $active)
     {
         $class = "";

@@ -5,33 +5,33 @@ use View;
 class GroupController extends BaseController {
 
     /**
-     * List of groups
-     */
+    * List of groups
+    */
     public function getIndex()
     {
         $this->layout = View::make('syntara::group.index-group');
     }
     
     /**
-     * Show create group view
-     */
+    * Show create group view
+    */
     public function getCreate()
     {
         $this->layout = View::make('syntara::group.new-group');
     }
 
     /**
-     * Create group
-     */
+    * Create group
+    */
     public function postCreate()
     {
-        
+
     }
     
     /**
-     * Delete groupe
-     * @return Response
-     */
+    * Delete groupe
+    * @return Response
+    */
     public function delete()
     {
         try

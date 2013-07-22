@@ -8,40 +8,40 @@ use Sentry;
 
 class UserController extends BaseController {
 
-	/**
-	 * Display a list of all users
-	 *
-	 * @return Response
-	 */
-	public function getIndex()
-	{
-		$users =  Sentry::getUserProvider()->getEmptyUser()->paginate(20);
-		
+    /**
+    * Display a list of all users
+    *
+    * @return Response
+    */
+    public function getIndex()
+    {
+        $users =  Sentry::getUserProvider()->getEmptyUser()->paginate(20);
+
         $datas['links'] = $users->links();
         $datas['users'] = $users;
         if(Request::ajax())
         {
-			$html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
+            $html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
             
-			return Response::json(array('html' => $html));
+            return Response::json(array('html' => $html));
         }
         
-		$this->layout = View::make('syntara::user.index', array('datas' => $datas));
-	}
+        $this->layout = View::make('syntara::user.index', array('datas' => $datas));
+    }
     
     /**
-     * Show new user form view
-     */
+    * Show new user form view
+    */
     public function getCreate()
     {
-		$this->layout = View::make('syntara::user.new-user');
+        $this->layout = View::make('syntara::user.new-user');
     }
 
     /**
-	 * Create new user
-	 */
-	public function postCreate()
-	{
+    * Create new user
+    */
+    public function postCreate()
+    {
         try
         {
             $user = Sentry::getUserProvider()->create(array(
@@ -51,9 +51,9 @@ class UserController extends BaseController {
                 'last_name' => (string)Input::get('userLastName'),
                 'first_name' => (string)Input::get('userFirstName')
             ));
-			
-			$activationCode = $user->getActivationCode();
-			$user->attemptActivation($activationCode);
+
+            $activationCode = $user->getActivationCode();
+            $user->attemptActivation($activationCode);
         }
         catch (\RuntimeException $e)
         {
@@ -61,11 +61,11 @@ class UserController extends BaseController {
         }
         
         return json_encode(array('userCreated' => true));
-	}
+    }
     
     /**
-     * Delete a user
-     */
+    * Delete a user
+    */
     public function delete()
     {
         try
@@ -80,33 +80,33 @@ class UserController extends BaseController {
         
         return Response::json(array('deletedUser' => true));
     }
-	
-	/**
-	 * View user account
-	 * @param int $userId
-	 */
-	public function getShow($userId)
-	{
-		try
-		{
-			$user = Sentry::getUserProvider()->findById($userId);
+
+    /**
+    * View user account
+    * @param int $userId
+    */
+    public function getShow($userId)
+    {
+        try
+        {
+            $user = Sentry::getUserProvider()->findById($userId);
             $throttle = Sentry::getThrottleProvider()->findByUserId($userId);
             $this->layout = View::make('syntara::user.show', array('user' => $user, 'throttle' => $throttle));
-		}
-		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-		{
+        }
+        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
             $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, user not found ! '));
-		}
-	}
-	
+        }
+    }
+
     /**
-     * Update user account
-     * @param int $userId
-     * @return Response
-     */
-	public function putShow($userId)
-	{
-		try
+    * Update user account
+    * @param int $userId
+    * @return Response
+    */
+    public function putShow($userId)
+    {
+        try
         {
             // Find the user using the user id
             $user = Sentry::getUserProvider()->findById($userId);
@@ -139,5 +139,5 @@ class UserController extends BaseController {
         {
             return Response::json(array('userUpdated' => false, 'errorMessage' => 'A user with this username already exists.'));
         }
-	}
+    }
 }
