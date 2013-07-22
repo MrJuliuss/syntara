@@ -13,7 +13,7 @@
                 <div class="module-head">
                     <b>{{ $user->getId() }} - {{ $user->username }}</b>
                 </div>
-                <div class="module-body ajax-content">
+                <div class="module-body">
                     <form class="form-horizontal" id="edit-user-form" method="PUT">
                          <div class="control-group">
                             <label class="control-label">Username :</label>
