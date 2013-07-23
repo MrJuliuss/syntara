@@ -2,7 +2,7 @@ function showRegisterFormAjaxErrors(errors)
 {
     for(var errorType in errors)
     {
-        $('#'+errorType).after('<div class="label label-important error-'+errorType+'">'+errors[errorType]+'</div>');
+        $('#'+errorType).after('<br /><div class="label label-important error-'+errorType+'">'+errors[errorType]+'</div>');
     }
 }
 

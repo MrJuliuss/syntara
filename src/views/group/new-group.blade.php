@@ -15,7 +15,7 @@
                         <div class="row-fluid">
                             <div class="span6">
                                 <div class="control-group">
-                                   <label class="control-label">Group name</label>
+                                   <label class="control-label">Group name :</label>
                                    <div class="controls">
                                        <input class="span12" type="text" id="groupName" name="groupName">
                                    </div>
@@ -23,7 +23,7 @@
                             </div>
                             <div class="span6">
                                 <div class="control-group">
-                                    <label class="control-label">Permissions</label>
+                                    <label class="control-label">Permissions :<a href="#" class="icon-plus add-input" style="margin-left: 10px;"></a></label>
                                     <div class="controls">
                                         <input class="span12" type="text" id="groupPermission" name="groupPermission">
                                     </div>
