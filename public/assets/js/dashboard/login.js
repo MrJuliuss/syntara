@@ -27,7 +27,7 @@ $(document).ready(function()
     });
 });
 
-function checkLoginFormInput()
+var checkLoginFormInput = function()
 {
     $('.label-important').remove();
     var errors = new Array();

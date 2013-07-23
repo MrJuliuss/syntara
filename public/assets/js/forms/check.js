@@ -1,12 +1,12 @@
-function showRegisterFormAjaxErrors(errors)
+var showRegisterFormAjaxErrors = function(errors)
 {
     for(var errorType in errors)
     {
         $('#'+errorType).after('<br /><div class="label label-important error-'+errorType+'">'+errors[errorType]+'</div>');
     }
-}
+};
 
-function loginIsValidated(login)
+var loginIsValidated = function(login)
 {
     var loginRules = /^[a-zA-Z0-9_-]{3,16}$/;
     if(!loginRules.test(login))
@@ -17,9 +17,9 @@ function loginIsValidated(login)
     {
         return true;
     }
-}
+};
 
-function emailIsValidated(email)
+var emailIsValidated = function(email)
 {
     var emailRules = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/;
     if(!emailRules.test(email))
@@ -30,9 +30,9 @@ function emailIsValidated(email)
     {
         return true;
     }    
-}
+};
 
-function passwordIsValidated(pass)
+var passwordIsValidated = function(pass)
 {
     var passRules = /^[a-z0-9_-]{6,18}$/;
     if(!passRules.test(pass))
@@ -43,9 +43,9 @@ function passwordIsValidated(pass)
     {
         return true;
     }     
-}
+};
 
-function doublePassIsValid(passOne, passTwo)
+var doublePassIsValid = function(passOne, passTwo)
 {
     if(passOne === passTwo)
     {
@@ -55,4 +55,4 @@ function doublePassIsValid(passOne, passTwo)
     {
         return false;
     }
-}
+};

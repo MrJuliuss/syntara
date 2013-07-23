@@ -125,20 +125,20 @@ $(document).ready(function()
     });
 });
 
-    var ajaxContent = function(url, content, options)
+var ajaxContent = function(url, content, options)
+{
+    $.ajax(
     {
-        $.ajax(
-        {
-            url: url,
-            type: "get",
-            datatype: "html",
-            data: options
-        })
-        .done(function(data)
-        {
-            $(content).empty().html(data.html);
-        });
-    };
+        url: url,
+        type: "get",
+        datatype: "html",
+        data: options
+    })
+    .done(function(data)
+    {
+        $(content).empty().html(data.html);
+    });
+};
 
 var showStatusMessage = function(message, type)
 {
