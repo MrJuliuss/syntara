@@ -98,11 +98,7 @@ a:hover {
 
 /* Navigation */
 #sidebar { 
-    width:100%; 
-    background:none;  
-    position:absolute; 
-    clear:both; 
-    top:65px;
+	height: 42px;
 }
 
 #sidebar > ul { 
@@ -195,16 +191,11 @@ a:hover {
     background: none repeat scroll 0 0 #fff;
     margin-left:0px;
     margin-right: 0;
-	margin-top:80px;
-    padding-bottom: 25px;
-    position: relative;
-    min-height: 500px;
     width: auto;
 }
 
 #content-header {
     width: 100%;
-    margin-top: -38px;
     z-index: 20;
     height: 100%;
 }
