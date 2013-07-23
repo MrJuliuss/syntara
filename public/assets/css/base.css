@@ -431,3 +431,7 @@ input[type="color"],
     border-radius: 2px;
     margin-bottom: 0px;
 }
+
+#delete-users {
+    display: none;
+}

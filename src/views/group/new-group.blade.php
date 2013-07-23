@@ -23,7 +23,12 @@
                             </div>
                             <div class="span6">
                                 <div class="control-group">
-                                    <label class="control-label">Permissions :<a href="#" class="icon-plus add-input" style="margin-left: 10px;"></a></label>
+                                    <label class="control-label">Permissions :<a href="#" class="icon-plus-sign add-input" style="margin-left: 10px;"></a></label>
+                                    <div class="controls">
+                                        <input class="span12" type="text" id="groupPermission" name="groupPermission">
+                                    </div>
+                                </div>
+                                <div class="control-group">
                                     <div class="controls">
                                         <input class="span12" type="text" id="groupPermission" name="groupPermission">
                                     </div>

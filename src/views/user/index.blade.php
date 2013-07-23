@@ -1,7 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('packages/mrjuliuss/syntara/assets/css/dashboard/users.css') }}" />
+<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script> 
 {{ Breadcrumbs::create(array(array('title' => 'Users', 'link' => "dashboard/users", 'icon' => 'icon-user'))); }}
 <div class="container-fluid">
     <div class="row-fluid">
