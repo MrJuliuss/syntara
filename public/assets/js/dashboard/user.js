@@ -15,8 +15,7 @@ $(function()
             {
                 if(result.userCreated === false)
                 {
-                    errors['userPass'] = 'Can not create user...';
-                    showRegisterFormAjaxErrors(errors);
+                    showStatusMessage(result.errorMessage, 'error');
                 }
                 else
                 {

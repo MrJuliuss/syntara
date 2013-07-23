@@ -55,9 +55,17 @@ class UserController extends BaseController {
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
         }
-        catch (\RuntimeException $e)
+        catch (\Cartalyst\Sentry\Users\LoginRequiredException $e)
         {
-            return json_encode(array('userCreated' => false));
+            return json_encode(array('userCreated' => false, 'errorMessage' => 'Login is required...'));
+        }
+        catch (\Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            return json_encode(array('userCreated' => false, 'errorMessage' => 'Passord is required...'));
+        }
+        catch (\Cartalyst\Sentry\Users\UserExistsException $e)
+        {
+            return json_encode(array('userCreated' => false, 'errorMessage' => 'User with this login already exists.'));
         }
         
         return json_encode(array('userCreated' => true));
