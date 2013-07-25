@@ -121,7 +121,16 @@ $(document).ready(function()
 
     $(document).on('click', '.add-input', function()
     {
+        var html = '<div class="control-group"><label class="control-label"><a href="#" class="icon-minus-sign remove-input" style="margin-left: 10px;"></a></label><div class="controls"><input class="span12" type="text" id="groupPermission" name="groupPermission"></div></div>';
+        $('#input-container').append(html);
         
+        return false;
+    });
+    
+    $(document).on('click', '.remove-input', function()
+    {
+        $(this).parent().parent().remove();
+        return false;
     });
 });
 
