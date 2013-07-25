@@ -8,7 +8,7 @@ $(document).ready(function()
         $.ajax({
             "type": "POST",
             "url": "login",
-            data: {"userLogin" : $('#userLogin').val(), "userPass" : $('#userPass').val()},
+            "data": {"login" : $('#login').val(), "pass" : $('#pass').val()},
             "dataType": "json",
             success: function(result) 
             { 
@@ -18,7 +18,7 @@ $(document).ready(function()
                 }
                 else
                 {
-                     $('#userPass').after('<div class="label label-important">Bad login or password</div>');
+                    $('#pass').after('<div class="label label-important">Bad login or password</div>');
                 }
             }
         });
@@ -31,13 +31,13 @@ var checkLoginFormInput = function()
 {
     $('.label-important').remove();
     var errors = new Array();
-    if($('#userLogin').val() === "")
+    if($('#login').val() === "")
     {
-        errors['userLogin'] = 'Please enter your login';
+        errors['login'] = 'Please enter your login';
     }
-    if($('#userPass').val() === "")
+    if($('#pass').val() === "")
     {
-        errors['userPass'] = 'Please enter your password';
+        errors['pass'] = 'Please enter your password';
     }
     
     if(Object.keys(errors).length !== 0)
@@ -49,4 +49,4 @@ var checkLoginFormInput = function()
     {
         return true;
     }
-}
+};

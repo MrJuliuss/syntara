@@ -4,6 +4,9 @@ use View;
 use Input;
 use Sentry;
 use Redirect;
+use Validator;
+use Config;
+use Response;
 
 class DashboardController extends BaseController 
 {
@@ -28,14 +31,21 @@ class DashboardController extends BaseController
     */
     public function postLogin()
     {
-        $userLogin = Input::get('userLogin');
-        $userPassword = Input::get('userPass');
-        
         try
         {
+            $validator = Validator::make(
+                Input::all(),
+                Config::get('syntara::rules.users.login')
+            );
+            
+            if($validator->fails())
+            {
+                return Response::json(array('logged' => false));
+            }
+            
             $credentials = array(
-                'email'    => $userLogin,
-                'password' => $userPassword,
+                'email'    => Input::get('login'),
+                'password' => Input::get('pass'),
             );
 
             $user = Sentry::authenticate($credentials, false);
@@ -43,10 +53,10 @@ class DashboardController extends BaseController
         }
         catch (\RuntimeException $e)
         {
-            return json_encode(array('logged' => false));
+            return Response::json(array('logged' => false));
         }
         
-        return json_encode(array('logged' => true));
+        return Response::json(array('logged' => true));
     }
     
     /**
