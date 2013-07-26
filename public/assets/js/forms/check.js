@@ -2,6 +2,7 @@ var showRegisterFormAjaxErrors = function(errors)
 {
     for(var errorType in errors)
     {
+        $('.error-'+errorType).remove();
         for(var i in errors[errorType])
         {
             $('#'+errorType).after('<div class="label label-important error-'+errorType+'">'+errors[errorType][i]+'</div>');

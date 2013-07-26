@@ -2,9 +2,6 @@ $(function()
 {
     $('#create-user-form').on('submit', function()
     {
-        if(!checkNewUserFormInput())
-            return false;
-
         $.ajax({
             "type": "POST",
             "url": 'new',
@@ -29,7 +26,7 @@ $(function()
                 }
             }
         });
-
+        
         return false;
     });
 
@@ -109,39 +106,4 @@ var checkEditUserFormInput = function()
     {
         return true;
     }	  
-};
-
-var checkNewUserFormInput = function()
-{
-    $('.label-important').remove();
-
-    var errors = new Array();
-    var userName = $('#username').val();
-    var userPass = $('#pass').val();
-    var userEmail = $('#email').val();
-
-    if(!loginIsValidated(userName))
-    {
-        errors['username'] = new Array('Bad login');
-    }
-
-    if(!passwordIsValidated(userPass))
-    {
-        errors['pass'] = new Array('Bad password');
-    }
-
-    if(!emailIsValidated(userEmail))
-    {
-        errors['email'] = new Array('Bad email');
-    }
-
-    if(Object.keys(errors).length !== 0)
-    {
-        showRegisterFormAjaxErrors(errors);
-        return false;
-    }
-    else
-    {
-        return true;
-    }
 };
