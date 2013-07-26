@@ -5,6 +5,8 @@ use Input;
 use Response;
 use Request;
 use Sentry;
+use Validator;
+use Config;
 
 class UserController extends BaseController {
 
@@ -44,14 +46,24 @@ class UserController extends BaseController {
     {
         try
         {
+            $validator = Validator::make(
+                Input::all(),
+                Config::get('syntara::rules.users.create')
+            );
+            
+            if($validator->fails())
+            {
+                return Response::json(array('userCreated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+            }
+            
             $user = Sentry::getUserProvider()->create(array(
-                'email'    => Input::get('userEmail'),
-                'password' => Input::get('userPass'),
-                'username' => Input::get('userName'),
-                'last_name' => (string)Input::get('userLastName'),
-                'first_name' => (string)Input::get('userFirstName')
+                'email'    => Input::get('email'),
+                'password' => Input::get('pass'),
+                'username' => Input::get('username'),
+                'last_name' => (string)Input::get('last_name'),
+                'first_name' => (string)Input::get('first_name')
             ));
-
+            
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
         }

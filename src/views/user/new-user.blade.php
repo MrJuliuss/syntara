@@ -19,19 +19,19 @@
                                 <div class="control-group">
                                     <label class="control-label">User name :</label>
                                     <div class="controls">
-                                        <p><input class="span12" type="text" placeholder="User name" id="userName" name="userName"></p>
+                                        <p><input class="span12" type="text" placeholder="User name" id="username" name="username"></p>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Email :</label>
                                     <div class="controls">
-                                        <p><input class="span12" type="text" placeholder="Email" id="userEmail" name="userEmail"></p>
+                                        <p><input class="span12" type="text" placeholder="Email" id="email" name="email"></p>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Password :</label>
                                     <div class="controls">
-                                        <p><input class="span12" type="password" placeholder="Password" id="userPass" name="userPass"></p>
+                                        <p><input class="span12" type="password" placeholder="Password" id="pass" name="pass"></p>
                                     </div>
                                 </div>
                             </div>
@@ -39,13 +39,13 @@
                                 <div class="control-group">
                                     <label class="control-label">Last name :</label>
                                     <div class="controls">
-                                        <p><input class="span12" type="text" placeholder="Last name" id="userLastName" name="userLastName"></p>
+                                        <p><input class="span12" type="text" placeholder="Last name" id="last_name" name="last_name"></p>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">First name : </label>
                                     <div class="controls">
-                                        <p><input class="span12" type="text" placeholder="First name" id="userFirstName" name="userFirstName"></p>
+                                        <p><input class="span12" type="text" placeholder="First name" id="first_name" name="first_name"></p>
                                     </div>
                                 </div>
                             </div>

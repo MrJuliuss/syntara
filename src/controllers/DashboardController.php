@@ -44,7 +44,7 @@ class DashboardController extends BaseController
             }
             
             $credentials = array(
-                'email'    => Input::get('login'),
+                'email'    => Input::get('email'),
                 'password' => Input::get('pass'),
             );
 
