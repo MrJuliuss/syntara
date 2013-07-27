@@ -365,6 +365,10 @@ input[type="color"],
 	padding: 5px;
 }
 
+.label-important {
+    display: table;
+}
+
 /** Module part **/ 
 .container-fluid {
     margin: 20px;
