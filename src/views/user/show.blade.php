@@ -17,31 +17,31 @@
                          <div class="control-group">
                             <label class="control-label">Username :</label>
                             <div class="controls">
-                                <input class="span12" type="text" id="userName" name="userName" value="{{ $user->username}}">
+                                <input class="span12" type="text" id="username" name="username" value="{{ $user->username}}">
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Email :</label>
                             <div class="controls">
-                                <input class="span12" type="text" id="userEmail" name="userEmail" value="{{ $user->email }}">
+                                <input class="span12" type="text" id="email" name="email" value="{{ $user->email }}">
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Password :</label>
                             <div class="controls">
-                                <input class="span12" type="password" placeholder="Password" id="userPass" name="userPass" >
+                                <input class="span12" type="password" placeholder="Password" id="pass" name="pass" >
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Last name :</label>
                             <div class="controls">
-                                <input class="span12" type="text" id="userLastName" name="userLastName" value="{{ $user->last_name  }}">
+                                <input class="span12" type="text" id="last_name" name="last_name" value="{{ $user->last_name  }}">
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">First name :</label>
                             <div class="controls">
-                                <input class="span12" type="text" id="userFirstName" name="userFirstName" value="{{ $user->first_name }}">
+                                <input class="span12" type="text" id="first_name" name="first_name" value="{{ $user->first_name }}">
                             </div>
                         </div>
                         <div class="control-group">

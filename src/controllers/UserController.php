@@ -122,19 +122,27 @@ class UserController extends BaseController {
     {
         try
         {
+            $validator = Validator::make(
+                Input::all(),
+                Config::get('syntara::rules.users.show')
+            );
+            if($validator->fails())
+            {
+                return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+            }
+            
             // Find the user using the user id
             $user = Sentry::getUserProvider()->findById($userId);
-            $user->username = Input::get('userName');
-            $user->email = Input::get('userEmail');
-            $user->last_name = Input::get('userLastName');
-            $user->first_name = Input::get('userFirstName');
+            $user->username = Input::get('username');
+            $user->email = Input::get('email');
+            $user->last_name = Input::get('last_name');
+            $user->first_name = Input::get('first_name');
             
-            $pass = Input::get('userPass');
+            $pass = Input::get('pass');
             if(!empty($pass))
             {
                 $user->password = $pass;
             }
-            
             // Update the user
             if($user->save())
             {
@@ -151,6 +159,7 @@ class UserController extends BaseController {
         }
         catch(\Exception $e)
         {
+            var_dump($e); die;
             return Response::json(array('userUpdated' => false, 'errorMessage' => 'A user with this username already exists.'));
         }
     }

@@ -23,6 +23,13 @@ return array(
                 'last_name' => $rules['last_name'],
                 'first_name' => $rules['first_name']
             ),
+            'show' => array(
+                'email' => $rules['email'],
+                'pass' => array('min:6', 'max:18'),
+                'username' => $rules['username'],
+                'last_name' => $rules['last_name'],
+                'first_name' => $rules['first_name']                
+            ),
         ),
     ),
 );
