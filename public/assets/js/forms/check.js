@@ -1,5 +1,6 @@
 var showRegisterFormAjaxErrors = function(errors)
 {
+    $('.status-message').remove();
     for(var errorType in errors)
     {
         $('.error-'+errorType).remove();

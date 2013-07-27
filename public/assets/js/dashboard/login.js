@@ -9,7 +9,7 @@ $(document).ready(function()
             "dataType": "json",
             success: function(result) 
             { 
-                if(result.userCreated === false)
+                if(result.logged === false)
                 {
                     if(typeof result.errorMessage !== 'undefined')
                     {

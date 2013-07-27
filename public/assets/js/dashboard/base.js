@@ -152,6 +152,7 @@ var ajaxContent = function(url, content, options)
 var showStatusMessage = function(message, type)
 {
     $('.status-message').remove();
+    $('.label-important').remove();
     
     var html = '<div class="row-fluid status-message">\n\
                     <div class="row-fluid">\n\
