@@ -40,20 +40,19 @@ class DashboardController extends BaseController
             
             if($validator->fails())
             {
-                return Response::json(array('logged' => false));
+                 return Response::json(array('logged' => false, 'errorMessages' => $validator->messages()->getMessages()));
             }
             
             $credentials = array(
-                'email'    => Input::get('login'),
+                'email'    => Input::get('email'),
                 'password' => Input::get('pass'),
             );
 
             $user = Sentry::authenticate($credentials, false);
-            
         }
         catch (\RuntimeException $e)
         {
-            return Response::json(array('logged' => false));
+            return Response::json(array('logged' => false, 'errorMessages' => array('pass' => array('Login failed !'))));
         }
         
         return Response::json(array('logged' => true));

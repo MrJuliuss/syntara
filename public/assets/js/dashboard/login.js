@@ -8,7 +8,7 @@ $(document).ready(function()
         $.ajax({
             "type": "POST",
             "url": "login",
-            "data": {"login" : $('#login').val(), "pass" : $('#pass').val()},
+            "data": {"email" : $('#email').val(), "pass" : $('#pass').val()},
             "dataType": "json",
             success: function(result) 
             { 
@@ -18,7 +18,7 @@ $(document).ready(function()
                 }
                 else
                 {
-                    $('#pass').after('<div class="label label-important">Bad login or password</div>');
+                    showRegisterFormAjaxErrors(result.errorMessages);
                 }
             }
         });
@@ -31,16 +31,16 @@ var checkLoginFormInput = function()
 {
     $('.label-important').remove();
     var errors = new Array();
-    if($('#login').val() === "")
+    if($('#email').val() === "")
     {
-        errors['login'] = 'Please enter your login';
+        errors['email'] = new Array('Please enter your login');
     }
     if($('#pass').val() === "")
     {
-        errors['pass'] = 'Please enter your password';
+        errors['pass'] = new Array('Please enter your password');
     }
     
-    if(Object.keys(errors).length !== 0)
+    if(Object.keys(errors).length)
     {
         showRegisterFormAjaxErrors(errors);
         return false;
