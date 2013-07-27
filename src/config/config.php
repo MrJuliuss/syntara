@@ -6,6 +6,7 @@ $rules = array(
     'username' => array('required', 'min:3', 'max:16', 'alpha'),
     'last_name' => array('min:3', 'max:16', 'alpha'),
     'first_name' => array('min:3', 'max:16', 'alpha')
+
 );
 
 return array(

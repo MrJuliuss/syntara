@@ -10,7 +10,7 @@
                 <div class="span4 offset4">
                     <form id="login-form" method="post" class="form-horizontal">
                         <p class="account-username">
-                            <input type="text" class="span12" placeholder="Username" name="login" id="login">
+                            <input type="text" class="span12" placeholder="Username" name="email" id="email">
                         </p>
                         <p class="account-password">
                             <input type="password" class="span12" placeholder="Password" name="pass" id="pass">

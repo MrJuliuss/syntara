@@ -2,20 +2,23 @@ $(function()
 {
     $('#create-user-form').on('submit', function()
     {
-        if(!checkNewUserFormInput())
-            return false;
-
-        var errors = new Array();
         $.ajax({
             "type": "POST",
             "url": 'new',
-            data: {"userName" : $('#userName').val(), "userEmail" : $('#userEmail').val(), "userPass" : $('#userPass').val(), "userLastName" : $('#userLastName').val(), "userFirstName" : $('#userFirstName').val()},
+            data: {"username" : $('#username').val(), "email" : $('#email').val(), "pass" : $('#pass').val(), "last_name" : $('#last_name').val(), "first_name" : $('#first_name').val()},
             "dataType": "json",
             success: function(result) 
             {
                 if(result.userCreated === false)
                 {
-                    showStatusMessage(result.errorMessage, 'error');
+                    if(typeof result.errorMessage !== 'undefined')
+                    {
+                        showStatusMessage(result.errorMessage, 'error');
+                    }
+                    else if(typeof result.errorMessages !== 'undefined')
+                    {
+                        showRegisterFormAjaxErrors(result.errorMessages);
+                    }
                 }
                 else
                 {
@@ -23,7 +26,7 @@ $(function()
                 }
             }
         });
-
+        
         return false;
     });
 
@@ -32,7 +35,6 @@ $(function()
         if(!checkEditUserFormInput())
             return false;
 
-        var errors = new Array();
         $.ajax({
             "type": "PUT",
             "url": window.location.href.toString(),
@@ -82,17 +84,17 @@ var checkEditUserFormInput = function()
 
     if(!loginIsValidated(userName))
     {
-        errors['userName'] = 'Bad login';
+        errors['userName'] = new Array('Bad login');
     }
 
     if(userPass !== "" && !passwordIsValidated(userPass))
     {
-        errors['userPass'] = 'Bad password';
+        errors['userPass'] = new Array('Bad password');
     }
 
     if(!emailIsValidated(userEmail))
     {
-        errors['userEmail'] = 'Bad email';
+        errors['userEmail'] = new Array('Bad email');
     }
 
     if(Object.keys(errors).length !== 0)
@@ -104,39 +106,4 @@ var checkEditUserFormInput = function()
     {
         return true;
     }	  
-};
-
-var checkNewUserFormInput = function()
-{
-    $('.label-important').remove();
-
-    var errors = new Array();
-    var userName = $('#userName').val();
-    var userPass = $('#userPass').val();
-    var userEmail = $('#userEmail').val();
-
-    if(!loginIsValidated(userName))
-    {
-        errors['userName'] = 'Bad login';
-    }
-
-    if(!passwordIsValidated(userPass))
-    {
-        errors['userPass'] = 'Bad password';
-    }
-
-    if(!emailIsValidated(userEmail))
-    {
-        errors['userEmail'] = 'Bad email';
-    }
-
-    if(Object.keys(errors).length !== 0)
-    {
-        showRegisterFormAjaxErrors(errors);
-        return false;
-    }
-    else
-    {
-        return true;
-    }
 };
