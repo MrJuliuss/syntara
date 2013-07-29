@@ -13,8 +13,8 @@
         <th style="width:20px; text-align: center;">Id</th>
         <th style="width:200px;">Username</th>
         <th style="width:200px;">Email</th>
-        <th style="width:200px;">Last Name</th>
-        <th style="width:200px;">First Name</th>
+        <th style="width:200px;" class="visible-desktop">Last Name</th>
+        <th style="width:200px;" class="visible-desktop">First Name</th>
         <th style="width:30px; text-align: center;">Show</th>
     </tr>
 </thead>
@@ -27,8 +27,8 @@
         <td style="text-align: center;">{{ $user->getId() }}</td>
         <td>&nbsp;{{ $user->username }}</td>
         <td>&nbsp;{{ $user->getLogin() }}</td>
-        <td>&nbsp;{{ $user->last_name }}</td>
-        <td>&nbsp;{{ $user->first_name }}</td>
+        <td class="visible-desktop">&nbsp;{{ $user->last_name }}</td>
+        <td class="visible-desktop">&nbsp;{{ $user->first_name }}</td>
         <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
     </tr>
     @endforeach
