@@ -1,6 +1,9 @@
 <?php namespace MrJuliuss\Syntara\Controllers;
 
 use View;
+use Validator;
+use Input;
+use Config;
 
 class GroupController extends BaseController {
 
@@ -25,7 +28,23 @@ class GroupController extends BaseController {
     */
     public function postCreate()
     {
+        var_dump(Input::all());
+        try
+        {
+            $validator = Validator::make(
+                Input::all(),
+                Config::get('syntara::rules.groups.create')
+            );
 
+            if($validator->fails())
+            {
+                return Response::json(array('userCreated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+            }
+        }
+        catch(Exception $e)
+        {
+            
+        }
     }
     
     /**

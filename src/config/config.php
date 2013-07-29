@@ -5,8 +5,9 @@ $rules = array(
     'pass' => array('required', 'min:6', 'max:18'),
     'username' => array('required', 'min:3', 'max:16', 'alpha'),
     'last_name' => array('min:3', 'max:16', 'alpha'),
-    'first_name' => array('min:3', 'max:16', 'alpha')
-
+    'first_name' => array('min:3', 'max:16', 'alpha'),
+    'groupname' => array('min:3', 'max:16', 'alpha'),
+    'permission' => array('min:3', 'max:16')
 );
 
 return array(
@@ -29,6 +30,12 @@ return array(
                 'username' => $rules['username'],
                 'last_name' => $rules['last_name'],
                 'first_name' => $rules['first_name']                
+            ),
+        ),
+        'groups' => array(
+            'create' => array(
+                'groupname' => $rules['groupname'],
+                'permission' => $rules['permission']
             ),
         ),
     ),

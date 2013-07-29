@@ -1,6 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
 @section('content')
+<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/group.js') }}"></script>
 {{ Breadcrumbs::create(array(array('title' => 'Groups', 'link' => "dashboard/groups", 'icon' => 'icon-list-alt'), array('title' => 'New group', 'link' => URL::current(), 'icon' => 'icon-plus-sign'))); }}
 
 <div class="container-fluid">
@@ -11,13 +12,13 @@
                     <b>New group</b>
                 </div>
                 <div class="module-body">
-                    <form class="form-horizontal" id="create-group-form" method="PUT">
+                    <form class="form-horizontal" id="create-group-form" method="POST">
                         <div class="row-fluid">
                             <div class="span6">
                                 <div class="control-group">
                                    <label class="control-label">Group name :</label>
                                    <div class="controls">
-                                       <input class="span12" type="text" id="groupName" name="groupName">
+                                       <input class="span12" type="text" id="groupname" name="groupname">
                                    </div>
                                </div>
                             </div>
@@ -25,7 +26,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Permissions :<a href="#" class="icon-plus-sign add-input" style="margin-left: 10px;"></a></label>
                                     <div class="controls">
-                                        <input class="span12" type="text" id="groupPermission" name="groupPermission">
+                                        <input class="span12" type="text" name="permission[]">
                                     </div>
                                 </div>
                             </div>
