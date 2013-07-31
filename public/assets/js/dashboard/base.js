@@ -58,7 +58,7 @@ $(document).ready(function()
     {
         if($(window).width() > 768)
         {
-            $('#user-nav > ul').css({width:'auto',margin:'0'});
+            $('#side-bar ul').show();
         }
     });
 
@@ -99,7 +99,7 @@ $(document).ready(function()
 
     $(document).on('click', '.add-input', function()
     {
-        var html = '<div class="control-group"><label class="control-label"><a href="#" class="icon-minus-sign remove-input" style="margin-left: 10px;"></a></label><div class="controls"><input class="span12" type="text" name="permission[]"></div></div>';
+        var html = '<div class="control-group"><label class="control-label"><a href="#" class="icon-minus-sign remove-input" style="margin-left: 10px;"></a></label><div class="controls"><input class="col-lg-12" type="text" name="permission[]"></div></div>';
         $('#input-container').append(html);
         
         return false;
@@ -130,7 +130,7 @@ var ajaxContent = function(url, content, options)
 var showStatusMessage = function(message, type)
 {
     $('.status-message').remove();
-    $('.label-important').remove();
+    $('.label-danger').remove();
     
     var html = '<div class="row status-message">\n\
                         <div class="col-lg-12">\n\

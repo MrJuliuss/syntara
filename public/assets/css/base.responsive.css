@@ -1,38 +1,26 @@
 /* Responsive design */
+#sidebar > a {
+    height: 39px;
+}
+
 @media (max-width: 480px) {
 	#header h1 {
 		top: auto;
 		left: auto;
 		margin: 3px auto;
 	}
-	#user-nav {
-		position: relative;
-		left: auto;
-		right: auto;
-		width: 100%;
-		margin-top: -36px; border-top:1px solid #3D3A37;
-		margin-bottom: 0px; background:#2b2b2b; float:right;
-	}
 	.navbar > .nav {
 		float: none;
 	}
-	
-	#user-nav > ul {
-		right: 0px; margin-left:15%!important;
-		margin-top:0px; width:100%; background:#000;
-		position: relative;
-	}
-	#user-nav > ul > li{ padding:0px 0px;}
-	#user-nav > ul > li > a{ padding:5px 10px;}
 	#content {
 		margin-left: 0 !important;
 		border-top-left-radius: 0;
 		margin-top:0px;
     }
 
-    #sidebar { float: none; width: 100% !important; display:block; position:relative; top:0px;}
-    #sidebar > ul{ margin:0px; padding:0px; width:100%; display:block; z-index:999; position:relative} 
-    #sidebar > ul > li { list-style-type:none; display:block; border-bottom:1px solid #333; border-top:1px solid #5d5d5d; float:none !important; margin:0px; border-left:1px dotted #6b6b6b; position:relative; padding:10px; cursor:pointer} 
+    #sidebar { float: none; width: 100% !important; position:relative; top:0px;}
+    #sidebar > ul{ margin:0px; padding:0px; width:100%; z-index:999; display: none; position:relative} 
+    #sidebar > ul > li { list-style-type:none; border-bottom:1px solid #333; border-top:1px solid #5d5d5d; float:none !important; margin:0px; border-left:1px dotted #6b6b6b; position:relative; padding:10px; cursor:pointer} 
     #sidebar > ul > li:hover ul { display:none;} 
     #sidebar > ul > li:hover { background-color:#2b2b2b;} 
     #sidebar > ul > li:hover a{ background:none;}
@@ -76,9 +64,6 @@
 	.container-fluid {
 		padding-left: 20px;
 		padding-right: 20px;
-	}
-	#user-nav > ul > li > a > span.text {
-		display: none;
 	}
 }
 

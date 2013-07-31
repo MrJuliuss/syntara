@@ -1,12 +1,12 @@
 var showRegisterFormAjaxErrors = function(errors)
 {
     $('.status-message').remove();
-    $('.label-important').remove();
+    $('.label-danger').remove();
     for(var errorType in errors)
     {
         for(var i in errors[errorType])
         {
-            $('#'+errorType).after('<div class="label label-important error-'+errorType+'">'+errors[errorType][i]+'</div>');
+            $('#'+errorType).after('<span class="label label-danger error-'+errorType+'">'+errors[errorType][i]+'</span>');
         }
     }
 };
