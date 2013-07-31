@@ -8,7 +8,7 @@ body {
     font-size: 13px;
 	overflow-x: hidden;
     margin-top: -9px;
-    background-color: #494949;
+    background-color: #fff;
     color: #747678;
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: 300;
@@ -48,12 +48,20 @@ a:hover {
     display: block;
 }
 
+.container {
+    width: 100%;
+    max-width: 100%;
+}
+
 /* Loggued user Navigation */ 
+.navbar { 
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
 #user-nav {
-    position: absolute;
-    right:0px;
-    top: 5px;
-    z-index: 20;
+    position: relative;
+    height: 63px;
     margin: 0; 
 }
 #user-nav > ul {
@@ -98,7 +106,8 @@ a:hover {
 
 /* Navigation */
 #sidebar { 
-	height: 42px;
+	height: 39px;
+    background-color: #494949;
 }
 
 #sidebar > ul { 
@@ -324,7 +333,7 @@ input[type="color"],
     font-size: 13px;
     margin-bottom: 0;
 	border-radius: 2px;
-	height: 25px;
+	height: 30px;
 }
 
 /** BUTTON **/
@@ -380,6 +389,8 @@ input[type="color"],
   -moz-border-radius: 3px;
   border-radius: 3px;
   margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .module .module-head {

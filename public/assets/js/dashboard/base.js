@@ -56,16 +56,6 @@ $(document).ready(function()
     
     $(window).resize(function()
     {
-        if($(window).width() > 479)
-        {
-            ul.css({'display':'block'});	
-            $('#content-header .btn-group').css({width:'auto'});		
-        }
-        if($(window).width() < 479)
-        {
-            ul.css({'display':'none'});
-            fix_position();
-        }
         if($(window).width() > 768)
         {
             $('#user-nav > ul').css({width:'auto',margin:'0'});
@@ -73,17 +63,6 @@ $(document).ready(function()
         }
     });
 
-    if($(window).width() < 468)
-    {
-        ul.css({'display':'none'});
-        fix_position();
-    }
-    if($(window).width() > 479)
-    {
-       $('#content-header .btn-group').css({width:'auto'});
-        ul.css({'display':'block'});
-    }
-    
     $(document).on('click', '.pagination a', function()
     {
         ajaxContent($(this).attr('href'), ".ajax-content");
