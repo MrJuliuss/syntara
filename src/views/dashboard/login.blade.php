@@ -11,10 +11,10 @@
                 <div class="form-group account-username">
                     <input type="text" class="col-lg-12 form-control" placeholder="Username" name="email" id="email">
                 </div>
-                
-                 <div class="form-group account-username account-password">
-                    <input type="password" class="col-lg-12 form-control" placeholder="Password" name="pass" id="pass">
-                 </div>
+
+                <div class="form-group account-username account-password">
+                   <input type="password" class="col-lg-12 form-control" placeholder="Password" name="pass" id="pass">
+                </div>
                 <button class="btn btn-block btn-large btn-primary">Sign In</button>
             </form>
         </div>

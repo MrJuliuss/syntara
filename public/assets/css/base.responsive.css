@@ -28,30 +28,8 @@
 		margin-left: 0 !important;
 		border-top-left-radius: 0;
 		margin-top:0px;
-	}
-	#content-header {
-		margin-top: 0;
-		
-		text-align: center;
-	}
-	#content-header h1, #content-header .btn-group {
-		float: none;
-	}
-	#content-header h1 {
-		display: block;
-		text-align: center;
-		margin-left: auto;
-		margin-top: 0;
-		padding-top: 15px;
-		width: 100%;
-	}
-	#content-header .btn-group {
-		margin-top: 70px;
-		margin-bottom: 0;
-		margin-right: 0;
-		left: 30%;
-	}
-	
+    }
+
     #sidebar { float: none; width: 100% !important; display:block; position:relative; top:0px;}
     #sidebar > ul{ margin:0px; padding:0px; width:100%; display:block; z-index:999; position:relative} 
     #sidebar > ul > li { list-style-type:none; display:block; border-bottom:1px solid #333; border-top:1px solid #5d5d5d; float:none !important; margin:0px; border-left:1px dotted #6b6b6b; position:relative; padding:10px; cursor:pointer} 

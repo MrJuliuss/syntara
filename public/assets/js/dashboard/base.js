@@ -59,7 +59,6 @@ $(document).ready(function()
         if($(window).width() > 768)
         {
             $('#user-nav > ul').css({width:'auto',margin:'0'});
-            $('#content-header .btn-group').css({width:'auto'});
         }
     });
 
@@ -133,14 +132,12 @@ var showStatusMessage = function(message, type)
     $('.status-message').remove();
     $('.label-important').remove();
     
-    var html = '<div class="row-fluid status-message">\n\
-                    <div class="row-fluid">\n\
-                        <div class="span12">\n\
+    var html = '<div class="row status-message">\n\
+                        <div class="col-lg-12">\n\
                             <div class="alert alert-'+type+'">\n\
                                 '+message+'\n\
                             </div>\n\
                         </div>\n\
-                    </div>\n\
                 </div>';
             
     $(html).prependTo('#main-container').hide().fadeIn(900);

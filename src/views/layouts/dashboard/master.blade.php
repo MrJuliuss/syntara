@@ -13,9 +13,7 @@
     <body>
         @include('syntara::layouts.dashboard.header')    
         <div id="content">
-            <div id="content-header">
             @yield('content')
-            </div>
         </div>
         @include('syntara::layouts.dashboard.footer')
     </body>

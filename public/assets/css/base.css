@@ -23,6 +23,10 @@ a:hover {
 	text-decoration: none;
 }
 
+#main-container{
+    padding: 20px 50px 0 50px;
+}
+
 /* HEADER */
 #header {
 	background-color: #2b2927;
@@ -119,8 +123,9 @@ a:hover {
 } 
 
 #sidebar > ul > li { 
+    height: 39px;
     list-style-type:none; 
-    float:left; 
+    float:left;
     display:block; 
     margin:0px; 
     border-right:1px dotted #6b6b6b; 
@@ -201,30 +206,6 @@ a:hover {
     margin-left:0px;
     margin-right: 0;
     width: auto;
-}
-
-#content-header {
-    width: 100%;
-    z-index: 20;
-    height: 100%;
-}
-
-#content-header h1 {
-    color: #555555;
-    font-size: 28px;
-    font-weight: normal;
-    float: none;
-    text-shadow: 0 1px 0 #ffffff;
-    margin-left: 20px;
-    position: relative;
-}
-
-#content-header h1, #content-header .btn-group {
-	margin-top: 20px;
-}
-
-#content-header .btn-group .btn {
-	padding: 11px 14px 9px;
 }
 
 /** Breadcrumb part **/
@@ -310,6 +291,11 @@ a:hover {
 /* Forms part */
 form {
 	margin: 0;
+}
+
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 select, 
