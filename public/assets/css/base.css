@@ -27,31 +27,6 @@ a:hover {
     padding: 20px 50px 0 50px;
 }
 
-/* HEADER */
-#header {
-	background-color: #2b2927;
-    border-bottom: 1px solid #555555; 
-    margin-top:10px;
-    height: 63px;
-    position: relative;
-    width: 100%;
-    z-index: -9;
-}
-
-#header h1 {
-    height: 31px;
-    left: 15px;
-    line-height: 600px;
-    overflow: hidden;
-    position: relative;
-    top:8px; 
-    width: 191px;
-}
-
-#header h1 a {
-    display: block;
-}
-
 .container {
     width: 100%;
     max-width: 100%;
@@ -145,14 +120,6 @@ a:hover {
     background-image: url("../img/glyphicons-halflings-white.png");     
     margin-top:4px;    
     vertical-align: top;
-}
-
-/* Content part */
-#content {
-    background: none repeat scroll 0 0 #fff;
-    margin-left:0px;
-    margin-right: 0;
-    width: auto;
 }
 
 /** Breadcrumb part **/
@@ -264,25 +231,16 @@ input[type="color"],
 }
 
 /** Module part **/ 
-.container-fluid {
-    margin: 20px;
-}
-
 .module {
   border: 1px solid #d2d4d8;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
+  margin-bottom: 15px;
 }
 
 .module .module-head {
   background: #f7f8f9;
   border-bottom: 1px solid #d9d9dd;
-  -webkit-border-radius: 2px 2px 0 0;
-  -moz-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
-  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
-  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   height: 40px;
 }
@@ -306,8 +264,6 @@ input[type="color"],
 .module .module-body {
   background: #fff;
   padding: 15px;
-  -webkit-border-radius: 0 0 2px 2px;
-  -moz-border-radius: 0 0 2px 2px;
   border-radius: 0 0 2px 2px;
 }
 
@@ -331,4 +287,8 @@ input[type="color"],
 
 #delete-users {
     display: none;
+}
+
+.status-message {
+	margin-bottom: 15px;
 }

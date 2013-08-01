@@ -4,11 +4,6 @@
 }
 
 @media (max-width: 480px) {
-	#header h1 {
-		top: auto;
-		left: auto;
-		margin: 3px auto;
-	}
 	.navbar > .nav {
 		float: none;
 	}
@@ -17,7 +12,6 @@
 		border-top-left-radius: 0;
 		margin-top:0px;
     }
-
     #sidebar { float: none; width: 100% !important; position:relative; top:0px;}
     #sidebar > ul{ margin:0px; padding:0px; width:100%; z-index:999; display: none; position:relative} 
     #sidebar > ul > li { list-style-type:none; border-bottom:1px solid #333; border-top:1px solid #5d5d5d; float:none !important; margin:0px; border-left:1px dotted #6b6b6b; position:relative; padding:10px; cursor:pointer} 
@@ -32,14 +26,8 @@
     #sidebar > ul li a i{ background-image: url("../img/glyphicons-halflings-white.png");  margin-top:4px;  vertical-align: top;}	
     #sidebar > a { padding: 9px 20px 9px 15px; display: block !important; text-transform: uppercase; color: #eeeeee; float:none !important;	font-size:12px;	}
     #sidebar > ul > li > a { padding:5px;	color: #AAAAAA;}
+}
 
-    .table th {	padding: 5px 4px 2px;}
-    }
-    
-    
-    .btn-vertical-list {
-        
-    }
 
 @media (min-width: 481px) and (max-width: 970px) {
     #sidebar { float: none; width: 100% !important; position:relative; top:0px; height: 35px;}
@@ -60,10 +48,6 @@
 @media (max-width: 767px) {
 	body {
 		padding: 0 !important;
-	}
-	.container-fluid {
-		padding-left: 20px;
-		padding-right: 20px;
 	}
 }
 

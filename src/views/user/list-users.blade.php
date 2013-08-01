@@ -2,8 +2,8 @@
 	{{ $datas['users']->links(); }}
     
     <div style="float:right;">
-        <a id="delete-users" class="btn btn-danger btn-vertical-list">Delete</a>
-        <a class="btn btn-info btn-vertical-list" href="user/new">New User</a>
+        <a id="delete-users" class="btn btn-danger">Delete</a>
+        <a class="btn btn-info" href="user/new">New User</a>
     </div>
 </div>
 <table class="table table-striped table-bordered table-condensed">
