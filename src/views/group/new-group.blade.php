@@ -6,34 +6,36 @@
 
 <div class="container" id="main-container">
     <div class="row">
-        <section class="module">
-            <div class="module-head">
-                <b>New group</b>
-            </div>
-            <div class="module-body">
-                <form class="form-horizontal" id="create-group-form" method="POST">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                               <label class="control-label">Group name :</label>
-                                <input class="col-lg-12 form-control" type="text" id="groupname" name="groupname">
-                           </div>
-                        </div>
-                        <div class="col-lg-6" id="input-container">
-                            <div class="control-group">
-                                <label class="control-label">Permissions :<a href="#" class="icon-plus-sign add-input" style="margin-left: 10px;"></a></label>
-                                <input class="col-lg-12 form-control" type="text" name="permission[]">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="control-group">
-                                <button id="create-group" class="btn btn-primary">Create</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
+		<div class="col-lg-12">
+			<section class="module">
+				<div class="module-head">
+					<b>New group</b>
+				</div>
+				<div class="module-body">
+					<form class="form-horizontal" id="create-group-form" method="POST">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group">
+								   <label class="control-label">Group name :</label>
+									<input class="col-lg-12 form-control" type="text" id="groupname" name="groupname">
+							   </div>
+							</div>
+							<div class="col-lg-6" id="input-container">
+								<div class="control-group">
+									<label class="control-label">Permissions :<a href="#" class="icon-plus-sign add-input" style="margin-left: 10px;"></a></label>
+									<input class="col-lg-12 form-control" type="text" name="permission[]">
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="control-group">
+									<button id="create-group" class="btn btn-primary">Create</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
     </div>
 </div>
 @stop

@@ -5,7 +5,7 @@
 {{ Breadcrumbs::create(array(array('title' => 'Users', 'link' => "dashboard/users", 'icon' => 'icon-user'))); }}
 <div class="container" id="main-container">
     <div class="row">
-        <!--<div class="col-lg-12">-->
+        <div class="col-lg-12">
             <section class="module">
                 <div class="module-head">
                     <b>All users</b>
@@ -14,7 +14,7 @@
                     @include('syntara::user.list-users')
                 </div>
             </section>
-        <!--</div>-->
+        </div>
     </div>
 </div>
 @stop
