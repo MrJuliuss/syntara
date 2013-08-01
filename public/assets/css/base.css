@@ -7,7 +7,6 @@
 body {
     font-size: 13px;
 	overflow-x: hidden;
-    margin-top: -9px;
     background-color: #fff;
     color: #747678;
     font-family: 'Roboto', Arial, sans-serif;
@@ -38,88 +37,13 @@ a:hover {
     border-radius: 0px;
 }
 
-/* Navigation */
-#sidebar { 
-	height: 39px;
-    background-color: #494949;
+.main-bar{
+	height: 50px;
+	vertical-align: bottom;
 }
 
-#sidebar > ul { 
-    margin:0px; 
-    padding:0px; 
-    width:100%; 
-    display:block; 
-    z-index:999;
-} 
-
-#sidebar > ul > li { 
-    height: 39px;
-    list-style-type:none; 
-    float:left;
-    display:block; 
-    margin:0px; 
-    border-right:1px dotted #6b6b6b; 
-    position:relative; 
-    padding:10px; 
-    cursor:pointer
-} 
-
-#sidebar > ul > li:hover ul { 
-    display:block; 
-} 
-
-#sidebar > ul > li:hover { 
-    background-color:#2b2b2b;
-}
-
-#sidebar > ul > li:hover a { 
-    background:none;
-}
-
-#sidebar > ul li ul { 
-    margin:0px; 
-    padding:0px; 
-    display:none; 
-    z-index:999;  
-    position:absolute; 
-    border-radius:3px; 
-    left:0px; top:40px;  
-    background:#2b2b2b; 
-    min-width:200px;
-} 
-
-#sidebar > ul li ul li { 
-    list-style-type:none; 
-    margin:0px; 
-    font-size:12px; 
-    line-height:30px;  
-} 
-
-#sidebar > ul li ul li a { 
-    display:block; 
-    padding:5px 10px; 
-    color:#fff; 
-    text-decoration:none; 
-    font-weight:bold; 
-} 
-
-#sidebar > ul li ul li:hover a { 
-    background-color:#606060; 
-    border-radius:3px;
-} 
-
-#sidebar > ul li span { 
-    cursor:pointer; 
-    margin:0px 2px 0 5px; 
-    font-weight:bold; 
-    color:#fff; 
-    font-size:11px; 
-}
-
-#sidebar > ul li a i { 
-    background-image: url("../img/glyphicons-halflings-white.png");     
-    margin-top:4px;    
-    vertical-align: top;
+.sub-bar {
+	background-color: #CCCCCC
 }
 
 /** Breadcrumb part **/
@@ -291,4 +215,21 @@ input[type="color"],
 
 .status-message {
 	margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
+	.navbar > .nav {
+		float: none;
+	}
+	#content {
+		margin-left: 0 !important;
+		border-top-left-radius: 0;
+		margin-top:0px;
+    }
+}
+
+@media (max-width: 767px) {
+	body {
+		padding: 0 !important;
+	}
 }

@@ -1,6 +1,5 @@
 <html>
     <head>
-        <link rel="stylesheet" href="{{ asset('packages/mrjuliuss/syntara/assets/css/bootstrap-responsive.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('packages/mrjuliuss/syntara/assets/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('packages/mrjuliuss/syntara/assets/css/base.css') }}" media="all">
         <link rel="stylesheet" href="{{ asset('packages/mrjuliuss/syntara/assets/css/base.responsive.css') }}" media="all">

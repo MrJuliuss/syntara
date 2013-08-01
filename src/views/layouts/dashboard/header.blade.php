@@ -1,5 +1,4 @@
-<div class="navbar">
-    <div class="container">
+<div class="navbar main-bar">
         
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
@@ -16,21 +15,18 @@
         </div>
         @endif
     </div>
-</div>
 
-
-<!-- Side bar -->
-
-<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-pencil"></i>Menu</a>
-    <ul>
-        <li class="active"><a href="{{ URL::to('dashboard'); }}"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
-        @if (Sentry::check())
-        <li class="submenu"><a href="#"><i class="icon icon-user"></i><span>Users</span></a>
-            <ul>    
-                <li><a href="{{ URL::to('dashboard/users'); }}">Users</a></li>
-                <li><a href="{{ URL::to('dashboard/groups'); }}">Groups</a></li>
-            </ul>
-        </li>
-        @endif
-    </ul>
+<div class="navbar sub-bar">
+	<ul class="nav navbar-nav">
+		<li class=""><a href="{{ URL::to('dashboard'); }}"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
+		@if (Sentry::check())
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Users</a>
+			<ul class="dropdown-menu">
+				<li><a href="{{ URL::to('dashboard/users'); }}">Users</a></li>
+				<li><a href="{{ URL::to('dashboard/groups'); }}">Groups</a></li>
+			</ul>
+		</li>
+		@endif
+	</ul>
 </div>
