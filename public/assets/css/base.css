@@ -14,13 +14,10 @@ body {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.0004);
 }
 
-a {
-    color: #727476;
+a:hover{
+  text-decoration: none;
 }
 
-a:hover {
-	text-decoration: none;
-}
 
 #main-container{
     padding: 20px 50px 0 50px;
@@ -43,18 +40,32 @@ a:hover {
     border-radius: 0px;
 }
 
-.main-bar{
+.navbar.main-bar{
 	height: 50px;
-	vertical-align: bottom;
+  background-color: #b94a48;
 }
 
-.sub-bar {
-	background-color: #CCCCCC
+.navbar.main-bar a{
+  color: #fff;
+}
+
+.navbar.main-bar a:hover{
+  color: #BCD0CD;
+}
+
+.main-bar .dropdown-menu{
+  background-color: #b94a48;
+}
+
+.navbar-nav > .open > a, 
+.navbar-nav > .open > a:hover, 
+.navbar-nav > .open > a:focus {
+    background-color: #b94a48;
 }
 
 /** Breadcrumb part **/
 #breadcrumb {
-	background-color: #e5e5e5;
+	background-color: #2b2b2b;
 	border-bottom: 1px solid #d6d6d6;
 	padding-left: 10px;
 }
@@ -66,11 +77,11 @@ a:hover {
 	background-position: center right;
 	background-repeat: no-repeat;
 	font-size: 11px;
-	color: #666666;
+	color: #fff;
 }
 
 #breadcrumb a:hover {
-	color: #333333;
+	color: #ccc;
 }
 
 #breadcrumb a:last-child {
@@ -79,7 +90,7 @@ a:hover {
 
 #breadcrumb a.current {
 	font-weight: bold;
-	color: #444444;
+	color: #fff;
 }
 
 #breadcrumb a i {
@@ -94,10 +105,6 @@ a:hover {
 }
 
 /** TABLE **/
-.table {
-    border-radius: 0px;
-}
-
 .table th {
 	font-size: 13px;
 }
@@ -109,15 +116,7 @@ a:hover {
 	color: #666;
 }
 
-.table-select {
-    width: 50px;
-}
-
 /* Forms part */
-form {
-	margin: 0;
-}
-
 .form-horizontal .form-group {
     margin-left: 0;
     margin-right: 0;
@@ -147,8 +146,7 @@ input[type="color"],
 	height: 30px;
 }
 
-/** BADGE **/
-
+/** LABEL **/
 .label {
     float: left;
 	margin-top: 5px;
@@ -171,7 +169,6 @@ input[type="color"],
   background: #f7f8f9;
   border-bottom: 1px solid #d9d9dd;
   border-radius: 2px 2px 0 0;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   height: 40px;
 }
 .module .module-head > a,
@@ -203,11 +200,6 @@ input[type="color"],
 
 .module .module-body [class*="span"] {
     margin-left: 0px;
-}
-
-.pagination {
-    float:left;
-    margin: 0px;
 }
 
 .alert {
