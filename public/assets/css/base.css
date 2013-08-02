@@ -14,6 +14,15 @@ body {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.0004);
 }
 
+[class^="glyphicon-"],
+[class*=" glyphicon-"] {
+  display: inline-block;
+  height: 14px;
+  margin-top: 1px;
+  line-height: 14px;
+  vertical-align: text-top;
+}
+
 a:hover{
   text-decoration: none;
 }
@@ -95,7 +104,6 @@ a:hover{
 
 #breadcrumb a i {
 	margin-right: 5px;
-    margin-top: -1px;
 	opacity: .6;
 }
 

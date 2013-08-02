@@ -51,6 +51,6 @@ class Breadcrumbs
             $class = "current";
         }
         
-        return '<a href="'.URL::to($item["link"]).'" class="tip-bottom '.$class.'"><i class="'.$item["icon"].'"></i>'.$item["title"].'</a>';
+        return '<a href="'.URL::to($item["link"]).'" class="tip-bottom '.$class.'"><i class="glyphicon '.$item["icon"].'"></i>'.$item["title"].'</a>';
     }
 }

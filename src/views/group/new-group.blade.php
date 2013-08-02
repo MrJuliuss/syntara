@@ -2,7 +2,7 @@
 
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/group.js') }}"></script>
-{{ Breadcrumbs::create(array(array('title' => 'Groups', 'link' => "dashboard/groups", 'icon' => 'icon-list-alt'), array('title' => 'New group', 'link' => URL::current(), 'icon' => 'icon-plus-sign'))); }}
+{{ Breadcrumbs::create(array(array('title' => 'Groups', 'link' => "dashboard/groups", 'icon' => 'glyphicon-list-alt'), array('title' => 'New group', 'link' => URL::current(), 'icon' => 'glyphicon-plus-sign'))); }}
 
 <div class="container" id="main-container">
     <div class="row">
@@ -22,7 +22,7 @@
 							</div>
 							<div class="col-lg-6" id="input-container">
 								<div class="control-group">
-									<label class="control-label">Permissions :<a href="#" class="icon-plus-sign add-input" style="margin-left: 10px;"></a></label>
+									<label class="control-label">Permissions :<a href="#" class="glyphicon-plus-sign add-input" style="margin-left: 10px;"></a></label>
 									<input class="col-lg-12 form-control" type="text" name="permission[]">
 								</div>
 							</div>

@@ -3,7 +3,7 @@
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script> 
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/forms/check.js') }}"></script> 
-{{ Breadcrumbs::create(array(array('title' => 'Users', 'link' => "dashboard/users", 'icon' => 'icon-user'), array('title' => 'New user', 'link' => URL::current(), 'icon' => 'icon-plus-sign'))); }}
+{{ Breadcrumbs::create(array(array('title' => 'Users', 'link' => "dashboard/users", 'icon' => 'glyphicon-user'), array('title' => 'New user', 'link' => URL::current(), 'icon' => 'glyphicon-plus-sign'))); }}
 
 <div class="container" id="main-container">
     <div class="row">
