@@ -50,16 +50,15 @@ a:hover{
 }
 
 .navbar.main-bar{
-	height: 50px;
-  background-color: #b94a48;
+    background-color: #b94a48;
 }
 
 .navbar.main-bar a{
-  color: #fff;
+    color: #fff;
 }
 
 .navbar.main-bar a:hover{
-  color: #BCD0CD;
+    color: #BCD0CD;
 }
 
 .main-bar .dropdown-menu{
