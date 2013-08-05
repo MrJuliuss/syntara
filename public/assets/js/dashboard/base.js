@@ -37,7 +37,8 @@ $(document).ready(function()
 
     $(document).on('click', '.add-input', function()
     {
-        var html = '<div class="control-group"><label class="control-label"><a href="#" class="glyphicon glyphicon-minus-sign remove-input" style="margin-left: 10px;"></a></label><div class="controls"><input class="col-lg-12" type="text" name="permission[]"></div></div>';
+        var html = '<div class="form-group"><p class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-minus-sign remove-input"></span></span><input type="text" class="form-control" name="permission[]" /></p></div>';
+        
         $('#input-container').append(html);
         
         return false;
@@ -45,7 +46,7 @@ $(document).ready(function()
     
     $(document).on('click', '.remove-input', function()
     {
-        $(this).parent().parent().remove();
+        $(this).parent().parent().parent().remove();
         return false;
     });
 });

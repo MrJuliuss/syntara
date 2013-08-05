@@ -20,12 +20,15 @@
 									<input class="col-lg-12 form-control" type="text" id="groupname" name="groupname">
 							   </div>
 							</div>
-							<div class="col-lg-6" id="input-container">
-								<div class="control-group">
-									<label class="control-label">Permissions :<a href="#" class="glyphicon-plus-sign add-input" style="margin-left: 10px;"></a></label>
-									<input class="col-lg-12 form-control" type="text" name="permission[]">
-								</div>
-							</div>
+                            <div class="col-lg-6" id="input-container">
+                                <div class="form-group">
+                                <label class="control-label">Permissions :</a></label>
+                                <p class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-plus-sign add-input"></span></span>
+                                    <input type="text" class="form-control" name="permission[]" />
+                                </p>
+                                </div>
+                            </div>
 							<div class="col-lg-12">
 								<div class="control-group">
 									<button id="create-group" class="btn btn-primary">Create</button>

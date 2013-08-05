@@ -153,6 +153,11 @@ input[type="color"],
 	height: 30px;
 }
 
+.input-group-addon {
+    padding: 5px 12px;
+}
+
+
 /** LABEL **/
 .label {
     float: left;
