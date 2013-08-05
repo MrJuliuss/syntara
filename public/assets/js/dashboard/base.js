@@ -34,21 +34,6 @@ $(document).ready(function()
             $('#delete-users').hide();
         }
     });
-
-    $(document).on('click', '.add-input', function()
-    {
-        var html = '<div class="form-group"><p class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-minus-sign remove-input"></span></span><input type="text" class="form-control" name="permission[]" /></p></div>';
-        
-        $('#input-container').append(html);
-        
-        return false;
-    });
-    
-    $(document).on('click', '.remove-input', function()
-    {
-        $(this).parent().parent().parent().remove();
-        return false;
-    });
 });
 
 var ajaxContent = function(url, content, options)
@@ -80,4 +65,17 @@ var showStatusMessage = function(message, type)
                 </div>';
             
     $(html).prependTo('#main-container').hide().fadeIn(900);
+};
+
+var showRegisterFormAjaxErrors = function(errors)
+{
+    $('.status-message').remove();
+    $('.label-danger').remove();
+    for(var errorType in errors)
+    {
+        for(var i in errors[errorType])
+        {
+            $('input[name="'+errorType+'"]').closest('.form-group').append('<span class="label label-danger error-'+errorType+'">'+errors[errorType][i]+'</span>');
+        }
+    }
 };

@@ -1,5 +1,5 @@
 <div class="row upper-menu">
-	{{ $datas['users']->links(); }}
+    {{ $datas['users']->links(); }}
     
     <div style="float:right;">
         <a id="delete-users" class="btn btn-danger">Delete</a>

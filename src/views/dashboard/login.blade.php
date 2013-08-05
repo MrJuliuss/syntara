@@ -2,7 +2,6 @@
 
 @section('content')
 <script type="text/javascript" src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/login.js') }}"></script>
-<script type="text/javascript" src="{{ asset('packages/mrjuliuss/syntara/assets/js/forms/check.js') }}"></script>
 {{ Breadcrumbs::create(array(array('title' => 'Login', 'link' => "dashboard/login", 'icon' => 'glyphicon-user'))); }}
 <div class="container" id="main-container">
     <div class="row" style="margin-top: 20px;">

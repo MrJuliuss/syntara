@@ -6,8 +6,8 @@ $rules = array(
     'username' => array('required', 'min:3', 'max:16', 'alpha'),
     'last_name' => array('min:3', 'max:16', 'alpha'),
     'first_name' => array('min:3', 'max:16', 'alpha'),
-    'groupname' => array('min:3', 'max:16', 'alpha'),
-    'permission' => array('min:3', 'max:16')
+    'groupname' => array('required', 'min:3', 'max:16', 'alpha'),
+    'permission' => array('required', 'min:3', 'max:16')
 );
 
 return array(
@@ -33,10 +33,12 @@ return array(
             ),
         ),
         'groups' => array(
-            'create' => array(
+            'create_name' => array(
                 'groupname' => $rules['groupname'],
-                'permission' => $rules['permission']
             ),
+            'create_permission' => array(
+                'permission' => $rules['permission']
+            )
         ),
     ),
 );
