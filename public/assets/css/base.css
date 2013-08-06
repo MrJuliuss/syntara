@@ -238,7 +238,7 @@ input[type="color"],
     margin-bottom: 0px;
 }
 
-#delete-users {
+#delete-users, #delete-groups {
     display: none;
 }
 
