@@ -1,6 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
 @section('content')
+<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/group.js') }}"></script>
 {{ Breadcrumbs::create(array(array('title' => 'Groups', 'link' => "dashboard/groups", 'icon' => 'glyphicon-list-alt'))); }}
 <div class="container" id="main-container">
     <div class="row">
@@ -10,6 +11,7 @@
                     <b>All groups</b>
                 </div>
                 <div class="module-body ajax-content">
+                     @include('syntara::group.list-groups')
                 </div>
             </section>
         </div>

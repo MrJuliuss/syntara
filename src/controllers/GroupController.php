@@ -6,6 +6,7 @@ use Input;
 use Config;
 use Response;
 use Sentry;
+use Request;
 
 class GroupController extends BaseController {
 
@@ -14,7 +15,16 @@ class GroupController extends BaseController {
     */
     public function getIndex()
     {
-        $this->layout = View::make('syntara::group.index-group');
+        $groups = Sentry::getGroupProvider()->createModel()->paginate(20);
+        $datas['groups'] = $groups;
+        if(Request::ajax())
+        {
+            $html = View::make('syntara::group.list-groups', array('datas' => $datas))->render();
+            
+            return Response::json(array('html' => $html));
+        }
+        
+        $this->layout = View::make('syntara::group.index-group', array('datas' => $datas));
     }
     
     /**
@@ -84,7 +94,7 @@ class GroupController extends BaseController {
 
         return Response::json(array('groupCreated' => true));
     }
-    
+       
     /**
     * Delete groupe
     * @return Response
@@ -93,7 +103,7 @@ class GroupController extends BaseController {
     {
         try
         {
-            $group = Sentry::getGroupProvider()->findById(Input::get('userId'));
+            $group = Sentry::getGroupProvider()->findById(Input::get('groupId'));
             $group->delete();
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)

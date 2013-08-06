@@ -48,4 +48,20 @@ $(function()
         $(this).parent().parent().parent().remove();
         return false;
     });
+    
+    $(document).on('click', '#delete-groups', function()
+    {
+        $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
+        {
+            $.ajax(
+            {
+                url: '/dashboard/group/delete',
+                type: "POST",
+                datatype: "json",
+                data: {'groupId' : $(this).data('group-id')}
+            });
+        });
+
+        ajaxContent($(this).attr('href'), ".ajax-content");
+    });
 });
