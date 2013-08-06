@@ -18,6 +18,7 @@ Route::group(array('before' => 'auth', 'prefix' => 'dashboard'), function()
     Route::post('group/new', array('as' => 'newGroupPost', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@postCreate'));
     Route::get('group/new', array('as' => 'newGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@getCreate'));
     Route::delete('group/delete', array('as' => 'deleteGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@delete'));
+    Route::get('group/{groupId}', array('as' => 'showGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@getShow'));
 });
 
 Route::group(array('before' => 'notAuth', 'prefix' => 'dashboard'), function()

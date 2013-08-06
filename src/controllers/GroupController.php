@@ -94,6 +94,22 @@ class GroupController extends BaseController {
 
         return Response::json(array('groupCreated' => true));
     }
+    
+    /**
+     * Show group
+     */
+    public function getShow($groupId)
+    {
+        try
+        {
+            $group = Sentry::getGroupProvider()->findById($groupId);
+            $this->layout = View::make('syntara::group.show-group', array('group' => $group));
+        }
+        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+        {
+            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
+        }
+    }
        
     /**
     * Delete groupe
