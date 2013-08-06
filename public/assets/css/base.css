@@ -68,6 +68,12 @@ a:hover{
   background-color: #b94a48;
 }
 
+.main-bar .dropdown-menu > li > a:hover,
+.main-bar .dropdown-menu > li > a:focus {
+    background-color: #b93a48;
+    background-image: none;
+}
+
 .navbar-nav > .open > a, 
 .navbar-nav > .open > a:hover, 
 .navbar-nav > .open > a:focus {
