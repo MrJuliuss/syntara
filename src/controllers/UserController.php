@@ -28,7 +28,7 @@ class UserController extends BaseController {
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make('syntara::user.index', array('datas' => $datas));
+        $this->layout = View::make('syntara::user.index-user', array('datas' => $datas));
     }
     
     /**
@@ -105,7 +105,7 @@ class UserController extends BaseController {
         {
             $user = Sentry::getUserProvider()->findById($userId);
             $throttle = Sentry::getThrottleProvider()->findByUserId($userId);
-            $this->layout = View::make('syntara::user.show', array('user' => $user, 'throttle' => $throttle));
+            $this->layout = View::make('syntara::user.show-user', array('user' => $user, 'throttle' => $throttle));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
