@@ -2,7 +2,7 @@
     {{ $datas['groups']->links(); }}
     
     <div style="float:right;">
-        <a id="delete-groups" class="btn btn-danger">Delete</a>
+        <a id="delete-item" class="btn btn-danger">Delete</a>
         <a class="btn btn-info" href="group/new">New Group</a>
     </div>
 </div>

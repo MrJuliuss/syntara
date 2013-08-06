@@ -60,14 +60,14 @@ $(function()
         return false;
     });
 
-    $(document).on('click', '#delete-users', function()
+    $(document).on('click', '#delete-item', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
             $.ajax(
             {
                 url: '/dashboard/user/delete',
-                type: "POST",
+                type: "DELETE",
                 datatype: "json",
                 data: {'userId' : $(this).data('user-id')}
             });

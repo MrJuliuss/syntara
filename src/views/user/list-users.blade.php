@@ -2,7 +2,7 @@
     {{ $datas['users']->links(); }}
     
     <div style="float:right;">
-        <a id="delete-users" class="btn btn-danger">Delete</a>
+        <a id="delete-item" class="btn btn-danger">Delete</a>
         <a class="btn btn-info" href="user/new">New User</a>
     </div>
 </div>

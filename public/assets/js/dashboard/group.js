@@ -49,14 +49,14 @@ $(function()
         return false;
     });
     
-    $(document).on('click', '#delete-groups', function()
+    $(document).on('click', '#delete-item', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
             $.ajax(
             {
                 url: '/dashboard/group/delete',
-                type: "POST",
+                type: "DELETE",
                 datatype: "json",
                 data: {'groupId' : $(this).data('group-id')}
             });
