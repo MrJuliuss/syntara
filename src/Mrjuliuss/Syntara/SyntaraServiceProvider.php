@@ -1,6 +1,7 @@
 <?php namespace MrJuliuss\Syntara;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Environment;
 
 class SyntaraServiceProvider extends ServiceProvider {
 
@@ -28,6 +29,8 @@ class SyntaraServiceProvider extends ServiceProvider {
     {
         //Load package config
         $this->app['config']->package('mrjuliuss/syntara', __DIR__.'/../../config');
+
+        $this->app['config']->set('view.pagination', 'syntara::layouts.pagination.bootstrap3');
         
         // add the user seed command to the application
         $this->app['create:user'] = $this->app->share(function($app)

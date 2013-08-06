@@ -46,6 +46,11 @@ a:hover{
     max-width: 100%;
 }
 
+.pagination {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
 /* Loggued user Navigation */ 
 .navbar { 
     margin-bottom: 0px;
@@ -221,7 +226,7 @@ input[type="color"],
 }
 
 .module .module-body .upper-menu {
-    margin: 10px;
+    margin: 0 0 10px 0;
 }
 
 .module .module-body [class*="span"] {
