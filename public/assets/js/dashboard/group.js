@@ -81,7 +81,7 @@ $(function()
         return false;
     });
     
-    $(document).on('click', '#delete-item', function()
+    $(document).on('click', '#delete-item.groups', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
@@ -95,5 +95,21 @@ $(function()
         });
 
         ajaxContent($(this).attr('href'), ".ajax-content");
+    });
+    
+    $(document).on('click', '#delete-item.users', function()
+    {
+        $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
+        {
+            $.ajax(
+            {
+                url: '/dashboard/group/delete',
+                type: "DELETE",
+                datatype: "json",
+                data: {'groupId' : $(this).data('group-id')}
+            });
+        });
+
+        ajaxContent($(this).attr('href'), ".ajax-content");        
     });
 });

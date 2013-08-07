@@ -1,8 +1,8 @@
-<div class="row upper-menu">
+<div class="row upper-menu" style="height: 35px;">
     {{ $users->links() }}
     
     <div style="float:right;">
-        <a id="delete-item" class="btn btn-danger">Delete</a>
+        <a id="delete-item" class="btn btn-danger users">Delete</a>
     </div>
 </div>
 
