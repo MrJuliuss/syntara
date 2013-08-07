@@ -12,7 +12,7 @@ $(document).ready(function()
         var parent = $(this).parents('.table'); 
         if(parent.find("tbody tr td input:checkbox:checked").length >= 1)
         {
-            $('#delete-item').show();
+            $('#delete-item').css('display', 'inline-block');
         }
         else
         {
@@ -26,7 +26,7 @@ $(document).ready(function()
         if($(this).is(':checked'))
         {
             parent.find("tbody tr td input:checkbox").prop('checked', true);
-            $('#delete-item').show();
+            $('#delete-item').css('display', 'inline-block');
         }
         else
         {

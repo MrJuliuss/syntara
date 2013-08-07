@@ -78,7 +78,24 @@ class GroupController extends BaseController {
         try
         {
             $group = Sentry::getGroupProvider()->findById($groupId);
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group));
+            $userids = array();
+            foreach(Sentry::getUserProvider()->findAllInGroup($group) as $user) 
+            {
+                $userids[] = $user->id;
+            }
+            
+            
+            $users = Sentry::getUserProvider()->createModel()->join('users_groups', 'users.id', '=', 'users_groups.user_id')->where('users_groups.group_id', '=', $group->getId())
+                    ->paginate(20);
+            
+            if(Request::ajax())
+            {
+                $html = View::make('syntara::group.list-users-group', array('users' => $users))->render();
+                
+                return Response::json(array('html' => $html));
+            }
+            
+            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users));
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {

@@ -51,10 +51,10 @@
         <div class="col-lg-6">
             <section class="module">
             <div class="module-head">
-                <b></b>
+                <b>Users in this group</b>
             </div>
-            <div class="module-body">
-				
+            <div class="module-body ajax-content">
+                 @include('syntara::group.list-users-group')
             </div>
         </div>
     </div>
