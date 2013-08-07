@@ -48,7 +48,7 @@ class DashboardController extends BaseController
                 'password' => Input::get('pass'),
             );
 
-            $user = Sentry::authenticate($credentials, false);
+            Sentry::authenticate($credentials, Input::get('remember'));
         }
         catch (\RuntimeException $e)
         {

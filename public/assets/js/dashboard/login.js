@@ -2,10 +2,16 @@ $(document).ready(function()
 {
     $('#login-form').on('submit', function() 
     {
+        var remember = false;
+        if($("#remember").is(':checked'))
+        {
+            remember = true;
+        }
+        
         $.ajax({
             "type": "POST",
             "url": "login",
-            "data": {"email" : $('#email').val(), "pass" : $('#pass').val()},
+            "data": {"email" : $('#email').val(), "pass" : $('#pass').val(), 'remember' : remember},
             "dataType": "json",
             success: function(result) 
             { 
