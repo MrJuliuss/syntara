@@ -7,6 +7,7 @@ use Config;
 use Response;
 use Sentry;
 use Request;
+use DB;
 
 class GroupController extends BaseController {
 
@@ -42,36 +43,9 @@ class GroupController extends BaseController {
     {
         $permissionsValues = Input::get('permission');
         $groupname = Input::get('groupname');
-        $permissionErrors = array();
         $permissions = array();
-
-        // validate permissions
-        foreach($permissionsValues as $key => $permission)
-        {
-            $validPermission = Validator::make(array('permission' => $permission), Config::get('syntara::rules.groups.create_permission'));
-            if($validPermission->fails())
-            {
-                $permissionErrors['permission['.$key.']'] = $validPermission->messages()->getMessages();
-            }
-            else
-            {
-               $permissions[$permission] = 1;
-            }
-        }
-
-        // validate group name
-        $validator = Validator::make(
-            array('groupname' => $groupname),
-            Config::get('syntara::rules.groups.create_name')
-        );
-
-        $gnErrors = array();
-        if($validator->fails())
-        {
-            $gnErrors = $validator->messages()->getMessages();
-        }
-
-        $errors = array_merge($permissionErrors, $gnErrors); 
+        
+        $errors = $this->_validateGroup($permissionsValues, $groupname, $permissions);
         if(!empty($errors))
         {
             return Response::json(array('groupCreated' => false, 'errorMessages' => $errors));
@@ -97,6 +71,7 @@ class GroupController extends BaseController {
     
     /**
      * Show group
+     * @param type $groupId
      */
     public function getShow($groupId)
     {
@@ -109,6 +84,52 @@ class GroupController extends BaseController {
         {
             $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
         }
+    }
+
+    /**
+     * Edit group action
+     * @param int $groupId
+     */
+    public function putShow($groupId)
+    {
+        $permissionsValues = Input::get('permission');
+        $groupname = Input::get('groupname');
+        $permissions = array();
+        
+        $errors = $this->_validateGroup($permissionsValues, $groupname, $permissions);
+        if(!empty($errors))
+        {
+            return Response::json(array('groupUpdated' => false, 'errorMessages' => $errors));
+        }
+        else 
+        {
+            try
+            {
+                $group = Sentry::getGroupProvider()->findById($groupId);
+                $group->name = $groupname;
+
+                // delete permissions in db
+                DB::table('groups')
+                    ->where('id', $groupId)
+                    ->update(array('permissions' => json_encode($permissions)));
+                
+                if($group->save())
+                {
+                    return Response::json(array('groupUpdated' => true));
+                }
+                else 
+                {
+                    return Response::json(array('groupUpdated' => false, 'errorMessage' => 'Can not update this group, please try again.'));
+                }
+            }
+            catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
+            catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
+            {
+                return Response::json(array('groupUpdated' => false, 'errorMessage' => 'Group with this name already exists.'));
+            }
+        }
+
+        return Response::json(array('groupUpdated' => true));
     }
        
     /**
@@ -128,5 +149,44 @@ class GroupController extends BaseController {
         }
         
         return Response::json(array('deletedGroup' => true));
+    }
+    
+    /**
+     * Validate group informations
+     * @param array $permissionsValues
+     * @param string $groupname
+     * @return array
+     */
+    protected function _validateGroup($permissionsValues, $groupname, &$permissions)
+    {
+        $errors = array();
+        $permissionErrors = array();
+        // validate permissions
+        foreach($permissionsValues as $key => $permission)
+        {
+            $validPermission = Validator::make(array('permission' => $permission), Config::get('syntara::rules.groups.create_permission'));
+            if($validPermission->fails())
+            {
+                $permissionErrors['permission['.$key.']'] = $validPermission->messages()->getMessages();
+            }
+            else
+            {
+               $permissions[$permission] = 1;
+            }
+        }
+        // validate group name
+        $validator = Validator::make(
+            array('groupname' => $groupname),
+            Config::get('syntara::rules.groups.create_name')
+        );
+
+        $gnErrors = array();
+        if($validator->fails())
+        {
+            $gnErrors = $validator->messages()->getMessages();
+        }
+        
+        $errors = array_merge($permissionErrors, $gnErrors);
+        return $errors;
     }
 }

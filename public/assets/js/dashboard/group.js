@@ -32,6 +32,38 @@ $(function()
         
         return false;
     });
+
+    $('#edit-group-form').on('submit', function()
+    {
+        var sArray = $(this).serializeArray();
+
+        $.ajax({
+            "type": "PUT",
+            "url": window.location.href.toString(),
+            data: sArray,
+            "dataType": "json",
+            success: function(result)
+            {
+                if(result.groupUpdated === false)
+                {
+                    if(typeof result.errorMessage !== 'undefined')
+                    {
+                        showStatusMessage(result.errorMessage, 'error');
+                    }
+                    else if(typeof result.errorMessages !== 'undefined')
+                    {
+                        showRegisterFormAjaxErrors(result.errorMessages);
+                    }
+                }
+                else
+                {
+                    showStatusMessage('Group has been updated with success', 'success');
+                }
+            }
+        });
+
+        return false;
+    });
     
     $(document).on('click', '.add-input', function()
     {
