@@ -19,7 +19,7 @@
     @foreach ($users as $user)
     <tr>
         <td style="text-align: center;">
-            <input type="checkbox" data-user-id="">
+            <input type="checkbox" data-user-id="{{ $user->getId() }}">
         </td>
         <td style="text-align: center;">{{ $user->getId() }}</td>
         <td>&nbsp;{{ $user->username }}</td>

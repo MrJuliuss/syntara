@@ -103,10 +103,21 @@ $(function()
         {
             $.ajax(
             {
-                url: '/dashboard/group/delete',
+                url: window.location.href.toString()+'/user/'+$(this).data('user-id'), 
                 type: "DELETE",
-                datatype: "json",
-                data: {'groupId' : $(this).data('group-id')}
+                datatype: "json"
+            })
+            .done(function(result)
+            {
+                if(result.userDeleted === false)
+                {
+                        showStatusMessage(result.errorMessage, 'error');
+                }
+                else
+                {
+                    showStatusMessage('User removed from group with success !', 'success');
+                    ajaxContent($(this).attr('href'), ".ajax-content");
+                }
             });
         });
 

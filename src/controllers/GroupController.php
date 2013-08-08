@@ -169,6 +169,32 @@ class GroupController extends BaseController {
     }
     
     /**
+     * Remove user from group
+     * @param int $groupId
+     * @param int $userId
+     * @return Response
+     */
+    public function deleteUserFromGroup($groupId, $userId)
+    {
+        try
+        {
+            $user = Sentry::getUserProvider()->findById($userId);
+            $group = Sentry::getGroupProvider()->findById($groupId);
+            $user->removeGroup($group);
+            
+            return Response::json(array('userDeleted' => true));
+        }
+        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            return Response::json(array('userDeleted' => false, 'errorMessage' => 'User does not exists !'));
+        }
+        catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+        {
+            return Response::json(array('userDeleted' => false, 'errorMessage' => 'Group does not exists !'));
+        }
+    }
+    
+    /**
      * Validate group informations
      * @param array $permissionsValues
      * @param string $groupname

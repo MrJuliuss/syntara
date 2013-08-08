@@ -20,6 +20,7 @@ Route::group(array('before' => 'auth', 'prefix' => 'dashboard'), function()
     Route::delete('group/delete', array('as' => 'deleteGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@delete'));
     Route::get('group/{groupId}', array('as' => 'showGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@getShow'));
     Route::put('group/{groupId}', array('as' => 'putGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@putShow'));
+    Route::delete('group/{groupId}/user/{userId}', array('as' => 'deleteUserGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@deleteUserFromGroup'));
 });
 
 Route::group(array('before' => 'notAuth', 'prefix' => 'dashboard'), function()
