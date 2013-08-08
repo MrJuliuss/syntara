@@ -62,7 +62,7 @@ class GroupController extends BaseController {
             catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
             catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
             {
-                return Response::json(array('groupCreated' => false, 'errorMessage' => 'Group with this name already exists.'));
+                return Response::json(array('groupCreated' => false, 'message' => 'Group with this name already exists.', 'messageType' => 'error'));
             }
         }
 
@@ -132,21 +132,19 @@ class GroupController extends BaseController {
                 
                 if($group->save())
                 {
-                    return Response::json(array('groupUpdated' => true));
+                    return Response::json(array('groupUpdated' => true, 'message' => 'Group updated with success.', 'messageType' => 'success'));
                 }
                 else 
                 {
-                    return Response::json(array('groupUpdated' => false, 'errorMessage' => 'Can not update this group, please try again.'));
+                    return Response::json(array('groupUpdated' => false, 'message' => 'Can not update this group, please try again.', 'messageType' => 'error'));
                 }
             }
             catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
             catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
             {
-                return Response::json(array('groupUpdated' => false, 'errorMessage' => 'Group with this name already exists.'));
+                return Response::json(array('groupUpdated' => false, 'message' => 'Group with this name already exists.', 'messageType' => 'error'));
             }
         }
-
-        return Response::json(array('groupUpdated' => true));
     }
        
     /**
@@ -160,12 +158,12 @@ class GroupController extends BaseController {
             $group = Sentry::getGroupProvider()->findById(Input::get('groupId'));
             $group->delete();
         }
-        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('deletedGroup' => false));
+            return Response::json(array('deletedGroup' => false, 'message' => 'Group does not exists.', 'messageType' => 'error'));
         }
         
-        return Response::json(array('deletedGroup' => true));
+        return Response::json(array('deletedGroup' => true, 'message' => "Group removed with success.", 'messageType' => 'success'));
     }
     
     /**
@@ -182,15 +180,15 @@ class GroupController extends BaseController {
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->removeGroup($group);
             
-            return Response::json(array('userDeleted' => true));
+            return Response::json(array('userDeleted' => true, 'message' => 'User removed from group with success.', 'messageType' => 'success'));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('userDeleted' => false, 'errorMessage' => 'User does not exists !'));
+            return Response::json(array('userDeleted' => false, 'message' => 'User does not exists.', 'messageType' => 'error'));
         }
         catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('userDeleted' => false, 'errorMessage' => 'Group does not exists !'));
+            return Response::json(array('userDeleted' => false, 'message' => 'Group does not exists.', 'messageType' => 'error'));
         }
     }
     

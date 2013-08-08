@@ -89,10 +89,10 @@ class UserController extends BaseController {
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('deletedUser' => false));
+            return Response::json(array('deletedUser' => false, 'message' => 'User does not exists.', 'messageType' => 'error'));
         }
         
-        return Response::json(array('deletedUser' => true));
+        return Response::json(array('deletedUser' => true, 'message' => 'User removed with success.', 'messageType' => 'success'));
     }
 
     /**

@@ -70,6 +70,9 @@ $(function()
                 type: "DELETE",
                 datatype: "json",
                 data: {'userId' : $(this).data('user-id')}
+            }).done(function(result)
+            {
+                showStatusMessage(result.message, result.messageType);
             });
         });
 

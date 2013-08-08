@@ -9,24 +9,23 @@ $(function()
             "type": "POST",
             "url": 'new',
             data: sArray,
-            "dataType": "json",
-            success: function(result) 
+            "dataType": "json"
+        }).done(function(result)
+        {
+            if(result.groupCreated === false)
             {
-                if(result.groupCreated === false)
+                if(typeof result.message !== 'undefined')
                 {
-                    if(typeof result.errorMessage !== 'undefined')
-                    {
-                        showStatusMessage(result.errorMessage, 'error');
-                    }
-                    else if(typeof result.errorMessages !== 'undefined')
-                    {
-                        showRegisterFormAjaxErrors(result.errorMessages);
-                    }
+                    showStatusMessage(result.message, result.messageType);
                 }
-                else
+                else if(typeof result.errorMessages !== 'undefined')
                 {
-                    window.location = "/dashboard/groups";
+                    showRegisterFormAjaxErrors(result.errorMessages);
                 }
+            }
+            else
+            {
+                window.location = "/dashboard/groups";
             }
         });
         
@@ -44,20 +43,13 @@ $(function()
             "dataType": "json",
             success: function(result)
             {
-                if(result.groupUpdated === false)
+                if(typeof result.message !== 'undefined')
                 {
-                    if(typeof result.errorMessage !== 'undefined')
-                    {
-                        showStatusMessage(result.errorMessage, 'error');
-                    }
-                    else if(typeof result.errorMessages !== 'undefined')
-                    {
-                        showRegisterFormAjaxErrors(result.errorMessages);
-                    }
+                    showStatusMessage(result.message, result.messageType);
                 }
-                else
+                else if(typeof result.errorMessages !== 'undefined')
                 {
-                    showStatusMessage('Group has been updated with success', 'success');
+                    showRegisterFormAjaxErrors(result.errorMessages);
                 }
             }
         });
@@ -91,6 +83,9 @@ $(function()
                 type: "DELETE",
                 datatype: "json",
                 data: {'groupId' : $(this).data('group-id')}
+            }).done(function(result)
+            {
+                showStatusMessage(result.message, result.messageType);
             });
         });
 
@@ -109,15 +104,8 @@ $(function()
             })
             .done(function(result)
             {
-                if(result.userDeleted === false)
-                {
-                        showStatusMessage(result.errorMessage, 'error');
-                }
-                else
-                {
-                    showStatusMessage('User removed from group with success !', 'success');
-                    ajaxContent($(this).attr('href'), ".ajax-content");
-                }
+                showStatusMessage(result.message, result.messageType);
+                ajaxContent($(this).attr('href'), ".ajax-content");
             });
         });
 
