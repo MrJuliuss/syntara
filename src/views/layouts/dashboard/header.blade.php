@@ -22,7 +22,7 @@
             
             @if (Sentry::check())
             <ul class="nav navbar-nav pull-right">
-                <li class="" ><a title="" href="{{ URL::to('dashboard/profile'); }}"><i class="glyphicon glyphicon-user"></i> <span class="text">Profile</span></a></li>
+                <li class="" ><a title="" href="{{ URL::to('dashboard/user/'.Sentry::getUser()->getId()); }}"><span class="text">{{ Sentry::getUser()->username }}</span></a></li>
                 <li class=""><a title="" href="{{ URL::to('dashboard/logout'); }}"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Logout</span></a></li>
             </ul>
             @endif
