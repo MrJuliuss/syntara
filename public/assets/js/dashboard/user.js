@@ -6,24 +6,23 @@ $(function()
             "type": "POST",
             "url": 'new',
             data: {"username" : $('#username').val(), "email" : $('#email').val(), "pass" : $('#pass').val(), "last_name" : $('#last_name').val(), "first_name" : $('#first_name').val()},
-            "dataType": "json",
-            success: function(result) 
+            "dataType": "json"
+        }).done(function(result)
+        {
+            if(result.userCreated === false)
             {
-                if(result.userCreated === false)
+                if(typeof result.message !== 'undefined')
                 {
-                    if(typeof result.errorMessage !== 'undefined')
-                    {
-                        showStatusMessage(result.errorMessage, 'error');
-                    }
-                    else if(typeof result.errorMessages !== 'undefined')
-                    {
-                        showRegisterFormAjaxErrors(result.errorMessages);
-                    }
+                    showStatusMessage(result.message, result.messageType);
                 }
-                else
+                else if(typeof result.errorMessages !== 'undefined')
                 {
-                    window.location = "/dashboard/users";
+                    showRegisterFormAjaxErrors(result.errorMessages);
                 }
+            }
+            else
+            {
+                window.location = "/dashboard/users";
             }
         });
         
@@ -36,24 +35,16 @@ $(function()
             "type": "PUT",
             "url": window.location.href.toString(),
             data: {"username" : $('#username').val(), "email" : $('#email').val(), "pass" : $('#pass').val(), "last_name" : $('#last_name').val(), "first_name" : $('#first_name').val()},
-            "dataType": "json",
-            success: function(result)
+            "dataType": "json"
+        }).done(function(result)
+        {
+            if(typeof result.message !== 'undefined')
             {
-                if(result.userUpdated === false)
-                {
-                    if(typeof result.errorMessage !== 'undefined')
-                    {
-                        showStatusMessage(result.errorMessage, 'error');
-                    }
-                    else if(typeof result.errorMessages !== 'undefined')
-                    {
-                        showRegisterFormAjaxErrors(result.errorMessages);
-                    }
-                }
-                else
-                {
-                    showStatusMessage('User has been updated with success', 'success');
-                }
+                showStatusMessage(result.message, result.messageType);
+            }
+            else if(typeof result.errorMessages !== 'undefined')
+            {
+                showRegisterFormAjaxErrors(result.errorMessages);
             }
         });
 

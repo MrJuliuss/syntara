@@ -71,7 +71,7 @@ class UserController extends BaseController {
         catch (\Cartalyst\Sentry\Users\PasswordRequiredException $e){} // already catch by validators
         catch (\Cartalyst\Sentry\Users\UserExistsException $e)
         {
-            return json_encode(array('userCreated' => false, 'errorMessage' => 'User with this login already exists.'));
+            return json_encode(array('userCreated' => false, 'message' => 'User with this login already exists.', 'messageType' => 'error'));
         }
         
         return json_encode(array('userCreated' => true));
@@ -146,21 +146,20 @@ class UserController extends BaseController {
             // Update the user
             if($user->save())
             {
-                return Response::json(array('userUpdated' => true));
+                return Response::json(array('userUpdated' => true, 'message' => 'User has been updated with success.', 'messageType' => 'success'));
             }
             else 
             {
-                return Response::json(array('userUpdated' => false, 'errorMessage' => 'Can not update this user, please try again.'));
+                return Response::json(array('userUpdated' => false, 'message' => 'Can not update this user, please try again.', 'messageType' => 'error'));
             }
         }
         catch(\Cartalyst\Sentry\Users\UserExistsException $e)
         {   
-            return Response::json(array('userUpdated' => false, 'errorMessage' => 'A user with this email already exists.'));
+            return Response::json(array('userUpdated' => false, 'message' => 'A user with this email already exists.', 'messageType' => 'error'));
         }
         catch(\Exception $e)
         {
-            var_dump($e); die;
-            return Response::json(array('userUpdated' => false, 'errorMessage' => 'A user with this username already exists.'));
+            return Response::json(array('userUpdated' => false, 'message' => 'A user with this username already exists.', 'messageType' => 'error'));
         }
     }
 }
