@@ -17,8 +17,25 @@ class UserController extends BaseController {
     */
     public function getIndex()
     {
-        $users =  Sentry::getUserProvider()->getEmptyUser()->paginate(20);
+        $emptyUsers =  Sentry::getUserProvider()->getEmptyUser();
 
+        $userId = Input::get('userIdSearch');
+        if(!empty($userId))
+        {
+            $emptyUsers = $emptyUsers->where('id', $userId);
+        }
+        $username = Input::get('usernameSearch');
+        if(!empty($username))
+        {
+            $emptyUsers = $emptyUsers->where('username', 'LIKE', '%'.$username.'%');
+        }
+        $email = Input::get('emailSearch');
+        if(!empty($email))
+        {
+            $emptyUsers = $emptyUsers->where('email', 'LIKE', '%'.$email.'%');
+        }
+
+        $users = $emptyUsers->paginate(20);
         $datas['links'] = $users->links();
         $datas['users'] = $users;
         if(Request::ajax())

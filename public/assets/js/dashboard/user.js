@@ -6,7 +6,7 @@ $(function()
         $.ajax({
             "type": "POST",
             "url": 'new',
-            data: sArray,
+            "data": sArray,
             "dataType": "json"
         }).done(function(result)
         {
@@ -36,7 +36,7 @@ $(function()
         $.ajax({
             "type": "PUT",
             "url": window.location.href.toString(),
-            data: sArray,
+            "data": sArray,
             "dataType": "json"
         }).done(function(result)
         {
@@ -59,10 +59,10 @@ $(function()
         {
             $.ajax(
             {
-                url: '/dashboard/user/delete',
-                type: "DELETE",
-                datatype: "json",
-                data: {'userId' : $(this).data('user-id')}
+                "url": "/dashboard/user/delete",
+                "type": "DELETE",
+                "datatype": "json",
+                "data": {'userId' : $(this).data('user-id')}
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
@@ -71,4 +71,12 @@ $(function()
 
         ajaxContent($(this).attr('href'), ".ajax-content");
     });
+
+    $('#search-user').on('submit', function()
+    {
+        var sArray = $(this).serializeArray();
+        ajaxContent($(this).attr('href'), ".ajax-content", sArray);
+
+        return false;
+    })
 });

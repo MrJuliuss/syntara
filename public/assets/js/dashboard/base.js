@@ -41,7 +41,7 @@ var ajaxContent = function(url, content, options)
     $.ajax(
     {
         url: url,
-        type: "get",
+        type: "GET",
         datatype: "html",
         data: options
     })
