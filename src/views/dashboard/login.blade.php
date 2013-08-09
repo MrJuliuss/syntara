@@ -1,5 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
+@section('title', 'Login')
+
 @section('content')
 <script type="text/javascript" src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/login.js') }}"></script>
 {{ Breadcrumbs::create(array(array('title' => 'Login', 'link' => "dashboard/login", 'icon' => 'glyphicon-user'))); }}
