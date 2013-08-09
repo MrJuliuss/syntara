@@ -9,8 +9,8 @@ use Sentry;
 use Request;
 use DB;
 
-class GroupController extends BaseController {
-
+class GroupController extends BaseController 
+{
     /**
     * List of groups
     */
@@ -83,19 +83,28 @@ class GroupController extends BaseController {
             {
                 $userids[] = $user->id;
             }
-            
-            
+
             $users = Sentry::getUserProvider()->createModel()->join('users_groups', 'users.id', '=', 'users_groups.user_id')->where('users_groups.group_id', '=', $group->getId())
                     ->paginate(20);
-            
+
+            $candidateUsers = array();
+            $allUsers = Sentry::getUserProvider()->findAll();
+            foreach($allUsers as $user)
+            {
+                if(!$user->inGroup($group))
+                {
+                    $candidateUsers[] = $user;
+                }
+            }
+
             if(Request::ajax())
             {
-                $html = View::make('syntara::group.list-users-group', array('users' => $users))->render();
+                $html = View::make('syntara::group.list-users-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();
                 
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users));
+            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
@@ -192,6 +201,33 @@ class GroupController extends BaseController {
         }
     }
     
+    /**
+     * Add a user in a group
+     * @return Response
+     */
+    public function addUserInGroup()
+    {
+        try
+        {
+            $userId = Input::get('userId');
+            $groupId = Input::get('groupId');
+
+            $user = Sentry::getUserProvider()->findById($userId);
+            $group = Sentry::getGroupProvider()->findById($groupId);
+            $user->addGroup($group);
+
+            return Response::json(array('userAdded' => true, 'message' => 'User added to the from with success.', 'messageType' => 'success'));
+        }
+        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            return Response::json(array('userAdded' => false, 'message' => 'User does not exists.', 'messageType' => 'error'));
+        }
+        catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+        {
+            return Response::json(array('userAdded' => false, 'message' => 'Group does not exists.', 'messageType' => 'error'));
+        }
+    }
+
     /**
      * Validate group informations
      * @param array $permissionsValues

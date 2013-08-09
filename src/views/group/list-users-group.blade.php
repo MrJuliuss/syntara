@@ -28,3 +28,18 @@
     @endforeach
 </tbody>
 </table>
+
+@if(!empty($candidateUsers))
+<div class="row">
+    <div class="col-lg-6" style="margin-bottom: 15px;">
+        <select class="form-control" id="ungrouped-users-list" data-group-id="{{ $group->getId() }}">
+            @foreach($candidateUsers as $user)
+            <option value="{{ $user->getId() }}">{{ $user->username}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-lg-4">
+        <button id="add-user" type="button" class="btn btn-primary">Add user</button>
+    </div>
+</div>
+@endif
