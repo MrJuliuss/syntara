@@ -36,7 +36,9 @@ class UserController extends BaseController {
     */
     public function getCreate()
     {
-        $this->layout = View::make('syntara::user.new-user');
+        $groups = Sentry::getGroupProvider()->findAll();
+        
+        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups));
     }
 
     /**
@@ -66,9 +68,19 @@ class UserController extends BaseController {
             
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
+            $groups = Input::get('groups');
+            if(isset($groups) && is_array($groups))
+            {
+                foreach($groups as $groupId)
+                {
+                    $group = Sentry::getGroupProvider()->findById($groupId);
+                    $user->addGroup($group);
+                }
+            }
         }
         catch (\Cartalyst\Sentry\Users\LoginRequiredException $e){} // already catch by validators
         catch (\Cartalyst\Sentry\Users\PasswordRequiredException $e){} // already catch by validators
+        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){}
         catch (\Cartalyst\Sentry\Users\UserExistsException $e)
         {
             return json_encode(array('userCreated' => false, 'message' => 'User with this login already exists.', 'messageType' => 'error'));
@@ -105,7 +117,13 @@ class UserController extends BaseController {
         {
             $user = Sentry::getUserProvider()->findById($userId);
             $throttle = Sentry::getThrottleProvider()->findByUserId($userId);
-            $this->layout = View::make('syntara::user.show-user', array('user' => $user, 'throttle' => $throttle));
+            $groups = Sentry::getGroupProvider()->findAll();
+            
+            $this->layout = View::make('syntara::user.show-user', array(
+                'user' => $user,
+                'throttle' => $throttle,
+                'groups' => $groups,
+            ));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
@@ -143,9 +161,30 @@ class UserController extends BaseController {
             {
                 $user->password = $pass;
             }
+            
             // Update the user
             if($user->save())
             {
+                $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
+                $userGroups = $user->getGroups()->toArray();
+                
+                foreach($userGroups as $group)
+                {
+                    if(!in_array($group['id'], $groups))
+                    {
+                        $group = Sentry::getGroupProvider()->findById($group['id']);
+                        $user->removeGroup($group);
+                    }
+                }
+                if(isset($groups) && is_array($groups))
+                {
+                    foreach($groups as $groupId)
+                    {
+                        $group = Sentry::getGroupProvider()->findById($groupId);
+                        $user->addGroup($group);
+                    }
+                }
+                
                 return Response::json(array('userUpdated' => true, 'message' => 'User has been updated with success.', 'messageType' => 'success'));
             }
             else 

@@ -2,10 +2,11 @@ $(function()
 {
     $('#create-user-form').on('submit', function()
     {
+        var sArray = $(this).serializeArray();
         $.ajax({
             "type": "POST",
             "url": 'new',
-            data: {"username" : $('#username').val(), "email" : $('#email').val(), "pass" : $('#pass').val(), "last_name" : $('#last_name').val(), "first_name" : $('#first_name').val()},
+            data: sArray,
             "dataType": "json"
         }).done(function(result)
         {
@@ -31,10 +32,11 @@ $(function()
 
     $('#edit-user-form').on('submit', function()
     {
+        var sArray = $(this).serializeArray();
         $.ajax({
             "type": "PUT",
             "url": window.location.href.toString(),
-            data: {"username" : $('#username').val(), "email" : $('#email').val(), "pass" : $('#pass').val(), "last_name" : $('#last_name').val(), "first_name" : $('#first_name').val()},
+            data: sArray,
             "dataType": "json"
         }).done(function(result)
         {

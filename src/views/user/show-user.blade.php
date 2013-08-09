@@ -34,8 +34,21 @@
                             <input class="col-lg-12 form-control" type="text" id="first_name" name="first_name" value="{{ $user->first_name }}">
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Groups :</label>
+                        </div>
+                        <div class="form-group">
+                         
+                        @foreach($groups as $group)
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}" {{ ($user->inGroup($group)) ? 'checked="checked"' : ''}}>{{ $group->getName() }} 
+                        </label>
+                        @endforeach
+                        </div>
+                        <br>
+                        <div class="form-group">
                             <button id="update-user" class="btn btn-primary">Update</button>
                         </div>
+                        
                     </form>
                 </div>
             </section>
