@@ -40,16 +40,12 @@ $(document).ready(function()
 
 var ajaxContent = function(url, content, options, useSave)
 {
-    // console.log(options);
-    // console.log(lastAjxOpt);
-    alert(useSave);
     if(lastAjxOpt != null && useSave === true)
     {
         options = lastAjxOpt;
         lastAjxOpt = null;
     }
 
-    // console.log(lastAjxOpt);
     $.ajax(
     {
         url: url,
