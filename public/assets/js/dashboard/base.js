@@ -46,6 +46,14 @@ $(document).ready(function()
             $('#delete-item').hide();
         }
     });
+
+    $('#search-form').on('submit', function()
+    {
+        var sArray = $(this).serializeArray();
+        ajaxContent($(this).attr('href'), ".ajax-content", sArray, false);
+
+        return false;
+    });
 });
 
 var ajaxContent = function(url, content, options, useSave)

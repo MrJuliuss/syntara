@@ -16,16 +16,29 @@ class GroupController extends BaseController
     */
     public function getIndex()
     {
-        $groups = Sentry::getGroupProvider()->createModel()->paginate(20);
-        $datas['groups'] = $groups;
+        $emptyGroup =  Sentry::getGroupProvider()->createModel();
+
+        $groupId = Input::get('groupIdSearch');
+        if(!empty($groupId))
+        {
+            $emptyGroup = $emptyGroup->where('id', $groupId);
+        }
+        $groupname = Input::get('groupnameSearch');
+        if(!empty($groupname))
+        {
+            $emptyGroup = $emptyGroup->where('name', 'LIKE', '%'.$groupname.'%');
+        }
+
+        $groups = $emptyGroup->paginate(20);
+
         if(Request::ajax())
         {
-            $html = View::make('syntara::group.list-groups', array('datas' => $datas))->render();
+            $html = View::make('syntara::group.list-groups', array('groups' => $groups))->render();
             
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make('syntara::group.index-group', array('datas' => $datas));
+        $this->layout = View::make('syntara::group.index-group', array('groups' => $groups));
     }
     
     /**

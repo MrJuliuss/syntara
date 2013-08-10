@@ -27,6 +27,6 @@
                 <li><a title="" href="{{ URL::to('dashboard/logout'); }}"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Logout</span></a></li>
             </ul>
             @endif
-        </div><!-- /.nav-collapse -->
-    </div><!-- /.container -->
+        </div>
+    </div>
 </div>

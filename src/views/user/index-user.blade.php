@@ -23,7 +23,7 @@
                     <b>Search</b>
                 </div>
                 <div class="module-body">
-                    <form id="search-user" onsubmit="return false;">
+                    <form id="search-form" onsubmit="return false;">
                         <div class="form-group">
                             <label for="userIdSearch">User id :</label>
                             <input type="text" class="form-control" id="userIdSearch" name="userIdSearch">
@@ -37,6 +37,7 @@
                             <input type="email" class="form-control" id="emailSearch" name="emailSearch">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                 </div>
             </section>
         </div>
