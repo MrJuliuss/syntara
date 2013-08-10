@@ -89,7 +89,7 @@ $(function()
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content");
+        ajaxContent($(this).attr('href'), ".ajax-content", false);
     });
     
     $(document).on('click', '#delete-item.users', function()
@@ -105,11 +105,11 @@ $(function()
             .done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
-                ajaxContent($(this).attr('href'), ".ajax-content");
+                ajaxContent($(this).attr('href'), ".ajax-content", false);
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content");        
+        ajaxContent($(this).attr('href'), ".ajax-content", false);
     });
 
     $(document).on('click', '#add-user', function()

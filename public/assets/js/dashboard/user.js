@@ -69,13 +69,13 @@ $(function()
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content");
+        ajaxContent($(this).attr('href'), ".ajax-content", false);
     });
 
     $('#search-user').on('submit', function()
     {
         var sArray = $(this).serializeArray();
-        ajaxContent($(this).attr('href'), ".ajax-content", sArray);
+        ajaxContent($(this).attr('href'), ".ajax-content", sArray, false);
 
         return false;
     })

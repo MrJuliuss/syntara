@@ -4,8 +4,7 @@ $(document).ready(function()
 {
     $(document).on('click', '.pagination a', function()
     {
-        console.log(document.referrer);
-        ajaxContent($(this).attr('href'), ".ajax-content");
+        ajaxContent($(this).attr('href'), ".ajax-content", null, true);
 
         return false;
     });
@@ -39,14 +38,18 @@ $(document).ready(function()
     });
 });
 
-var ajaxContent = function(url, content, options)
+var ajaxContent = function(url, content, options, useSave)
 {
-    if(lastAjxOpt !== null)
+    // console.log(options);
+    // console.log(lastAjxOpt);
+    alert(useSave);
+    if(lastAjxOpt != null && useSave === true)
     {
         options = lastAjxOpt;
         lastAjxOpt = null;
     }
 
+    // console.log(lastAjxOpt);
     $.ajax(
     {
         url: url,
