@@ -23,7 +23,7 @@
                 @endif
             </ul>
             
-            @if (Sentry::check())
+            @if(Sentry::check())
             <ul class="nav navbar-nav pull-right">
                 <li class="hidden-sm"><img class="ajax-loader ajax-loader-lg" src="{{ asset('packages/mrjuliuss/syntara/assets/img/ajax-load.gif') }}" style="float: right;"/></li> 
                 <li><a title="" href="{{ URL::to('dashboard/user/'.Sentry::getUser()->getId()); }}"><span class="text">{{ Sentry::getUser()->username }}</span></a></li>
