@@ -1,9 +1,9 @@
-<?php 
-
-namespace MrJuliuss\Syntara\Commands;
+<?php namespace MrJuliuss\Syntara\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Config;
+use Validator;
 
 class UserSeedCommand extends Command {
 
@@ -40,17 +40,48 @@ class UserSeedCommand extends Command {
 	{
         try 
         {
-            // Create the user
-            $user = \Sentry::getUserProvider()->create(array(
-                'email'    => $this->argument('email'),
-                'password' => $this->argument('password'),
-                'username' => $this->argument('username'),
-            ));
+            $email = $this->argument('email');
+            $pass = $this->argument('password');
+            $username = $this->argument('username');
 
-            $activationCode = $user->getActivationCode();
-            $user->attemptActivation($activationCode);
+             $validator = Validator::make(
+                array(
+                    'email' => $email, 
+                    'pass' => $pass,
+                    'username' => $username),
+                Config::get('syntara::rules.users.create')
+            );
+
+            if($validator->fails())
+            {
+                foreach($validator->messages()->getMessages() as $key => $messages)
+                {
+                    $this->info(ucfirst($key).' :');
+                    foreach($messages as $message)
+                    {
+                        $this->error($message);
+                    }
+                }
+            }
+            else
+            {
+                // Create the user
+                $user = \Sentry::getUserProvider()->create(array(
+                    'email'    => $email,
+                    'password' => $pass,
+                    'username' => $username,
+                ));
+
+                $activationCode = $user->getActivationCode();
+                $user->attemptActivation($activationCode);
+
+                $this->info('User created with success');
+            }
         }
-        catch (Cartalyst\Sentry\Users\UserExistsException $e){}
+        catch (\Cartalyst\Sentry\Users\UserExistsException $e)
+        {
+            $this->error('User already exists !');
+        }
 	}
 
     /**
