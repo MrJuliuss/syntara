@@ -1,7 +1,10 @@
+var lastAjxOpt = null;
+
 $(document).ready(function()
 {
     $(document).on('click', '.pagination a', function()
     {
+        console.log(document.referrer);
         ajaxContent($(this).attr('href'), ".ajax-content");
 
         return false;
@@ -38,6 +41,12 @@ $(document).ready(function()
 
 var ajaxContent = function(url, content, options)
 {
+    if(lastAjxOpt !== null)
+    {
+        options = lastAjxOpt;
+        lastAjxOpt = null;
+    }
+
     $.ajax(
     {
         url: url,
@@ -48,6 +57,7 @@ var ajaxContent = function(url, content, options)
     .done(function(data)
     {
         $(content).empty().html(data.html);
+        lastAjxOpt = options;
     });
 };
 
