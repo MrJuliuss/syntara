@@ -35,7 +35,7 @@ class UserController extends BaseController {
             $emptyUsers = $emptyUsers->where('email', 'LIKE', '%'.$email.'%');
         }
 
-        $users = $emptyUsers->paginate(2);
+        $users = $emptyUsers->paginate(20);
         $datas['links'] = $users->links();
         $datas['users'] = $users;
         if(Request::ajax())
