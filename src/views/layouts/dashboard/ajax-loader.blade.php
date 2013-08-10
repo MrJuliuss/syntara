@@ -1,0 +1,1 @@
+<img class="ajax-loader" src="{{ asset('packages/mrjuliuss/syntara/assets/img/ajax-load.gif') }}" style="float: right;"/>

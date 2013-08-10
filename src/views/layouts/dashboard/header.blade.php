@@ -22,8 +22,9 @@
             
             @if (Sentry::check())
             <ul class="nav navbar-nav pull-right">
-                <li class="" ><a title="" href="{{ URL::to('dashboard/user/'.Sentry::getUser()->getId()); }}"><span class="text">{{ Sentry::getUser()->username }}</span></a></li>
-                <li class=""><a title="" href="{{ URL::to('dashboard/logout'); }}"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Logout</span></a></li>
+                <li>@include('syntara::layouts.dashboard.ajax-loader')</li> 
+                <li><a title="" href="{{ URL::to('dashboard/user/'.Sentry::getUser()->getId()); }}"><span class="text">{{ Sentry::getUser()->username }}</span></a></li>
+                <li><a title="" href="{{ URL::to('dashboard/logout'); }}"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Logout</span></a></li>
             </ul>
             @endif
         </div><!-- /.nav-collapse -->
