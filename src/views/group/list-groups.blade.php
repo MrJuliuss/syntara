@@ -1,5 +1,5 @@
 <div class="row upper-menu">
-    {{ $datas['groups']->links(); }}
+    {{ $groups->links(); }}
     
     <div style="float:right;">
         <a id="delete-item" class="btn btn-danger  groups">Delete</a>
@@ -17,7 +17,7 @@
     </tr>
 </thead>
 <tbody>
-    @foreach ($datas['groups'] as $group)
+    @foreach ($groups as $group)
     <tr>
         <td style="text-align: center;">
             <input type="checkbox" data-group-id="{{ $group->getId(); }}">

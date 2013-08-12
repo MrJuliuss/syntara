@@ -89,7 +89,7 @@ $(function()
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content");
+        ajaxContent($(this).attr('href'), ".ajax-content", false);
     });
     
     $(document).on('click', '#delete-item.users', function()
@@ -105,10 +105,28 @@ $(function()
             .done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
-                ajaxContent($(this).attr('href'), ".ajax-content");
+                ajaxContent($(this).attr('href'), ".ajax-content", false);
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content");        
+        ajaxContent($(this).attr('href'), ".ajax-content", false);
     });
+
+    $(document).on('click', '#add-user', function()
+    {
+        var userId = $("#ungrouped-users-list option:selected").val();
+        var groupId = $("#ungrouped-users-list").data('group-id');
+
+        $.ajax(
+        {
+            url: window.location.href.toString()+'/user/'+userId, 
+            type: "POST",
+            datatype: "json",
+            data: { userId : userId, groupId : groupId }
+        }).done(function(result)
+        {
+            showStatusMessage(result.message, result.messageType);
+            ajaxContent($(this).attr('href'), ".ajax-content");
+        });
+    })
 });

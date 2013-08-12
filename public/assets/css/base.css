@@ -85,6 +85,21 @@ a:hover{
     background-color: #b94a48;
 }
 
+.ajax-loader {
+  display: none;
+}
+
+.ajax-loader-lg {
+  width: 26px;
+  height: 26px;
+  margin: 12px;
+}
+.ajax-loader-sm {
+  width: 26px;
+  height: 26px;
+  margin-top: -20px;
+}
+
 /** Breadcrumb part **/
 #breadcrumb {
     background-color: #2b2b2b;

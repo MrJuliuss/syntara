@@ -1,8 +1,20 @@
+var lastAjxOpt = null;
+
+$(document).ajaxStart(function()
+{
+    $('.ajax-loader').show();
+});
+
+$( document ).ajaxComplete(function(event, request, settings)
+{
+    $('.ajax-loader').hide();
+});
+
 $(document).ready(function()
 {
     $(document).on('click', '.pagination a', function()
     {
-        ajaxContent($(this).attr('href'), ".ajax-content");
+        ajaxContent($(this).attr('href'), ".ajax-content", null, true);
 
         return false;
     });
@@ -34,20 +46,35 @@ $(document).ready(function()
             $('#delete-item').hide();
         }
     });
+
+    $('#search-form').on('submit', function()
+    {
+        var sArray = $(this).serializeArray();
+        ajaxContent($(this).attr('href'), ".ajax-content", sArray, false);
+
+        return false;
+    });
 });
 
-var ajaxContent = function(url, content, options)
+var ajaxContent = function(url, content, options, useSave)
 {
+    if(lastAjxOpt != null && useSave === true)
+    {
+        options = lastAjxOpt;
+        lastAjxOpt = null;
+    }
+
     $.ajax(
     {
         url: url,
-        type: "get",
+        type: "GET",
         datatype: "html",
         data: options
     })
     .done(function(data)
     {
         $(content).empty().html(data.html);
+        lastAjxOpt = options;
     });
 };
 
