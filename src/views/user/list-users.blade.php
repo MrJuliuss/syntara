@@ -31,7 +31,7 @@
 <tbody>
     @foreach ($datas['users'] as $user)
     <tr>
-         @if($currentUser->hasAccess('delete-user'))
+        @if($currentUser->hasAccess('delete-user'))
         <td style="text-align: center;">
             <input type="checkbox" data-user-id="{{ $user->getId(); }}">
         </td>

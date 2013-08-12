@@ -40,16 +40,18 @@
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="First name" id="first_name" name="first_name"></p>
                                 </div>
                             </div>
+                            @if($currentUser->hasAccess('user-group-management'))
                             <div class="col-lg-6">
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="control-label">Groups :</label>
-                                 </div>
-                                @foreach($groups as $group)
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}">{{ $group->getName() }} 
-                                </label>
-                                @endforeach
+                                </div>
+                                    @foreach($groups as $group)
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}">{{ $group->getName() }} 
+                                    </label>
+                                    @endforeach
                             </div>
+                            @endif
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <button id="add-user" class="btn btn-primary">Create</button>
