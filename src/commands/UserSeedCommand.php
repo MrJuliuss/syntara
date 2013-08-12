@@ -82,12 +82,7 @@ class UserSeedCommand extends Command {
         {
             $this->error('User already exists !');
         }
-<<<<<<< HEAD
-        catch (Cartalyst\Sentry\Users\UserExistsException $e){}
     }
-=======
-	}
->>>>>>> bc7b6975afd07ecbcf132d0af67396bc6dbfcfd2
 
     /**
      * Get the console command arguments.
