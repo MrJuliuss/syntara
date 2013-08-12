@@ -7,10 +7,11 @@
             "email": "julien.richarte@gmail.com"
         }
     ],
-    "require": {
+    "require":
+    {
         "php": ">=5.3.0",
         "illuminate/support": "4.0.x",
-	"cartalyst/sentry": "2.0.*"
+        "cartalyst/sentry": "2.0.*"
     },
     "autoload": {
         "classmap": [

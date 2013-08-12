@@ -13,14 +13,14 @@ class InstallCommand extends Command {
      *
      * @var string
      */
-    protected $name = 'command:name';
+    protected $name = 'syntara:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Syntara install command';
 
     /**
      * Create a new command instance.
@@ -39,7 +39,18 @@ class InstallCommand extends Command {
      */
     public function fire()
     {
-        //
+        // run migrations
+        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
+        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
+
+        // publish sentry config 
+        $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );
+
+        // publish syntara config
+        $this->call('config:publish', array('package' => 'mrjuliuss/syntara' ) );
+
+        // publish syntara assets
+        $this->call('asset:publish', array('package' => 'mrjuliuss/syntara' ) );
     }
 
     /**
