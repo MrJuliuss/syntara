@@ -113,8 +113,16 @@ class UserController extends BaseController {
     {
         try
         {
-            $user = Sentry::getUserProvider()->findById(Input::get('userId'));
-            $user->delete();
+            $userId = Input::get('userId');
+            if($userId !== Sentry::getUser()->getId())
+            {
+                $user = Sentry::getUserProvider()->findById($userId);
+                $user->delete();
+            }
+            else
+            {
+                return Response::json(array('deletedUser' => false, 'message' => "You can't delete your own user !", 'messageType' => 'error'));
+            }
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
