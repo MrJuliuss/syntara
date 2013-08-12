@@ -41,15 +41,6 @@
                 </div>
             </section>
         </div>
-            <div class="col-lg-6">
-            <section class="module">
-            <div class="module-head">
-                <b></b>
-            </div>
-            <div class="module-body">
-
-            </div>
-        </div>
     </div>
 </div>
 @stop

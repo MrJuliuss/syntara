@@ -15,16 +15,16 @@
 <thead>
     <tr>
         @if($currentUser->hasAccess('delete-user'))
-        <th style="width:25px; text-align: center;"><input type="checkbox" class="check-all"></th>
+        <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
-        <th style="width:50px; text-align: center;">Id</th>
-        <th style="width:200px;">Username</th>
-        <th style="width:200px;">Email</th>
-        <th style="width:200px;">Groups</th>
-        <th style="width:200px;" class="hidden-sm">Last Name</th>
-        <th style="width:200px;" class="hidden-sm">First Name</th>
+        <th class="col-lg-1" style="text-align: center;">Id</th>
+        <th class="col-lg-2">Username</th>
+        <th class="col-lg-2">Email</th>
+        <th class="col-lg-2">Groups</th>
+        <th class="col-lg-2 hidden-sm">Last Name</th>
+        <th class="col-lg-2 hidden-sm">First Name</th>
         @if($currentUser->hasAccess('update-user-info'))
-        <th style="width:30px; text-align: center;">Show</th>
+        <th class="col-lg-1" style="text-align: center;">Show</th>
         @endif
     </tr>
 </thead>

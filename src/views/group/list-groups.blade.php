@@ -9,11 +9,11 @@
 <table class="table table-striped table-bordered table-condensed">
 <thead>
     <tr>
-        <th style="width:35px; text-align: center;"><input type="checkbox" class="check-all"></th>
-        <th style="width:50px; text-align: center;">Id</th>
-        <th style="width:400px;">Group name</th>
-        <th style="width:400px;">Permissions</th>
-        <th style=" text-align: center;">Show</th>
+        <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
+        <th class="col-lg-1" style="text-align: center;">Id</th>
+        <th class="col-lg-2">Name</th>
+        <th class="col-lg-7">Permissions</th>
+        <th class="col-lg-1" style="text-align: center;">Show</th>
     </tr>
 </thead>
 <tbody>
