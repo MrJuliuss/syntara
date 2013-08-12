@@ -9,7 +9,9 @@
 <table class="table table-striped table-bordered table-condensed">
 <thead>
     <tr>
+        @if($currentUser->hasAccess('user-group-management'))
         <th style="width:20px; text-align: center;"><input type="checkbox" class="check-all"></th>
+        @endif
         <th style="width:20px; text-align: center;">Id</th>
         <th style="width:200px;">Username</th>
         <th style="width:30px; text-align: center;">Show</th>
@@ -18,9 +20,11 @@
 <tbody>
     @foreach ($users as $user)
     <tr>
+        @if($currentUser->hasAccess('user-group-management'))
         <td style="text-align: center;">
             <input type="checkbox" data-user-id="{{ $user->getId() }}">
         </td>
+        @endif
         <td style="text-align: center;">{{ $user->getId() }}</td>
         <td>&nbsp;{{ $user->username }}</td>
         <td style="text-align: center;">&nbsp;<a href="/dashboard/user/{{ $user->getId() }}">show</a></td>
@@ -29,7 +33,7 @@
 </tbody>
 </table>
 
-@if(!empty($candidateUsers))
+@if(!empty($candidateUsers) && $currentUser->hasAccess('user-group-management'))
 <div class="row">
     <div class="col-lg-6" style="margin-bottom: 15px;">
         <select class="form-control" id="ungrouped-users-list" data-group-id="{{ $group->getId() }}">
