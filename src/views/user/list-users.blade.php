@@ -15,9 +15,9 @@
 <thead>
     <tr>
         @if($currentUser->hasAccess('delete-user'))
-        <th style="width:20px; text-align: center;"><input type="checkbox" class="check-all"></th>
+        <th style="width:25px; text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
-        <th style="width:20px; text-align: center;">Id</th>
+        <th style="width:50px; text-align: center;">Id</th>
         <th style="width:200px;">Username</th>
         <th style="width:200px;">Email</th>
         <th style="width:200px;">Groups</th>
