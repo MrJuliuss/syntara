@@ -3,23 +3,24 @@
 namespace MrJuliuss\Syntara\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class UserSeedCommand extends Command {
+class InstallCommand extends Command {
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'create:user';
+    protected $name = 'command:name';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create new user in database';
+    protected $description = 'Command description.';
 
     /**
      * Create a new command instance.
@@ -38,19 +39,7 @@ class UserSeedCommand extends Command {
      */
     public function fire()
     {
-        try 
-        {
-            // Create the user
-            $user = \Sentry::getUserProvider()->create(array(
-                'email'    => $this->argument('email'),
-                'password' => $this->argument('password'),
-                'username' => $this->argument('username'),
-            ));
-
-            $activationCode = $user->getActivationCode();
-            $user->attemptActivation($activationCode);
-        }
-        catch (Cartalyst\Sentry\Users\UserExistsException $e){}
+        //
     }
 
     /**
@@ -61,9 +50,7 @@ class UserSeedCommand extends Command {
     protected function getArguments()
     {
         return array(
-            array('email',    InputArgument::REQUIRED, 'User email'),
-            array('password', InputArgument::REQUIRED, 'User password'),
-            array('username', InputArgument::REQUIRED, 'User name')
+            array('example', InputArgument::REQUIRED, 'An example argument.'),
         );
     }
 
@@ -74,7 +61,9 @@ class UserSeedCommand extends Command {
      */
     protected function getOptions()
     {
-        return array();
+        return array(
+            array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+        );
     }
 
 }
