@@ -6,6 +6,8 @@ Route::filter('auth', function()
     {
         return Redirect::route('getLogin');
     }
+
+    View::share('currentUser', Sentry::getUser());
 });
 
 Route::filter('notAuth', function()
@@ -19,7 +21,6 @@ Route::filter('notAuth', function()
 Route::filter('hasPermissions', function()
 {
     $permissions = Config::get('syntara::permissions');
-    View::share('currentUser', Sentry::getUser());
 
     if(!Sentry::getUser()->hasAccess($permissions[Route::currentRouteName()]))
     {
