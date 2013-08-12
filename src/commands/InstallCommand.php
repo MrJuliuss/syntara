@@ -5,6 +5,7 @@ namespace MrJuliuss\Syntara\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Sentry;
 
 class InstallCommand extends Command {
 
@@ -42,6 +43,26 @@ class InstallCommand extends Command {
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
+
+        // create admin group
+        try
+        {
+            $group = Sentry::getGroupProvider()->create(array(
+                'name'        => 'Admin',
+                'permissions' => array(
+                    'view-users-list' => 1,
+                    'create-user' => 1,
+                    'delete-user' => 1,
+                    'update-user-info' => 1,
+                    'user-group-management' => 1,
+                    'groups-management' => 1
+                ),
+            ));
+        }
+        catch (Cartalyst\Sentry\Groups\GroupExistsException $e)
+        {
+            echo 'Group already exists';
+        }
 
         // publish sentry config 
         $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );

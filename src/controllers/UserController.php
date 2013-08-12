@@ -182,23 +182,26 @@ class UserController extends BaseController {
             // Update the user
             if($user->save())
             {
-                $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
-                $userGroups = $user->getGroups()->toArray();
-                
-                foreach($userGroups as $group)
+                if(Sentry::getUser()->hasAccess('user-group-management'))
                 {
-                    if(!in_array($group['id'], $groups))
+                    $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
+                    $userGroups = $user->getGroups()->toArray();
+                    
+                    foreach($userGroups as $group)
                     {
-                        $group = Sentry::getGroupProvider()->findById($group['id']);
-                        $user->removeGroup($group);
+                        if(!in_array($group['id'], $groups))
+                        {
+                            $group = Sentry::getGroupProvider()->findById($group['id']);
+                            $user->removeGroup($group);
+                        }
                     }
-                }
-                if(isset($groups) && is_array($groups))
-                {
-                    foreach($groups as $groupId)
+                    if(isset($groups) && is_array($groups))
                     {
-                        $group = Sentry::getGroupProvider()->findById($groupId);
-                        $user->addGroup($group);
+                        foreach($groups as $groupId)
+                        {
+                            $group = Sentry::getGroupProvider()->findById($groupId);
+                            $user->addGroup($group);
+                        }
                     }
                 }
                 

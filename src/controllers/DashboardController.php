@@ -67,4 +67,12 @@ class DashboardController extends BaseController
         
         return Redirect::route('indexDashboard'); 
     }
+
+    /**
+    * Access denied page
+    */
+    public function getAccessDenied()
+    {
+        $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, access denied !'));
+    }
 }

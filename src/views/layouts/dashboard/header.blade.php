@@ -16,8 +16,13 @@
                 <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span>Users</span></a></a>
                     <ul class="dropdown-menu">
+                        @if($currentUser->hasAccess('view-users-list'))
                         <li><a href="{{ URL::to('dashboard/users'); }}">Users</a></li>
+                        @endif
+
+                        @if($currentUser->hasAccess('groups-management'))
                         <li><a href="{{ URL::to('dashboard/groups'); }}">Groups</a></li>
+                        @endif
                     </ul>
                 </li>
                 @endif

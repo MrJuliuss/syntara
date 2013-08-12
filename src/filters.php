@@ -1,8 +1,5 @@
 <?php
 
-/**
-* User required to be logged in
-*/
 Route::filter('auth', function()
 {
     if(!Sentry::check()) 
@@ -11,13 +8,21 @@ Route::filter('auth', function()
     }
 });
 
-/**
-* User required to be disconnected
-*/
 Route::filter('notAuth', function()
 {
     if(Sentry::check())
     {
         return Redirect::route('indexDashboard');
+    }
+});
+
+Route::filter('hasPermissions', function()
+{
+    $permissions = Config::get('syntara::permissions');
+    View::share('currentUser', Sentry::getUser());
+
+    if(!Sentry::getUser()->hasAccess($permissions[Route::currentRouteName()]))
+    {
+        return Redirect::route('accessDenied');
     }
 });
