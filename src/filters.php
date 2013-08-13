@@ -1,6 +1,6 @@
 <?php
 
-Route::filter('auth', function()
+Route::filter('basicAuth', function()
 {
     if(!Sentry::check()) 
     {

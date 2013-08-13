@@ -1,13 +1,13 @@
 <?php
 
-Route::group(array('before' => 'auth', 'prefix' => 'dashboard'), function()
+Route::group(array('before' => 'basicAuth', 'prefix' => 'dashboard'), function()
 {
     Route::get('', array('as' => 'indexDashboard', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getIndex'));
     Route::get('logout', array('as' => 'logout', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getLogout'));
     Route::get('access-denied', array('as' => 'accessDenied', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getAccessDenied'));
 });
 
-Route::group(array('before' => 'auth|hasPermissions', 'prefix' => 'dashboard'), function()
+Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => 'dashboard'), function()
 {
      // Users
     Route::get('users', array('as' => 'listUsers', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getIndex'));
