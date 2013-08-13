@@ -1,6 +1,8 @@
 {
     "name": "mrjuliuss/syntara",
-    "description": "",
+    "description": "Syntara is an admin package for laravel 4",
+    "keywords": ["laravel","admin","user", "authentication"],
+    "license": "MIT",
     "authors": [
         {
             "name": "MrJuliuss",
