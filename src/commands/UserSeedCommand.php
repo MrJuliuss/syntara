@@ -46,6 +46,7 @@ class UserSeedCommand extends Command
             $email = $this->argument('email');
             $pass = $this->argument('password');
             $username = $this->argument('username');
+            $groupName = $this->argument('group');
 
              $validator = Validator::make(
                 array(
@@ -78,12 +79,23 @@ class UserSeedCommand extends Command
                 $activationCode = $user->getActivationCode();
                 $user->attemptActivation($activationCode);
 
+                if($groupName !== NULL)
+                {
+                    $group = \Sentry::getGroupProvider()->findByName($groupName);
+
+                    $user->addGroup($group);
+                }
+
                 $this->info('User created with success');
             }
         }
         catch (\Cartalyst\Sentry\Users\UserExistsException $e)
         {
             $this->error('User already exists !');
+        }
+        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+        {
+            $this->error('Group '.$groupName.' does not exists !');
         }
     }
 
@@ -95,9 +107,10 @@ class UserSeedCommand extends Command
     protected function getArguments()
     {
         return array(
+            array('username', InputArgument::REQUIRED, 'User name'),
             array('email',    InputArgument::REQUIRED, 'User email'),
             array('password', InputArgument::REQUIRED, 'User password'),
-            array('username', InputArgument::REQUIRED, 'User name')
+            array('group', InputArgument::OPTIONAL, 'Group')
         );
     }
 
