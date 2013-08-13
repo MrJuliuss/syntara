@@ -1,11 +1,14 @@
-<?php namespace MrJuliuss\Syntara\Commands;
+<?php 
+
+namespace MrJuliuss\Syntara\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Config;
 use Validator;
 
-class UserSeedCommand extends Command {
+class UserSeedCommand extends Command 
+{
 
     /**
      * The console command name.

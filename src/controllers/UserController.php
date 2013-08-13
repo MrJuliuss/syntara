@@ -1,4 +1,6 @@
-<?php namespace MrJuliuss\Syntara\Controllers;
+<?php 
+
+namespace MrJuliuss\Syntara\Controllers;
 
 use View;
 use Input;
@@ -8,7 +10,8 @@ use Sentry;
 use Validator;
 use Config;
 
-class UserController extends BaseController {
+class UserController extends BaseController 
+{
 
     /**
     * Display a list of all users

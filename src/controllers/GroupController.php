@@ -1,4 +1,6 @@
-<?php namespace MrJuliuss\Syntara\Controllers;
+<?php 
+
+namespace MrJuliuss\Syntara\Controllers;
 
 use View;
 use Validator;

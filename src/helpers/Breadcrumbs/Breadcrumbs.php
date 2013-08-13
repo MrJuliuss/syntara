@@ -1,4 +1,6 @@
-<?php namespace MrJuliuss\Syntara\Helpers;
+<?php 
+
+namespace MrJuliuss\Syntara\Helpers;
 
 use Illuminate\Support\Facades\URL;
 

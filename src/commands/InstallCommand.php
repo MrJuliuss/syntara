@@ -7,7 +7,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Sentry;
 
-class InstallCommand extends Command {
+class InstallCommand extends Command 
+{
 
     /**
      * The console command name.

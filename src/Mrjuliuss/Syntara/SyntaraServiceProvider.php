@@ -1,9 +1,12 @@
-<?php namespace MrJuliuss\Syntara;
+<?php 
+
+namespace MrJuliuss\Syntara;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Environment;
 
-class SyntaraServiceProvider extends ServiceProvider {
+class SyntaraServiceProvider extends ServiceProvider 
+{
 
     /**
     * Indicates if loading of the provider is deferred.
