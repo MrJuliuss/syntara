@@ -2,6 +2,7 @@
 
 namespace MrJuliuss\Syntara\Controllers;
 
+use MrJuliuss\Syntara\Controllers\BaseController;
 use View;
 use Input;
 use Sentry;
@@ -17,7 +18,7 @@ class DashboardController extends BaseController
     */
     public function getIndex()
     {
-        $this->layout = View::make('syntara::dashboard.index');
+        $this->layout->content = View::make('syntara::dashboard.index');
     }
     
     /**
@@ -25,7 +26,7 @@ class DashboardController extends BaseController
     */
     public function getLogin()
     {
-        $this->layout = View::make('syntara::dashboard.login');
+        $this->layout->content = View::make('syntara::dashboard.login');
     }
 
     /**
@@ -75,6 +76,6 @@ class DashboardController extends BaseController
     */
     public function getAccessDenied()
     {
-        $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, access denied !'));
+        $this->layout->content = View::make('syntara::dashboard.error', array('message' => 'Sorry, access denied !'));
     }
 }

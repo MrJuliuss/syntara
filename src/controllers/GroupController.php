@@ -2,6 +2,7 @@
 
 namespace MrJuliuss\Syntara\Controllers;
 
+use MrJuliuss\Syntara\Controllers\BaseController;
 use View;
 use Validator;
 use Input;
@@ -40,7 +41,7 @@ class GroupController extends BaseController
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make('syntara::group.index-group', array('groups' => $groups));
+        $this->layout->content = View::make('syntara::group.index-group', array('groups' => $groups));
     }
     
     /**
@@ -48,7 +49,7 @@ class GroupController extends BaseController
     */
     public function getCreate()
     {
-        $this->layout = View::make('syntara::group.new-group');
+        $this->layout->content = View::make('syntara::group.new-group');
     }
 
     /**
@@ -119,11 +120,11 @@ class GroupController extends BaseController
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
+            $this->layout->content = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
+            $this->layout->content = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
         }
     }
 

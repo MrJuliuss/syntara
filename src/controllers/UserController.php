@@ -2,6 +2,7 @@
 
 namespace MrJuliuss\Syntara\Controllers;
 
+use MrJuliuss\Syntara\Controllers\BaseController;
 use View;
 use Input;
 use Response;
@@ -48,7 +49,7 @@ class UserController extends BaseController
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make('syntara::user.index-user', array('datas' => $datas));
+        $this->layout->content = View::make('syntara::user.index-user', array('datas' => $datas));
     }
     
     /**
@@ -58,7 +59,7 @@ class UserController extends BaseController
     {
         $groups = Sentry::getGroupProvider()->findAll();
         
-        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups));
+        $this->layout->content = View::make('syntara::user.new-user', array('groups' => $groups));
     }
 
     /**
@@ -155,7 +156,7 @@ class UserController extends BaseController
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, user not found ! '));
+            $this->layout->content = View::make('syntara::dashboard.error', array('message' => 'Sorry, user not found ! '));
         }
     }
 

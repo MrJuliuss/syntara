@@ -18,7 +18,7 @@
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
         <th class="col-lg-1" style="text-align: center;">Id</th>
-        <th class="col-lg-2">Username</th>
+        <th class="col-lg-1">Username</th>
         <th class="col-lg-2">Email</th>
         <th class="col-lg-2">Groups</th>
         <th class="col-lg-2 hidden-sm">Last Name</th>
