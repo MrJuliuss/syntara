@@ -11,6 +11,7 @@
     </head>
     <body>
         @include('syntara::layouts.dashboard.header')
+        {{ Breadcrumbs::create($breadcrumb); }}
         <div id="content">
             @yield('content')
         </div>

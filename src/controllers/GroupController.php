@@ -11,6 +11,7 @@ use Response;
 use Sentry;
 use Request;
 use DB;
+use URL;
 
 class GroupController extends BaseController 
 {
@@ -43,6 +44,7 @@ class GroupController extends BaseController
         
         $this->layout = View::make('syntara::group.index-group', array('groups' => $groups));
         $this->layout->title = "Groups list";
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.groups');
     }
     
     /**
@@ -52,6 +54,7 @@ class GroupController extends BaseController
     {
         $this->layout = View::make('syntara::group.new-group');
         $this->layout->title = "New group";
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_group');
     }
 
     /**
@@ -124,6 +127,18 @@ class GroupController extends BaseController
             
             $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
             $this->layout->title = 'Group '.$group->getName();
+            $this->layout->breadcrumb = array(
+                array(
+                    'title' => 'Groups', 
+                    'link' => "dashboard/groups", 
+                    'icon' => 'glyphicon-list-alt'
+                ), 
+                array(
+                    'title' => $group->name, 
+                    'link' => URL::current(), 
+                    'icon' => ''
+                )
+            );
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {

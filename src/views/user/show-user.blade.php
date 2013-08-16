@@ -2,8 +2,6 @@
 
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script> 
-{{ Breadcrumbs::create(array(array('title' => 'Users', 'link' => "dashboard/users", 'icon' => 'glyphicon-user'), array('title' => $user->username, 'link' => URL::current(), 'icon' => ''))); }}
-
 <div class="container" id="main-container">
     <div class="row">
         <div class="col-lg-6">

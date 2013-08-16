@@ -15,8 +15,8 @@ class BaseController extends Controller
     protected function setupLayout()
     {
         $this->layout = View::make('syntara::layouts.dashboard.master');
-        
-        $this->layout->title = '';
+
+        $this->layout->title = 'Syntara - Dashboard';
         $this->layout->breadcrumb = array();
     }
 }

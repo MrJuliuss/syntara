@@ -10,6 +10,7 @@ use Request;
 use Sentry;
 use Validator;
 use Config;
+use URL;
 
 class UserController extends BaseController 
 {
@@ -51,6 +52,7 @@ class UserController extends BaseController
         
         $this->layout = View::make('syntara::user.index-user', array('datas' => $datas));
         $this->layout->title = "Users list";
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
     }
     
     /**
@@ -62,6 +64,7 @@ class UserController extends BaseController
         
         $this->layout = View::make('syntara::user.new-user', array('groups' => $groups));
         $this->layout->title = "New user";
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
     }
 
     /**
@@ -156,6 +159,18 @@ class UserController extends BaseController
                 'groups' => $groups,
             ));
             $this->layout->title = 'User '.$user->username;
+            $this->layout->breadcrumb = array(
+                    array(
+                        'title' => 'Users', 
+                        'link' => "dashboard/users", 
+                        'icon' => 'glyphicon-user'
+                    ), 
+                    array(
+                     'title' => $user->username, 
+                     'link' => URL::current(), 
+                     'icon' => ''
+                    )
+            );
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {

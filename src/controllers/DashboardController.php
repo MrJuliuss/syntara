@@ -20,6 +20,7 @@ class DashboardController extends BaseController
     {
         $this->layout = View::make('syntara::dashboard.index');
         $this->layout->title = 'Index';
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
     
     /**
@@ -29,6 +30,7 @@ class DashboardController extends BaseController
     {
         $this->layout = View::make('syntara::dashboard.login');
         $this->layout->title = 'Login';
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.login');
     }
 
     /**
