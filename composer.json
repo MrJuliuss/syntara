@@ -19,7 +19,8 @@
         "classmap": [
             "src/commands",
             "src/controllers",
-            "src/helpers"
+            "src/helpers",
+            "src/migrations"
         ],
         "psr-0": {
             "Mrjuliuss\\Syntara": "src/"
