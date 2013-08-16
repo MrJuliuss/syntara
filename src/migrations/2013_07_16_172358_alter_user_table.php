@@ -1,7 +1,5 @@
 <?php
 
-namespace MrJuliuss\Syntara\Migrations;
-
 use Illuminate\Database\Migrations\Migration;
 
 class AlterUserTable extends Migration 
