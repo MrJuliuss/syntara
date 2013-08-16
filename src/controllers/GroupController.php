@@ -2,6 +2,7 @@
 
 namespace MrJuliuss\Syntara\Controllers;
 
+use MrJuliuss\Syntara\Controllers\BaseController;
 use View;
 use Validator;
 use Input;
@@ -10,7 +11,6 @@ use Response;
 use Sentry;
 use Request;
 use DB;
-use MrJuliuss\Syntara\Controllers\BaseController;
 
 class GroupController extends BaseController 
 {
@@ -127,7 +127,7 @@ class GroupController extends BaseController
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
+            $this->layout->content = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
         }
     }
 

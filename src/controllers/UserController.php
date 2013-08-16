@@ -2,6 +2,7 @@
 
 namespace MrJuliuss\Syntara\Controllers;
 
+use MrJuliuss\Syntara\Controllers\BaseController;
 use View;
 use Input;
 use Response;
@@ -9,7 +10,6 @@ use Request;
 use Sentry;
 use Validator;
 use Config;
-use MrJuliuss\Syntara\Controllers\BaseController;
 
 class UserController extends BaseController 
 {

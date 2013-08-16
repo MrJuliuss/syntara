@@ -2,6 +2,7 @@
 
 namespace MrJuliuss\Syntara\Controllers;
 
+use MrJuliuss\Syntara\Controllers\BaseController;
 use View;
 use Input;
 use Sentry;
@@ -9,7 +10,6 @@ use Redirect;
 use Validator;
 use Config;
 use Response;
-use MrJuliuss\Syntara\Controllers\BaseController;
 
 class DashboardController extends BaseController 
 {
@@ -27,7 +27,7 @@ class DashboardController extends BaseController
     */
     public function getLogin()
     {
-        $this->layout->content = View::make('syntara::dashboard.login');
+        $this->layout = View::make('syntara::dashboard.login');
         $this->layout->title = 'Login';
     }
 
