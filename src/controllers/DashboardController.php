@@ -9,6 +9,7 @@ use Redirect;
 use Validator;
 use Config;
 use Response;
+use MrJuliuss\Syntara\Controllers\BaseController;
 
 class DashboardController extends BaseController 
 {
@@ -18,6 +19,7 @@ class DashboardController extends BaseController
     public function getIndex()
     {
         $this->layout = View::make('syntara::dashboard.index');
+        $this->layout->title = 'Index';
     }
     
     /**
@@ -25,7 +27,8 @@ class DashboardController extends BaseController
     */
     public function getLogin()
     {
-        $this->layout = View::make('syntara::dashboard.login');
+        $this->layout->content = View::make('syntara::dashboard.login');
+        $this->layout->title = 'Login';
     }
 
     /**
@@ -76,5 +79,6 @@ class DashboardController extends BaseController
     public function getAccessDenied()
     {
         $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, access denied !'));
+        $this->layout->title = 'Error';
     }
 }

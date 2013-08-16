@@ -9,6 +9,7 @@ use Request;
 use Sentry;
 use Validator;
 use Config;
+use MrJuliuss\Syntara\Controllers\BaseController;
 
 class UserController extends BaseController 
 {
@@ -49,6 +50,7 @@ class UserController extends BaseController
         }
         
         $this->layout = View::make('syntara::user.index-user', array('datas' => $datas));
+        $this->layout->title = "Users list";
     }
     
     /**
@@ -59,6 +61,7 @@ class UserController extends BaseController
         $groups = Sentry::getGroupProvider()->findAll();
         
         $this->layout = View::make('syntara::user.new-user', array('groups' => $groups));
+        $this->layout->title = "New user";
     }
 
     /**
@@ -152,6 +155,7 @@ class UserController extends BaseController
                 'throttle' => $throttle,
                 'groups' => $groups,
             ));
+            $this->layout->title = 'User '.$user->username;
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {

@@ -10,6 +10,7 @@ use Response;
 use Sentry;
 use Request;
 use DB;
+use MrJuliuss\Syntara\Controllers\BaseController;
 
 class GroupController extends BaseController 
 {
@@ -41,6 +42,7 @@ class GroupController extends BaseController
         }
         
         $this->layout = View::make('syntara::group.index-group', array('groups' => $groups));
+        $this->layout->title = "Groups list";
     }
     
     /**
@@ -49,6 +51,7 @@ class GroupController extends BaseController
     public function getCreate()
     {
         $this->layout = View::make('syntara::group.new-group');
+        $this->layout->title = "New group";
     }
 
     /**
@@ -120,6 +123,7 @@ class GroupController extends BaseController
             }
             
             $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
+            $this->layout->title = 'Group '.$group->getName();
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {

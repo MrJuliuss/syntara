@@ -1,7 +1,5 @@
 @extends('syntara::layouts.dashboard.master')
 
-@section('title', 'New group')
-
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/group.js') }}"></script>
 {{ Breadcrumbs::create(array(array('title' => 'Groups', 'link' => "dashboard/groups", 'icon' => 'glyphicon-list-alt'), array('title' => 'New group', 'link' => URL::current(), 'icon' => 'glyphicon-plus-sign'))); }}
