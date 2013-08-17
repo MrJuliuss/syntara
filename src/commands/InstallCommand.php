@@ -41,6 +41,8 @@ class InstallCommand extends Command
      */
     public function fire()
     {
+        $this->info('## Syntara Install ##');
+
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
@@ -48,6 +50,7 @@ class InstallCommand extends Command
         // create admin group
         try
         {
+            $this->info('Creating "Admin" group...');
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        => 'Admin',
                 'permissions' => array(
@@ -59,10 +62,12 @@ class InstallCommand extends Command
                     'groups-management' => 1
                 ),
             ));
+
+            $this->info('"Admin" group created with success');
         }
         catch (Cartalyst\Sentry\Groups\GroupExistsException $e)
         {
-            echo 'Group already exists';
+            $this->info('"Admin" group already exists');
         }
 
         // publish sentry config 
