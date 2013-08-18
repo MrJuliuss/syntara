@@ -64,7 +64,7 @@ Create first user (the first user must add to the "Admin" group, to allow you an
 
 To add a new feature to Syntara dashboard, you must extend your new controller with the Syntara BaseController, like this : 
 
-    ```php<?php
+    <?php
     
     use MrJuliuss\Syntara\Controllers\BaseController;
     
@@ -90,7 +90,7 @@ To add a new feature to Syntara dashboard, you must extend your new controller w
                 ),
             );
         }
-    }```
+    }
 
 
 ## TODO 
