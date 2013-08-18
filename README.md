@@ -23,7 +23,7 @@ Syntara is an admin system for Laravel 4.
 
 In the require key of composer.json file add the following line
 
-```"mrjuliuss/syntara": "1.0.x"```
+```"mrjuliuss/syntara": "1.0"```
 
 Run the Composer update command
 
