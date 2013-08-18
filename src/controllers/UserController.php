@@ -22,8 +22,10 @@ class UserController extends BaseController
     */
     public function getIndex()
     {
+        // get alls users
         $emptyUsers =  Sentry::getUserProvider()->getEmptyUser();
 
+        // users search
         $userId = Input::get('userIdSearch');
         if(!empty($userId))
         {
@@ -43,6 +45,8 @@ class UserController extends BaseController
         $users = $emptyUsers->paginate(20);
         $datas['links'] = $users->links();
         $datas['users'] = $users;
+
+        // ajax request : reload only content container
         if(Request::ajax())
         {
             $html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
@@ -84,6 +88,7 @@ class UserController extends BaseController
                 return Response::json(array('userCreated' => false, 'errorMessages' => $validator->messages()->getMessages()));
             }
             
+            // create user
             $user = Sentry::getUserProvider()->create(array(
                 'email'    => Input::get('email'),
                 'password' => Input::get('pass'),
@@ -92,8 +97,10 @@ class UserController extends BaseController
                 'first_name' => (string)Input::get('first_name')
             ));
             
+            // activate user
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
+
             $groups = Input::get('groups');
             if(isset($groups) && is_array($groups))
             {
@@ -212,6 +219,7 @@ class UserController extends BaseController
             // Update the user
             if($user->save())
             {
+                // if the user has permission to update
                 if(Sentry::getUser()->hasAccess('user-group-management'))
                 {
                     $groups = (Input::get('groups') === null) ? array() : Input::get('groups');

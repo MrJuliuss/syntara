@@ -5,7 +5,7 @@ namespace MrJuliuss\Syntara;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Environment;
 
-class SyntaraServiceProvider extends ServiceProvider 
+class SyntaraServiceProvider extends ServiceProvider
 {
 
     /**

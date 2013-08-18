@@ -65,7 +65,7 @@ class InstallCommand extends Command
 
             $this->info('"Admin" group created with success');
         }
-        catch (Cartalyst\Sentry\Groups\GroupExistsException $e)
+        catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
         {
             $this->info('"Admin" group already exists');
         }

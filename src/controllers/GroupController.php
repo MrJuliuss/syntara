@@ -22,6 +22,7 @@ class GroupController extends BaseController
     {
         $emptyGroup =  Sentry::getGroupProvider()->createModel();
 
+        // Ajax search
         $groupId = Input::get('groupIdSearch');
         if(!empty($groupId))
         {
@@ -35,6 +36,7 @@ class GroupController extends BaseController
 
         $groups = $emptyGroup->paginate(20);
 
+        // ajax: reload only the content container
         if(Request::ajax())
         {
             $html = View::make('syntara::group.list-groups', array('groups' => $groups))->render();
@@ -75,6 +77,7 @@ class GroupController extends BaseController
         {
             try
             {
+                // create group
                 Sentry::getGroupProvider()->create(array(
                     'name' => $groupname,
                     'permissions' => $permissions,
@@ -105,9 +108,11 @@ class GroupController extends BaseController
                 $userids[] = $user->id;
             }
 
+            // get users in group
             $users = Sentry::getUserProvider()->createModel()->join('users_groups', 'users.id', '=', 'users_groups.user_id')->where('users_groups.group_id', '=', $group->getId())
                     ->paginate(20);
 
+            // users not in group
             $candidateUsers = array();
             $allUsers = Sentry::getUserProvider()->findAll();
             foreach($allUsers as $user)
@@ -118,6 +123,7 @@ class GroupController extends BaseController
                 }
             }
 
+            // ajax request : reload only content container
             if(Request::ajax())
             {
                 $html = View::make('syntara::group.list-users-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();

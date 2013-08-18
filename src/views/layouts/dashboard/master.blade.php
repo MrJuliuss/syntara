@@ -15,6 +15,5 @@
         <div id="content">
             @yield('content')
         </div>
-        @include('syntara::layouts.dashboard.footer')
     </body>
 </html>
