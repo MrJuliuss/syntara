@@ -66,9 +66,9 @@ $(function()
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
+                ajaxContent($(this).attr('href'), ".ajax-content", false);
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content", false);
     });
 });

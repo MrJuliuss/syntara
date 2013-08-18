@@ -17,9 +17,7 @@ $(document).ready(function()
         ajaxContent($(this).attr('href'), ".ajax-content", null, true);
 
         return false;
-    });
-
-    $(document).on('change', '.table tbody tr td input:checkbox', function()
+    }).on('change', '.table tbody tr td input:checkbox', function()
     {
         var parent = $(this).parents('.table'); 
         if(parent.find("tbody tr td input:checkbox:checked").length >= 1)
@@ -30,9 +28,7 @@ $(document).ready(function()
         {
              $('#delete-item').hide();
         }
-    });
-
-    $(document).on('change', '.check-all', function()
+    }).on('change', '.check-all', function()
     {
         var parent = $(this).parents('.table');
         if($(this).is(':checked'))

@@ -12,24 +12,23 @@ $(document).ready(function()
             "type": "POST",
             "url": "login",
             "data": {"email" : $('#email').val(), "pass" : $('#pass').val(), 'remember' : remember},
-            "dataType": "json",
-            success: function(result) 
-            { 
-                if(result.logged === false)
+            "dataType": "json"
+        }).done(function(result) 
+        { 
+            if(result.logged === false)
+            {
+                if(typeof result.errorMessage !== 'undefined')
                 {
-                    if(typeof result.errorMessage !== 'undefined')
-                    {
-                        showStatusMessage(result.errorMessage, 'error');
-                    }
-                    else if(typeof result.errorMessages !== 'undefined')
-                    {
-                        showRegisterFormAjaxErrors(result.errorMessages);
-                    }
+                    showStatusMessage(result.errorMessage, 'error');
                 }
-                else
+                else if(typeof result.errorMessages !== 'undefined')
                 {
-                    window.location = "";
+                    showRegisterFormAjaxErrors(result.errorMessages);
                 }
+            }
+            else
+            {
+                window.location = "";
             }
         });
         

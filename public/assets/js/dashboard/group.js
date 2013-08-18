@@ -65,15 +65,11 @@ $(function()
         
         nbInput++;
         return false;
-    });
-    
-    $(document).on('click', '.remove-input', function()
+    }).on('click', '.remove-input', function()
     {
         $(this).parent().parent().parent().remove();
         return false;
-    });
-    
-    $(document).on('click', '#delete-item.groups', function()
+    }).on('click', '#delete-item.groups', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
@@ -86,13 +82,11 @@ $(function()
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
+                ajaxContent($(this).attr('href'), ".ajax-content", false);
             });
         });
 
-        ajaxContent($(this).attr('href'), ".ajax-content", false);
-    });
-    
-    $(document).on('click', '#delete-item.users', function()
+    }).on('click', '#delete-item.users', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
@@ -108,11 +102,7 @@ $(function()
                 ajaxContent($(this).attr('href'), ".ajax-content", false);
             });
         });
-
-        ajaxContent($(this).attr('href'), ".ajax-content", false);
-    });
-
-    $(document).on('click', '#add-user', function()
+    }).on('click', '#add-user', function()
     {
         var userId = $("#ungrouped-users-list option:selected").val();
         var groupId = $("#ungrouped-users-list").data('group-id');
@@ -128,5 +118,5 @@ $(function()
             showStatusMessage(result.message, result.messageType);
             ajaxContent($(this).attr('href'), ".ajax-content");
         });
-    })
+    });
 });
