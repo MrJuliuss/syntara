@@ -36,6 +36,8 @@
                                 </div>
                                 @endfor
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="control-group">
                                     <button id="update-group" class="btn btn-primary">Update</button>

@@ -27,6 +27,8 @@
                                 </p>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="control-group">
                                     <button id="create-group" class="btn btn-primary">Create</button>

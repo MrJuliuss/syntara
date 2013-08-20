@@ -48,9 +48,9 @@
                                     @endforeach
                             </div>
                             @endif
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <button id="add-user" class="btn btn-primary">Create</button>
+                                    <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">Create</button>
                                 </div>
                             </div>
                         </div>

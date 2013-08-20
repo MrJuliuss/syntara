@@ -12,7 +12,7 @@
                     <b>Error !</b>
                 </div>
                 <div class="module-body">
-                    <div class="alert alert-error">
+                    <div class="alert alert-danger">
                         <strong>{{ $message }}</strong>
                     </div>
                 </div>

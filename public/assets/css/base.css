@@ -61,12 +61,42 @@ a:hover{
     background-color: #b94a48;
 }
 
-.navbar.main-bar a{
+.navbar-default {
+    border: none;
+}
+
+.navbar-default .navbar-nav > li >a {
     color: #fff;
 }
 
-.navbar.main-bar a:hover{
-    color: #BCD0CD;
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-brand:hover{
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    background-color: #b94a48;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #b94a48;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #b94a48;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
 }
 
 .main-bar .dropdown-menu{
@@ -150,6 +180,11 @@ a:hover{
     padding: 5px 10px 2px;
     border-bottom: 0;
     color: #666;
+}
+
+.table-bordered > thead > tr > th, 
+.table-bordered > thead > tr > td {
+    border-bottom-width: 0px;
 }
 
 /* Forms part */
