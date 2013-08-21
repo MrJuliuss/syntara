@@ -256,7 +256,7 @@ class GroupController extends BaseController
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->addGroup($group);
 
-            return Response::json(array('userAdded' => true, 'message' => 'User added to the from with success.', 'messageType' => 'success'));
+            return Response::json(array('userAdded' => true, 'message' => 'User added to the group with success.', 'messageType' => 'success'));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
