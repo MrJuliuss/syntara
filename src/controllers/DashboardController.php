@@ -60,7 +60,7 @@ class DashboardController extends BaseController
         }
         catch (\RuntimeException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => 'Sorry, login failed... check your credentials.'));
+            return Response::json(array('logged' => false, 'errorMessage' => 'Sorry, login failed... check your credentials.', 'errorType' => 'danger'));
         }
         
         return Response::json(array('logged' => true));

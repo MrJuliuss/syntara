@@ -19,7 +19,7 @@ $(document).ready(function()
             {
                 if(typeof result.errorMessage !== 'undefined')
                 {
-                    showStatusMessage(result.errorMessage, 'error');
+                    showStatusMessage(result.errorMessage, 'danger');
                 }
                 else if(typeof result.errorMessages !== 'undefined')
                 {

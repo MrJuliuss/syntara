@@ -7,7 +7,7 @@
         <div class="col-lg-2 col-lg-offset-5">
             <form id="login-form" method="post" class="form-horizontal">
                 <div class="form-group account-username">
-                    <input type="text" class="col-lg-12 form-control" placeholder="Username" name="email" id="email">
+                    <input type="text" class="col-lg-12 form-control" placeholder="Email" name="email" id="email">
                 </div>
                 <div class="form-group account-username account-password">
                    <input type="password" class="col-lg-12 form-control" placeholder="Password" name="pass" id="pass">
