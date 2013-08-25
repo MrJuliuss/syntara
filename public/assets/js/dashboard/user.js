@@ -55,6 +55,11 @@ $(function()
 
     $(document).on('click', '#delete-item', function()
     {
+        $('#delete-modal').modal();
+    });
+
+    $(document).on('click', '#confirm-delete', function()
+    {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
             $.ajax(
@@ -70,5 +75,6 @@ $(function()
             });
         });
 
-    });
+        $('#delete-modal').modal('hide');
+    })
 });

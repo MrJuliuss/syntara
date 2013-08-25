@@ -10,6 +10,23 @@
         <a class="btn btn-info" href="user/new">New User</a>
         @endif
     </div>
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteUser" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm deletion</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this(these) user(s) ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirm-delete">Delete user(s)</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <table class="table table-striped table-bordered table-condensed">
 <thead>
