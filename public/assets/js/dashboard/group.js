@@ -25,7 +25,7 @@ $(function()
             }
             else
             {
-                window.location = "/dashboard/groups";
+                window.location = result.redirectUrl;
             }
         });
         

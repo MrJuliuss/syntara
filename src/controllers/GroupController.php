@@ -90,7 +90,7 @@ class GroupController extends BaseController
             }
         }
 
-        return Response::json(array('groupCreated' => true));
+        return Response::json(array('groupCreated' => true,  'redirectUrl' => URL::route('listGroups')));
     }
     
     /**

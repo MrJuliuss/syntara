@@ -23,7 +23,7 @@ $(function()
             }
             else
             {
-                window.location = "/dashboard/users";
+                window.location = result.redirectUrl;
             }
         });
         
