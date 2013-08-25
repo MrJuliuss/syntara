@@ -1,7 +1,5 @@
 # Syntara Dashboard (Laravel 4 package)
 
------------
-
 Syntara is an admin system for Laravel 4. 
 
 <img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" />
@@ -42,7 +40,7 @@ Add  ``` 'Cartalyst\Sentry\SentryServiceProvider'``` and  ```'Mrjuliuss\Syntara\
         'Illuminate\Auth\AuthServiceProvider',
         ...
         'Cartalyst\Sentry\SentryServiceProvider',
-        'MrJuliuss\Syntara\SyntaraServiceProvider'
+        'Mrjuliuss\Syntara\SyntaraServiceProvider'
     ),
     
 Add ```'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry'``` to the end of the $aliases array
