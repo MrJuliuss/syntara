@@ -40,7 +40,7 @@ Add  ``` 'Cartalyst\Sentry\SentryServiceProvider'``` and  ```'Mrjuliuss\Syntara\
         'Illuminate\Auth\AuthServiceProvider',
         ...
         'Cartalyst\Sentry\SentryServiceProvider',
-        'MrJuliuss\Syntara\SyntaraServiceProvider'
+        'Mrjuliuss\Syntara\SyntaraServiceProvider'
     ),
     
 Add ```'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry'``` to the end of the $aliases array
