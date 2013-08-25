@@ -71,6 +71,10 @@ $(function()
         return false;
     }).on('click', '#delete-item.groups', function()
     {
+        $('#delete-modal').modal();
+        
+    }).on('click', '#confirm-delete', function()
+    {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
             $.ajax(
@@ -85,6 +89,8 @@ $(function()
                 ajaxContent($(this).attr('href'), ".ajax-content", false);
             });
         });
+
+        $('#delete-modal').modal('hide');
 
     }).on('click', '#delete-item.users', function()
     {
