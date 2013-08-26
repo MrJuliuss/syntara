@@ -61,6 +61,10 @@ Create first user (the first user must add to the "Admin" group, to allow you an
 
 ``` php artisan create:user username email password Admin ```
 
+Now go to login page : 
+
+http://your-url/dashboard/login
+
 
 ## Custom Development 
 
