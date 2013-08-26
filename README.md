@@ -74,7 +74,7 @@ To add a new feature to Syntara dashboard, you must extend your new controller w
     {
         public function getIndex()
         {
-            $this->layout->content = View::make('syntara::dashboard.index');
+            $this->layout = View::make('syntara::dashboard.index');
     
             $this->layout->title = 'My new feature';
     
