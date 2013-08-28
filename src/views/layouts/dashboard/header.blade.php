@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ URL::to('/'); }}" target="_new">
-                @if (!empty($siteName)){{ $siteName }}@else Syntara @endif
+                {{ (!empty($siteName)) ? $siteName : "Syntara"}}
 
                 <div class="visible-sm"><img class="ajax-loader ajax-loader-sm" src="{{ asset('packages/mrjuliuss/syntara/assets/img/ajax-load.gif') }}" style="float: right;"/></div>
             </a>
@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav">
                 <li class=""><a href="{{ URL::to('dashboard'); }}"><i class="glyphicon glyphicon-home"></i> <span>Dashboard</span></a></li>
                 @if (Sentry::check())
-                    @if (!empty($navPages)) {{ $navPages }} @endif
+                    {{ (!empty($navPages)) ? $navPages }}
                     @if($currentUser->hasAccess('view-users-list') || $currentUser->hasAccess('groups-management'))
                     <li class="dropdown" >
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span>Users</span></a></a>
@@ -37,7 +37,7 @@
 
             @if(Sentry::check())
             <ul class="nav navbar-nav navbar-right">
-                @if (!empty($navPagesRight)) {{ $navPagesRight }} @endif
+                {{ (!empty($navPagesRight)) ? $navPagesRight }}
                 <li class="hidden-sm"><img class="ajax-loader ajax-loader-lg" src="{{ asset('packages/mrjuliuss/syntara/assets/img/ajax-load.gif') }}" style="float: right;"/></li>
                 <li><a href="{{ URL::route('showUser', Sentry::getUser()->id ) }}"><span class="text">{{ Sentry::getUser()->username }}</span></a></li>
                 <li><a title="Logout" href="{{ URL::to('dashboard/logout'); }}"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Logout</span></a></li>
