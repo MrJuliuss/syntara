@@ -23,9 +23,11 @@ Route::filter('hasPermissions', function()
     $permissions = Config::get('syntara::permissions');
 
     if (Route::currentRouteName() == "putUser" && Sentry::getUser()->id == Request::segment(3) ||
-        Route::currentRouteName() == "showUser" && Sentry::getUser()->id == Request::segment(3)) {
-
-    } else {
+        Route::currentRouteName() == "showUser" && Sentry::getUser()->id == Request::segment(3))
+    {
+    }
+    else
+    {
         if(!Sentry::getUser()->hasAccess($permissions[Route::currentRouteName()]))
         {
             return Redirect::route('accessDenied');
