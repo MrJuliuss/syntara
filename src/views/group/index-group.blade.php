@@ -22,11 +22,11 @@
                 <div class="module-body">
                     <form id="search-form" onsubmit="return false;">
                         <div class="form-group">
-                            <label for="groupIdSearch">Group id :</label>
+                            <label for="groupIdSearch">Group id</label>
                             <input type="text" class="form-control" id="groupIdSearch" name="groupIdSearch">
                         </div>
                         <div class="form-group">
-                            <label for="groupnameSearch">Group name :</label>
+                            <label for="groupnameSearch">Group name</label>
                             <input type="text" class="form-control" id="groupnameSearch" name="groupnameSearch">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>

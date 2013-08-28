@@ -1,7 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
 @section('content')
-<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script> 
+<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script>
 
 <div class="container" id="main-container">
     <div class="row">
@@ -23,15 +23,15 @@
                 <div class="module-body">
                     <form id="search-form" onsubmit="return false;">
                         <div class="form-group">
-                            <label for="userIdSearch">User id :</label>
+                            <label for="userIdSearch">User ID</label>
                             <input type="text" class="form-control" id="userIdSearch" name="userIdSearch">
                         </div>
                         <div class="form-group">
-                            <label for="usernameSearch">User name :</label>
+                            <label for="usernameSearch">Username</label>
                             <input type="text" class="form-control" id="usernameSearch" name="usernameSearch">
                         </div>
                         <div class="form-group">
-                            <label for="emailSearch">Email :</label>
+                            <label for="emailSearch">Email</label>
                             <input type="email" class="form-control" id="emailSearch" name="emailSearch">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
