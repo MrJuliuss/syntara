@@ -7,7 +7,7 @@
         <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/jquery-2.0.3.min.js') }}"></script>
         <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/base.js') }}"></script>
-        <title>Syntara - {{$title}}</title>
+        <title>@if (!empty($siteName)){{ $siteName }}@else Syntara @endif - {{$title}}</title>
     </head>
     <body>
         @include('syntara::layouts.dashboard.header')
