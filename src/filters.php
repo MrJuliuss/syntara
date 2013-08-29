@@ -2,7 +2,7 @@
 
 Route::filter('basicAuth', function()
 {
-    if(!Sentry::check()) 
+    if(!Sentry::check())
     {
         return Redirect::route('getLogin');
     }
@@ -22,8 +22,15 @@ Route::filter('hasPermissions', function()
 {
     $permissions = Config::get('syntara::permissions');
 
-    if(!Sentry::getUser()->hasAccess($permissions[Route::currentRouteName()]))
+    if (Route::currentRouteName() == "putUser" && Sentry::getUser()->id == Request::segment(3) ||
+        Route::currentRouteName() == "showUser" && Sentry::getUser()->id == Request::segment(3))
     {
-        return Redirect::route('accessDenied');
+    }
+    else
+    {
+        if(!Sentry::getUser()->hasAccess($permissions[Route::currentRouteName()]))
+        {
+            return Redirect::route('accessDenied');
+        }
     }
 });
