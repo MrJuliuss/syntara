@@ -1,6 +1,6 @@
 <div class="row upper-menu" style="height: 35px;">
     {{ $users->links() }}
-    
+
     <div style="float:right;">
         <a id="delete-item" class="btn btn-danger users">Delete</a>
     </div>
@@ -12,7 +12,7 @@
         @if($currentUser->hasAccess('user-group-management'))
         <th style="width:20px; text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
-        <th style="width:20px; text-align: center;">Id</th>
+        <th style="width:20px; text-align: center;">ID</th>
         <th style="width:200px;">Username</th>
         <th style="width:30px; text-align: center;">Show</th>
     </tr>
