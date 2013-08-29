@@ -83,5 +83,6 @@ class DashboardController extends BaseController
     {
         $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, access denied !'));
         $this->layout->title = 'Error';
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
 }
