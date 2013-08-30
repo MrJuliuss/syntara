@@ -1,7 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
 @section('content')
-<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script> 
+<script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script>
 <div class="container" id="main-container">
     <div class="row">
         <div class="col-lg-12">
@@ -14,36 +14,36 @@
                         <div class="row">
                             <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label class="control-label">User name :</label>
+                                    <label class="control-label">Username</label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="User name" id="username" name="username"></p>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Email :</label>
+                                    <label class="control-label">Email</label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="Email" id="email" name="email"></p>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Password :</label>
+                                    <label class="control-label">Password</label>
                                     <p><input class="col-lg-12 form-control" type="password" placeholder="Password" id="pass" name="pass"></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="control-label">Last name :</label>
+                                    <label class="control-label">Last name</label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="Last name" id="last_name" name="last_name"></p>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">First name : </label>
+                                    <label class="control-label">First name </label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="First name" id="first_name" name="first_name"></p>
                                 </div>
                             </div>
                             @if($currentUser->hasAccess('user-group-management'))
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="control-label">Groups :</label>
+                                    <label class="control-label">Groups</label>
                                 </div>
                                     @foreach($groups as $group)
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}">{{ $group->getName() }} 
+                                        <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}">{{ $group->getName() }}
                                     </label>
                                     @endforeach
                             </div>

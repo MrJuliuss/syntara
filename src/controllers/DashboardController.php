@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Controllers;
 
@@ -11,7 +11,7 @@ use Validator;
 use Config;
 use Response;
 
-class DashboardController extends BaseController 
+class DashboardController extends BaseController
 {
     /**
     * Index loggued page
@@ -19,10 +19,10 @@ class DashboardController extends BaseController
     public function getIndex()
     {
         $this->layout = View::make('syntara::dashboard.index');
-        $this->layout->title = 'Index';
+        $this->layout->title = 'Dashboard';
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
-    
+
     /**
     * Login page
     */
@@ -44,12 +44,12 @@ class DashboardController extends BaseController
                 Input::all(),
                 Config::get('syntara::rules.users.login')
             );
-            
+
             if($validator->fails())
             {
                  return Response::json(array('logged' => false, 'errorMessages' => $validator->messages()->getMessages()));
             }
-            
+
             $credentials = array(
                 'email'    => Input::get('email'),
                 'password' => Input::get('pass'),
@@ -62,18 +62,18 @@ class DashboardController extends BaseController
         {
             return Response::json(array('logged' => false, 'errorMessage' => 'Sorry, login failed... check your credentials.', 'errorType' => 'danger'));
         }
-        
+
         return Response::json(array('logged' => true));
     }
-    
+
     /**
     * Logout user
     */
     public function getLogout()
     {
         Sentry::logout();
-        
-        return Redirect::route('indexDashboard'); 
+
+        return Redirect::route('indexDashboard');
     }
 
     /**
@@ -83,5 +83,6 @@ class DashboardController extends BaseController
     {
         $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, access denied !'));
         $this->layout->title = 'Error';
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
 }
