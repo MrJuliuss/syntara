@@ -9,7 +9,6 @@ body {
     overflow-x: hidden;
     background-color: #fff;
     color: #747678;
-    font-family: 'Roboto', Arial, sans-serif;
     font-weight: 300;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.0004);
 }
@@ -220,7 +219,6 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-    font-family: 'Roboto',Arial,sans-serif;
     font-size: 13px;
     margin-bottom: 0;
     border-radius: 2px;
