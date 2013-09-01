@@ -3,6 +3,7 @@
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/group.js') }}"></script>
 <div class="container" id="main-container">
+ @include('syntara::layouts.dashboard.confirmation-modal',  array('title' => "Confirm delete", 'content' => 'Are you sure you want to delete these items ?', 'type' => 'delete-group'))
     <div class="row">
         <div class="col-lg-10">
             <section class="module">

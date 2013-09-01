@@ -71,9 +71,9 @@ $(function()
         return false;
     }).on('click', '#delete-item.groups', function()
     {
-        $('#delete-modal').modal();
+        $('#confirm-modal').modal();
         
-    }).on('click', '#confirm-delete', function()
+    }).on('click', '.delete-group .confirm-action', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
@@ -90,7 +90,7 @@ $(function()
             });
         });
 
-        $('#delete-modal').modal('hide');
+        $('#confirm-modal').modal('hide');
 
     }).on('click', '#delete-item.users', function()
     {

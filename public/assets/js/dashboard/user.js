@@ -55,10 +55,10 @@ $(function()
 
     $(document).on('click', '#delete-item', function()
     {
-        $('#delete-modal').modal();
+        $('#confirm-modal').modal();
     });
 
-    $(document).on('click', '#confirm-delete', function()
+    $(document).on('click', '.delete-user .confirm-action', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
@@ -75,6 +75,6 @@ $(function()
             });
         });
 
-        $('#delete-modal').modal('hide');
+        $('#confirm-modal').modal('hide');
     })
 });
