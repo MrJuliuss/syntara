@@ -64,7 +64,7 @@ $(function()
         {
             $.ajax(
             {
-                "url": "/dashboard/user/delete",
+                "url": "user/delete",
                 "type": "DELETE",
                 "datatype": "json",
                 "data": {'userId' : $(this).data('user-id')}

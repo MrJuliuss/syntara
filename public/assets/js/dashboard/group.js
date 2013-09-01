@@ -79,7 +79,7 @@ $(function()
         {
             $.ajax(
             {
-                url: '/dashboard/group/delete',
+                url: 'group/delete',
                 type: "DELETE",
                 datatype: "json",
                 data: {'groupId' : $(this).data('group-id')}
