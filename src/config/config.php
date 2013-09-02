@@ -40,6 +40,13 @@ return array(
                 'permission' => $rules['permission']
             )
         ),
+        'permissions' => array(
+            'create' => array(
+                'name' => array('required', 'min:3', 'max:100'),
+                'value' => array('required', 'alpha_dash', 'min:3', 'max:100'),
+                'description' => array('required', 'min:3', 'max:255')
+            ),
+        ),
     ),
     'permissions' => array(
         'listGroups' => 'groups-management',

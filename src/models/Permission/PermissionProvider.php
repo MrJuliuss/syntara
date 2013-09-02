@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 use \MrJuliuss\Syntara\Models\Permission;
+use Validator;
+use Config;
 
 class PermissionProvider
 {
@@ -12,11 +14,18 @@ class PermissionProvider
      */
     public function createPermission($attributes)
     {
-        $permission = new Permission();
-        $permission->fill($attributes);
-        $permission->save();
+        $validator = Validator::make($attributes, Config::get('syntara::rules.permissions.create'));
 
-        return $permission;
+        if(!$validator->fails())
+        {
+            $permission = new Permission();
+            $permission->fill($attributes);
+            $permission->save();
+            
+            return $permission;
+        }
+
+        return null;
     }
 
     /**
