@@ -20,7 +20,8 @@
             "src/commands",
             "src/controllers",
             "src/helpers",
-            "src/migrations"
+            "src/migrations",
+            "src/models"
         ],
         "psr-0": {
             "Mrjuliuss\\Syntara": "src/"
