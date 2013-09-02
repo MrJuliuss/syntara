@@ -37,6 +37,18 @@ class PermissionProvider
     }
 
     /**
+     * Returns an all permissions.
+     *
+     * @return array
+     */
+    public function findAll()
+    {
+        $model = new Permission();
+
+        return $model->newQuery()->get()->all();
+    }
+
+    /**
      * Find a permission by the given permission id
      * @param  int $id
      * @return Permission
