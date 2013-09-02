@@ -1,6 +1,9 @@
 <?php namespace MrJuliuss\Syntara\Models;
 
 use Eloquent;
+use \MrJuliuss\Syntara\Permissions\PermissionExistsException;
+use \MrJuliuss\Syntara\Permissions\NameRequiredException;
+use \MrJuliuss\Syntara\Permissions\ValueRequiredException;
 
 class Permission extends Eloquent
 {
@@ -86,5 +89,46 @@ class Permission extends Eloquent
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Saves the permission.
+     *
+     * @param  array  $options
+     * @return bool
+     */
+    public function save(array $options = array())
+    {
+        $this->validate();
+
+        return parent::save($options);
+    }
+
+    /**
+     * Validate permissions
+     * @return bool
+     */
+    public function validate()
+    {
+        if(!$name = $this->getName())
+        {
+            throw new NameRequiredException("A name is required for a permission, none given.");
+        }
+
+        if(!$value = $this->getValue())
+        {
+            throw new ValueRequiredException("A value is required for a permission, none given.");
+        }
+
+        // Check if the permission already exists
+        $query = $this->newQuery();
+        $persistedPermission = $query->where('value', '=', $value)->first();
+
+        if($persistedPermission and $persistedPermission->getId() != $this->getId())
+        {
+            throw new PermissionExistsException("A permission already exists with value [$value], values must be unique for permissions.");
+        }
+
+        return true;
     }
 }

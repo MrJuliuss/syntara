@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 use \MrJuliuss\Syntara\Models\Permission;
+use \MrJuliuss\Syntara\Permissions\PermissionNotFoundException;
+use \MrJuliuss\Syntara\Permissions\PermissionExistsException;
 use Validator;
 use Config;
 
@@ -18,10 +20,16 @@ class PermissionProvider
 
         if(!$validator->fails())
         {
-            $permission = new Permission();
-            $permission->fill($attributes);
-            $permission->save();
-            
+            try
+            {
+                $permission = new Permission();
+                $permission->fill($attributes);
+                $permission->save();
+            }
+            catch(\PermissionExistsException $e)
+            {
+
+            }
             return $permission;
         }
 
@@ -39,7 +47,7 @@ class PermissionProvider
 
         if(!$permission = $model->newQuery()->find($id))
         {
-            // TODO throw exception
+            throw new PermissionNotFoundException("A permission could not be found with ID [$id].");
         }
 
         return $permission;
@@ -56,7 +64,7 @@ class PermissionProvider
 
         if(!$permission = $model->newQuery()->where('value', $value)->get()->first())
         {
-            // TODO throw exception
+            throw new PermissionNotFoundException("A permission could not be found with Value [$value].");
         }
 
         return $permission;

@@ -16,7 +16,7 @@ class CreatePermissionTable extends Migration {
 		{
 		    $table->increments('id');
 		    $table->string('name', 100);
-		    $table->string('value', 100);
+		    $table->string('value', 100)->unique();
 		    $table->string('description');
 		    $table->timestamps();
 		});
