@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use \MrJuliuss\Syntara\Facades\PermissionProvider;
+use MrJuliuss\Syntara\Facades\PermissionProvider;
 
 class CreatePermissionTable extends Migration {
 
