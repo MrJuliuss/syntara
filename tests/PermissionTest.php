@@ -65,4 +65,16 @@ class PermissionTest extends \TestCase
         $permission->value = 'view-users-list';
         $permission->validate();
     }
+
+    public function testValidationPermission()
+    {
+        $permission = new Permission;
+        $permission->name = 'New Foo';
+        $permission->value = 'new-foo-bar';
+        $permission->description = 'New Foo Bar description';
+        $validated = $permission->validate();
+
+        $this->assertTrue($validated);
+    }
+
 }
