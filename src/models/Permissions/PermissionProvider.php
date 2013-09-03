@@ -1,9 +1,9 @@
-<?php namespace MrJuliuss\Syntara\Models;
+<?php namespace MrJuliuss\Syntara\Models\Permissions;
 
 use Illuminate\Support\Facades\Facade;
-use \MrJuliuss\Syntara\Models\Permission;
-use \MrJuliuss\Syntara\Permissions\PermissionNotFoundException;
-use \MrJuliuss\Syntara\Permissions\PermissionExistsException;
+use MrJuliuss\Syntara\Models\Permissions\Permission;
+use MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException;
+use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
 use Validator;
 use Config;
 
@@ -20,16 +20,10 @@ class PermissionProvider
 
         if(!$validator->fails())
         {
-            try
-            {
-                $permission = new Permission();
-                $permission->fill($attributes);
-                $permission->save();
-            }
-            catch(\PermissionExistsException $e)
-            {
+            $permission = new Permission();
+            $permission->fill($attributes);
+            $permission->save();
 
-            }
             return $permission;
         }
 

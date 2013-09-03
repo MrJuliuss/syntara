@@ -90,7 +90,7 @@ class SyntaraServiceProvider extends ServiceProvider
     {
         $this->app['permissionProvider'] = $this->app->share(function()
         {
-            return new \MrJuliuss\Syntara\Models\PermissionProvider();
+            return new \MrJuliuss\Syntara\Models\Permissions\PermissionProvider();
         });
         
         $this->app->booting(function()

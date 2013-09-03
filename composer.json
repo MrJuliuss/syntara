@@ -15,6 +15,9 @@
         "illuminate/support": "4.0.x",
         "cartalyst/sentry": "2.0.*"
     },
+    "require-dev": {
+        "illuminate/database": "4.0.*"
+    },
     "autoload": {
         "classmap": [
             "src/commands",

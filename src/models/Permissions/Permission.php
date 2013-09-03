@@ -1,11 +1,11 @@
-<?php namespace MrJuliuss\Syntara\Models;
+<?php namespace MrJuliuss\Syntara\Models\Permissions;
 
-use Eloquent;
-use MrJuliuss\Syntara\Permissions\PermissionExistsException;
-use MrJuliuss\Syntara\Permissions\NameRequiredException;
-use MrJuliuss\Syntara\Permissions\ValueRequiredException;
+use Illuminate\Database\Eloquent\Model;
+use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
+use MrJuliuss\Syntara\Models\Permissions\NameRequiredException;
+use MrJuliuss\Syntara\Models\Permissions\ValueRequiredException;
 
-class Permission extends Eloquent
+class Permission extends Model
 {
 
     /**
