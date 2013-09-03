@@ -53,7 +53,7 @@ class PermissionProvider
      * @param  int $id
      * @return Permission
      */
-    public function findPermissionById($id)
+    public function findById($id)
     {
         $model = new Permission();
 
@@ -70,7 +70,7 @@ class PermissionProvider
      * @param  string $value
      * @return Permission
      */
-    public function findPermissionByValue($value)
+    public function findByValue($value)
     {
         $model = new Permission();
 
