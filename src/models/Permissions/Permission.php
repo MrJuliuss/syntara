@@ -29,33 +29,6 @@ class Permission extends Model
     protected $guarded = array('id');
 
     /**
-     * Set permission name
-     * @param string $name Name of permission
-     */
-    public function setName($name)
-    {
-        $this->attributes['name'] = ucfirst($name);
-    }
-
-    /**
-     * Set permission value
-     * @param string $value
-     */
-    public function setValue($value)
-    {
-        $this->attributes['value'] = $value;
-    }
-
-    /**
-     * Set permission description
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->attributes['description'] = $description;
-    }
-
-    /**
      * Return the identifiant of the permission
      * @return int id of the permission
      */
