@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use PermissionProvider;
 use View;
 use Validator;
 use Input;
@@ -54,7 +55,9 @@ class GroupController extends BaseController
     */
     public function getCreate()
     {
-        $this->layout = View::make('syntara::group.new-group');
+        $permissions = PermissionProvider::findAll();
+
+        $this->layout = View::make('syntara::group.new-group', array('permissions' => $permissions));
         $this->layout->title = "New group";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_group');
     }
@@ -280,16 +283,11 @@ class GroupController extends BaseController
         $errors = array();
         $permissionErrors = array();
         // validate permissions
-        foreach($permissionsValues as $key => $permission)
+        if(!empty($permissionsValues))
         {
-            $validPermission = Validator::make(array('permission' => $permission), Config::get('syntara::rules.groups.create_permission'));
-            if($validPermission->fails())
+            foreach($permissionsValues as $key => $permission)
             {
-                $permissionErrors['permission['.$key.']'] = $validPermission->messages()->getMessages();
-            }
-            else
-            {
-               $permissions[$permission] = 1;
+               $permissions[$key] = 1;
             }
         }
         // validate group name
