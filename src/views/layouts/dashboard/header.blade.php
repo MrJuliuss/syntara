@@ -29,6 +29,9 @@
                             @if($currentUser->hasAccess('groups-management'))
                             <li><a href="{{ URL::to('dashboard/groups'); }}">Groups</a></li>
                             @endif
+                            @if($currentUser->hasAccess('permissions-management'))
+                            <li><a href="{{ URL::to('dashboard/permissions'); }}">Permissions</a></li>
+                            @endif
                         </ul>
                     </li>
                     @endif
