@@ -2,19 +2,34 @@
 
 use MrJuliuss\Syntara\Models\Permissions\PermissionProvider;
 use MrJuliuss\Syntara\Models\Permissions\Permission;
+use DB;
 
 class PermissionProviderTest extends \TestCase
 {
     public function testCreatePermission()
     {
+        DB::table('permissions')->where('value', '=', 'foo-bar')->delete();
+
         $permissionData = array(
             'name' => 'Foo bar',
-            'value' => 'test-foo',
+            'value' => 'foo-bar',
             'description' => 'Foo Bar'
         );
         $permission = \PermissionProvider::createPermission($permissionData);
 
-        $this->assertEquals($permission, Permission::where('value', '=', 'test-foo')->get()->first());
+        $this->assertEquals($permission, Permission::where('value', '=', 'foo-bar')->get()->first());
+    }
+
+    public function testCreatePermissionInvalidInfos()
+    {
+        $permissionData = array(
+            'name' => 'Foo bar',
+            'value' => '',
+            'description' => 'Foo Bar'
+        );
+        $permission = \PermissionProvider::createPermission($permissionData);
+
+        $this->assertNull($permission);   
     }
 
     /**
@@ -57,7 +72,7 @@ class PermissionProviderTest extends \TestCase
      */
     public function testFindingByValuePermissionNotFoundException()
     {
-        $permission = \PermissionProvider::findByValue('foo-bar');
+        $permission = \PermissionProvider::findByValue('foo-foo');
     }
 
     public function testFindingAllPermissions()
