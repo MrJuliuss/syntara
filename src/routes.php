@@ -27,6 +27,7 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => 'dashboar
     Route::post('group/{groupId}/user/{userId}', array('as' => 'addUserGroup', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@addUserInGroup'));
     // Permissions
     Route::get('permissions', array('as' => 'listPermissions', 'uses' => 'MrJuliuss\Syntara\Controllers\PermissionController@getIndex'));
+    Route::delete('permission/delete', array('as' => 'deletePermission', 'uses' => 'MrJuliuss\Syntara\Controllers\PermissionController@delete'));
 });
 
 Route::group(array('before' => 'notAuth', 'prefix' => 'dashboard'), function()

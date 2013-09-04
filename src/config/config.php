@@ -63,7 +63,8 @@ return array(
         'putUser' => 'update-user-info',
         'deleteUserGroup' => 'user-group-management',
         'addUserGroup' => 'user-group-management',
-        'listPermissions' => 'permissions-management'
+        'listPermissions' => 'permissions-management',
+        'deletePermission' => 'permissions-management'
     ),
     'breadcrumbs' => array(
         'dashboard' => array(
