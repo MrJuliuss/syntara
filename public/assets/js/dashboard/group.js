@@ -79,10 +79,9 @@ $(function()
         {
             $.ajax(
             {
-                url: 'group/delete',
+                url: 'group/'+$(this).data('group-id'),
                 type: "DELETE",
-                datatype: "json",
-                data: {'groupId' : $(this).data('group-id')}
+                datatype: "json"
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
@@ -99,8 +98,7 @@ $(function()
             $.ajax(
             {
                 url: window.location.href.toString()+'/user/'+$(this).data('user-id'), 
-                type: "DELETE",
-                datatype: "json"
+                type: "DELETE"
             })
             .done(function(result)
             {

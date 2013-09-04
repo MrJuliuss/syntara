@@ -64,10 +64,8 @@ $(function()
         {
             $.ajax(
             {
-                "url": "user/delete",
-                "type": "DELETE",
-                "datatype": "json",
-                "data": {'userId' : $(this).data('user-id')}
+                "url": "user/"+$(this).data('user-id'),
+                "type": "DELETE"
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);

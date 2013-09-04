@@ -27,8 +27,12 @@
                             <input type="text" class="form-control" id="permissionIdSearch" name="permissionIdSearch">
                         </div>
                         <div class="form-group">
-                            <label for="permissionNameSearch">Permission name</label>
+                            <label for="permissionNameSearch">Name</label>
                             <input type="text" class="form-control" id="permissionNameSearch" name="permissionNameSearch">
+                        </div>
+                        <div class="form-group">
+                            <label for="permissionValueSearch">Value</label>
+                            <input type="text" class="form-control" id="permissionValueSearch" name="permissionValueSearch">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>

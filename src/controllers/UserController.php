@@ -127,13 +127,14 @@ class UserController extends BaseController
     }
     
     /**
-    * Delete a user
-    */
-    public function delete()
+     * Delete user
+     * @param  int $userId
+     * @return  Response
+     */
+    public function delete($userId)
     {
         try
         {
-            $userId = Input::get('userId');
             if($userId !== Sentry::getUser()->getId())
             {
                 $user = Sentry::getUserProvider()->findById($userId);

@@ -197,14 +197,15 @@ class GroupController extends BaseController
     }
        
     /**
-    * Delete groupe
-    * @return Response
-    */
-    public function delete()
+     * Delete group
+     * @param  int $groupId
+     * @return Response
+     */
+    public function delete($groupId)
     {
         try
         {
-            $group = Sentry::getGroupProvider()->findById(Input::get('groupId'));
+            $group = Sentry::getGroupProvider()->findById($groupId);
             $group->delete();
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
