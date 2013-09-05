@@ -51,6 +51,8 @@
                                 @endif
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">Create</button>
