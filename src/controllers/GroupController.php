@@ -105,6 +105,23 @@ class GroupController extends BaseController
         try
         {
             $group = Sentry::getGroupProvider()->findById($groupId);
+
+            $permissions = PermissionProvider::findAll();
+
+            $groupPermissions = array();
+            foreach($group->getPermissions() as $permissionValue => $key)
+            {
+                $p = PermissionProvider::findByValue($permissionValue);
+                foreach($permissions as $key => $permission)
+                {
+                    if($p->getId() === $permission->getId())
+                    {
+                        $groupPermissions[] = $permission;
+                        unset($permissions[$key]);
+                    }
+                }
+            }
+
             $userids = array();
             foreach(Sentry::getUserProvider()->findAllInGroup($group) as $user) 
             {
@@ -134,7 +151,7 @@ class GroupController extends BaseController
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
+            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'groupPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
