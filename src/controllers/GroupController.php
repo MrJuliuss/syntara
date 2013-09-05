@@ -111,14 +111,21 @@ class GroupController extends BaseController
             $groupPermissions = array();
             foreach($group->getPermissions() as $permissionValue => $key)
             {
-                $p = PermissionProvider::findByValue($permissionValue);
-                foreach($permissions as $key => $permission)
+                try
                 {
-                    if($p->getId() === $permission->getId())
+                    $p = PermissionProvider::findByValue($permissionValue);
+                    foreach($permissions as $key => $permission)
                     {
-                        $groupPermissions[] = $permission;
-                        unset($permissions[$key]);
+                        if($p->getId() === $permission->getId())
+                        {
+                            $groupPermissions[] = $permission;
+                            unset($permissions[$key]);
+                        }
                     }
+                }
+                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
+                {
+                    
                 }
             }
 
@@ -181,7 +188,7 @@ class GroupController extends BaseController
         $permissionsValues = Input::get('permission');
         $groupname = Input::get('groupname');
         $permissions = array();
-        
+
         $errors = $this->_validateGroup($permissionsValues, $groupname, $permissions);
         if(!empty($errors))
         {
@@ -194,11 +201,19 @@ class GroupController extends BaseController
                 $group = Sentry::getGroupProvider()->findById($groupId);
                 $group->name = $groupname;
 
+                if(!empty($permissions))
+                {
+                    $permissions = json_encode($permissions);
+                }
+                else
+                {
+                    $permissions = "";
+                }
                 // delete permissions in db
                 DB::table('groups')
                     ->where('id', $groupId)
-                    ->update(array('permissions' => json_encode($permissions)));
-                
+                    ->update(array('permissions' => $permissions));
+
                 if($group->save())
                 {
                     return Response::json(array('groupUpdated' => true, 'message' => 'Group updated with success.', 'messageType' => 'success'));

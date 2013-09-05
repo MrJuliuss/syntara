@@ -63,12 +63,13 @@ $(function()
         var permissionId = $selected.val();
         var label = $selected.html();
 
-        $selected.remove();
+        if(typeof permissionId !== 'undefined')
+        {
+            $selected.remove();
+            var html = '<div class="form-group"><p class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-minus-sign remove-input"></span></span><input readonly type="text" class="form-control" name="'+permissionId+'" value="'+label+'"/></p></div>';
+            $('.input-container').append(html);
+        }
 
-        var html = '<div class="form-group"><p class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-minus-sign remove-input"></span></span><input readonly type="text" class="form-control" name="'+permissionId+'" value="'+label+'"/></p></div>';
-        
-        $('.input-container').append(html);
-        
         return false;
     }).on('click', '.remove-input', function()
     {
