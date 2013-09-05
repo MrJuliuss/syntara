@@ -46,7 +46,9 @@
                                 </div>
                             @endif
                                 <div class="form-group">
+                                @if($currentUser->hasAccess('permissions-management'))
                                     @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                                @endif
                                 </div>
                             </div>
                             <div class="col-lg-12">

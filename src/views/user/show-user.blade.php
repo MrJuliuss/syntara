@@ -51,7 +51,9 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                            @if($currentUser->hasAccess('permissions-management'))
+                                @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                            @endif
                         </div>
                     </div>
                     <div class="row">
