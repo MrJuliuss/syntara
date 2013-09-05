@@ -19,7 +19,7 @@ Syntara is an admin system for Laravel 4.
 
 * [Cartalyst Sentry package](https://github.com/cartalyst/sentry)
 * jQuery 2.0.*
-* Twitter Bootstrap 3 RC1
+* Twitter Bootstrap 3
 
 ## Installation
 
