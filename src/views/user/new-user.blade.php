@@ -33,9 +33,6 @@
                                     <label class="control-label">First name </label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="First name" id="first_name" name="first_name"></p>
                                 </div>
-                                <div class="form-group">
-                                    <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">Create</button>
-                                </div>
                             </div>
                             <div class="col-lg-6">
                             @if($currentUser->hasAccess('user-group-management'))
@@ -49,17 +46,12 @@
                                 </div>
                             @endif
                                 <div class="form-group">
-                                    <label class="control-label">Permissions</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-plus-sign add-input"></span></span>
-                                        <select class="form-control permissions-select">
-                                            @foreach($permissions as $permission)
-                                            <option value="permission[{{ $permission->getValue() }}]">{{ $permission->getName() }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <br>
-                                    <div class="input-container"></div>
+                                    @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">Create</button>
                                 </div>
                             </div>
                         </div>

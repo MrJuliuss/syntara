@@ -19,27 +19,7 @@
                                </div>
                             </div>
                              <div class="col-lg-4">
-                                <label class="control-label">Permissions</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-plus-sign add-input"></span></span>
-                                    <select class="form-control permissions-select">
-                                        @foreach($permissions as $permission)
-                                        <option value="permission[{{ $permission->getValue() }}]">{{ $permission->getName() }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <br>
-                                <div class="input-container">
-                                @foreach($groupPermissions as $gPermission)
-                                    <div class="form-group">
-                                        <p class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-minus-sign remove-input"></span></span>
-                                            <input readonly type="text" class="form-control" name="permission[{{ $gPermission->getValue() }}]" value="{{ $gPermission->getName() }}"/>
-                                        </p>
-                                    </div>
-                                @endforeach
-                                </div>
-                                <br>
+                                @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
                             </div>
                         </div>
                         <div class="row">

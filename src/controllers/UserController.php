@@ -12,6 +12,7 @@ use Validator;
 use Config;
 use URL;
 use PermissionProvider;
+use DB;
 
 class UserController extends BaseController 
 {
@@ -170,12 +171,35 @@ class UserController extends BaseController
             $user = Sentry::getUserProvider()->findById($userId);
             $throttle = Sentry::getThrottleProvider()->findByUserId($userId);
             $groups = Sentry::getGroupProvider()->findAll();
+
+            // get user permissions
+            $permissions = PermissionProvider::findAll();
+            $userPermissions = array();
+            foreach($user->getPermissions() as $permissionValue => $key)
+            {
+                try
+                {
+                    $p = PermissionProvider::findByValue($permissionValue);
+                    foreach($permissions as $key => $permission)
+                    {
+                        if($p->getId() === $permission->getId())
+                        {
+                            $userPermissions[] = $permission;
+                            unset($permissions[$key]);
+                        }
+                    }
+                }
+                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+            }
             
             $this->layout = View::make('syntara::user.show-user', array(
                 'user' => $user,
                 'throttle' => $throttle,
                 'groups' => $groups,
+                'ownPermissions' => $userPermissions,
+                'permissions' => $permissions
             ));
+
             $this->layout->title = 'User '.$user->username;
             $this->layout->breadcrumb = array(
                     array(
@@ -214,12 +238,22 @@ class UserController extends BaseController
                 return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->messages()->getMessages()));
             }
             
+            $permissionsValues = Input::get('permission');
+            $permissions = $this->_formatPermissions($permissionsValues);
+
             // Find the user using the user id
             $user = Sentry::getUserProvider()->findById($userId);
             $user->username = Input::get('username');
             $user->email = Input::get('email');
             $user->last_name = Input::get('last_name');
             $user->first_name = Input::get('first_name');
+            $user->permissions = $permissions;
+
+            $permissions = (empty($permissions)) ? '' : json_encode($permissions);
+                // delete permissions in db
+            DB::table('users')
+                ->where('id', $userId)
+                ->update(array('permissions' => $permissions));
             
             $pass = Input::get('pass');
             if(!empty($pass))

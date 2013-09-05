@@ -123,10 +123,7 @@ class GroupController extends BaseController
                         }
                     }
                 }
-                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
-                {
-                    
-                }
+                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
             }
 
             $userids = array();
@@ -158,7 +155,7 @@ class GroupController extends BaseController
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'groupPermissions' => $groupPermissions));
+            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
