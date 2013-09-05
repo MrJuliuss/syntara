@@ -200,15 +200,9 @@ class GroupController extends BaseController
             {
                 $group = Sentry::getGroupProvider()->findById($groupId);
                 $group->name = $groupname;
+                $group->permissions = $permissions;
 
-                if(!empty($permissions))
-                {
-                    $permissions = json_encode($permissions);
-                }
-                else
-                {
-                    $permissions = "";
-                }
+                $permissions = (empty($permissions)) ? '' : json_encode($permissions);
                 // delete permissions in db
                 DB::table('groups')
                     ->where('id', $groupId)
@@ -313,7 +307,6 @@ class GroupController extends BaseController
     protected function _validateGroup($permissionsValues, $groupname, &$permissions)
     {
         $errors = array();
-        $permissionErrors = array();
         // validate permissions
         if(!empty($permissionsValues))
         {
@@ -334,7 +327,6 @@ class GroupController extends BaseController
             $gnErrors = $validator->messages()->getMessages();
         }
         
-        $errors = array_merge($permissionErrors, $gnErrors);
-        return $errors;
+        return $gnErrors;
     }
 }

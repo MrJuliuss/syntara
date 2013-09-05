@@ -11,6 +11,7 @@ use Sentry;
 use Validator;
 use Config;
 use URL;
+use PermissionProvider;
 
 class UserController extends BaseController 
 {
@@ -65,8 +66,9 @@ class UserController extends BaseController
     public function getCreate()
     {
         $groups = Sentry::getGroupProvider()->findAll();
+        $permissions = PermissionProvider::findAll();
         
-        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups));
+        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups, 'permissions' => $permissions));
         $this->layout->title = "New user";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
     }
@@ -82,6 +84,9 @@ class UserController extends BaseController
                 Input::all(),
                 Config::get('syntara::rules.users.create')
             );
+
+            $permissionsValues = Input::get('permission');
+            $permissions = $this->_formatPermissions($permissionsValues);
             
             if($validator->fails())
             {
@@ -94,9 +99,10 @@ class UserController extends BaseController
                 'password' => Input::get('pass'),
                 'username' => Input::get('username'),
                 'last_name' => (string)Input::get('last_name'),
-                'first_name' => (string)Input::get('first_name')
+                'first_name' => (string)Input::get('first_name'),
+                'permissions' => $permissions
             ));
-            
+
             // activate user
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
@@ -263,5 +269,19 @@ class UserController extends BaseController
         {
             return Response::json(array('userUpdated' => false, 'message' => 'A user with this username already exists.', 'messageType' => 'danger'));
         }
+    }
+
+    protected function _formatPermissions($permissionsValues)
+    {
+        $permissions = array();
+        if(!empty($permissionsValues))
+        {
+            foreach($permissionsValues as $key => $permission)
+            {
+               $permissions[$key] = 1;
+            }
+        }
+
+        return $permissions;
     }
 }
