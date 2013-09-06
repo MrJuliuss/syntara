@@ -57,19 +57,7 @@ $(function()
         return false;
     });
     
-    $(document).on('click', '.add-input', function()
-    {
-        var html = '<div class="form-group"><p class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-minus-sign remove-input"></span></span><input type="text" class="form-control" name="permission['+nbInput+']" /></p></div>';
-        
-        $('#input-container').append(html);
-        
-        nbInput++;
-        return false;
-    }).on('click', '.remove-input', function()
-    {
-        $(this).parent().parent().parent().remove();
-        return false;
-    }).on('click', '#delete-item.groups', function()
+    $(document).on('click', '#delete-item.groups', function()
     {
         $('#confirm-modal').modal();
         
@@ -79,10 +67,9 @@ $(function()
         {
             $.ajax(
             {
-                url: 'group/delete',
+                url: 'group/'+$(this).data('group-id'),
                 type: "DELETE",
-                datatype: "json",
-                data: {'groupId' : $(this).data('group-id')}
+                datatype: "json"
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
@@ -99,8 +86,7 @@ $(function()
             $.ajax(
             {
                 url: window.location.href.toString()+'/user/'+$(this).data('user-id'), 
-                type: "DELETE",
-                datatype: "json"
+                type: "DELETE"
             })
             .done(function(result)
             {

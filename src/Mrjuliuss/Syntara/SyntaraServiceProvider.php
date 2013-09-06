@@ -49,6 +49,9 @@ class SyntaraServiceProvider extends ServiceProvider
         
         // register helpers
         $this->registerHelpers();
+
+        // register models
+        $this->registerModels();
         
         //Add commands
         $this->commands('create:user');
@@ -80,6 +83,20 @@ class SyntaraServiceProvider extends ServiceProvider
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Breadcrumbs', 'MrJuliuss\Syntara\Facades\Breadcrumbs');
+        });
+    }
+
+    public function registerModels()
+    {
+        $this->app['permissionProvider'] = $this->app->share(function()
+        {
+            return new \MrJuliuss\Syntara\Models\Permissions\PermissionProvider();
+        });
+        
+        $this->app->booting(function()
+        {
+            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+            $loader->alias('PermissionProvider', 'MrJuliuss\Syntara\Facades\PermissionProvider');
         });
     }
     

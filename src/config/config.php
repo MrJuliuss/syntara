@@ -40,6 +40,13 @@ return array(
                 'permission' => $rules['permission']
             )
         ),
+        'permissions' => array(
+            'create' => array(
+                'name' => array('required', 'min:3', 'max:100'),
+                'value' => array('required', 'alpha_dash', 'min:3', 'max:100'),
+                'description' => array('required', 'min:3', 'max:255')
+            ),
+        ),
     ),
     'permissions' => array(
         'listGroups' => 'groups-management',
@@ -56,6 +63,12 @@ return array(
         'putUser' => 'update-user-info',
         'deleteUserGroup' => 'user-group-management',
         'addUserGroup' => 'user-group-management',
+        'listPermissions' => 'permissions-management',
+        'deletePermission' => 'permissions-management',
+        'newPermission' => 'permissions-management',
+        'newPermissionPost' => 'permissions-management',
+        'showPermission' => 'permissions-management',
+        'putPermission' => 'permissions-management'
     ),
     'breadcrumbs' => array(
         'dashboard' => array(
@@ -74,38 +87,57 @@ return array(
         ),
         'users' => array(
             array(
-                'title' => 'Users', 
-                'link' => "dashboard/users", 
+                'title' => 'Users',
+                'link' => "dashboard/users",
                 'icon' => 'glyphicon-user'
             )
         ),
         'create_user' => array(
             array(
-                'title' => 'Users', 
-                'link' => "dashboard/users", 
+                'title' => 'Users',
+                'link' => "dashboard/users",
                 'icon' => 'glyphicon-user'
             ), 
             array(
-                'title' => 'New user', 
-                'link' => URL::current(), 
+                'title' => 'New user',
+                'link' => URL::current(),
                 'icon' => 'glyphicon-plus-sign'
             )
         ),
         'groups' => array(
             array(
-                'title' => 'Groups', 
-                'link' => "dashboard/groups", 
+                'title' => 'Groups',
+                'link' => "dashboard/groups",
                 'icon' => 'glyphicon-list-alt'
             )
         ),
         'create_group' => array(
             array(
-                'title' => 'Groups', 
-                'link' => "dashboard/groups", 
+                'title' => 'Groups',
+                'link' => "dashboard/groups",
                 'icon' => 'glyphicon-list-alt'
             ),
             array(
-                'title' => 'New group', 
+                'title' => 'New group',
+                'link' => URL::current(),
+                'icon' => 'glyphicon-plus-sign'
+            )
+        ),
+        'permissions' => array(
+           array(
+                'title' => 'Permissions',
+                'link' => "dashboard/permissions",
+                'icon' => 'glyphicon-ban-circle'
+            )
+        ),
+        'create_permission' => array(
+            array(
+                'title' => 'Permissions',
+                'link' => "dashboard/permissions",
+                'icon' => 'glyphicon-ban-circle'
+            ),
+            array(
+                'title' => 'New permission',
                 'link' => URL::current(),
                 'icon' => 'glyphicon-plus-sign'
             )

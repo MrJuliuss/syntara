@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use PermissionProvider;
 use View;
 use Validator;
 use Input;
@@ -54,7 +55,9 @@ class GroupController extends BaseController
     */
     public function getCreate()
     {
-        $this->layout = View::make('syntara::group.new-group');
+        $permissions = PermissionProvider::findAll();
+
+        $this->layout = View::make('syntara::group.new-group', array('permissions' => $permissions));
         $this->layout->title = "New group";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_group');
     }
@@ -102,6 +105,27 @@ class GroupController extends BaseController
         try
         {
             $group = Sentry::getGroupProvider()->findById($groupId);
+
+            $permissions = PermissionProvider::findAll();
+
+            $groupPermissions = array();
+            foreach($group->getPermissions() as $permissionValue => $key)
+            {
+                try
+                {
+                    $p = PermissionProvider::findByValue($permissionValue);
+                    foreach($permissions as $key => $permission)
+                    {
+                        if($p->getId() === $permission->getId())
+                        {
+                            $groupPermissions[] = $permission;
+                            unset($permissions[$key]);
+                        }
+                    }
+                }
+                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+            }
+
             $userids = array();
             foreach(Sentry::getUserProvider()->findAllInGroup($group) as $user) 
             {
@@ -131,7 +155,7 @@ class GroupController extends BaseController
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers));
+            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
@@ -161,7 +185,7 @@ class GroupController extends BaseController
         $permissionsValues = Input::get('permission');
         $groupname = Input::get('groupname');
         $permissions = array();
-        
+
         $errors = $this->_validateGroup($permissionsValues, $groupname, $permissions);
         if(!empty($errors))
         {
@@ -173,12 +197,14 @@ class GroupController extends BaseController
             {
                 $group = Sentry::getGroupProvider()->findById($groupId);
                 $group->name = $groupname;
+                $group->permissions = $permissions;
 
+                $permissions = (empty($permissions)) ? '' : json_encode($permissions);
                 // delete permissions in db
                 DB::table('groups')
                     ->where('id', $groupId)
-                    ->update(array('permissions' => json_encode($permissions)));
-                
+                    ->update(array('permissions' => $permissions));
+
                 if($group->save())
                 {
                     return Response::json(array('groupUpdated' => true, 'message' => 'Group updated with success.', 'messageType' => 'success'));
@@ -197,14 +223,15 @@ class GroupController extends BaseController
     }
        
     /**
-    * Delete groupe
-    * @return Response
-    */
-    public function delete()
+     * Delete group
+     * @param  int $groupId
+     * @return Response
+     */
+    public function delete($groupId)
     {
         try
         {
-            $group = Sentry::getGroupProvider()->findById(Input::get('groupId'));
+            $group = Sentry::getGroupProvider()->findById($groupId);
             $group->delete();
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
@@ -277,18 +304,12 @@ class GroupController extends BaseController
     protected function _validateGroup($permissionsValues, $groupname, &$permissions)
     {
         $errors = array();
-        $permissionErrors = array();
         // validate permissions
-        foreach($permissionsValues as $key => $permission)
+        if(!empty($permissionsValues))
         {
-            $validPermission = Validator::make(array('permission' => $permission), Config::get('syntara::rules.groups.create_permission'));
-            if($validPermission->fails())
+            foreach($permissionsValues as $key => $permission)
             {
-                $permissionErrors['permission['.$key.']'] = $validPermission->messages()->getMessages();
-            }
-            else
-            {
-               $permissions[$permission] = 1;
+               $permissions[$key] = 1;
             }
         }
         // validate group name
@@ -303,7 +324,6 @@ class GroupController extends BaseController
             $gnErrors = $validator->messages()->getMessages();
         }
         
-        $errors = array_merge($permissionErrors, $gnErrors);
-        return $errors;
+        return $gnErrors;
     }
 }

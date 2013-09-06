@@ -1,6 +1,6 @@
 $(function() 
 {
-    $('#create-user-form').on('submit', function()
+    $('#create-permission-form').on('submit', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -10,7 +10,7 @@ $(function()
             "dataType": "json"
         }).done(function(result)
         {
-            if(result.userCreated === false)
+            if(result.permissionCreated === false)
             {
                 if(typeof result.message !== 'undefined')
                 {
@@ -26,11 +26,11 @@ $(function()
                 window.location = result.redirectUrl;
             }
         });
-        
+
         return false;
     });
 
-    $('#edit-user-form').on('submit', function()
+    $('#edit-permission-form').on('submit', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -58,13 +58,13 @@ $(function()
         $('#confirm-modal').modal();
     });
 
-    $(document).on('click', '.delete-user .confirm-action', function()
+    $(document).on('click', '.delete-permission .confirm-action', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
             $.ajax(
             {
-                "url": "user/"+$(this).data('user-id'),
+                "url": "permission/"+$(this).data('permission-id'),
                 "type": "DELETE"
             }).done(function(result)
             {

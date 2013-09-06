@@ -11,6 +11,8 @@ use Sentry;
 use Validator;
 use Config;
 use URL;
+use PermissionProvider;
+use DB;
 
 class UserController extends BaseController 
 {
@@ -65,8 +67,9 @@ class UserController extends BaseController
     public function getCreate()
     {
         $groups = Sentry::getGroupProvider()->findAll();
+        $permissions = PermissionProvider::findAll();
         
-        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups));
+        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups, 'permissions' => $permissions));
         $this->layout->title = "New user";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
     }
@@ -82,6 +85,9 @@ class UserController extends BaseController
                 Input::all(),
                 Config::get('syntara::rules.users.create')
             );
+
+            $permissionsValues = Input::get('permission');
+            $permissions = $this->_formatPermissions($permissionsValues);
             
             if($validator->fails())
             {
@@ -94,9 +100,10 @@ class UserController extends BaseController
                 'password' => Input::get('pass'),
                 'username' => Input::get('username'),
                 'last_name' => (string)Input::get('last_name'),
-                'first_name' => (string)Input::get('first_name')
+                'first_name' => (string)Input::get('first_name'),
+                'permissions' => $permissions
             ));
-            
+
             // activate user
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
@@ -127,13 +134,14 @@ class UserController extends BaseController
     }
     
     /**
-    * Delete a user
-    */
-    public function delete()
+     * Delete user
+     * @param  int $userId
+     * @return  Response
+     */
+    public function delete($userId)
     {
         try
         {
-            $userId = Input::get('userId');
             if($userId !== Sentry::getUser()->getId())
             {
                 $user = Sentry::getUserProvider()->findById($userId);
@@ -163,12 +171,35 @@ class UserController extends BaseController
             $user = Sentry::getUserProvider()->findById($userId);
             $throttle = Sentry::getThrottleProvider()->findByUserId($userId);
             $groups = Sentry::getGroupProvider()->findAll();
+
+            // get user permissions
+            $permissions = PermissionProvider::findAll();
+            $userPermissions = array();
+            foreach($user->getPermissions() as $permissionValue => $key)
+            {
+                try
+                {
+                    $p = PermissionProvider::findByValue($permissionValue);
+                    foreach($permissions as $key => $permission)
+                    {
+                        if($p->getId() === $permission->getId())
+                        {
+                            $userPermissions[] = $permission;
+                            unset($permissions[$key]);
+                        }
+                    }
+                }
+                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+            }
             
             $this->layout = View::make('syntara::user.show-user', array(
                 'user' => $user,
                 'throttle' => $throttle,
                 'groups' => $groups,
+                'ownPermissions' => $userPermissions,
+                'permissions' => $permissions
             ));
+
             $this->layout->title = 'User '.$user->username;
             $this->layout->breadcrumb = array(
                     array(
@@ -207,12 +238,22 @@ class UserController extends BaseController
                 return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->messages()->getMessages()));
             }
             
+            $permissionsValues = Input::get('permission');
+            $permissions = $this->_formatPermissions($permissionsValues);
+
             // Find the user using the user id
             $user = Sentry::getUserProvider()->findById($userId);
             $user->username = Input::get('username');
             $user->email = Input::get('email');
             $user->last_name = Input::get('last_name');
             $user->first_name = Input::get('first_name');
+            $user->permissions = $permissions;
+
+            $permissions = (empty($permissions)) ? '' : json_encode($permissions);
+                // delete permissions in db
+            DB::table('users')
+                ->where('id', $userId)
+                ->update(array('permissions' => $permissions));
             
             $pass = Input::get('pass');
             if(!empty($pass))
@@ -262,5 +303,19 @@ class UserController extends BaseController
         {
             return Response::json(array('userUpdated' => false, 'message' => 'A user with this username already exists.', 'messageType' => 'danger'));
         }
+    }
+
+    protected function _formatPermissions($permissionsValues)
+    {
+        $permissions = array();
+        if(!empty($permissionsValues))
+        {
+            foreach($permissionsValues as $key => $permission)
+            {
+               $permissions[$key] = 1;
+            }
+        }
+
+        return $permissions;
     }
 }

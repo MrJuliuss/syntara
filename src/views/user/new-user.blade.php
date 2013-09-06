@@ -25,8 +25,6 @@
                                     <label class="control-label">Password</label>
                                     <p><input class="col-lg-12 form-control" type="password" placeholder="Password" id="pass" name="pass"></p>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="control-label">Last name</label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="Last name" id="last_name" name="last_name"></p>
@@ -36,19 +34,26 @@
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="First name" id="first_name" name="first_name"></p>
                                 </div>
                             </div>
+                            <div class="col-lg-6">
                             @if($currentUser->hasAccess('user-group-management'))
-                            <div class="col-lg-6">
+                                <label class="control-label">Groups</label>
                                 <div class="form-group">
-                                    <label class="control-label">Groups</label>
+                                @foreach($groups as $group)
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}">{{ $group->getName() }}
+                                </label>
+                                @endforeach
                                 </div>
-                                    @foreach($groups as $group)
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}">{{ $group->getName() }}
-                                    </label>
-                                    @endforeach
-                            </div>
                             @endif
-                            <div class="col-lg-6">
+                                <div class="form-group">
+                                @if($currentUser->hasAccess('permissions-management'))
+                                    @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                                @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">Create</button>
                                 </div>
