@@ -7,7 +7,7 @@
         <div class="col-lg-6">
             <section class="module">
                 <div class="module-head">
-                    <b>New group</b>
+                    <b>New permission</b>
                 </div>
                 <div class="module-body">
                     <form class="form-horizontal" id="create-permission-form" method="POST">
