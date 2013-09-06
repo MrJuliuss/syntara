@@ -21,7 +21,7 @@ class CreatePermissionTable extends Migration {
 		    $table->timestamps();
 		});
 
-		PermissionProvider::createPermission(array('name' => 'Super User', 'value' => 'super-user', 'description' => 'All permissions'));
+		PermissionProvider::createPermission(array('name' => 'Super User', 'value' => 'superuser', 'description' => 'All permissions'));
 		PermissionProvider::createPermission(array('name' => 'List Users', 'value' => 'view-users-list', 'description' => 'View the list of users'));
 		PermissionProvider::createPermission(array('name' => 'Create user', 'value' => 'create-user', 'description' => 'Create new user'));
 		PermissionProvider::createPermission(array('name' => 'Delete user', 'value' => 'delete-user', 'description' => 'Delete a user'));
