@@ -27,7 +27,8 @@ class CreatePermissionTable extends Migration {
 		PermissionProvider::createPermission(array('name' => 'Delete user', 'value' => 'delete-user', 'description' => 'Delete a user'));
 		PermissionProvider::createPermission(array('name' => 'Update user', 'value' => 'update-user-info', 'description' => 'Update a user profile'));
 		PermissionProvider::createPermission(array('name' => 'Update user group', 'value' => 'user-group-management', 'description' => 'Add/Remove a user in a group'));
-		PermissionProvider::createPermission(array('name' => 'Group management', 'value' => 'groups-management', 'description' => 'Manage group (CRUD)'));
+		PermissionProvider::createPermission(array('name' => 'Groups management', 'value' => 'groups-management', 'description' => 'Manage group (CRUD)'));
+		PermissionProvider::createPermission(array('name' => 'Permissions management', 'value' => 'permissions-management', 'description' => 'Manage permissions (CRUD)'));
 	}
 
 	/**
