@@ -54,12 +54,7 @@ class InstallCommand extends Command
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        => 'Admin',
                 'permissions' => array(
-                    'view-users-list' => 1,
-                    'create-user' => 1,
-                    'delete-user' => 1,
-                    'update-user-info' => 1,
-                    'user-group-management' => 1,
-                    'groups-management' => 1
+                    'superuser' => 1
                 ),
             ));
 
