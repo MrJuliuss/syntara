@@ -4,6 +4,9 @@ Route::filter('basicAuth', function()
 {
     if(!Sentry::check())
     {
+        // save the attempted url
+        Session::put('attemptedUrl', URL::current());
+
         return Redirect::route('getLogin');
     }
 
@@ -14,7 +17,10 @@ Route::filter('notAuth', function()
 {
     if(Sentry::check())
     {
-        return Redirect::route('indexDashboard');
+        $url = Session::get('attemptedUrl');
+        Session::forget('attemptedUrl');
+
+        return Redirect::to($url);
     }
 });
 
