@@ -144,7 +144,6 @@ Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2
 ## TODO
 
 * Ban/unban user
-* User permission (besides group permissions)
 
 ## License
 
