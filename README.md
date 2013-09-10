@@ -68,7 +68,9 @@ http://your-url/dashboard/login
 
 ## Custom Development
 
-To add a new feature to Syntara dashboard, you must extend your new controller with the Syntara BaseController, like this :
+### Add a new feature to Syntara dashboard
+
+You must extend your new controller with the Syntara BaseController, like this :
 
     <?php
 
@@ -98,19 +100,46 @@ To add a new feature to Syntara dashboard, you must extend your new controller w
         }
     }
 
-Extend the user navigation by creating a view composer:
+### Extend the user navigation by creating a view composer:
 
     View::composer('syntara::layouts.dashboard.master', function($view)
     {
-        $view->nest('navPages', 'nav');
-        $view->nest('navPagesRight', 'navright');
+        $view->nest('navPages', 'left-nav');
+        $view->nest('navPagesRight', 'right-nav');
         $view->with('siteName', 'My Site');
     });
 
-This passes in 2 views, nav and navright these add links to the left or right of the navigation bar.
+This passes in 2 views, 'lef-nav' and 'right-nav' these add links to the left or right of the navigation bar.
+
+'lef-nav.blade.php' example :
+
+    <li class=""><a href=""><i class="glyphicon glyphicon-home"></i> <span>Home</span></a></li>
+    <li class="dropdown" >
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-home"></i> <span>Blog</span></a></a>
+        <ul class="dropdown-menu">
+            <li><a href="">Articles</a></li>
+            <li><a href="">Comments</a></li>
+        </ul>
+    </li>
 
 Pass a string called siteName to the view composer to change the site name.
 
+### Use Syntara Permission Models
+
+Permission Provider
+
+    use PermissionProvider;
+
+    $permission = PermissionProvider::findById();
+
+Permission Model, create an empty permission
+
+    $permissionModel = PermissionProvider::createModel();
+
+
+### User / Group models
+
+Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs : http://docs.cartalyst.com/sentry-2
 
 ## TODO
 
