@@ -1,7 +1,6 @@
 <?php namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
-use MrJuliuss\Syntara\Models\Permissions\Permission;
 use Paginator;
 use PermissionProvider;
 use View;
@@ -19,7 +18,7 @@ class PermissionController extends BaseController
     */
     public function getIndex()
     {
-        $permissions = new Permission;
+        $permissions = PermissionProvider::createModel();
 
         $permissionId = Input::get('permissionIdSearch');
         if(!empty($permissionId))

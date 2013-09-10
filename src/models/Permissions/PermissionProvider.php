@@ -1,7 +1,6 @@
 <?php namespace MrJuliuss\Syntara\Models\Permissions;
 
 use Illuminate\Support\Facades\Facade;
-use MrJuliuss\Syntara\Models\Permissions\Permission;
 use MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException;
 use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
 use Validator;
@@ -9,6 +8,8 @@ use Config;
 
 class PermissionProvider
 {
+    protected $_model = 'MrJuliuss\Syntara\Models\Permissions\Permission';
+
     /**
      * Create permission
      * @param  array $attributes
@@ -20,7 +21,7 @@ class PermissionProvider
 
         if(!$validator->fails())
         {
-            $permission = new Permission();
+            $permission = $this->createModel();
             $permission->fill($attributes);
             $permission->save();
 
@@ -31,15 +32,25 @@ class PermissionProvider
     }
 
     /**
+     * Create a new instance of the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function createModel()
+    {
+        $class = '\\'.ltrim($this->_model, '\\');
+
+        return new $class;
+    }
+
+    /**
      * Returns an all permissions.
      *
      * @return array
      */
     public function findAll()
     {
-        $model = new Permission();
-
-        return $model->newQuery()->get()->all();
+        return $this->createModel()->newQuery()->get()->all();
     }
 
     /**
@@ -49,9 +60,7 @@ class PermissionProvider
      */
     public function findById($id)
     {
-        $model = new Permission();
-
-        if(!$permission = $model->newQuery()->find($id))
+        if(!$permission = $this->createModel()->newQuery()->find($id))
         {
             throw new PermissionNotFoundException("A permission could not be found with ID [$id].");
         }
@@ -66,9 +75,7 @@ class PermissionProvider
      */
     public function findByValue($value)
     {
-        $model = new Permission();
-
-        if(!$permission = $model->newQuery()->where('value', $value)->get()->first())
+        if(!$permission = $this->createModel()->newQuery()->where('value', $value)->get()->first())
         {
             throw new PermissionNotFoundException("A permission could not be found with Value [$value].");
         }
