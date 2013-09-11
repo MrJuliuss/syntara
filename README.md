@@ -109,7 +109,7 @@ You must extend your new controller with the Syntara BaseController, like this :
         $view->with('siteName', 'My Site');
     });
 
-This passes in 2 views, 'lef-nav' and 'right-nav' these add links to the left or right of the navigation bar.
+This passes in 2 views, 'left-nav' and 'right-nav' these add links to the left or right of the navigation bar.
 
 'lef-nav.blade.php' example :
 
