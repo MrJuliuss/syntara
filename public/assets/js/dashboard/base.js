@@ -94,8 +94,16 @@ var ajaxContent = function(url, content, options, useSave)
     .done(function(data)
     {
         $(content).empty().html(data.html);
+        window.history.pushState(data, "", url);
         lastAjxOpt = options;
     });
+};
+
+window.onpopstate = function(e){
+    if(e.state)
+    {
+        $(".ajax-content").empty().html(e.state.html);
+    }
 };
 
 var showStatusMessage = function(message, type)
