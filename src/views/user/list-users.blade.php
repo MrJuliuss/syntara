@@ -22,8 +22,8 @@
         <th class="col-lg-2">Email</th>
         <th class="col-lg-2">Groups</th>
         <th class="col-lg-2">Permissions</th>
-        <th class="col-lg-1 hidden-sm">Last Name</th>
-        <th class="col-lg-1 hidden-sm">First Name</th>
+        <th class="col-lg-1 visible-lg">Last Name</th>
+        <th class="col-lg-1 visible-lg">First Name</th>
         @if($currentUser->hasAccess('update-user-info'))
         <th class="col-lg-1" style="text-align: center;">Show</th>
         @endif
@@ -46,8 +46,8 @@
         @endforeach
         </td>
         <td>{{ json_encode($user->getPermissions()) }}</td>
-        <td class="hidden-sm">&nbsp;{{ $user->last_name }}</td>
-        <td class="hidden-sm">&nbsp;{{ $user->first_name }}</td>
+        <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
+        <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
         @if($currentUser->hasAccess('update-user-info'))
         <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
         @endif
