@@ -192,6 +192,14 @@ class UserController extends BaseController
                 catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
             }
             
+            // ajax request : reload only content container
+            if(Request::ajax())
+            {
+                $html = View::make('syntara::user.user-informations', array('user' => $user, 'throttle' => $throttle))->render();
+
+                return Response::json(array('html' => $html));
+            }
+
             $this->layout = View::make('syntara::user.show-user', array(
                 'user' => $user,
                 'throttle' => $throttle,

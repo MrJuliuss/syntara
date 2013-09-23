@@ -43,6 +43,11 @@ $(function()
             if(typeof result.message !== 'undefined')
             {
                 showStatusMessage(result.message, result.messageType);
+
+                if(result.messageType == 'success')
+                {
+                    ajaxContent($(this).attr('href'), ".ajax-content", false);
+                }
             }
             else if(typeof result.errorMessages !== 'undefined')
             {

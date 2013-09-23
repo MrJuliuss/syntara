@@ -1,6 +1,7 @@
 @extends('syntara::layouts.dashboard.master')
 
 @section('content')
+
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script>
 <div class="container" id="main-container">
     <div class="row">
@@ -74,10 +75,7 @@
                 <b>Information</b>
             </div>
             <div class="module-body ajax-content">
-                <label>Registration</label><p>{{ $user->created_at }}</p>
-                <label>Last update</label><p>{{ $user->updated_at }}</p>
-                <label>Last login</label><p>{{ $user->last_login }}</p>
-                <label>IP address</label><p>{{ $throttle->ip_address }}</p>
+                @include('syntara::user.user-informations')
             </div>
         </div>
     </div>
