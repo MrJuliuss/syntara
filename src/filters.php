@@ -24,17 +24,24 @@ Route::filter('notAuth', function()
     }
 });
 
-Route::filter('hasPermissions', function()
+Route::filter('hasPermissions', function($route, $request, $userPermission = null)
 {
-    $permissions = Config::get('syntara::permissions');
-
     if (Route::currentRouteName() == "putUser" && Sentry::getUser()->id == Request::segment(3) ||
         Route::currentRouteName() == "showUser" && Sentry::getUser()->id == Request::segment(3))
     {
     }
     else
     {
-        if(!Sentry::getUser()->hasAccess($permissions[Route::currentRouteName()]))
+        if($userPermission === null)
+        {
+            $permission = $permissions[Route::currentRouteName()];
+        }
+        else
+        {
+            $permission = $userPermission;
+        }
+
+        if(!Sentry::getUser()->hasAccess($permission))
         {
             return Redirect::route('accessDenied');
         }

@@ -100,6 +100,16 @@ You must extend your new controller with the Syntara BaseController, like this :
         }
     }
 
+###  Add permission to your new Controller route :
+
+    Route::get('routes', array('as' => 'route_name', 'before' => 'hasPermissions:permission', 'uses' => 'Namespace\ControlerRoute'));
+
+Where 'permission' is the name of your permission
+
+Example :
+
+    Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create.article', 'uses' => 'MrJuliuss\Syntara\Controllers\ArticleController@getCreate'));
+
 ### Extend the user navigation by creating a view composer:
 
     View::composer('syntara::layouts.dashboard.master', function($view)
