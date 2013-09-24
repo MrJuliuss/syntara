@@ -52,7 +52,7 @@ class UserController extends BaseController
         if(Request::ajax())
         {
             $html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
-            
+
             return Response::json(array('html' => $html));
         }
         
@@ -262,17 +262,23 @@ class UserController extends BaseController
             DB::table('users')
                 ->where('id', $userId)
                 ->update(array('permissions' => $permissions));
-            
+
             $pass = Input::get('pass');
             if(!empty($pass))
             {
                 $user->password = $pass;
             }
-            
+
             // Update the user
             if($user->save())
             {
                 // if the user has permission to update
+                $banned = Input::get('banned');
+                if(isset($banned))
+                {
+                    $this->_banUser($userId, $banned);
+                }
+
                 if(Sentry::getUser()->hasAccess('user-group-management'))
                 {
                     $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
@@ -325,5 +331,18 @@ class UserController extends BaseController
         }
 
         return $permissions;
+    }
+
+    protected function _banUser($userId, $value)
+    {
+        $throttle = Sentry::findThrottlerByUserId($userId);
+        if($value === 'no' && $throttle->isBanned() === true)
+        {
+            $throttle->unBan();
+        }
+        elseif($value === 'yes' && $throttle->isBanned() === false)
+        {
+            $throttle->ban();
+        }
     }
 }

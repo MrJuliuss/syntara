@@ -318,6 +318,12 @@ body.modal-open,
     margin-bottom: 15px;
 }
 
+/* switch button */
+.switch-toggle label {
+    color: #424242;
+}
+
+
 @media (max-width: 480px) {
     .navbar > .nav {
         float: none;

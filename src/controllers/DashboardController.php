@@ -58,6 +58,10 @@ class DashboardController extends BaseController
             // authenticate user
             Sentry::authenticate($credentials, Input::get('remember'));
         }
+        catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
+        {
+            return Response::json(array('logged' => false, 'errorMessage' => 'User banned, please contact the administrator.', 'errorType' => 'danger'));
+        }
         catch (\RuntimeException $e)
         {
             return Response::json(array('logged' => false, 'errorMessage' => 'Sorry, login failed... check your credentials.', 'errorType' => 'danger'));

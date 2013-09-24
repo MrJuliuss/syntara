@@ -51,10 +51,22 @@
                             @endforeach
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             @if($currentUser->hasAccess('permissions-management'))
                                 @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
                             @endif
+                        </div>
+                        <div class="col-lg-2">
+                            <label>Banned</label>
+                            <div class="switch-toggle well">
+                                <input id="no" name="banned" type="radio" value="no" {{ ($throttle->isBanned() === false) ? 'checked' : '' }}>
+                                <label for="no" onclick="">NO</label>
+
+                                <input id="yes" name="banned" type="radio" value="yes" {{ ($throttle->isBanned() === true) ? 'checked' : '' }}>
+                                <label for="yes" onclick="">YES</label>
+
+                                <a class="btn btn-primary"></a>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
