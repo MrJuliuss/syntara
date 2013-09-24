@@ -34,6 +34,7 @@ Route::filter('hasPermissions', function($route, $request, $userPermission = nul
     {
         if($userPermission === null)
         {
+            $permissions = Config::get('syntara::permissions');
             $permission = $permissions[Route::currentRouteName()];
         }
         else
