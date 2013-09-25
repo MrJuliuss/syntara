@@ -110,7 +110,7 @@ Example :
 
     Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create.article', 'uses' => 'MrJuliuss\Syntara\Controllers\ArticleController@getCreate'));
 
-## Custom view for controller (app/hello-view.blade.php for example)
+### Custom view for controller (app/hello-view.blade.php for example)
 
     @extends('syntara::layouts.dashboard.master') <!-- extend the main view of syntaran use navbar, etc -->
 
