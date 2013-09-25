@@ -70,7 +70,7 @@ $(document).ready(function()
     $('#search-form').on('submit', function()
     {
         var sArray = $(this).serializeArray();
-        ajaxContent($(this).attr('href'), ".ajax-content", sArray, false);
+        ajaxContent(document.URL, ".ajax-content", sArray, false);
 
         return false;
     });
@@ -94,7 +94,7 @@ var ajaxContent = function(url, content, options, useSave)
     .done(function(data)
     {
         $(content).empty().html(data.html);
-        window.history.pushState(data, "", url);
+        window.history.pushState(data, '', url);
         lastAjxOpt = options;
     });
 };

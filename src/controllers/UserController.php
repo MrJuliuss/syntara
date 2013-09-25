@@ -43,6 +43,13 @@ class UserController extends BaseController
         {
             $emptyUsers = $emptyUsers->where('email', 'LIKE', '%'.$email.'%');
         }
+        $bannedUsers = Input::get('bannedSearch');
+        if(isset($bannedUsers) && $bannedUsers !== "")
+        {
+            $emptyUsers = $emptyUsers->join('throttle', 'throttle.user_id', '=', 'users.id')
+                ->where('throttle.banned', '=', $bannedUsers)
+                ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions');
+        }
 
         $users = $emptyUsers->paginate(20);
         $datas['links'] = $users->links();

@@ -35,6 +35,14 @@
                             <label for="emailSearch">Email</label>
                             <input type="email" class="form-control" id="emailSearch" name="emailSearch">
                         </div>
+                        <div class="form-group">
+                            <label for="bannedSearch">Banned</label>
+                            <select class="form-control" id="bannedSearch" name="bannedSearch">
+                                <option></option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                 </div>

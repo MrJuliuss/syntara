@@ -25,12 +25,16 @@
         <th class="col-lg-1 visible-lg">Last Name</th>
         <th class="col-lg-1 visible-lg">First Name</th>
         @if($currentUser->hasAccess('update-user-info'))
+        <th class="col-lg-1 hidden-xs">Banned</th>
         <th class="col-lg-1" style="text-align: center;">Show</th>
         @endif
     </tr>
 </thead>
 <tbody>
     @foreach ($datas['users'] as $user)
+    <?php
+    $throttle = $throttle = Sentry::findThrottlerByUserId($user->getId());
+    ?>
     <tr>
         @if($currentUser->hasAccess('delete-user'))
         <td style="text-align: center;">
@@ -49,6 +53,7 @@
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
         @if($currentUser->hasAccess('update-user-info'))
+        <td class="hidden-xs">{{ $throttle->isBanned() ? 'Yes' : 'No'}}</td>
         <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
         @endif
     </tr>
