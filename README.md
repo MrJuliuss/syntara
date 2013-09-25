@@ -80,7 +80,7 @@ You must extend your new controller with the Syntara BaseController, like this :
     {
         public function getIndex()
         {
-            $this->layout = View::make('syntara::dashboard.index');
+            $this->layout = View::make('index-view');
 
             $this->layout->title = 'My new feature';
 
@@ -109,6 +109,19 @@ Where 'permission' is the name of your permission
 Example :
 
     Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create.article', 'uses' => 'MrJuliuss\Syntara\Controllers\ArticleController@getCreate'));
+
+## Custom view for controller (app/hello-view.blade.php for example)
+
+    @extends('syntara::layouts.dashboard.master') <!-- extend the main view of syntaran use navbar, etc -->
+
+    @section('content') <!-- content -->
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, 
+        vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit 
+        augue duis dolore te feugait nulla facilisi
+    @stop
 
 ### Extend the user navigation by creating a view composer:
 
