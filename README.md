@@ -164,9 +164,6 @@ Permission Model, create an empty permission
 
 Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs : http://docs.cartalyst.com/sentry-2
 
-## TODO
-
-* Ban/unban user
 
 ## License
 
