@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="bannedSearch">Banned</label>
                             <select class="form-control" id="bannedSearch" name="bannedSearch">
-                                <option></option>
+                                <option>--</option>
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
