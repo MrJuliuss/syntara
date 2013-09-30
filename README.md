@@ -2,6 +2,10 @@
 
 Syntara is an admin system for Laravel 4.
 
+[![Latest Stable Version](https://poser.pugx.org/mrjuliuss/syntara/v/stable.png)](https://packagist.org/packages/mrjuliuss/syntara)
+[![Total Downloads](https://poser.pugx.org/mrjuliuss/syntara/downloads.png)](https://packagist.org/packages/mrjuliuss/syntara)
+
+
 <img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" />
 
 [Others screenshots](https://github.com/MrJuliuss/syntara/tree/master/screenshots)
