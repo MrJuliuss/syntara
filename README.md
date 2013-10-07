@@ -114,18 +114,13 @@ Example :
 
     Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create.article', 'uses' => 'MrJuliuss\Syntara\Controllers\ArticleController@getCreate'));
 
-### Custom view for controller (app/hello-view.blade.php for example)
+### Custom view for controller
 
-    @extends('syntara::layouts.dashboard.master') <!-- extend the main view of syntaran use navbar, etc -->
+In app/routes.php or app/filters.php : 
 
-    @section('content') <!-- content -->
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
-        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, 
-        vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit 
-        augue duis dolore te feugait nulla facilisi
-    @stop
+```Config::set('syntara::views.dashboard-index', 'my-view')```
+
+Please see syntara/src/config/views.php for more views
 
 ### Extend the user navigation by creating a view composer:
 
