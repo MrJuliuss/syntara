@@ -41,12 +41,12 @@ class PermissionController extends BaseController
         // ajax request : reload only content container
         if(Request::ajax())
         {
-            $html = View::make('syntara::permission.list-permissions', array('permissions' => $permissions))->render();
+            $html = View::make(Config::get('syntara::views.permissions-list'), array('permissions' => $permissions))->render();
             
             return Response::json(array('html' => $html));
         }
 
-        $this->layout = View::make('syntara::permission.index-permission', array('permissions' => $permissions));
+        $this->layout = View::make(Config::get('syntara::views.permissions-index'), array('permissions' => $permissions));
         $this->layout->title = "Permissions list";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.permissions');
     }
@@ -56,7 +56,7 @@ class PermissionController extends BaseController
      */
     public function getCreate()
     {
-        $this->layout = View::make('syntara::permission.new-permission');
+        $this->layout = View::make(Config::get('syntara::views.permission-create'));
         $this->layout->title = "New permission";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_permission');
     }
@@ -101,7 +101,7 @@ class PermissionController extends BaseController
         {
             $permission = PermissionProvider::findById($permissionId);
             
-            $this->layout = View::make('syntara::permission.show-permission', array(
+            $this->layout = View::make(Config::get('syntara::views.permission-edit'), array(
                 'permission' => $permission,
             ));
             $this->layout->title = 'Permission '.$permission->getName();
@@ -120,7 +120,7 @@ class PermissionController extends BaseController
         }
         catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
         {
-            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, permission not found ! '));
+            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, permission not found ! '));
         }
     }
 

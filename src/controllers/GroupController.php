@@ -40,12 +40,12 @@ class GroupController extends BaseController
         // ajax: reload only the content container
         if(Request::ajax())
         {
-            $html = View::make('syntara::group.list-groups', array('groups' => $groups))->render();
+            $html = View::make(Config::get('syntara::views.groups-list'), array('groups' => $groups))->render();
             
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make('syntara::group.index-group', array('groups' => $groups));
+        $this->layout = View::make(Config::get('syntara::views.groups-index'), array('groups' => $groups));
         $this->layout->title = "Groups list";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.groups');
     }
@@ -57,7 +57,7 @@ class GroupController extends BaseController
     {
         $permissions = PermissionProvider::findAll();
 
-        $this->layout = View::make('syntara::group.new-group', array('permissions' => $permissions));
+        $this->layout = View::make(Config::get('syntara::views.group-create'), array('permissions' => $permissions));
         $this->layout->title = "New group";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_group');
     }
@@ -150,12 +150,12 @@ class GroupController extends BaseController
             // ajax request : reload only content container
             if(Request::ajax())
             {
-                $html = View::make('syntara::group.list-users-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();
+                $html = View::make(Config::get('syntara::views.users-in-group'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();
                 
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make('syntara::group.show-group', array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
+            $this->layout = View::make(Config::get('syntara::views.group-edit'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
@@ -172,7 +172,7 @@ class GroupController extends BaseController
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            $this->layout->content = View::make('syntara::dashboard.error', array('message' => 'Sorry, group not found !'));
+            $this->layout->content = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, group not found !'));
         }
     }
 

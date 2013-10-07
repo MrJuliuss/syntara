@@ -10,7 +10,7 @@
         <title>{{ (!empty($siteName)) ? $siteName : "Syntara"}} - {{$title}}</title>
     </head>
     <body>
-        @include('syntara::layouts.dashboard.header')
+        @include(Config::get('syntara::views.header'))
         {{ Breadcrumbs::create($breadcrumb); }}
         <div id="content">
             @yield('content')

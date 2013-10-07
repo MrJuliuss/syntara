@@ -31,7 +31,7 @@ class UserController extends BaseController
         $userId = Input::get('userIdSearch');
         if(!empty($userId))
         {
-            $emptyUsers = $emptyUsers->where('id', $userId);
+            $emptyUsers = $emptyUsers->where('users.id', $userId);
         }
         $username = Input::get('usernameSearch');
         if(!empty($username))
@@ -58,12 +58,12 @@ class UserController extends BaseController
         // ajax request : reload only content container
         if(Request::ajax())
         {
-            $html = View::make('syntara::user.list-users', array('datas' => $datas))->render();
+            $html = View::make(Config::get('syntara::views.users-list'), array('datas' => $datas))->render();
 
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make('syntara::user.index-user', array('datas' => $datas));
+        $this->layout = View::make(Config::get('syntara::views.users-index'), array('datas' => $datas));
         $this->layout->title = "Users list";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
     }
@@ -76,7 +76,7 @@ class UserController extends BaseController
         $groups = Sentry::getGroupProvider()->findAll();
         $permissions = PermissionProvider::findAll();
         
-        $this->layout = View::make('syntara::user.new-user', array('groups' => $groups, 'permissions' => $permissions));
+        $this->layout = View::make(Config::get('syntara::views.user-create'), array('groups' => $groups, 'permissions' => $permissions));
         $this->layout->title = "New user";
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
     }
@@ -202,12 +202,12 @@ class UserController extends BaseController
             // ajax request : reload only content container
             if(Request::ajax())
             {
-                $html = View::make('syntara::user.user-informations', array('user' => $user, 'throttle' => $throttle))->render();
+                $html = View::make(Config::get('syntara::views.user-informations'), array('user' => $user, 'throttle' => $throttle))->render();
 
                 return Response::json(array('html' => $html));
             }
 
-            $this->layout = View::make('syntara::user.show-user', array(
+            $this->layout = View::make(Config::get('syntara::views.user-profile'), array(
                 'user' => $user,
                 'throttle' => $throttle,
                 'groups' => $groups,
@@ -231,7 +231,7 @@ class UserController extends BaseController
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            $this->layout = View::make('syntara::dashboard.error', array('message' => 'Sorry, user not found ! '));
+            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, user not found ! '));
         }
     }
 
