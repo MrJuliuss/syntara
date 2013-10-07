@@ -315,7 +315,7 @@ class GroupController extends BaseController
         // validate group name
         $validator = Validator::make(
             array('groupname' => $groupname),
-            Config::get('syntara::rules.groups.create_name')
+            Config::get('syntara::validator.groups.create_name')
         );
 
         $gnErrors = array();

@@ -42,7 +42,7 @@ class DashboardController extends BaseController
         {
             $validator = Validator::make(
                 Input::all(),
-                Config::get('syntara::rules.users.login')
+                Config::get('syntara::validator.users.login')
             );
 
             if($validator->fails())

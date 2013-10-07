@@ -90,7 +90,7 @@ class UserController extends BaseController
         {
             $validator = Validator::make(
                 Input::all(),
-                Config::get('syntara::rules.users.create')
+                Config::get('syntara::validator.users.create')
             );
 
             $permissionsValues = Input::get('permission');
@@ -246,7 +246,7 @@ class UserController extends BaseController
         {
             $validator = Validator::make(
                 Input::all(),
-                Config::get('syntara::rules.users.show')
+                Config::get('syntara::validator.users.show')
             );
             if($validator->fails())
             {

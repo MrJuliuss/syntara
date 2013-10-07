@@ -53,7 +53,7 @@ class UserSeedCommand extends Command
                     'email' => $email, 
                     'pass' => $pass,
                     'username' => $username),
-                Config::get('syntara::rules.users.create')
+                Config::get('syntara::validator.users.create')
             );
 
             if($validator->fails())
