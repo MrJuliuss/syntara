@@ -43,6 +43,15 @@ class InstallCommand extends Command
     {
         $this->info('## Syntara Install ##');
 
+        // publish sentry config
+        $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );
+
+        // publish syntara config
+        $this->call('config:publish', array('package' => 'mrjuliuss/syntara' ) );
+
+        // publish syntara assets
+        $this->call('asset:publish', array('package' => 'mrjuliuss/syntara' ) );
+
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
@@ -64,14 +73,5 @@ class InstallCommand extends Command
         {
             $this->info('"Admin" group already exists');
         }
-
-        // publish sentry config 
-        $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );
-
-        // publish syntara config
-        $this->call('config:publish', array('package' => 'mrjuliuss/syntara' ) );
-
-        // publish syntara assets
-        $this->call('asset:publish', array('package' => 'mrjuliuss/syntara' ) );
     }
 }
