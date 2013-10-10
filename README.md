@@ -16,6 +16,11 @@ Syntara is an admin system for Laravel 4.
 * Users management
 * Groups & permissions management
 
+## Todo : 
+
+* Send activation email
+* Any suggestions ? :) 
+
 ## Requirements
 * PHP 5.3+
 
