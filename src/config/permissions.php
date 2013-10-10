@@ -13,6 +13,7 @@ return array(
         'newUserPost' => 'create-user',
         'showUser' => 'update-user-info',
         'putUser' => 'update-user-info',
+        'putActivateUser' => 'update-user-info',
         'deleteUserGroup' => 'user-group-management',
         'addUserGroup' => 'user-group-management',
         'listPermissions' => 'permissions-management',

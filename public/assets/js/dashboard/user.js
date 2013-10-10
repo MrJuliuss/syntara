@@ -79,5 +79,28 @@ $(function()
         });
 
         $('#confirm-modal').modal('hide');
-    })
+    }).on('click', '.activate-user', function()
+    {
+        var userId = $(this).parent().parent().find('input[type="checkbox"]').data('user-id');
+
+        $.ajax({
+            "type": "PUT",
+            "url": 'user/'+userId+'/activate/',
+            "data": {userId : userId},
+            "dataType": "json"
+        }).done(function(result)
+        {
+            if(typeof result.message !== 'undefined')
+            {
+                showStatusMessage(result.message, result.messageType);
+
+                if(result.messageType == 'success')
+                {
+                    ajaxContent($(this).attr('href'), ".ajax-content", false);
+                }
+            }
+        });
+
+        return false;
+    });
 });

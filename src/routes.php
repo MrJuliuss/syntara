@@ -16,6 +16,7 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => 'dashboar
     Route::get('user/new', array('as' => 'newUser', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getCreate'));
     Route::get('user/{userId}', array('as' => 'showUser', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getShow'));
     Route::put('user/{userId}', array('as' => 'putUser', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@putShow'));
+    Route::put('user/{userId}/activate', array('as' => 'putActivateUser', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@putActivate'));
     // Groups
     Route::get('groups', array('as' => 'listGroups', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@getIndex'));
     Route::post('group/new', array('as' => 'newGroupPost', 'uses' => 'MrJuliuss\Syntara\Controllers\GroupController@postCreate'));

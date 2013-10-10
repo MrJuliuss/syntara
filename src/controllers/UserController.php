@@ -167,6 +167,11 @@ class UserController extends BaseController
         return Response::json(array('deletedUser' => true, 'message' => 'User removed with success.', 'messageType' => 'success'));
     }
 
+    public function putActivate($userId)
+    {
+
+    }
+
     /**
     * View user account
     * @param int $userId
