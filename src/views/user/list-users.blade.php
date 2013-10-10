@@ -24,7 +24,7 @@
         <th class="col-lg-2">Permissions</th>
         <th class="col-lg-1 visible-lg">Last Name</th>
         <th class="col-lg-1 visible-lg">First Name</th>
-        <th class="col-lg-2">Active</th>
+        <th class="col-lg-1 hidden-xs">Active</th>
         @if($currentUser->hasAccess('update-user-info'))
         <th class="col-lg-1 hidden-xs">Banned</th>
         <th class="col-lg-1" style="text-align: center;">Show</th>
