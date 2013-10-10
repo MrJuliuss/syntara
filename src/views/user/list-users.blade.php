@@ -24,6 +24,7 @@
         <th class="col-lg-2">Permissions</th>
         <th class="col-lg-1 visible-lg">Last Name</th>
         <th class="col-lg-1 visible-lg">First Name</th>
+        <th class="col-lg-2">Active</th>
         @if($currentUser->hasAccess('update-user-info'))
         <th class="col-lg-1 hidden-xs">Banned</th>
         <th class="col-lg-1" style="text-align: center;">Show</th>
@@ -52,6 +53,7 @@
         <td>{{ json_encode($user->getPermissions()) }}</td>
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
+        <td class="hidden-xs">{{ $user->activated ? 'Yes' : 'No'}}</td>
         @if($currentUser->hasAccess('update-user-info'))
         <td class="hidden-xs">{{ $throttle->isBanned() ? 'Yes' : 'No'}}</td>
         <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
