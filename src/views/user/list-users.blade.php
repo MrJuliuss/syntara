@@ -17,15 +17,17 @@
         @if($currentUser->hasAccess('delete-user'))
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
-        <th class="col-lg-1" style="text-align: center;">Id</th>
+        <th class="col-lg-1 hidden-xs" style="text-align: center;">Id</th>
         <th class="col-lg-1">Username</th>
-        <th class="col-lg-2">Email</th>
-        <th class="col-lg-2">Groups</th>
-        <th class="col-lg-2">Permissions</th>
+        <th class="col-lg-2 visible-lg visible-xs">Email</th>
+        <th class="col-lg-2 hidden-xs">Groups</th>
+        <th class="col-lg-2 hidden-xs">Permissions</th>
         <th class="col-lg-1 visible-lg">Last Name</th>
         <th class="col-lg-1 visible-lg">First Name</th>
+        <th class="col-lg-1 hidden-xs">Active</th>
         @if($currentUser->hasAccess('update-user-info'))
         <th class="col-lg-1 hidden-xs">Banned</th>
+       
         <th class="col-lg-1" style="text-align: center;">Show</th>
         @endif
     </tr>
@@ -41,19 +43,20 @@
             <input type="checkbox" data-user-id="{{ $user->getId(); }}">
         </td>
         @endif
-        <td style="text-align: center;">{{ $user->getId() }}</td>
-        <td>&nbsp;{{ $user->username }}</td>
-        <td>&nbsp;{{ $user->getLogin() }}</td>
-        <td>
+        <td class="hidden-xs" style="text-align: center;">{{ $user->getId() }}</td>
+        <td >&nbsp;{{ $user->username }}</td>
+        <td class="visible-xs visible-lg">&nbsp;{{ $user->getLogin() }}</td>
+        <td class="hidden-xs">
         @foreach($user->getGroups()->toArray() as $key => $group)
             {{ $group['name'] }},
         @endforeach
         </td>
-        <td>{{ json_encode($user->getPermissions()) }}</td>
+        <td class="hidden-xs">{{ json_encode($user->getPermissions()) }}</td>
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
+        <td class="hidden-xs">{{ $user->activated ? 'Yes' : 'No'}}</td>
         @if($currentUser->hasAccess('update-user-info'))
-        <td class="hidden-xs">{{ $throttle->isBanned() ? 'Yes' : 'No'}}</td>
+        <td class="hidden-xs">{{ $throttle->isBanned() ? 'Yes' : 'No'}}</td>        
         <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
         @endif
     </tr>
