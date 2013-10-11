@@ -1,5 +1,7 @@
 $(function() 
 {
+    $('.activate-user').tooltip();
+
     $('#create-user-form').on('submit', function()
     {
         var sArray = $(this).serializeArray();

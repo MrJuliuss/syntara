@@ -169,7 +169,22 @@ class UserController extends BaseController
 
     public function putActivate($userId)
     {
+        try
+        {
+            $user = Sentry::getUserProvider()->findById($userId);
+            $activationCode = $user->getActivationCode();
+            $user->attemptActivation($activationCode);
+        }
+        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            return Response::json(array('deletedUser' => false, 'message' => 'User does not exists.', 'messageType' => 'danger'));
+        }
+        catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
+        {
+            return Response::json(array('deletedUser' => false, 'message' => 'User already activated.', 'messageType' => 'danger'));
+        }
 
+        return Response::json(array('deletedUser' => true, 'message' => 'User activated with success.', 'messageType' => 'success'));
     }
 
     /**

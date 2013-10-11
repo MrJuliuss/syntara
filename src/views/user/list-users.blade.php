@@ -54,7 +54,7 @@
         <td class="hidden-xs">{{ json_encode($user->getPermissions()) }}</td>
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
-        <td class="hidden-xs">{{ $user->activated ? 'Yes' : '<a href="" class="activate-user">No</a>'}}</td>
+        <td class="hidden-xs">{{ $user->activated ? 'Yes' : '<a class="activate-user" href="#" data-toggle="tooltip" title="Activate this user">No</a>'}}</td>
         @if($currentUser->hasAccess('update-user-info'))
         <td class="hidden-xs">{{ $throttle->isBanned() ? 'Yes' : 'No'}}</td>        
         <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">show</a></td>
