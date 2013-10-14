@@ -19,14 +19,14 @@ Syntara is an admin system for Laravel 4.
 ### Todo
 
 * Send activation email
-* Any suggestions ? :) 
+* Any suggestions ? :)
 
 ## Requirements
 * PHP 5.3+
 
 ## Dependencies
 
-* [Cartalyst Sentry package](https://github.com/cartalyst/sentry)
+* [Cartalyst Sentry 2 package](https://github.com/cartalyst/sentry)
 * jQuery 2.0.*
 * Twitter Bootstrap 3
 
