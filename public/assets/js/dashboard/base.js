@@ -36,7 +36,7 @@ $(document).ready(function()
 
         $(this).parent().parent().parent().remove();
         return false;
-    }).on('click', '.pagination a', function()
+    }).on('click', '.ajax-content .pagination a', function()
     {
         ajaxContent($(this).attr('href'), ".ajax-content", null, true);
 
