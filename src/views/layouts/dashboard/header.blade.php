@@ -17,7 +17,6 @@
             <ul class="nav navbar-nav">
                 <li class=""><a href="{{ URL::to('dashboard'); }}"><i class="glyphicon glyphicon-home"></i> <span>Dashboard</span></a></li>
                 @if (Sentry::check())
-                    {{ (!empty($navPages)) ? $navPages : '' }}
                     @if($currentUser->hasAccess('view-users-list') || $currentUser->hasAccess('groups-management'))
                     <li class="dropdown" >
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span>Users</span></a></a>
@@ -35,6 +34,7 @@
                         </ul>
                     </li>
                     @endif
+                    {{ (!empty($navPages)) ? $navPages : '' }}
                 @endif
             </ul>
 
