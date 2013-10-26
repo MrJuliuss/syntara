@@ -18,7 +18,7 @@ Syntara is an admin system for Laravel 4.
 
 ### Todo
 
-* Send activation email
+* i18n support
 * Any suggestions ? :)
 
 ## Requirements
