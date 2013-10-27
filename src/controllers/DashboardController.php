@@ -19,7 +19,7 @@ class DashboardController extends BaseController
     public function getIndex()
     {
         $this->layout = View::make(Config::get('syntara::views.dashboard-index'));
-        $this->layout->title = 'Dashboard';
+        $this->layout->title = trans('syntara::all.titles.index');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
 
@@ -29,7 +29,7 @@ class DashboardController extends BaseController
     public function getLogin()
     {
         $this->layout = View::make(Config::get('syntara::views.login'));
-        $this->layout->title = 'Login';
+        $this->layout->title = trans('syntara::all.titles.login');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.login');
     }
 
@@ -86,7 +86,7 @@ class DashboardController extends BaseController
     public function getAccessDenied()
     {
         $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::all.messages.denied')));
-        $this->layout->title = 'Error';
+        $this->layout->title = trans('syntara::all.titles.error');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
 }

@@ -27,4 +27,8 @@
         'update-success' => 'User has been updated with success.',
         'update-fail' => 'Can not update this user, please try again.',
     ),
+    'titles' => array(
+        'list' => 'Users list',
+        'new' => 'New user',
+    ),
 );

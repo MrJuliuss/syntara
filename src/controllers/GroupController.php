@@ -46,7 +46,7 @@ class GroupController extends BaseController
         }
         
         $this->layout = View::make(Config::get('syntara::views.groups-index'), array('groups' => $groups));
-        $this->layout->title = "Groups list";
+        $this->layout->title = trans('syntara::groups.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.groups');
     }
     
@@ -58,7 +58,7 @@ class GroupController extends BaseController
         $permissions = PermissionProvider::findAll();
 
         $this->layout = View::make(Config::get('syntara::views.group-create'), array('permissions' => $permissions));
-        $this->layout->title = "New group";
+        $this->layout->title = trans('syntara::groups.titles.new');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_group');
     }
 

@@ -47,7 +47,7 @@ class PermissionController extends BaseController
         }
 
         $this->layout = View::make(Config::get('syntara::views.permissions-index'), array('permissions' => $permissions));
-        $this->layout->title = "Permissions list";
+        $this->layout->title = trans('syntara::permissions.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.permissions');
     }
 
@@ -57,7 +57,7 @@ class PermissionController extends BaseController
     public function getCreate()
     {
         $this->layout = View::make(Config::get('syntara::views.permission-create'));
-        $this->layout->title = "New permission";
+        $this->layout->title = trans('syntara::permissions.titles.new');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_permission');
     }
 

@@ -64,7 +64,7 @@ class UserController extends BaseController
         }
         
         $this->layout = View::make(Config::get('syntara::views.users-index'), array('datas' => $datas));
-        $this->layout->title = "Users list";
+        $this->layout->title = trans('syntara::users.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
     }
     
@@ -77,7 +77,7 @@ class UserController extends BaseController
         $permissions = PermissionProvider::findAll();
         
         $this->layout = View::make(Config::get('syntara::views.user-create'), array('groups' => $groups, 'permissions' => $permissions));
-        $this->layout->title = "New user";
+        $this->layout->title = trans('syntara::users.titles.new');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
     }
 
@@ -235,7 +235,7 @@ class UserController extends BaseController
                 'permissions' => $permissions
             ));
 
-            $this->layout->title = 'User '.$user->username;
+            $this->layout->title = $user->username;
             $this->layout->breadcrumb = array(
                     array(
                         'title' => trans('syntara::breadcrumbs.users'), 

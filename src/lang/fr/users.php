@@ -27,4 +27,8 @@
         'update-success' => 'Utilisateur mis à jour avec succès.',
         'update-fail' => 'Impossible de mettre à jour cet utilisateur, merci de réessayer plus tard.',
     ),
+    'titles' => array(
+        'list' => 'Liste des utilisateurs',
+        'new' => 'Nouvel utilisateur',
+    ),
 );

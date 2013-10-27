@@ -22,4 +22,9 @@ return array(
         'login-failed' => 'Sorry, login failed... check your credentials.',
         'denied' => 'Sorry, access denied !',
     ),
+    'titles' => array(
+        'index' => 'Dashboard',
+        'login' => 'Login',
+        'error' => 'Error',
+    ),
 );

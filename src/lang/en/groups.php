@@ -14,4 +14,8 @@
         'user-removed-success' => 'User removed from group with success.',
         'user-add-success' => 'User added to the group with success.',
     ),
+    'titles' => array(
+        'list' => 'Groups list',
+        'new' => 'New group',
+    ),
 );

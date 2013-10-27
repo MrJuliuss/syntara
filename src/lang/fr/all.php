@@ -22,4 +22,9 @@ return array(
         'login-failed' => 'Connexion impossible, vérifiez votre login et mot de passe.',
         'denied' => 'Désolé, accès réfusé !',
     ),
+    'titles' => array(
+        'index' => 'Tableau de bord',
+        'login' => 'Connexion',
+        'error' => 'Erreur',
+    ),
 );

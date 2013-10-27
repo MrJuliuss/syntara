@@ -12,4 +12,8 @@
         'update-fail' => 'Can not update this permission, please try again.',
         'remove-success' => 'Permission removed with success.',
     ),
+    'titles' => array(
+        'list' => 'Permissions list',
+        'new' => 'New permission',
+    ),
 );
