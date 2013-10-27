@@ -3,71 +3,71 @@
 return array(
     'dashboard' => array(
         array(
-            'title' => 'My Dashboard',
+            'title' => trans('syntara::breadcrumbs.dashboard'),
             'link' => 'dashboard',
             'icon' => 'glyphicon-home'
         )
     ),
     'login' => array(
         array(
-            'title' => 'Login',
+            'title' => trans('syntara::breadcrumbs.login'),
             'link' => "dashboard/login",
             'icon' => 'glyphicon-user'
         )
     ),
     'users' => array(
         array(
-            'title' => 'Users',
+            'title' => trans('syntara::breadcrumbs.users'),
             'link' => "dashboard/users",
             'icon' => 'glyphicon-user'
         )
     ),
     'create_user' => array(
         array(
-            'title' => 'Users',
+            'title' => trans('syntara::breadcrumbs.users'),
             'link' => "dashboard/users",
             'icon' => 'glyphicon-user'
         ), 
         array(
-            'title' => 'New user',
+            'title' => trans('syntara::breadcrumbs.new-user'),
             'link' => URL::current(),
             'icon' => 'glyphicon-plus-sign'
         )
     ),
     'groups' => array(
         array(
-            'title' => 'Groups',
+            'title' => trans('syntara::breadcrumbs.groups'),
             'link' => "dashboard/groups",
             'icon' => 'glyphicon-list-alt'
         )
     ),
     'create_group' => array(
         array(
-            'title' => 'Groups',
+            'title' => trans('syntara::breadcrumbs.groups'),
             'link' => "dashboard/groups",
             'icon' => 'glyphicon-list-alt'
         ),
         array(
-            'title' => 'New group',
+            'title' => trans('syntara::breadcrumbs.new-group'),
             'link' => URL::current(),
             'icon' => 'glyphicon-plus-sign'
         )
     ),
     'permissions' => array(
        array(
-            'title' => 'Permissions',
+            'title' => trans('syntara::breadcrumbs.permissions'),
             'link' => "dashboard/permissions",
             'icon' => 'glyphicon-ban-circle'
         )
     ),
     'create_permission' => array(
         array(
-            'title' => 'Permissions',
+            'title' => trans('syntara::breadcrumbs.permissions'),
             'link' => "dashboard/permissions",
             'icon' => 'glyphicon-ban-circle'
         ),
         array(
-            'title' => 'New permission',
+            'title' => trans('syntara::breadcrumbs.new-permission'),
             'link' => URL::current(),
             'icon' => 'glyphicon-plus-sign'
         )

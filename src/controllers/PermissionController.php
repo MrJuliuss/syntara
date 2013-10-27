@@ -107,7 +107,7 @@ class PermissionController extends BaseController
             $this->layout->title = 'Permission '.$permission->getName();
             $this->layout->breadcrumb = array(
                     array(
-                        'title' => 'Permissions',
+                        'title' => trans('syntara::breadcrumbs.permissions'),
                         'link' => "dashboard/permissions",
                         'icon' => 'glyphicon-ban-circle'
                     ),

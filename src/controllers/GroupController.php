@@ -159,7 +159,7 @@ class GroupController extends BaseController
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
-                    'title' => 'Groups', 
+                    'title' => trans('syntara::breadcrumbs.groups'), 
                     'link' => "dashboard/groups", 
                     'icon' => 'glyphicon-list-alt'
                 ), 

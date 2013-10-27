@@ -238,7 +238,7 @@ class UserController extends BaseController
             $this->layout->title = 'User '.$user->username;
             $this->layout->breadcrumb = array(
                     array(
-                        'title' => 'Users', 
+                        'title' => trans('syntara::breadcrumbs.users'), 
                         'link' => "dashboard/users", 
                         'icon' => 'glyphicon-user'
                     ), 
