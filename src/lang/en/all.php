@@ -17,4 +17,9 @@ return array(
     'update' => 'Update',
     'yes' => 'Yes',
     'no' => 'No',
+    'messages' => array(
+        'banned' => 'User banned, please contact the administrator.',
+        'login-failed' => 'Sorry, login failed... check your credentials.',
+        'denied' => 'Sorry, access denied !',
+    ),
 );

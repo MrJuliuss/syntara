@@ -89,7 +89,7 @@ class GroupController extends BaseController
             catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
             catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
             {
-                return Response::json(array('groupCreated' => false, 'message' => 'Group with this name already exists.', 'messageType' => 'danger'));
+                return Response::json(array('groupCreated' => false, 'message' => trans('syntara::groups.messages.exists'), 'messageType' => 'danger'));
             }
         }
 
@@ -172,7 +172,7 @@ class GroupController extends BaseController
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            $this->layout->content = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, group not found !'));
+            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::groups.messages.not-found')));
         }
     }
 
@@ -207,17 +207,17 @@ class GroupController extends BaseController
 
                 if($group->save())
                 {
-                    return Response::json(array('groupUpdated' => true, 'message' => 'Group updated with success.', 'messageType' => 'success'));
+                    return Response::json(array('groupUpdated' => true, 'message' => trans('syntara::groups.messages.success'), 'messageType' => 'success'));
                 }
                 else 
                 {
-                    return Response::json(array('groupUpdated' => false, 'message' => 'Can not update this group, please try again.', 'messageType' => 'danger'));
+                    return Response::json(array('groupUpdated' => false, 'message' => trans('syntara::groups.messages.try'), 'messageType' => 'danger'));
                 }
             }
             catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
             catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
             {
-                return Response::json(array('groupUpdated' => false, 'message' => 'Group with this name already exists.', 'messageType' => 'danger'));
+                return Response::json(array('groupUpdated' => false, 'message' => trans('syntara::groups.messages.exists'), 'messageType' => 'danger'));
             }
         }
     }
@@ -236,10 +236,10 @@ class GroupController extends BaseController
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('deletedGroup' => false, 'message' => 'Group does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('deletedGroup' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
         }
         
-        return Response::json(array('deletedGroup' => true, 'message' => "Group removed with success.", 'messageType' => 'success'));
+        return Response::json(array('deletedGroup' => true, 'message' => trans('syntara::groups.messages.delete-success'), 'messageType' => 'success'));
     }
     
     /**
@@ -256,15 +256,15 @@ class GroupController extends BaseController
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->removeGroup($group);
             
-            return Response::json(array('userDeleted' => true, 'message' => 'User removed from group with success.', 'messageType' => 'success'));
+            return Response::json(array('userDeleted' => true, 'message' => trans('syntara::groups.messages.user-removed-success'), 'messageType' => 'success'));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('userDeleted' => false, 'message' => 'User does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('userDeleted' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
         }
         catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('userDeleted' => false, 'message' => 'Group does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('userDeleted' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
         }
     }
     
@@ -283,15 +283,15 @@ class GroupController extends BaseController
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->addGroup($group);
 
-            return Response::json(array('userAdded' => true, 'message' => 'User added to the group with success.', 'messageType' => 'success'));
+            return Response::json(array('userAdded' => true, 'message' => trans('syntara::groups.messages.user-add-success'), 'messageType' => 'success'));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('userAdded' => false, 'message' => 'User does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('userAdded' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
         }
         catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('userAdded' => false, 'message' => 'Group does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('userAdded' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
         }
     }
 

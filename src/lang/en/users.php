@@ -16,4 +16,15 @@
     'last-login' => 'Last login',
     'ip' => 'Ip adress',
     'banned-at' => 'Banned at',
+    'messages' => array(
+        'not-found' => 'Sorry, user not found !',
+        'user-email-exists' => 'User with this email already exists.',
+        'user-name-exists' => 'A user with this username already exists.',
+        'remove-own-user' => "You can't delete your own user !",
+        'remove-success' =>  'User removed with success.',
+        'activate-already' => 'User already activated.',
+        'activate-success' => 'User already activated.',
+        'update-success' => 'User has been updated with success.',
+        'update-fail' => 'Can not update this user, please try again.',
+    ),
 );

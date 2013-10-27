@@ -3,9 +3,9 @@
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script> 
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span6 offset3">
+<div class="container" id="main-container">
+    <div class="row">
+        <div class="col-lg-12 offset3">
             <section class="module">
                 <div class="module-head">
                     <b>{{ trans('syntara::all.error') }}</b>

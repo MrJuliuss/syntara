@@ -5,4 +5,11 @@
     'value' => 'Valeur',
     'new' => 'Nouvelle permission',
     'description' => 'Description',
+    'messages' => array(
+        'exists' => 'Une permission avec cette valeur existe déjà.',
+        'not-found' => 'Désolé, permission non trouvée !',
+        'updated-success' => 'Permission mise à jour avec succès.',
+        'update-fail' => 'Impossible de mettre à jour cette permission, merci de réessayer plus tard.',
+        'remove-success' => 'Permission supprimée avec succès.',
+    ),
 );

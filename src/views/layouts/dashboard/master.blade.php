@@ -7,11 +7,11 @@
         <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/jquery-2.0.3.min.js') }}"></script>
         <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/base.js') }}"></script>
-        <title>{{ (!empty($siteName)) ? $siteName : "Syntara"}} - {{$title}}</title>
+        <title>{{ (!empty($siteName)) ? $siteName : "Syntara"}} - {{isset($title) ? $title : '' }}</title>
     </head>
     <body>
         @include(Config::get('syntara::views.header'))
-        {{ Breadcrumbs::create($breadcrumb); }}
+        {{ isset($breadcrumb) ? Breadcrumbs::create($breadcrumb) : ''; }}
         <div id="content">
             @yield('content')
         </div>

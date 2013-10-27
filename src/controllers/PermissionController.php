@@ -85,7 +85,7 @@ class PermissionController extends BaseController
         catch (\MrJuliuss\Syntara\Models\Permissions\ValueRequiredException $e) {}
         catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e)
         {
-            return json_encode(array('permissionCreated' => false, 'message' => 'Permission with this value already exists.', 'messageType' => 'danger'));
+            return json_encode(array('permissionCreated' => false, 'message' => trans('syntara::permissions.messages.exists'), 'messageType' => 'danger'));
         }
 
         return json_encode(array('permissionCreated' => true, 'redirectUrl' => URL::route('listPermissions')));
@@ -120,7 +120,7 @@ class PermissionController extends BaseController
         }
         catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
         {
-            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, permission not found ! '));
+            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::permissions.messages.not-found')));
         }
     }
 
@@ -149,16 +149,16 @@ class PermissionController extends BaseController
             // Update the permission
             if($permission->save())
             {
-                return Response::json(array('permissionUpdated' => true, 'message' => 'Permission has been updated with success.', 'messageType' => 'success'));
+                return Response::json(array('permissionUpdated' => true, 'message' => trans('syntara::permissions.messages.update-success'), 'messageType' => 'success'));
             }
             else 
             {
-                return Response::json(array('permissionUpdated' => false, 'message' => 'Can not update this permission, please try again.', 'messageType' => 'danger'));
+                return Response::json(array('permissionUpdated' => false, 'message' => trans('syntara::permissions.messages.update-fail'), 'messageType' => 'danger'));
             }
         }
         catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e)
         {
-            return Response::json(array('permissionUpdated' => false, 'message' => 'A permission with this value already exists.', 'messageType' => 'danger'));
+            return Response::json(array('permissionUpdated' => false, 'message' => trans('syntara::permissions.messages.exists'), 'messageType' => 'danger'));
         }
     }
 
@@ -174,9 +174,9 @@ class PermissionController extends BaseController
         }
         catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
         {
-            return Response::json(array('deletePermission' => false, 'message' => 'Permission does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('deletePermission' => false, 'message' => trans('syntara::permissions.messages.not-found'), 'messageType' => 'danger'));
         }
 
-        return Response::json(array('deletePermission' => true, 'message' => 'Permission removed with success.', 'messageType' => 'success'));
+        return Response::json(array('deletePermission' => true, 'message' => trans('syntara::permissions.messages.remove-success'), 'messageType' => 'success'));
     }
 }

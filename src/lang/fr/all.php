@@ -17,4 +17,9 @@ return array(
     'update' => 'Mettre à jour',
     'yes' => 'Oui',
     'no' => 'Non',
+    'messages' => array(
+        'banned' => array("Utilisateur bannit, merci de contacter l'administrateur"),
+        'login-failed' => 'Connexion impossible, vérifiez votre login et mot de passe.',
+        'denied' => 'Désolé, accès réfusé !',
+    ),
 );

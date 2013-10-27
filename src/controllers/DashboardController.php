@@ -60,11 +60,11 @@ class DashboardController extends BaseController
         }
         catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => 'User banned, please contact the administrator.', 'errorType' => 'danger'));
+            return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.banned'), 'errorType' => 'danger'));
         }
         catch (\RuntimeException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => 'Sorry, login failed... check your credentials.', 'errorType' => 'danger'));
+            return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.login-failed'), 'errorType' => 'danger'));
         }
 
         return Response::json(array('logged' => true));
@@ -85,7 +85,7 @@ class DashboardController extends BaseController
     */
     public function getAccessDenied()
     {
-        $this->layout = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, access denied !'));
+        $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::all.messages.denied')));
         $this->layout->title = 'Error';
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
