@@ -2,7 +2,7 @@
     {{ $users->links() }}
 
     <div style="float:right;">
-        <a id="delete-item" class="btn btn-danger users">Delete</a>
+        <a id="delete-item" class="btn btn-danger users">{{ trans('syntara::all.delete') }}</a>
     </div>
 </div>
 
@@ -13,8 +13,8 @@
         <th style="width:20px; text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
         <th style="width:20px; text-align: center;">ID</th>
-        <th style="width:200px;">Username</th>
-        <th style="width:30px; text-align: center;">Show</th>
+        <th style="width:200px;">{{ trans('syntara::users.username') }}</th>
+        <th style="width:30px; text-align: center;">{{ trans('syntara::all.show') }}</th>
     </tr>
 </thead>
 <tbody>
@@ -27,7 +27,7 @@
         @endif
         <td style="text-align: center;">{{ $user->getId() }}</td>
         <td>&nbsp;{{ $user->username }}</td>
-        <td style="text-align: center;">&nbsp;<a href="/dashboard/user/{{ $user->getId() }}">show</a></td>
+        <td style="text-align: center;">&nbsp;<a href="/dashboard/user/{{ $user->getId() }}">{{ trans('syntara::all.show') }}</a></td>
     </tr>
     @endforeach
 </tbody>
@@ -43,7 +43,7 @@
         </select>
     </div>
     <div class="col-lg-4">
-        <button id="add-user" type="button" class="btn btn-primary">Add user</button>
+        <button id="add-user" type="button" class="btn btn-primary">{{ trans('syntara::groups.add-user') }}</button>
     </div>
 </div>
 @endif

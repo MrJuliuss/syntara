@@ -2,8 +2,8 @@
     {{ $groups->links(); }}
     
     <div style="float:right;">
-        <a id="delete-item" class="btn btn-danger  groups">Delete</a>
-        <a class="btn btn-info" href="group/new">New Group</a>
+        <a id="delete-item" class="btn btn-danger  groups">{{ trans('syntara::all.delete') }}</a>
+        <a class="btn btn-info" href="group/new">{{ trans('syntara::all.new') }}</a>
     </div>
     
 </div>
@@ -12,9 +12,9 @@
     <tr>
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         <th class="col-lg-1" style="text-align: center;">Id</th>
-        <th class="col-lg-2">Name</th>
-        <th class="col-lg-7">Permissions</th>
-        <th class="col-lg-1" style="text-align: center;">Show</th>
+        <th class="col-lg-2">{{ trans('syntara::all.name') }}</th>
+        <th class="col-lg-7">{{ trans('syntara::navigation.permissions') }}</th>
+        <th class="col-lg-1" style="text-align: center;">{{ trans('syntara::all.show') }}</th>
     </tr>
 </thead>
 <tbody>
@@ -26,7 +26,7 @@
         <td style="text-align: center;">{{ $group->getId() }}</td>
         <td>{{ $group->getName() }}</td>
         <td>{{ json_encode($group->getPermissions()) }}</td>
-        <td style="text-align: center;">&nbsp;<a href="group/{{ $group->getId() }}">show</a></td>
+        <td style="text-align: center;">&nbsp;<a href="group/{{ $group->getId() }}">{{ trans('syntara::all.show') }}</a></td>
     </tr>
     @endforeach
 </tbody>

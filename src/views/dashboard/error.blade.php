@@ -8,7 +8,7 @@
         <div class="span6 offset3">
             <section class="module">
                 <div class="module-head">
-                    <b>Error !</b>
+                    <b>{{ trans('syntara::all.error') }}</b>
                 </div>
                 <div class="module-body">
                     <div class="alert alert-danger">

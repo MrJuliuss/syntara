@@ -7,8 +7,8 @@
             </div>
             <div class="modal-body">{{ $content }}</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary confirm-action">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('syntara::all.no') }}</button>
+                <button type="button" class="btn btn-primary confirm-action">{{ trans('syntara::all.yes') }}</button>
             </div>
         </div>
     </div>

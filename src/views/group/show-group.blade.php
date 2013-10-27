@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                   <label class="control-label">Group name</label>
+                                   <label class="control-label">{{ trans('syntara::groups.name') }}</label>
                                     <input class="col-lg-12 form-control" type="text" id="groupname" name="groupname" value="{{ $group->name }}">
                                </div>
                             </div>
@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="control-group">
-                                    <button id="update-group" class="btn btn-primary">Update</button>
+                                    <button id="update-group" class="btn btn-primary">{{ trans('syntara::all.update') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
         <div class="col-lg-6">
             <section class="module">
             <div class="module-head">
-                <b>Users in this group</b>
+                <b>{{ trans('syntara::groups.groups-users-title') }}</b>
             </div>
             <div class="module-body ajax-content">
                  @include('syntara::group.list-users-group')
