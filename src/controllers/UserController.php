@@ -88,17 +88,14 @@ class UserController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.users.create')
-            );
+            $validator = new \MrJuliuss\Syntara\Services\Validators\User\CreateUserValidator(Input::all());
 
             $permissionsValues = Input::get('permission');
             $permissions = $this->_formatPermissions($permissionsValues);
             
-            if($validator->fails())
+            if(!$validator->passes())
             {
-                return Response::json(array('userCreated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                return Response::json(array('userCreated' => false, 'errorMessages' => $validator->getErrors()));
             }
             
             // create user
