@@ -29,7 +29,13 @@ abstract class Validator {
 
         }
         
-        $validation = \Validator::make($this->attributes, $rules);
+        $messages = array();
+        if(is_array(trans('syntara::validation')))
+        {
+            $messages = trans('syntara::validation');
+        }
+
+        $validation = \Validator::make($this->attributes, $rules, $messages);
 
         if($validation->passes())
         {
@@ -47,3 +53,5 @@ abstract class Validator {
     }
 
 }
+
+

@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 use View;
 use Input;
 use Sentry;
@@ -40,14 +41,12 @@ class DashboardController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.users.login')
-            );
 
-            if($validator->fails())
+            $validator = new UserValidator(Input::all(), 'login');
+
+            if(!$validator->passes())
             {
-                 return Response::json(array('logged' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                 return Response::json(array('logged' => false, 'errorMessages' => $validator->getErrors()));
             }
 
             $credentials = array(

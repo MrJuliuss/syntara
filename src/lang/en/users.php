@@ -9,7 +9,7 @@
     'groups' => 'Groups',
     'permissions' => 'Permissions',
     'last-name' => 'Last Name',
-    'firs-name' => 'First Name',
+    'first-name' => 'First Name',
     'information' => 'Information',
     'registration' => 'Registration',
     'last-update' => 'Last update',
