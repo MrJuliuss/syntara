@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use MrJuliuss\Syntara\Services\Validators\Group as GroupValidator;
 use PermissionProvider;
 use View;
 use Validator;
@@ -313,15 +314,12 @@ class GroupController extends BaseController
             }
         }
         // validate group name
-        $validator = Validator::make(
-            array('groupname' => $groupname),
-            Config::get('syntara::validator.groups.create_name')
-        );
+        $validator = new GroupValidator(Input::all());
 
         $gnErrors = array();
-        if($validator->fails())
+        if(!$validator->passes())
         {
-            $gnErrors = $validator->messages()->getMessages();
+            $gnErrors = $validator->getErrors();
         }
         
         return $gnErrors;

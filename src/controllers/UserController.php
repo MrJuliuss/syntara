@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 use View;
 use Input;
 use Response;
@@ -88,11 +89,11 @@ class UserController extends BaseController
     {
         try
         {
-            $validator = new \MrJuliuss\Syntara\Services\Validators\User\CreateUserValidator(Input::all());
+            $validator = new UserValidator(Input::all(), 'create');
 
             $permissionsValues = Input::get('permission');
             $permissions = $this->_formatPermissions($permissionsValues);
-            
+
             if(!$validator->passes())
             {
                 return Response::json(array('userCreated' => false, 'errorMessages' => $validator->getErrors()));
@@ -261,13 +262,11 @@ class UserController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.users.show')
-            );
-            if($validator->fails())
+            $validator = new UserValidator(Input::all(), 'update');
+
+            if(!$validator->passes())
             {
-                return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->getErrors()));
             }
             
             $permissionsValues = Input::get('permission');

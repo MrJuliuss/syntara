@@ -5,23 +5,39 @@ abstract class Validator {
     protected $attributes;
  
     protected $errors;
+
+    protected $level;
+
+    public static $rules = [];
  
-    public function __construct($data = null)
+    public function __construct($data = null, $level = null)
     {
         $this->attributes = $data ?: \Input::all();
+        $this->level = $level;
     }
  
     public function passes()
     {
-        $validation = \Validator::make($this->attributes, static::$rules);
- 
+        $rules = array();
+        if($this->level !== null)
+        {
+            $rules = static::$rules[$this->level];
+        }
+        else
+        {
+            $rules = static::$rules;
+
+        }
+        
+        $validation = \Validator::make($this->attributes, $rules);
+
         if($validation->passes())
         {
             return true;
         }
- 
+
         $this->errors = $validation->messages()->getMessages();
- 
+
         return false;
     }
 
@@ -29,5 +45,5 @@ abstract class Validator {
     {
         return $this->errors;
     }
- 
+
 }

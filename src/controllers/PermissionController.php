@@ -1,6 +1,7 @@
 <?php namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use MrJuliuss\Syntara\Services\Validators\Permission as PermissionValidator;
 use Paginator;
 use PermissionProvider;
 use View;
@@ -68,14 +69,10 @@ class PermissionController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.permissions.create')
-            );
-
-            if($validator->fails())
+            $validator = new PermissionValidator(Input::all());
+            if(!$validator->passes())
             {
-                return Response::json(array('permissionCreated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                return Response::json(array('permissionCreated' => false, 'errorMessages' => $validator->getErrors()));
             }
 
             // create permission
@@ -133,13 +130,10 @@ class PermissionController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.permissions.create')
-            );
-            if($validator->fails())
+            $validator = new PermissionValidator(Input::all());
+            if(!$validator->passes())
             {
-                return Response::json(array('permissionUpdated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                return Response::json(array('permissionUpdated' => false, 'errorMessages' => $validator->getErrors()));
             }
 
             // Find the permission using the permission id
