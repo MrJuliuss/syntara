@@ -17,8 +17,7 @@
     'ip' => 'Adresa IP',
     'banned-at' => 'Interzis la',
     'messages' => array(
-        'not-found' => '
-Ne pare rău, utilizatorul nu a fost găsit!',
+        'not-found' => 'Ne pare rău, utilizatorul nu a fost găsit!',
         'user-email-exists' => 'Un utilizator cu acest e-mail există deja.',
         'user-name-exists' => 'Un utilizator cu acest nume de utilizator există deja.',
         'remove-own-user' => "Nu puteți șterge propriul utilizator!",
