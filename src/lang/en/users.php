@@ -25,7 +25,7 @@
         'activate-already' => 'User already activated.',
         'activate-success' => 'User activated with success.',
         'update-success' => 'User has been updated with success.',
-        'update-fail' => 'Can not update this user, please try again.',
+        'update-fail' => "Can't update this user, please try again.",
     ),
     'titles' => array(
         'list' => 'Users list',
