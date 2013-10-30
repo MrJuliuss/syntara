@@ -8,7 +8,7 @@ return array(
     'last_name.min'    => "Numele de familie trebuie să aibă cel puțin :min caractere.",
     'last_name.max'    => "Numele de familie trebuie să aibă mai puțin de :max caractere.",
     'first_name.min'   => "Numele trebuie să aibă cel puțin :min caractere.",
-    'first_name.max'   => "TNumele trebuie să aibă mai puțin de :max caractere.",
+    'first_name.max'   => "Numele trebuie să aibă mai puțin de :max caractere.",
     'username.min'     => "Numele de utilizator trebuie să aibă cel puțin :min caractere.",
     'username.max'     => "Numele de utilizator trebuie să aibă mai puțin de :max caractere.",
     'pass.min'         => "Parola trebuie să aibă cel puțin :min caractere.",

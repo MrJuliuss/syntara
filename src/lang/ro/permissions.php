@@ -6,7 +6,7 @@
     'new' => 'Permisiune nouă',
     'description' => 'Descriere',
     'messages' => array(
-        'exists' => 'PPermisiunea cu această valoare există deja.',
+        'exists' => 'Permisiunea cu această valoare există deja.',
         'not-found' => 'Ne pare rău, permisiunea nu există.',
         'update-success' => 'Permisiunea a fost actualizată cu succes.',
         'update-fail' => 'Nu s-a putut actualiza această permisiune, vă rugăm să încercați din nou.',

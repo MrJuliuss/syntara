@@ -21,7 +21,7 @@
 Ne pare rău, utilizatorul nu a fost găsit!',
         'user-email-exists' => 'Un utilizator cu acest e-mail există deja.',
         'user-name-exists' => 'Un utilizator cu acest nume de utilizator există deja.',
-        'remove-own-user' => "YNu puteți șterge propriul utilizator!",
+        'remove-own-user' => "Nu puteți șterge propriul utilizator!",
         'remove-success' =>  'Utilizatorul a fost eliminat cu succes.',
         'activate-already' => 'Utilizator deja activat.',
         'activate-success' => 'Utilizator activat cu succes',
