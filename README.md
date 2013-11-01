@@ -77,6 +77,15 @@ http://your-url/dashboard/login
 
 ## Custom Development
 
+### Change Syntara dashboard site name
+
+You can set the site name with View::composer in filters.php (or routes.php) like this :
+
+    View::composer('syntara::layouts.dashboard.master', function($view)
+    {
+        $view->with('siteName', 'My Site');
+    });
+
 ### Add a new feature to Syntara dashboard
 
 You must extend your new controller with the Syntara BaseController, like this :
