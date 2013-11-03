@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 use View;
 use Input;
 use Sentry;
@@ -19,7 +20,7 @@ class DashboardController extends BaseController
     public function getIndex()
     {
         $this->layout = View::make(Config::get('syntara::views.dashboard-index'));
-        $this->layout->title = 'Dashboard';
+        $this->layout->title = trans('syntara::all.titles.index');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
 
@@ -29,7 +30,7 @@ class DashboardController extends BaseController
     public function getLogin()
     {
         $this->layout = View::make(Config::get('syntara::views.login'));
-        $this->layout->title = 'Login';
+        $this->layout->title = trans('syntara::all.titles.login');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.login');
     }
 
@@ -40,14 +41,12 @@ class DashboardController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.users.login')
-            );
 
-            if($validator->fails())
+            $validator = new UserValidator(Input::all(), 'login');
+
+            if(!$validator->passes())
             {
-                 return Response::json(array('logged' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                 return Response::json(array('logged' => false, 'errorMessages' => $validator->getErrors()));
             }
 
             $credentials = array(
@@ -60,11 +59,11 @@ class DashboardController extends BaseController
         }
         catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => 'User banned, please contact the administrator.', 'errorType' => 'danger'));
+            return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.banned'), 'errorType' => 'danger'));
         }
         catch (\RuntimeException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => 'Sorry, login failed... check your credentials.', 'errorType' => 'danger'));
+            return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.login-failed'), 'errorType' => 'danger'));
         }
 
         return Response::json(array('logged' => true));
@@ -85,8 +84,8 @@ class DashboardController extends BaseController
     */
     public function getAccessDenied()
     {
-        $this->layout = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, access denied !'));
-        $this->layout->title = 'Error';
+        $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::all.messages.denied')));
+        $this->layout->title = trans('syntara::all.titles.error');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
     }
 }

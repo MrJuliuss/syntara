@@ -3,6 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 use View;
 use Input;
 use Response;
@@ -64,7 +65,7 @@ class UserController extends BaseController
         }
         
         $this->layout = View::make(Config::get('syntara::views.users-index'), array('datas' => $datas));
-        $this->layout->title = "Users list";
+        $this->layout->title = trans('syntara::users.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
     }
     
@@ -77,7 +78,7 @@ class UserController extends BaseController
         $permissions = PermissionProvider::findAll();
         
         $this->layout = View::make(Config::get('syntara::views.user-create'), array('groups' => $groups, 'permissions' => $permissions));
-        $this->layout->title = "New user";
+        $this->layout->title = trans('syntara::users.titles.new');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
     }
 
@@ -88,17 +89,14 @@ class UserController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.users.create')
-            );
+            $validator = new UserValidator(Input::all(), 'create');
 
             $permissionsValues = Input::get('permission');
             $permissions = $this->_formatPermissions($permissionsValues);
-            
-            if($validator->fails())
+
+            if(!$validator->passes())
             {
-                return Response::json(array('userCreated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                return Response::json(array('userCreated' => false, 'errorMessages' => $validator->getErrors()));
             }
             
             // create user
@@ -130,11 +128,11 @@ class UserController extends BaseController
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){}
         catch (\Cartalyst\Sentry\Users\UserExistsException $e)
         {
-            return json_encode(array('userCreated' => false, 'message' => 'User with this email already exists.', 'messageType' => 'danger'));
+            return json_encode(array('userCreated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
         }
         catch(\Exception $e)
         {
-            return Response::json(array('userCreated' => false, 'message' => 'A user with this username already exists.', 'messageType' => 'danger'));
+            return Response::json(array('userCreated' => false, 'message' => trans('syntara::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
 
         return json_encode(array('userCreated' => true, 'redirectUrl' => URL::route('listUsers')));
@@ -156,15 +154,15 @@ class UserController extends BaseController
             }
             else
             {
-                return Response::json(array('deletedUser' => false, 'message' => "You can't delete your own user !", 'messageType' => 'danger'));
+                return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.remove-own-user'), 'messageType' => 'danger'));
             }
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('deletedUser' => false, 'message' => 'User does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
         }
         
-        return Response::json(array('deletedUser' => true, 'message' => 'User removed with success.', 'messageType' => 'success'));
+        return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.remove-success'), 'messageType' => 'success'));
     }
 
     public function putActivate($userId)
@@ -177,14 +175,14 @@ class UserController extends BaseController
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('deletedUser' => false, 'message' => 'User does not exists.', 'messageType' => 'danger'));
+            return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
         }
         catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
         {
-            return Response::json(array('deletedUser' => false, 'message' => 'User already activated.', 'messageType' => 'danger'));
+            return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.activate-already'), 'messageType' => 'danger'));
         }
 
-        return Response::json(array('deletedUser' => true, 'message' => 'User activated with success.', 'messageType' => 'success'));
+        return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.activate-success'), 'messageType' => 'success'));
     }
 
     /**
@@ -235,10 +233,10 @@ class UserController extends BaseController
                 'permissions' => $permissions
             ));
 
-            $this->layout->title = 'User '.$user->username;
+            $this->layout->title = $user->username;
             $this->layout->breadcrumb = array(
                     array(
-                        'title' => 'Users', 
+                        'title' => trans('syntara::breadcrumbs.users'), 
                         'link' => "dashboard/users", 
                         'icon' => 'glyphicon-user'
                     ), 
@@ -251,7 +249,7 @@ class UserController extends BaseController
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => 'Sorry, user not found ! '));
+            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::users.messages.not-found')));
         }
     }
 
@@ -264,13 +262,11 @@ class UserController extends BaseController
     {
         try
         {
-            $validator = Validator::make(
-                Input::all(),
-                Config::get('syntara::validator.users.show')
-            );
-            if($validator->fails())
+            $validator = new UserValidator(Input::all(), 'update');
+
+            if(!$validator->passes())
             {
-                return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->messages()->getMessages()));
+                return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->getErrors()));
             }
             
             $permissionsValues = Input::get('permission');
@@ -329,20 +325,20 @@ class UserController extends BaseController
                     }
                 }
                 
-                return Response::json(array('userUpdated' => true, 'message' => 'User has been updated with success.', 'messageType' => 'success'));
+                return Response::json(array('userUpdated' => true, 'message' => trans('syntara::users.messages.update-success'), 'messageType' => 'success'));
             }
             else 
             {
-                return Response::json(array('userUpdated' => false, 'message' => 'Can not update this user, please try again.', 'messageType' => 'danger'));
+                return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.update-fail'), 'messageType' => 'danger'));
             }
         }
         catch(\Cartalyst\Sentry\Users\UserExistsException $e)
         {   
-            return Response::json(array('userUpdated' => false, 'message' => 'A user with this email already exists.', 'messageType' => 'danger'));
+            return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
         }
         catch(\Exception $e)
         {
-            return Response::json(array('userUpdated' => false, 'message' => 'A user with this username already exists.', 'messageType' => 'danger'));
+            return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
     }
 
