@@ -15,10 +15,10 @@ Syntara is an admin system for Laravel 4.
 * Authentication
 * Users management
 * Groups & permissions management
+* i18n : EN/FR/IT/RO
 
 ### Todo
 
-* i18n support
 * Any suggestions ? :)
 
 ## Requirements
@@ -127,13 +127,22 @@ In app/routes.php or app/filters.php :
 
 Please see syntara/src/config/views.php for more views
 
+### Change Syntara dashboard site name
+
+You can set the site name with View::composer in filters.php (or routes.php) like this :
+
+    View::composer('syntara::layouts.dashboard.master', function($view)
+    {
+        $view->with('siteName', 'My Site');
+    });
+
+
 ### Extend the user navigation by creating a view composer:
 
     View::composer('syntara::layouts.dashboard.master', function($view)
     {
         $view->nest('navPages', 'left-nav');
         $view->nest('navPagesRight', 'right-nav');
-        $view->with('siteName', 'My Site');
     });
 
 This passes in 2 views, 'left-nav' and 'right-nav'. These add links to the left or right of the navigation bar.
