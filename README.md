@@ -16,12 +16,12 @@ Syntara is an admin system for Laravel 4.
 * Users management
 * Groups & permissions management
 * i18n support : 
-- English (en)
-- French (fr)
-- Italian (it)
-- Romanian (ro)
-- Russian (ru)
-- Slovenian (sl)
+    - English (en)
+    - French (fr)
+    - Italian (it)
+    - Romanian (ro)
+    - Russian (ru)
+    - Slovenian (sl)
 
 ### Todo
 
