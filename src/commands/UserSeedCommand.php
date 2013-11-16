@@ -48,17 +48,16 @@ class UserSeedCommand extends Command
             $username = $this->argument('username');
             $groupName = $this->argument('group');
 
-             $validator = Validator::make(
-                array(
-                    'email' => $email, 
+            $validator = new UserValidator(array(
+                    'email'    => $email,
                     'pass' => $pass,
-                    'username' => $username),
-                Config::get('syntara::validator.users.create')
-            );
+                    'username' => $username,
+                ),
+            'create');
 
-            if($validator->fails())
+            if(!$validator->passes())
             {
-                foreach($validator->messages()->getMessages() as $key => $messages)
+                foreach($validator->getErrors() as $key => $messages)
                 {
                     $this->info(ucfirst($key).' :');
                     foreach($messages as $message)
