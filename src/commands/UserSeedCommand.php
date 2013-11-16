@@ -5,7 +5,7 @@ namespace MrJuliuss\Syntara\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Config;
-use Validator;
+use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 
 class UserSeedCommand extends Command 
 {
