@@ -8,7 +8,7 @@ abstract class Validator {
 
     protected $level;
 
-    public static $rules = [];
+    public static $rules = array();
  
     public function __construct($data = null, $level = null)
     {
