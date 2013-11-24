@@ -1,7 +1,7 @@
 <?php return array(
     'permissions' => 'Permessi',
     'all' => 'Tutti i permessi',
-    'id' => 'ID oermessi',
+    'id' => 'ID permessi',
     'value' => 'Valore',
     'new' => 'Nuovi permessi',
     'description' => 'Descrizione',
