@@ -15,7 +15,13 @@ Syntara is an admin system for Laravel 4.
 * Authentication
 * Users management
 * Groups & permissions management
-* i18n : EN/FR/IT/RO
+* i18n support : 
+    - English (en)
+    - French (fr)
+    - Italian (it)
+    - Romanian (ro)
+    - Russian (ru)
+    - Slovenian (sl)
 
 ### Todo
 

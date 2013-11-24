@@ -17,18 +17,11 @@ class PermissionProvider
      */
     public function createPermission($attributes)
     {
-        $validator = Validator::make($attributes, Config::get('syntara::validator.permissions.create'));
+        $permission = $this->createModel();
+        $permission->fill($attributes);
+        $permission->save();
 
-        if(!$validator->fails())
-        {
-            $permission = $this->createModel();
-            $permission->fill($attributes);
-            $permission->save();
-
-            return $permission;
-        }
-
-        return null;
+        return $permission;
     }
 
     /**
