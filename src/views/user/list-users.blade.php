@@ -7,7 +7,7 @@
         @endif
 
         @if($currentUser->hasAccess('create-user'))
-        <a class="btn btn-info" href="user/new">{{ trans('syntara::users.new') }}</a>
+        <a class="btn btn-info" href="{{ URL::route('newUser') }}">{{ trans('syntara::users.new') }}</a>
         @endif
     </div>
 </div>
@@ -54,10 +54,10 @@
         <td class="hidden-xs">{{ json_encode($user->getPermissions()) }}</td>
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
-        <td class="hidden-xs">{{ $user->activated ? trans('syntara::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('syntara::users.activate').'">'.trans('syntara::all.no').'</a>'}}</td>
+        <td class="hidden-xs">{{ $user->isActivated() ? trans('syntara::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('syntara::users.activate').'">'.trans('syntara::all.no').'</a>'}}</td>
         @if($currentUser->hasAccess('update-user-info'))
         <td class="hidden-xs">{{ $throttle->isBanned() ? trans('syntara::all.yes') : trans('syntara::all.no')}}</td>        
-        <td style="text-align: center;">&nbsp;<a href="user/{{ $user->getId() }}">{{ trans('syntara::all.show') }}</a></td>
+        <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showUser', $user->getId()) }}">{{ trans('syntara::all.show') }}</a></td>
         @endif
     </tr>
     @endforeach

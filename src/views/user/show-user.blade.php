@@ -1,4 +1,4 @@
-@extends('syntara::layouts.dashboard.master')
+@extends(Config::get('syntara::views.master'))
 
 @section('content')
 

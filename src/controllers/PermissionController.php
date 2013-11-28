@@ -105,7 +105,7 @@ class PermissionController extends BaseController
             $this->layout->breadcrumb = array(
                     array(
                         'title' => trans('syntara::breadcrumbs.permissions'),
-                        'link' => "dashboard/permissions",
+                        'link' => URL::route('showPermission', $permissionId),
                         'icon' => 'glyphicon-ban-circle'
                     ),
                     array(

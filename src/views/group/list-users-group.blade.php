@@ -27,7 +27,7 @@
         @endif
         <td style="text-align: center;">{{ $user->getId() }}</td>
         <td>&nbsp;{{ $user->username }}</td>
-        <td style="text-align: center;">&nbsp;<a href="/dashboard/user/{{ $user->getId() }}">{{ trans('syntara::all.show') }}</a></td>
+        <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showUser', $user->getId()); }}">{{ trans('syntara::all.show') }}</a></td>
     </tr>
     @endforeach
 </tbody>

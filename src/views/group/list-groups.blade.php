@@ -3,7 +3,7 @@
     
     <div style="float:right;">
         <a id="delete-item" class="btn btn-danger  groups">{{ trans('syntara::all.delete') }}</a>
-        <a class="btn btn-info" href="group/new">{{ trans('syntara::all.new') }}</a>
+        <a class="btn btn-info" href="{{ URL::route('newGroup') }}">{{ trans('syntara::all.new') }}</a>
     </div>
     
 </div>
@@ -26,7 +26,7 @@
         <td style="text-align: center;">{{ $group->getId() }}</td>
         <td>{{ $group->getName() }}</td>
         <td>{{ json_encode($group->getPermissions()) }}</td>
-        <td style="text-align: center;">&nbsp;<a href="group/{{ $group->getId() }}">{{ trans('syntara::all.show') }}</a></td>
+        <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showGroup', $group->getId())}}">{{ trans('syntara::all.show') }}</a></td>
     </tr>
     @endforeach
 </tbody>

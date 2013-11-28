@@ -1,4 +1,4 @@
-@extends('syntara::layouts.dashboard.master')
+@extends(Config::get('syntara::views.master'))
 
 @section('content')
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/permission.js') }}"></script>

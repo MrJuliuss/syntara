@@ -49,7 +49,7 @@ class UserController extends BaseController
         {
             $emptyUsers = $emptyUsers->join('throttle', 'throttle.user_id', '=', 'users.id')
                 ->where('throttle.banned', '=', $bannedUsers)
-                ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions');
+                ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions', 'users.activated');
         }
 
         $users = $emptyUsers->paginate(20);
@@ -237,7 +237,7 @@ class UserController extends BaseController
             $this->layout->breadcrumb = array(
                     array(
                         'title' => trans('syntara::breadcrumbs.users'), 
-                        'link' => "dashboard/users", 
+                        'link' => URL::route('showUser', $userId), 
                         'icon' => 'glyphicon-user'
                     ), 
                     array(

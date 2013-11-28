@@ -4,28 +4,28 @@ return array(
     'dashboard' => array(
         array(
             'title' => trans('syntara::breadcrumbs.dashboard'),
-            'link' => 'dashboard',
+            'link' => URL::current(),
             'icon' => 'glyphicon-home'
         )
     ),
     'login' => array(
         array(
             'title' => trans('syntara::breadcrumbs.login'),
-            'link' => "dashboard/login",
+            'link' => URL::route('getLogin'),
             'icon' => 'glyphicon-user'
         )
     ),
     'users' => array(
         array(
             'title' => trans('syntara::breadcrumbs.users'),
-            'link' => "dashboard/users",
+            'link' => URL::route('listUsers'),
             'icon' => 'glyphicon-user'
         )
     ),
     'create_user' => array(
         array(
             'title' => trans('syntara::breadcrumbs.users'),
-            'link' => "dashboard/users",
+            'link' => URL::route('listUsers'),
             'icon' => 'glyphicon-user'
         ), 
         array(
@@ -37,14 +37,14 @@ return array(
     'groups' => array(
         array(
             'title' => trans('syntara::breadcrumbs.groups'),
-            'link' => "dashboard/groups",
+            'link' => URL::route('listGroups'),
             'icon' => 'glyphicon-list-alt'
         )
     ),
     'create_group' => array(
         array(
             'title' => trans('syntara::breadcrumbs.groups'),
-            'link' => "dashboard/groups",
+            'link' => URL::route('listGroups'),
             'icon' => 'glyphicon-list-alt'
         ),
         array(
@@ -56,14 +56,14 @@ return array(
     'permissions' => array(
        array(
             'title' => trans('syntara::breadcrumbs.permissions'),
-            'link' => "dashboard/permissions",
+            'link' => URL::route('listPermissions'),
             'icon' => 'glyphicon-ban-circle'
         )
     ),
     'create_permission' => array(
         array(
             'title' => trans('syntara::breadcrumbs.permissions'),
-            'link' => "dashboard/permissions",
+            'link' => URL::route('listPermissions'),
             'icon' => 'glyphicon-ban-circle'
         ),
         array(

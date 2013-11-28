@@ -1,13 +1,13 @@
 <?php
 
-Route::group(array('before' => 'basicAuth', 'prefix' => 'dashboard'), function()
+Route::group(array('before' => 'basicAuth', 'prefix' => Config::get('syntara::config.uri')), function()
 {
     Route::get('', array('as' => 'indexDashboard', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getIndex'));
     Route::get('logout', array('as' => 'logout', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getLogout'));
     Route::get('access-denied', array('as' => 'accessDenied', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getAccessDenied'));
 });
 
-Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => 'dashboard'), function()
+Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::get('syntara::config.uri')), function()
 {
      // Users
     Route::get('users', array('as' => 'listUsers', 'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getIndex'));
@@ -35,7 +35,7 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => 'dashboar
     Route::put('permission/{permissionId}', array('as' => 'putPermission', 'uses' => 'MrJuliuss\Syntara\Controllers\PermissionController@putShow'));
 });
 
-Route::group(array('before' => 'notAuth', 'prefix' => 'dashboard'), function()
+Route::group(array('before' => 'notAuth', 'prefix' => Config::get('syntara::config.uri')), function()
 {
     Route::get('login', array('as' => 'getLogin', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getLogin'));
     Route::post('login', array('as' => 'postLogin', 'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@postLogin'));
