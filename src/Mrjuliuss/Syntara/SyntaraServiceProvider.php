@@ -30,7 +30,7 @@ class SyntaraServiceProvider extends ServiceProvider
     */
     public function register()
     {
-        //Load package config
+        // load package config
         $this->app['config']->package('mrjuliuss/syntara', __DIR__.'/../../config');
 
         $this->app['config']->set('view.pagination', 'syntara::layouts.pagination.bootstrap3');
@@ -46,6 +46,12 @@ class SyntaraServiceProvider extends ServiceProvider
         {
             return new Commands\InstallCommand($app);
         });
+
+        // add the update command to the application
+        $this->app['syntara:update'] = $this->app->share(function($app)
+        {
+            return new Commands\UpdateCommand($app);
+        });
         
         // register helpers
         $this->registerHelpers();
@@ -53,9 +59,10 @@ class SyntaraServiceProvider extends ServiceProvider
         // register models
         $this->registerModels();
         
-        //Add commands
+        // add commands
         $this->commands('create:user');
         $this->commands('syntara:install');
+        $this->commands('syntara:update');
     }
 
     /**
@@ -73,12 +80,13 @@ class SyntaraServiceProvider extends ServiceProvider
     */
     public function registerHelpers()
     {
+        // register breadcrumbs
         $this->app['breadcrumbs'] = $this->app->share(function()
         {
             return new \MrJuliuss\Syntara\Helpers\Breadcrumbs();
         });
         
-        // Shortcut so developers don't need to add an Alias in app/config/app.php
+        // shortcut so developers don't need to add an Alias in app/config/app.php
         $this->app->booting(function()
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
@@ -88,11 +96,13 @@ class SyntaraServiceProvider extends ServiceProvider
 
     public function registerModels()
     {
+        // register permission provider
         $this->app['permissionProvider'] = $this->app->share(function()
         {
             return new \MrJuliuss\Syntara\Models\Permissions\PermissionProvider();
         });
         
+        // add permission provider to aliases
         $this->app->booting(function()
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
