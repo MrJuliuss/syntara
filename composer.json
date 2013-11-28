@@ -12,8 +12,8 @@
     "require":
     {
         "php": ">=5.3.0",
-        "illuminate/support": "4.0.x",
-        "cartalyst/sentry": "2.0.*"
+        "illuminate/support": "4.0.*",
+        "cartalyst/sentry": "2.1.*"
     },
     "require-dev": {
         "illuminate/database": "4.0.*"
