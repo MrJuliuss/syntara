@@ -46,6 +46,12 @@ class SyntaraServiceProvider extends ServiceProvider
         {
             return new Commands\InstallCommand($app);
         });
+
+        // add the update command to the application
+        $this->app['syntara:update'] = $this->app->share(function($app)
+        {
+            return new Commands\UpdateCommand($app);
+        });
         
         // register helpers
         $this->registerHelpers();
@@ -56,6 +62,7 @@ class SyntaraServiceProvider extends ServiceProvider
         //Add commands
         $this->commands('create:user');
         $this->commands('syntara:install');
+        $this->commands('syntara:update');
     }
 
     /**
