@@ -22,6 +22,7 @@ Syntara is an admin system for Laravel 4.
     - Romanian (ro)
     - Russian (ru)
     - Slovenian (sl)
+    - Vietnamese (vi)
 
 ### Todo
 
@@ -165,6 +166,14 @@ This passes in 2 views, 'left-nav' and 'right-nav'. These add links to the left 
     </li>
 
 Pass a string called siteName to the view composer to change the site name.
+
+### Add your favicon
+
+    View::composer('syntara::layouts.dashboard.master', function($view)
+    {
+        $view->nest('favicon', 'favicon_path');
+        $view->nest('faviconType', 'favicon_type');
+    });
 
 ### Use Syntara Permission Models
 

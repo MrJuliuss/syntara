@@ -55,23 +55,5 @@ class UpdateCommand extends Command
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
-
-        // create admin group
-        try
-        {
-            $this->info('Creating "Admin" group...');
-            $group = Sentry::getGroupProvider()->create(array(
-                'name'        => 'Admin',
-                'permissions' => array(
-                    'superuser' => 1
-                ),
-            ));
-
-            $this->info('"Admin" group created with success');
-        }
-        catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
-        {
-            $this->info('"Admin" group already exists');
-        }
     }
 }
