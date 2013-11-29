@@ -237,7 +237,7 @@ class UserController extends BaseController
             $this->layout->breadcrumb = array(
                     array(
                         'title' => trans('syntara::breadcrumbs.users'), 
-                        'link' => URL::route('showUser', $userId), 
+                        'link' => URL::route('listUsers'), 
                         'icon' => 'glyphicon-user'
                     ), 
                     array(

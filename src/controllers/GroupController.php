@@ -161,7 +161,7 @@ class GroupController extends BaseController
             $this->layout->breadcrumb = array(
                 array(
                     'title' => trans('syntara::breadcrumbs.groups'), 
-                    'link' => URL::route('showGroup', $groupId), 
+                    'link' => URL::route('listGroups'), 
                     'icon' => 'glyphicon-list-alt'
                 ), 
                 array(
