@@ -43,12 +43,6 @@ class UpdateCommand extends Command
     {
         $this->info('## Syntara Update ##');
 
-        // publish sentry config
-        $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );
-
-        // publish syntara config
-        $this->call('config:publish', array('package' => 'mrjuliuss/syntara' ) );
-
         // publish syntara assets
         $this->call('asset:publish', array('package' => 'mrjuliuss/syntara' ) );
 
