@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'remember' => 'Ghi nhó',
+    'remember' => 'Ghi nhớ',
     'signin' => 'Đăng nhập',
     'email' => 'Email',
     'password' => 'Mật khẩu',
