@@ -26,6 +26,8 @@ Syntara is an admin system for Laravel 4.
 
 ### Todo
 
+* Laravel 4.1 support
+
 * Any suggestions ? :)
 
 ## Requirements
