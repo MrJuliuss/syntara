@@ -1,6 +1,6 @@
 <?php return array(
     'all' => 'Tất cả nhóm',
-    'id' => 'ID nhóm',
+    'id' => 'ID',
     'name' => 'Tên nhóm',
     'add-user' => 'Thêm thành viên',
     'new' => 'Tạo nhóm mới',

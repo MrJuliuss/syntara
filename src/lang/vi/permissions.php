@@ -1,7 +1,7 @@
 <?php return array(
     'permissions' => 'Quyền hạn',
     'all' => 'Tất cả quyền hạn',
-    'id' => 'ID Quyền',
+    'id' => 'ID',
     'value' => 'Giá trị',
     'new' => 'Tạo quyền mới',
     'description' => 'Mô tả',
