@@ -83,6 +83,10 @@ Now go to login page :
 
 http://your-url/dashboard/login
 
+### Update command:
+```php artisan syntara:update```
+
+This command does the same as the install command, only **it won't publish again the config files**, overwriting your changes, allowing users to run any new database migrations or publish any new assets.
 
 ## Custom Development
 
