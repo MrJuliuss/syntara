@@ -45,7 +45,7 @@ If your application uses **Laravel 4.0** :
 
 If your application uses **Laravel 4.1** :
 
-```(COMING SOON)```
+```"mrjuliuss/syntara": "1.2.*"```
 
 Run the Composer update command
 
