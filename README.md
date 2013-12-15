@@ -25,14 +25,9 @@ Syntara is an admin system for Laravel 4.
     - Vietnamese (vi)
     - Spanish (es)
 
-### Todo
-
-* Laravel 4.1 support
-
-* Any suggestions ? :)
-
 ## Requirements
-* PHP 5.3+
+* PHP 5.3+ (Syntara 1.1)
+* PHP 5.4+ (Syntara 1.2)
 
 ## Dependencies
 
@@ -44,7 +39,13 @@ Syntara is an admin system for Laravel 4.
 
 In the require key of composer.json file add the following line
 
+If your application uses **Laravel 4.0** :
+
 ```"mrjuliuss/syntara": "1.1.*"```
+
+If your application uses **Laravel 4.1** :
+
+```(COMING SOON)```
 
 Run the Composer update command
 
