@@ -20,6 +20,9 @@ class PermissionProviderTest extends \TestCase
         $this->assertEquals($permission, Permission::where('value', '=', 'foo-bar')->get()->first());
     }
 
+    /**
+     * @expectedException MrJuliuss\Syntara\Models\Permissions\ValueRequiredException
+     */
     public function testCreatePermissionInvalidInfos()
     {
         $permissionData = array(
