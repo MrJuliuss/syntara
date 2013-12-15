@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">{{ trans('syntara::all.update') }}</button>
+                                    <button id="add-user" class="btn btn-primary" style="margin-top: 15px;">{{ trans('syntara::all.create') }}</button>
                                 </div>
                             </div>
                         </div>
