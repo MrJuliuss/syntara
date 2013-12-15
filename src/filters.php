@@ -26,8 +26,8 @@ Route::filter('notAuth', function()
 
 Route::filter('hasPermissions', function($route, $request, $userPermission = null)
 {
-    if (Route::currentRouteName() == "putUser" && Sentry::getUser()->id == Request::segment(3) ||
-        Route::currentRouteName() == "showUser" && Sentry::getUser()->id == Request::segment(3))
+    if (Route::currentRouteNamed('putUser') && Sentry::getUser()->id == Request::segment(3) ||
+        Route::currentRouteNamed('showUser') && Sentry::getUser()->id == Request::segment(3))
     {
     }
     else
@@ -35,7 +35,7 @@ Route::filter('hasPermissions', function($route, $request, $userPermission = nul
         if($userPermission === null)
         {
             $permissions = Config::get('syntara::permissions');
-            $permission = $permissions[Route::currentRouteName()];
+            $permission = $permissions[Route::current()->getName()];
         }
         else
         {

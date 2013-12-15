@@ -3,7 +3,7 @@
 namespace MrJuliuss\Syntara\Controllers;
 
 use Illuminate\Support\Facades\View;
-use Illuminate\Routing\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Config;
 
 class BaseController extends Controller 

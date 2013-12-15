@@ -12,11 +12,11 @@
     "require":
     {
         "php": ">=5.3.0",
-        "illuminate/support": "4.0.*",
+        "illuminate/support": "4.1.*",
         "cartalyst/sentry": "~2"
     },
     "require-dev": {
-        "illuminate/database": "4.0.*"
+        "illuminate/database": "4.1.*"
     },
     "autoload": {
         "classmap": [
