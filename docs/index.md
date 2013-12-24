@@ -31,11 +31,11 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 * jQuery 2.0.*
 * Twitter Bootstrap 3
 
-## [Screenshots](screenshots.html)
-## [Installation](installation.html)
+## [Screenshots](docs/screenshots.html)
+## [Installation](docs/installation.html)
 
-## [Custom Development](custom.html)
+## [Custom Development](docs/custom.html)
 
-## [Changelogs](changelogs.html)
+## [Changelogs](docs/changelogs.html)
 
-## [License](license.html)
+## [License](docs/license.html)
