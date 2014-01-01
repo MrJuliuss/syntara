@@ -43,6 +43,8 @@ Add  ```'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry'``` to the end of t
         'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry'
     ),
 
+Before the next step, don't forget to configure your database in ```app/config/database.php```
+
 ### Install command
 ```php artisan syntara:install```
 
