@@ -33,8 +33,6 @@ class SyntaraServiceProvider extends ServiceProvider
         // load package config
         $this->app['config']->package('mrjuliuss/syntara', __DIR__.'/../../config');
 
-        $this->app['config']->set('view.pagination', 'syntara::layouts.pagination.bootstrap3');
-        
         // add the user seed command to the application
         $this->app['create:user'] = $this->app->share(function($app)
         {
