@@ -1,10 +1,13 @@
 <?php namespace MrJuliuss\Syntara\Services\Validators;
 
+use Config;
+
 class Permission extends \MrJuliuss\Syntara\Services\Validators\Validator
 {
-    public static $rules = array(
-        'name' => array('required', 'min:3', 'max:100'),
-        'value' => array('required', 'alpha_dash', 'min:3', 'max:100'),
-        'description' => array('required', 'min:3', 'max:255')
-    );
+    public function __construct($data = null, $level = null)
+    {
+        parent::__construct($data, $level);
+
+        static::$rules = Config::get('syntara::validator.permission');
+    }
 }
