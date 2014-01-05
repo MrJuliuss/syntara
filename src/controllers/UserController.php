@@ -297,7 +297,7 @@ class UserController extends BaseController
             {
                 // if the user has permission to update
                 $banned = Input::get('banned');
-                if(isset($banned))
+                if(isset($banned) && Sentry::getUser()->getId() !== $user->getId())
                 {
                     $this->_banUser($userId, $banned);
                 }

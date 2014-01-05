@@ -56,6 +56,7 @@
                                 @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
                             @endif
                         </div>
+                        @if($user->getId() !== $currentUser->getId())
                         <div class="col-lg-2">
                             <label>{{ trans('syntara::users.banned') }}</label>
                             <div class="switch-toggle well">
@@ -68,6 +69,7 @@
                                 <a class="btn btn-primary"></a>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
