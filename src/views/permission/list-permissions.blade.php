@@ -7,7 +7,7 @@
         @endif
 
         @if($currentUser->hasAccess('permissions-management'))
-        <a class="btn btn-info" href="{{ URL::route('newPermission') }}">{{ trans('syntara::permissions.new') }}</a>
+        <a class="btn btn-info btn-new" href="{{ URL::route('newPermission') }}">{{ trans('syntara::permissions.new') }}</a>
         @endif
     </div>
 </div>

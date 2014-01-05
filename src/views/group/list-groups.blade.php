@@ -3,7 +3,7 @@
     
     <div style="float:right;">
         <a id="delete-item" class="btn btn-danger  groups">{{ trans('syntara::all.delete') }}</a>
-        <a class="btn btn-info" href="{{ URL::route('newGroup') }}">{{ trans('syntara::all.new') }}</a>
+        <a class="btn btn-info btn-new" href="{{ URL::route('newGroup') }}">{{ trans('syntara::all.new') }}</a>
     </div>
     
 </div>

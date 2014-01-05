@@ -299,6 +299,10 @@ body.modal-open,
     display: none;
 }
 
+.btn-new {
+    margin-left: 10px;
+}
+
 .status-message {
     margin-bottom: 15px;
 }

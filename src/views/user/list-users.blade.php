@@ -7,7 +7,7 @@
         @endif
 
         @if($currentUser->hasAccess('create-user'))
-        <a class="btn btn-info" href="{{ URL::route('newUser') }}">{{ trans('syntara::users.new') }}</a>
+        <a class="btn btn-info btn-new" href="{{ URL::route('newUser') }}">{{ trans('syntara::users.new') }}</a>
         @endif
     </div>
 </div>
