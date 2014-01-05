@@ -72,13 +72,12 @@ View ```left-nav.blade.php``` example :
 
     <li class=""><a href=""><i class="glyphicon glyphicon-home"></i> <span>Home</span></a></li>
     <li class="dropdown" >
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-home"></i> <span>Blog</span></a></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-home"></i><span>Blog</span></a></a>
         <ul class="dropdown-menu">
             <li><a href="">Articles</a></li>
             <li><a href="">Comments</a></li>
         </ul>
     </li>
-
 
 
 ## Favicon
@@ -91,6 +90,14 @@ To add your own favicon to Syntara, you need to use a view composer
         $view->nest('faviconType', 'favicon_type');
     });
 
+
+## Change validator rules
+
+Change rules in the published validator config file :
+
+```app/config/packages/mrjuliuss/syntara/validator.php```
+
+more informations about rules : http://laravel.com/docs/validation
 
 ## Permissions models
 
@@ -123,8 +130,6 @@ Create a permission
         'description' => 'This is a new permission'
     );
     $permissionModel = PermissionProvider::createPermission();
-
-
 
 Create an empty permission
 

@@ -1,21 +1,21 @@
 <?php namespace MrJuliuss\Syntara\Services\Validators;
- 
+
 abstract class Validator {
- 
+
     protected $attributes;
- 
+
     protected $errors;
 
     protected $level;
 
     public static $rules = array();
- 
+
     public function __construct($data = null, $level = null)
     {
         $this->attributes = $data ?: \Input::all();
         $this->level = $level;
     }
- 
+
     public function passes()
     {
         $rules = array();
