@@ -44,6 +44,7 @@ Add  ```'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry'``` to the end of t
     ),
 
 Before the next step, don't forget to configure your database in ```app/config/database.php```
+Please note that syntara is **not compatible with sqlite**.
 
 ### Install command
 ```php artisan syntara:install```
