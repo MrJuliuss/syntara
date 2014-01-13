@@ -1,4 +1,10 @@
 /vendor
 composer.phar
 composer.lock
+.AppleDouble/
+.AppleDB/
+.AppleDesktop/
 .DS_Store
+Network\ Trash\ Folder
+Temporary\ Items
+._*
