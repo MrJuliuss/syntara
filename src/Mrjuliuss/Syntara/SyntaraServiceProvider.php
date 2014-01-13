@@ -18,9 +18,7 @@ class SyntaraServiceProvider extends ServiceProvider
     public function boot() 
     {
         $this->package('mrjuliuss/syntara');
-
-        // include start file
-        include ( __DIR__ . '/../../start.php');
+        $this->loadIncludes();
     }
 
     /**
@@ -73,6 +71,29 @@ class SyntaraServiceProvider extends ServiceProvider
     public function provides()
     {
         return array();
+    }
+
+    /**
+     * Include some specific files from the src-root.
+     *
+     * @return void
+     */
+    private function loadIncludes()
+    {
+        // Add file names without the `php` extension to this list as needed.
+        $filesToLoad = array(
+            'composers',
+            'filters',
+            'routes',
+        );
+
+        // Run through $filesToLoad array.
+        foreach ($filesToLoad as $file) {
+            // Add needed database structure and file extension.
+            $file = __DIR__ . '/../../' . $file . '.php';
+            // If file exists, include.
+            if (is_file($file)) include $file;
+        }
     }
 
     /**
