@@ -31,6 +31,17 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 * jQuery 2.0.*
 * Twitter Bootstrap 3
 
+## Contributions
+
+Thank you to [everyone](https://github.com/MrJuliuss/syntara/graphs/contributors) who has contributed to Syntara
+
+### Pull requests
+
+Laravel 4 support, send pull request on 1.1 branch
+Laravel 4.1 support, send pull requests on 1.2 branch
+
+Please 
+
 ## [Screenshots](http://mrjuliuss.github.io/syntara/docs/screenshots.html)
 
 ## [Installation](http://mrjuliuss.github.io/syntara/docs/installation.html)
