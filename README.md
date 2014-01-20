@@ -19,6 +19,10 @@ Syntara is an admin system for Laravel 4, made for user management easier.
     - Slovenian (sl)
     - Vietnamese (vi)
     - Spanish (es)
+    - Swedish (se)
+    - Greek (el)
+    - Turkish (tr)
+    - Dutch (nl)
 
 ## Requirements
 
@@ -30,6 +34,15 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 * [Cartalyst Sentry 2 package](https://github.com/cartalyst/sentry)
 * jQuery 2.0.*
 * Twitter Bootstrap 3
+
+## Contributions
+
+Thanks to all [contributors](https://github.com/MrJuliuss/syntara/graphs/contributors)
+
+### Pull requests
+
+* Laravel 4 support, send pull request on 1.1 branch
+* Laravel 4.1 support, send pull requests on 1.2 branch
 
 ## <a href="http://mrjuliuss.github.io/syntara/docs/screenshots.html" target="_blank">Screenshots</a>
 
