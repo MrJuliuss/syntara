@@ -10,7 +10,7 @@ $(document).ready(function()
         
         $.ajax({
             "type": "POST",
-            "url": "login",
+            "url": window.location.href.toString(),
             "data": {"email" : $('#email').val(), "pass" : $('#pass').val(), 'remember' : remember},
             "dataType": "json"
         }).done(function(result) 
