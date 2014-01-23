@@ -9,7 +9,6 @@ use Input;
 use Response;
 use Request;
 use Sentry;
-use Validator;
 use Config;
 use URL;
 use PermissionProvider;
