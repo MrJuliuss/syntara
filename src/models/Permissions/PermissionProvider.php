@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Facade;
 use MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException;
 use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
-use Validator;
-use Config;
 
 class PermissionProvider
 {
