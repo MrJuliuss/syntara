@@ -4,13 +4,16 @@
 
 You must extend your new controller with the Syntara BaseController, like this :
 
+    /*
+    app/controller/FeatureControler.php
+    */
     use MrJuliuss\Syntara\Controllers\BaseController;
 
-    class FeatureController extends BaseController
+    class HomeController extends BaseController
     {
         public function getIndex()
         {
-            $this->layout = View::make('index-view');
+            $this->layout = View::make('index');
             $this->layout->title = 'My new feature';
 
             // add breadcrumb to current page
@@ -27,7 +30,30 @@ You must extend your new controller with the Syntara BaseController, like this :
                 ),
             );
         }
+
     }
+
+To find your current loggued user, you need to add the ```basicAuth``` filter to your route : 
+
+    Route::get('dashboard/home', array(
+        'as' => 'test_home',
+        'before' => 'basicAuth|hasPermissions:user.create',
+        'uses' => 'HomeController@getIndex'
+        )
+    );
+
+HomeController getIndex view :
+
+    /*
+    app/views/index.blade.php
+    */
+
+    @extends(Config::get('syntara::views.master'))
+    @section('content')
+
+    {{var_dump($currentUser);}}
+
+    @stop
 
 ## New permissions
 Add permission to your new Controller route :
