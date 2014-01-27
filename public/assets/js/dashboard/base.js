@@ -5,7 +5,7 @@ $(document).ajaxStart(function()
     $('.ajax-loader').show();
 });
 
-$( document ).ajaxComplete(function(event, request, settings)
+$( document ).ajaxComplete(function()
 {
     $('.ajax-loader').hide();
 });

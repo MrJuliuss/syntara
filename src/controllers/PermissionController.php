@@ -9,7 +9,6 @@ use Config;
 use Input;
 use Response;
 use Request;
-use Validator;
 use URL;
 
 class PermissionController extends BaseController 

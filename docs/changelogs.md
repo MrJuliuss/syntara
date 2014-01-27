@@ -1,5 +1,17 @@
 #Versions
 
+##1.2.2
+
+Same as 1.1.18
+
+##1.1.18
+
+* Refactoring code (deleting src/start.php, routes & filters are now loaded in SyntaraServiceProvider)
+* Dutch support
+* Turkish support
+* Swedish support
+* Greek support
+
 ##1.2.1
 
 Same as 1.1.17 

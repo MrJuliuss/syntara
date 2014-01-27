@@ -8,7 +8,6 @@ use View;
 use Input;
 use Sentry;
 use Redirect;
-use Validator;
 use Config;
 use Response;
 

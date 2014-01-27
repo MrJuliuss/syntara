@@ -6,7 +6,6 @@ use MrJuliuss\Syntara\Controllers\BaseController;
 use MrJuliuss\Syntara\Services\Validators\Group as GroupValidator;
 use PermissionProvider;
 use View;
-use Validator;
 use Input;
 use Config;
 use Response;
