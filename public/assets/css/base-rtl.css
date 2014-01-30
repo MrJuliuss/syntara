@@ -1,0 +1,8 @@
+#breadcrumb a i {
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+#breadcrumb a {
+    background-position: left center;
+}
