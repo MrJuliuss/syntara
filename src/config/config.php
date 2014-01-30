@@ -9,5 +9,5 @@ return array(
      * Language direction
      * Values : ltr (default), rtl
      */
-    'direction' => 'rtl'
+    'direction' => 'ltr'
 );
