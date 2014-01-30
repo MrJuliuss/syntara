@@ -149,7 +149,7 @@ a:hover{
 #breadcrumb a {
     padding: 8px 20px 8px 10px;
     display: inline-block;
-    background-image: url('../img/breadcrumb.png');
+    background-image: url('../img/breadcrumb-right.png');
     background-position: center right;
     background-repeat: no-repeat;
     font-size: 11px;
