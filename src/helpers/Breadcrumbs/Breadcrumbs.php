@@ -52,7 +52,15 @@ class Breadcrumbs
         {
             $class = "current";
         }
-        
-        return '<a href="'.URL::to($item["link"]).'" class="tip-bottom '.$class.'"><i class="glyphicon '.$item["icon"].'"></i>'.$item["title"].'</a>';
+
+        $html = '<a href="'.URL::to($item["link"]).'" class="tip-bottom '.$class.'">';
+        if($item["icon"] !== '')
+        {
+            $html .= '<i class="glyphicon '.$item["icon"].'"></i>';
+        }
+
+        $html .= $item["title"].'</a>';
+
+        return $html;
     }
 }
