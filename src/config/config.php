@@ -1,5 +1,13 @@
 <?php
 
 return array(
-    'uri' => 'dashboard'
+    /**
+     * Default dashboard uri
+     */
+    'uri' => 'dashboard',
+    /**
+     * Language direction
+     * Values : ltr (default), rtl
+     */
+    'direction' => 'ltr'
 );
