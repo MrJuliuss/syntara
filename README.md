@@ -1,14 +1,14 @@
 # Syntara
 
-Syntara Laravel 4 نىڭ باشقۇرۇش سۇپىسى, ئەزا باشقۇرۇش ئىشلىرىنى تېخىمۇ ئاسانلاشتۇرۇش ئۈچۈن ئىشلەنگەن
+Syntara is an admin system for Laravel 4, made for user management easier.
 
 <img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" width="900" />
 
 ## ئالاھىدىلىكلەر
 
 * Authentication
-* ئەزا باشقۇرۇش
-* ھوقۇق باشقۇرۇش
+* Users management
+* Groups & permissions management
 * Responsive design
 * i18n support :
     - English (en)
@@ -23,6 +23,7 @@ Syntara Laravel 4 نىڭ باشقۇرۇش سۇپىسى, ئەزا باشقۇرۇ�
     - Greek (el)
     - Turkish (tr)
     - Dutch (nl)
+    - Uyghur (ug)
 
 ## Requirements
 
