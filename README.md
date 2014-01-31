@@ -4,7 +4,7 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 
 <img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" width="900" />
 
-## ئالاھىدىلىكلەر
+## Features
 
 * Authentication
 * Users management
