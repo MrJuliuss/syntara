@@ -165,3 +165,8 @@ Create an empty permission
 
 Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs :
 http://docs.cartalyst.com/sentry-2
+
+## RTL (Right to Left) languages
+
+Since 1.1.19 & 1.2.3, Syntara support RTL languages.
+In **app/config/packages/mrjuliuss/syntara/config.php** , change ```direction``` from **LTR** to **RTL**

@@ -1,5 +1,17 @@
 #Versions
 
+##1.2.3
+
+Same as 1.1.19
+
+##1.1.19
+
+* Refactoring codes
+* RTL languages support
+* Uyghur support
+* Bootstrap 3.1.x support
+* jQuery 2.1.x support
+
 ##1.2.2
 
 Same as 1.1.18
