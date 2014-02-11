@@ -1,58 +1,157 @@
 <?php namespace MrJuliuss\Syntara\Tests;
 
+use Mockery as m;
 use MrJuliuss\Syntara\Models\Permissions\PermissionProvider;
-use MrJuliuss\Syntara\Models\Permissions\Permission;
-use DB;
+use PHPUnit_Framework_TestCase;
 
-class PermissionProviderTest extends \TestCase
-{
+class PermissionProviderTest extends PHPUnit_Framework_TestCase {
+
+    /**
+     * Close mockery.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        m::close();
+    }
+
     public function testCreatePermission()
     {
-        DB::table('permissions')->where('value', '=', 'foo-bar')->delete();
-
-        $permissionData = array(
+        $attributes = array(
             'name' => 'Foo bar',
-            'value' => 'foo-bar',
+            'value' => 'Foo',
             'description' => 'Foo Bar'
         );
-        $permission = \PermissionProvider::createPermission($permissionData);
 
-        $this->assertEquals($permission, Permission::where('value', '=', 'foo-bar')->get()->first());
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission->shouldReceive('fill')->with($attributes)->once();
+        $permission->shouldReceive('save')->once()->andReturn($permission);
+
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider->shouldReceive('createModel')->once()->andReturn($permission);
+
+        $this->assertEquals($permission, $provider->createPermission($attributes));
     }
 
     /**
      * @expectedException MrJuliuss\Syntara\Models\Permissions\ValueRequiredException
      */
-    public function testCreatePermissionInvalidInfos()
+    public function testCreatePermissionInvalidValue()
     {
-        $permissionData = array(
+        $attributes = array(
             'name' => 'Foo bar',
             'value' => '',
             'description' => 'Foo Bar'
         );
-        $permission = \PermissionProvider::createPermission($permissionData);
 
-        $this->assertNull($permission);   
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission->shouldReceive('fill')->with($attributes)->once();
+        $permission->shouldReceive('save')->once()->andThrow('MrJuliuss\Syntara\Models\Permissions\ValueRequiredException');
+
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider->shouldReceive('createModel')->once()->andReturn($permission);
+
+        $this->assertEquals($permission, $provider->createPermission($attributes));
+    }
+
+    /**
+     * @expectedException MrJuliuss\Syntara\Models\Permissions\NameRequiredException
+     */
+    public function testCreatePermissionInvalidName()
+    {
+        $attributes = array(
+            'name' => '',
+            'value' => 'Foo',
+            'description' => 'Foo Bar'
+        );
+
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission->shouldReceive('fill')->with($attributes)->once();
+        $permission->shouldReceive('save')->once()->andThrow('MrJuliuss\Syntara\Models\Permissions\NameRequiredException');
+
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider->shouldReceive('createModel')->once()->andReturn($permission);
+
+        $this->assertEquals($permission, $provider->createPermission($attributes));
     }
 
     /**
      * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionExistsException
      */
-    public function testCreatePermissionExistsException()
+    public function testCreatePermissionThrowPermissionExists()
     {
-        $permissionData = array(
-            'name' => 'List users',
-            'value' => 'view-users-list',
-            'description' => 'List all users'
+        $attributes = array(
+            'name' => 'Foo',
+            'value' => 'Foo',
+            'description' => 'Foo Bar'
         );
-        $permission = \PermissionProvider::createPermission($permissionData);
+
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission->shouldReceive('fill')->with($attributes)->once();
+        $permission->shouldReceive('save')->once()->andThrow('MrJuliuss\Syntara\Models\Permissions\PermissionExistsException');
+
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider->shouldReceive('createModel')->once()->andReturn($permission);
+
+        $this->assertEquals($permission, $provider->createPermission($attributes));
     }
 
     public function testFindingById()
     {
-        $permission = \PermissionProvider::findById(1);
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
-        $this->assertEquals($permission, Permission::where('id', '=', 1)->get()->first());
+        $query = m::mock('StdClass');
+        $query->shouldReceive('newQuery')->andReturn($query);
+        $query->shouldReceive('find')->with(1)->once()->andReturn($permission);
+
+        $provider->shouldReceive('createModel')->once()->andReturn($query);
+
+        $this->assertEquals($permission, $provider->findById(1));
+    }
+
+    /**
+     * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException
+     */
+    public function testFailedFindingByIdThrowsExceptionIfNotFound()
+    {
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
+
+        $query = m::mock('StdClass');
+        $query->shouldReceive('newQuery')->andReturn($query);
+        $query->shouldReceive('find')->with(1)->once()->andReturn(null);
+
+        $provider->shouldReceive('createModel')->once()->andReturn($query);
+
+        $provider->findById(1);
+    }
+
+    public function testFindingByValue()
+    {
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
+
+        $query = m::mock('StdClass');
+        $query->shouldReceive('newQuery')->andReturn($query);
+        $query->shouldReceive('where')->with('value', '=', 'superuser')->once()->andReturn($query);
+        $query->shouldReceive('get')->once()->andReturn($query);
+        $query->shouldReceive('first')->andReturn($permission);
+
+        $provider->shouldReceive('createModel')->once()->andReturn($query);
+
+        $this->assertEquals($permission, $provider->findByValue('superuser'));
     }
 
     /**
@@ -60,28 +159,35 @@ class PermissionProviderTest extends \TestCase
      */
     public function testFindingByIdPermissionNotFoundException()
     {
-        $permission = \PermissionProvider::findById(1500);
-    }
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
 
-    public function testFindingByValue()
-    {
-        $permission = \PermissionProvider::findByValue('view-users-list');
+        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
-        $this->assertEquals($permission, Permission::where('value', '=','view-users-list')->get()->first());
-    }
+        $query = m::mock('StdClass');
+        $query->shouldReceive('newQuery')->andReturn($query);
+        $query->shouldReceive('where')->with('value', '=', 'superuser')->once()->andReturn($query);
+        $query->shouldReceive('get')->once()->andReturn($query);
+        $query->shouldReceive('first')->andReturn(null);
 
-    /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException
-     */
-    public function testFindingByValuePermissionNotFoundException()
-    {
-        $permission = \PermissionProvider::findByValue('foo-foo');
+        $provider->shouldReceive('createModel')->once()->andReturn($query);
+
+        $provider->findByValue('superuser');
     }
 
     public function testFindingAllPermissions()
     {
-        $permissions = \PermissionProvider::findAll();
+        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
 
-        $this->assertEquals($permissions, Permission::query()->get()->all());
+        $provider->shouldReceive('createModel')->once()->andReturn($query = m::mock('StdClass'));
+
+        $permission1 = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission')->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission2 = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission')->shouldReceive('hasGetMutator')->andReturn(false);
+
+        $query->shouldReceive('newQuery')->andReturn($query);
+        $query->shouldReceive('get')->andReturn($query);
+        $query->shouldReceive('all')->andReturn($permissions = array($permission1, $permission2));
+
+        $this->assertEquals($permissions, $provider->findAll());
     }
 }

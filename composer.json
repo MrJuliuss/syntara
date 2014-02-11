@@ -16,7 +16,10 @@
         "cartalyst/sentry": "~2"
     },
     "require-dev": {
-        "illuminate/database": "4.0.*"
+        "illuminate/database": "4.0.*",
+        "illuminate/foundation" : "4.0.*",
+        "mockery/mockery": "0.7.2",
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "classmap": [
