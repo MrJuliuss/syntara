@@ -18,6 +18,10 @@ Route::filter('notAuth', function()
     if(Sentry::check())
     {
         $url = Session::get('attemptedUrl');
+        if(!isset($url))
+        {
+            $url = URL::route('indexDashboard');
+        }
         Session::forget('attemptedUrl');
 
         return Redirect::to($url);
