@@ -7,7 +7,7 @@ $(function()
         var sArray = $(this).serializeArray();
         $.ajax({
             "type": "POST",
-            "url": 'new',
+            "url": window.location.href.toString(),
             "data": sArray,
             "dataType": "json"
         }).done(function(result)
@@ -71,7 +71,7 @@ $(function()
         {
             $.ajax(
             {
-                "url": "user/"+$(this).data('user-id'),
+                "url": window.location.href.toString()+"/../user/"+$(this).data('user-id'),
                 "type": "DELETE"
             }).done(function(result)
             {
@@ -87,7 +87,7 @@ $(function()
 
         $.ajax({
             "type": "PUT",
-            "url": 'user/'+userId+'/activate/',
+            "url": window.location.href.toString()+'/../user/'+userId+'/activate/',
             "data": {userId : userId},
             "dataType": "json"
         }).done(function(result)

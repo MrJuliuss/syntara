@@ -1,0 +1,10 @@
+#breadcrumb a i {
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+#breadcrumb a {
+    background-position: left center;
+    background-image: url('../img/breadcrumb-left.png');
+    padding: 8px 10px 8px 15px;
+}

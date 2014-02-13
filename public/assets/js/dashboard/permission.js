@@ -5,7 +5,7 @@ $(function()
         var sArray = $(this).serializeArray();
         $.ajax({
             "type": "POST",
-            "url": 'new',
+            "url": window.location.href.toString(),
             "data": sArray,
             "dataType": "json"
         }).done(function(result)
@@ -64,7 +64,7 @@ $(function()
         {
             $.ajax(
             {
-                "url": "permission/"+$(this).data('permission-id'),
+                "url": window.location.href.toString()+"/../permission/"+$(this).data('permission-id'),
                 "type": "DELETE"
             }).done(function(result)
             {

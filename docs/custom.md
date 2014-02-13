@@ -4,13 +4,16 @@
 
 You must extend your new controller with the Syntara BaseController, like this :
 
+    /*
+    app/controller/FeatureControler.php
+    */
     use MrJuliuss\Syntara\Controllers\BaseController;
 
-    class FeatureController extends BaseController
+    class HomeController extends BaseController
     {
         public function getIndex()
         {
-            $this->layout = View::make('index-view');
+            $this->layout = View::make('index');
             $this->layout->title = 'My new feature';
 
             // add breadcrumb to current page
@@ -27,7 +30,30 @@ You must extend your new controller with the Syntara BaseController, like this :
                 ),
             );
         }
+
     }
+
+To find your current loggued user, you need to add the ```basicAuth``` filter to your route : 
+
+    Route::get('dashboard/home', array(
+        'as' => 'test_home',
+        'before' => 'basicAuth|hasPermissions:user.create',
+        'uses' => 'HomeController@getIndex'
+        )
+    );
+
+HomeController getIndex view :
+
+    /*
+    app/views/index.blade.php
+    */
+
+    @extends(Config::get('syntara::views.master'))
+    @section('content')
+
+    {{var_dump($currentUser);}}
+
+    @stop
 
 ## New permissions
 Add permission to your new Controller route :
@@ -139,3 +165,8 @@ Create an empty permission
 
 Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs :
 http://docs.cartalyst.com/sentry-2
+
+## RTL (Right to Left) languages
+
+Since 1.1.19 & 1.2.3, Syntara support RTL languages.
+In **app/config/packages/mrjuliuss/syntara/config.php** , change ```direction``` from **LTR** to **RTL**

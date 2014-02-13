@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Facade;
 use MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException;
 use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
-use Validator;
-use Config;
 
 class PermissionProvider
 {
@@ -68,7 +66,7 @@ class PermissionProvider
      */
     public function findByValue($value)
     {
-        if(!$permission = $this->createModel()->newQuery()->where('value', $value)->get()->first())
+        if(!$permission = $this->createModel()->newQuery()->where('value', '=', $value)->get()->first())
         {
             throw new PermissionNotFoundException("A permission could not be found with Value [$value].");
         }
