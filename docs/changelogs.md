@@ -1,5 +1,14 @@
 #Versions
 
+##1.2.4
+
+Same as 1.1.20
+
+##1.1.20
+
+* Fix redirection after login
+* Unit tests refactoring (now use mockery)
+
 ##1.2.3
 
 Same as 1.1.19
