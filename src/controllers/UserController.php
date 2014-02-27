@@ -110,7 +110,14 @@ class UserController extends BaseController
 
             // activate user
             $activationCode = $user->getActivationCode();
-            $user->attemptActivation($activationCode);
+            if(Config::get('syntara::config.user-activation') === 'auto')
+            {
+                $user->attemptActivation($activationCode);
+            }
+            elseif(Config::get('syntara::config.user-activation') === 'mail')
+            {
+                // send email
+            }
 
             $groups = Input::get('groups');
             if(isset($groups) && is_array($groups))
@@ -136,7 +143,7 @@ class UserController extends BaseController
 
         return json_encode(array('userCreated' => true, 'redirectUrl' => URL::route('listUsers')));
     }
-    
+
     /**
      * Delete user
      * @param  int $userId
@@ -280,7 +287,7 @@ class UserController extends BaseController
             $user->permissions = $permissions;
 
             $permissions = (empty($permissions)) ? '' : json_encode($permissions);
-                // delete permissions in db
+            // delete permissions in db
             DB::table('users')
                 ->where('id', $userId)
                 ->update(array('permissions' => $permissions));
