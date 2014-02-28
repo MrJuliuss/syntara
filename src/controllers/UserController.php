@@ -13,6 +13,7 @@ use Config;
 use URL;
 use PermissionProvider;
 use DB;
+use Mail;
 
 class UserController extends BaseController 
 {
@@ -114,9 +115,19 @@ class UserController extends BaseController
             {
                 $user->attemptActivation($activationCode);
             }
-            elseif(Config::get('syntara::config.user-activation') === 'mail')
+            elseif(Config::get('syntara::config.user-activation') === 'email')
             {
+                $datas = array(
+                    'code' => $activationCode,
+                    'username' => $user->username
+                );
+
                 // send email
+                Mail::send(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
+                {
+                    $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'));
+                    $message->to($user->getLogin());
+                });
             }
 
             $groups = Input::get('groups');
