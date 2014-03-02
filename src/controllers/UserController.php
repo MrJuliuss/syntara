@@ -123,7 +123,7 @@ class UserController extends BaseController
                 );
 
                 // send email
-                Mail::send(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
+                Mail::queue(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
                 {
                     $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'));
                     $message->to($user->getLogin());
@@ -200,6 +200,39 @@ class UserController extends BaseController
         }
 
         return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.activate-success'), 'messageType' => 'success'));
+    }
+
+    /**
+     * Activate a user
+     * @param  string $activationCode
+     */
+    public function getActivate($activationCode)
+    {
+        $activated = false;
+        try
+        {
+            // Find the user using the activation code
+            $user = Sentry::getUserProvider()->findByActivationCode($activationCode);
+
+            // Attempt to activate the user
+            if($user->attemptActivation($activationCode))
+            {
+                $message = trans("Your account is successfully activated.");
+                $activated = true;
+            }
+            else
+            {
+                // User activation failed
+                $message = trans("Your account could not be activated.");
+            }
+        }
+        catch(\Exception $e)
+        {
+            // User not found, activation found or other errors
+            $message = trans("Your account could not be activated.");
+        }
+
+        $this->layout = View::make(Config::get('syntara::views.user-activation'), array('activated' => $activated, 'message' => $message));
     }
 
     /**
