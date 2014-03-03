@@ -125,7 +125,8 @@ class UserController extends BaseController
                 // send email
                 Mail::queue(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
                 {
-                    $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'));
+                    $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'))
+                            ->subject(Config::get('syntara::mails.user-activation-object'));
                     $message->to($user->getLogin());
                 });
             }
