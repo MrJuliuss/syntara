@@ -182,6 +182,11 @@ class UserController extends BaseController
         return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.remove-success'), 'messageType' => 'success'));
     }
 
+    /**
+     * Activate a user since the dashboard
+     * @param  int $userId
+     * @return Response
+     */
     public function putActivate($userId)
     {
         try
@@ -203,7 +208,7 @@ class UserController extends BaseController
     }
 
     /**
-     * Activate a user
+     * Activate a user (from an email)
      * @param  string $activationCode
      */
     public function getActivate($activationCode)

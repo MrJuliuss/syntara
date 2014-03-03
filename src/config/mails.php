@@ -13,5 +13,8 @@ return array(
      */
     'email' => 'mail@localhost',
 
+    /**
+     * View for user activation email
+     */
     'user-activation-view' => 'syntara::mail.user-activation',
 );
