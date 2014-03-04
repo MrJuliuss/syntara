@@ -166,6 +166,8 @@ http://docs.cartalyst.com/sentry-2
 
 ## User activation by email
 
+** Not yet release, available only on development branch ** 
+
 While creating user, he can be automatically activated or activated from an email. By default, user is activated automatically, you can change the activation in **app/config/packages/mrjuliuss/syntara/config.php**, change ```user-activation``` from **auto** to **email**
 
     <?php
