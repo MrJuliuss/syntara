@@ -119,9 +119,7 @@ To add your own favicon to Syntara, you need to use a view composer
 
 ## Change validator rules
 
-Change rules in the published validator config file :
-
-```app/config/packages/mrjuliuss/syntara/validator.php```
+Change rules in the published validator config file : ```app/config/packages/mrjuliuss/syntara/validator.php```
 
 more informations about rules : http://laravel.com/docs/validation
 
