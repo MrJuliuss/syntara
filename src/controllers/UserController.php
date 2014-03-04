@@ -13,6 +13,7 @@ use Config;
 use URL;
 use PermissionProvider;
 use DB;
+use Mail;
 
 class UserController extends BaseController 
 {
@@ -110,7 +111,25 @@ class UserController extends BaseController
 
             // activate user
             $activationCode = $user->getActivationCode();
-            $user->attemptActivation($activationCode);
+            if(Config::get('syntara::config.user-activation') === 'auto')
+            {
+                $user->attemptActivation($activationCode);
+            }
+            elseif(Config::get('syntara::config.user-activation') === 'email')
+            {
+                $datas = array(
+                    'code' => $activationCode,
+                    'username' => $user->username
+                );
+
+                // send email
+                Mail::queue(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
+                {
+                    $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'))
+                            ->subject(Config::get('syntara::mails.user-activation-object'));
+                    $message->to($user->getLogin());
+                });
+            }
 
             $groups = Input::get('groups');
             if(isset($groups) && is_array($groups))
@@ -136,7 +155,7 @@ class UserController extends BaseController
 
         return json_encode(array('userCreated' => true, 'redirectUrl' => URL::route('listUsers')));
     }
-    
+
     /**
      * Delete user
      * @param  int $userId
@@ -164,6 +183,11 @@ class UserController extends BaseController
         return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.remove-success'), 'messageType' => 'success'));
     }
 
+    /**
+     * Activate a user since the dashboard
+     * @param  int $userId
+     * @return Response
+     */
     public function putActivate($userId)
     {
         try
@@ -182,6 +206,39 @@ class UserController extends BaseController
         }
 
         return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.activate-success'), 'messageType' => 'success'));
+    }
+
+    /**
+     * Activate a user (from an email)
+     * @param  string $activationCode
+     */
+    public function getActivate($activationCode)
+    {
+        $activated = false;
+        try
+        {
+            // Find the user using the activation code
+            $user = Sentry::getUserProvider()->findByActivationCode($activationCode);
+
+            // Attempt to activate the user
+            if($user->attemptActivation($activationCode))
+            {
+                $message = trans("Your account is successfully activated.");
+                $activated = true;
+            }
+            else
+            {
+                // User activation failed
+                $message = trans("Your account could not be activated.");
+            }
+        }
+        catch(\Exception $e)
+        {
+            // User not found, activation found or other errors
+            $message = trans("Your account could not be activated.");
+        }
+
+        $this->layout = View::make(Config::get('syntara::views.user-activation'), array('activated' => $activated, 'message' => $message));
     }
 
     /**
@@ -280,7 +337,7 @@ class UserController extends BaseController
             $user->permissions = $permissions;
 
             $permissions = (empty($permissions)) ? '' : json_encode($permissions);
-                // delete permissions in db
+            // delete permissions in db
             DB::table('users')
                 ->where('id', $userId)
                 ->update(array('permissions' => $permissions));

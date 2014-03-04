@@ -5,9 +5,16 @@ return array(
      * Default dashboard uri
      */
     'uri' => 'dashboard',
+
     /**
      * Language direction
      * Values : ltr (default), rtl
      */
-    'direction' => 'ltr'
+    'direction' => 'ltr',
+
+    /**
+     * User activation :
+     * Values : auto (default), email
+     */
+    'user-activation' => 'auto',
 );

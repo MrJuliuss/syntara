@@ -156,3 +156,14 @@ Route::group(array('before' => 'notAuth', 'prefix' => Config::get('syntara::conf
         'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@postLogin')
     );
 });
+
+Route::group(array('prefix' => Config::get('syntara::config.uri')), function()
+{
+    /**
+     * Activate a user (with view)
+     */
+    Route::get('user/activation/{activationCode}', array(
+        'as' => 'getActivate',
+        'uses' => 'MrJuliuss\Syntara\Controllers\UserController@getActivate')
+    );
+});
