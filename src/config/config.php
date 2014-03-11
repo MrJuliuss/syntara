@@ -17,4 +17,10 @@ return array(
      * Values : auto (default), email
      */
     'user-activation' => 'auto',
+
+    /**
+     * Number of item to show
+     * in /users /groups /permissions
+     */
+    'item-perge-page' => 20,
 );
