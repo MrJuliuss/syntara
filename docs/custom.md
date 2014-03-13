@@ -119,7 +119,7 @@ To add your own favicon to Syntara, you need to use a view composer
 
 ## Lists
 
-Possibility to change number of item perge page in lists (users/groups/permissions) 
+Possibility to change number of items per page in lists (users/groups/permissions) 
 Change the ```item-perge-page``` value in the main config file : ```app/config/packages/mrjuliuss/syntara/config.php```
 
 
