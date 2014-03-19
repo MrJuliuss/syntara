@@ -1,5 +1,17 @@
 #Versions
 
+##1.2.5
+
+Same as 1.1.21
+
+##1.1.21
+
+* German support
+* Bootstrap 3.1.1 upgrade
+* User activation by email
+* Number of items per page in option
+* Unit tests now run with mockery 0.9.0
+
 ##1.2.4
 
 Same as 1.1.20
