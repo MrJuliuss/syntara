@@ -2,7 +2,7 @@ $(function()
 {
     $('.activate-user').tooltip();
 
-    $('#create-user-form').on('submit', function()
+    $(document).on('submit', '#create-user-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -30,9 +30,7 @@ $(function()
         });
         
         return false;
-    });
-
-    $('#edit-user-form').on('submit', function()
+    }).on('submit', '#edit-user-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -58,14 +56,10 @@ $(function()
         });
 
         return false;
-    });
-
-    $(document).on('click', '#delete-item', function()
+    }).on('click', '#delete-item', function()
     {
         $('#confirm-modal').modal();
-    });
-
-    $(document).on('click', '.delete-user .confirm-action', function()
+    }).on('click', '.delete-user .confirm-action', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
