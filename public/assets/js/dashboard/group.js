@@ -2,7 +2,7 @@ $(function()
 {
     var nbInput = $('.input-group-addon').size() + 1;
     
-    $('#create-group-form').on('submit', function()
+    $(document).on('submit', '#create-group-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -28,11 +28,10 @@ $(function()
                 window.location = result.redirectUrl;
             }
         });
-        
-        return false;
-    });
 
-    $('#edit-group-form').on('submit', function()
+        return false;
+
+    }).on('submit', '#edit-group-form', function()
     {
         var sArray = $(this).serializeArray();
 
@@ -55,9 +54,8 @@ $(function()
         });
 
         return false;
-    });
-    
-    $(document).on('click', '#delete-item.groups', function()
+
+    }).on('click', '#delete-item.groups', function()
     {
         $('#confirm-modal').modal();
         
