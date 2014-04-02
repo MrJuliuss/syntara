@@ -1,5 +1,5 @@
 <?php return array(
-    'dashboard' => 'باشقۇرۇش سۇپىسى',
+    'dashboard' => 'باشقۇرۇش سۇپام',
     'login' => 'تىزىملىتىش',
     'groups' => 'گۇرۇپپا',
     'new-group' => 'يېڭى گۇرۇپ',

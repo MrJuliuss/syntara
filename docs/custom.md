@@ -117,11 +117,17 @@ To add your own favicon to Syntara, you need to use a view composer
     });
 
 
+## Lists
+
+** Not yet release, available only on development branch **
+
+Possibility to change number of items per page in lists (users/groups/permissions) 
+Change the ```item-perge-page``` value in the main config file : ```app/config/packages/mrjuliuss/syntara/config.php```
+
+
 ## Change validator rules
 
-Change rules in the published validator config file :
-
-```app/config/packages/mrjuliuss/syntara/validator.php```
+Change rules in the published validator config file : ```app/config/packages/mrjuliuss/syntara/validator.php```
 
 more informations about rules : http://laravel.com/docs/validation
 
@@ -165,3 +171,61 @@ Create an empty permission
 
 Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs :
 http://docs.cartalyst.com/sentry-2
+
+## User activation by email
+
+** Not yet release, available only on development branch ** 
+
+While creating user, he can be automatically activated or activated from an email. By default, user is activated automatically, you can change the activation in **app/config/packages/mrjuliuss/syntara/config.php**, change ```user-activation``` from **auto** to **email**
+
+    <?php
+
+    return array(
+
+        /**
+         * User activation :
+         * Values : auto (default), email
+         */
+        'user-activation' => 'email',
+    );
+
+### Email in queue
+
+Emails sent from Syntara are automatically send in a queue. For better performance you need to config a queue component in your application : http://laravel.com/docs/queues
+
+### Email view
+
+Change the email activation view :
+
+In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```user-activation-view``` with your custom view
+
+    <?php
+    return array(
+        /**
+         * View for user activation email
+         */
+        'user-activation-view' => 'syntara::mail.user-activation',
+    );
+
+### Email object
+
+Possibility to change the email object :
+
+In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```user-activation-object``` with your custom object
+
+### Email contact name
+
+Possibility to change the email contact name :
+
+In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```contact``` with your custom name
+
+### Email sender
+
+Possibility to change the email sender :
+
+In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```email``` with your custom email
+
+## RTL (Right to Left) languages
+
+Since 1.1.19 & 1.2.3, Syntara support RTL languages.
+In **app/config/packages/mrjuliuss/syntara/config.php** , change ```direction``` from **LTR** to **RTL**

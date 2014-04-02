@@ -1,5 +1,38 @@
 #Versions
 
+##1.2.5
+
+Same as 1.1.21
+
+##1.1.21
+
+* German support
+* Bootstrap 3.1.1 upgrade
+* User activation by email
+* Number of items per page in option
+* Unit tests now run with mockery 0.9.0
+
+##1.2.4
+
+Same as 1.1.20
+
+##1.1.20
+
+* Fix redirection after login
+* Unit tests refactoring (now use mockery)
+
+##1.2.3
+
+Same as 1.1.19
+
+##1.1.19
+
+* Refactoring codes
+* RTL languages support
+* Uyghur support
+* Bootstrap 3.1.x support
+* jQuery 2.1.x support
+
 ##1.2.2
 
 Same as 1.1.18

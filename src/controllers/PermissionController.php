@@ -36,7 +36,7 @@ class PermissionController extends BaseController
             $permissions = $permissions->where('value', 'LIKE', '%'.$permissionValue.'%');
         }
 
-        $permissions = $permissions->paginate(20);
+        $permissions = $permissions->paginate(Config::get('syntara::config.item-perge-page'));
 
         // ajax request : reload only content container
         if(Request::ajax())

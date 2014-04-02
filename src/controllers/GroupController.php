@@ -35,7 +35,7 @@ class GroupController extends BaseController
             $emptyGroup = $emptyGroup->where('name', 'LIKE', '%'.$groupname.'%');
         }
 
-        $groups = $emptyGroup->paginate(20);
+        $groups = $emptyGroup->paginate(Config::get('syntara::config.item-perge-page'));
 
         // ajax: reload only the content container
         if(Request::ajax())

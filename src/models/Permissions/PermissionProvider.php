@@ -66,7 +66,7 @@ class PermissionProvider
      */
     public function findByValue($value)
     {
-        if(!$permission = $this->createModel()->newQuery()->where('value', $value)->get()->first())
+        if(!$permission = $this->createModel()->newQuery()->where('value', '=', $value)->get()->first())
         {
             throw new PermissionNotFoundException("A permission could not be found with Value [$value].");
         }
