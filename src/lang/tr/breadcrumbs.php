@@ -1,5 +1,5 @@
 <?php return array(
-    'dashboard' => 'Admin Paneli',
+    'dashboard' => 'Yönetim Paneli',
     'login' => 'Giriş',
     'groups' => 'Gruplar',
     'new-group' => 'Yeni Grup',
