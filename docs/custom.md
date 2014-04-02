@@ -112,8 +112,8 @@ To add your own favicon to Syntara, you need to use a view composer
 
     View::composer('syntara::layouts.dashboard.master', function($view)
     {
-        $view->nest('favicon', 'favicon_path');
-        $view->nest('faviconType', 'favicon_type');
+        $view->with('favicon', 'favicon_path');
+        $view->with('faviconType', 'favicon_type');
     });
 
 
