@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'index' => 'Admin Paneli',
+    'index' => 'Yönetim Paneli',
     'users' => 'Kullanıcılar',
     'groups' => 'Gruplar',
     'permissions' => 'Yetkiler',
