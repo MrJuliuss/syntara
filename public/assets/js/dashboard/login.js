@@ -1,6 +1,6 @@
 $(document).ready(function() 
 {
-    $('#login-form').on('submit', function() 
+    $(document).on('submit', '#login-form', function() 
     {
         var remember = false;
         if($("#remember").is(':checked'))

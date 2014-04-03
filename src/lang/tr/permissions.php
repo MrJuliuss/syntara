@@ -6,11 +6,11 @@
     'new' => 'Yeni Yetki',
     'description' => 'Açıklama',
     'messages' => array(
-        'exists' => 'Bu yetki zaten var.',
-        'not-found' => 'Üzgünü, yetki bulunamadı.',
+        'exists' => 'Bu yetki zaten mevcut.',
+        'not-found' => 'Üzgünüm, yetki bulunamadı.',
         'update-success' => 'Yetki düzenlendi.',
         'update-fail' => 'Yetki düzenlenemedi, lütfen tekrar deneyin.',
-        'remove-success' => 'Yetki başarılı şekilde silindi..',
+        'remove-success' => 'Yetki başarılı şekilde silindi.',
     ),
     'titles' => array(
         'list' => 'Yetki Listesi',

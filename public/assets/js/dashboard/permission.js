@@ -1,6 +1,6 @@
 $(function() 
 {
-    $('#create-permission-form').on('submit', function()
+    $(document).on('submit', '#create-permission-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -28,9 +28,7 @@ $(function()
         });
 
         return false;
-    });
-
-    $('#edit-permission-form').on('submit', function()
+    }).on('submit', '#edit-permission-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -51,14 +49,10 @@ $(function()
         });
 
         return false;
-    });
-
-    $(document).on('click', '#delete-item', function()
+    }).on('click', '#delete-item', function()
     {
         $('#confirm-modal').modal();
-    });
-
-    $(document).on('click', '.delete-permission .confirm-action', function()
+    }).on('click', '.delete-permission .confirm-action', function()
     {
         $.each($('.table tbody tr td input:checkbox:checked'), function( key, value ) 
         {
