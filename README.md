@@ -17,19 +17,29 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 * Groups & permissions management
 * Responsive design
 * i18n support :
-    - English (en)
-    - French (fr)
-    - Italian (it)
-    - Romanian (ro)
-    - Russian (ru)
-    - Slovenian (sl)
-    - Vietnamese (vi)
-    - Spanish (es)
-    - Swedish (se)
-    - Greek (el)
-    - Turkish (tr)
-    - Dutch (nl)
-    - Uyghur (ug)
+<table>
+    <tr>
+        <td>English (en)</td>
+        <td>French (fr)</td>
+        <td>Italian (it)</td>
+        <td>Romanian (ro)</td>
+        <td>Russian (ru)</td>
+    </tr>
+    <tr>
+        <td>Vietnamese(vi)</td>
+        <td>Spanish (es)</td>
+        <td>Swedish (se)</td>
+        <td>Greek (el)</td>
+        <td>Turkish (tr)</td>
+    </tr>
+    <tr>
+        <td>Dutch (nl)</td>
+        <td>Uyghur (ug)</td>
+        <td>Khmer (km) </td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
 * RTL languages support
 
 ## Requirements
