@@ -68,7 +68,7 @@ class UserController extends BaseController
         $this->layout->title = trans('syntara::users.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
     }
-    
+
     /**
     * Show new user form view
     */
@@ -76,7 +76,7 @@ class UserController extends BaseController
     {
         $groups = Sentry::getGroupProvider()->findAll();
         $permissions = PermissionProvider::findAll();
-        
+
         $this->layout = View::make(Config::get('syntara::views.user-create'), array('groups' => $groups, 'permissions' => $permissions));
         $this->layout->title = trans('syntara::users.titles.new');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
@@ -98,7 +98,7 @@ class UserController extends BaseController
             {
                 return Response::json(array('userCreated' => false, 'errorMessages' => $validator->getErrors()));
             }
-            
+
             // create user
             $user = Sentry::getUserProvider()->create(array(
                 'email'    => Input::get('email'),
@@ -179,7 +179,7 @@ class UserController extends BaseController
         {
             return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
         }
-        
+
         return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.remove-success'), 'messageType' => 'success'));
     }
 
@@ -272,7 +272,7 @@ class UserController extends BaseController
                 }
                 catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
             }
-            
+
             // ajax request : reload only content container
             if(Request::ajax())
             {
@@ -292,13 +292,13 @@ class UserController extends BaseController
             $this->layout->title = $user->username;
             $this->layout->breadcrumb = array(
                     array(
-                        'title' => trans('syntara::breadcrumbs.users'), 
-                        'link' => URL::route('listUsers'), 
+                        'title' => trans('syntara::breadcrumbs.users'),
+                        'link' => URL::route('listUsers'),
                         'icon' => 'glyphicon-user'
-                    ), 
+                    ),
                     array(
-                     'title' => $user->username, 
-                     'link' => URL::current(), 
+                     'title' => $user->username,
+                     'link' => URL::current(),
                      'icon' => ''
                     )
             );
@@ -324,7 +324,7 @@ class UserController extends BaseController
             {
                 return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->getErrors()));
             }
-            
+
             $permissionsValues = Input::get('permission');
             $permissions = $this->_formatPermissions($permissionsValues);
 
@@ -380,7 +380,7 @@ class UserController extends BaseController
                         }
                     }
                 }
-                
+
                 return Response::json(array('userUpdated' => true, 'message' => trans('syntara::users.messages.update-success'), 'messageType' => 'success'));
             }
             else 
@@ -389,7 +389,7 @@ class UserController extends BaseController
             }
         }
         catch(\Cartalyst\Sentry\Users\UserExistsException $e)
-        {   
+        {
             return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
         }
         catch(\Exception $e)

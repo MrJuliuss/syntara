@@ -2,7 +2,6 @@
 
 use MrJuliuss\Syntara\Controllers\BaseController;
 use MrJuliuss\Syntara\Services\Validators\Permission as PermissionValidator;
-use Paginator;
 use PermissionProvider;
 use View;
 use Config;
@@ -19,7 +18,6 @@ class PermissionController extends BaseController
     public function getIndex()
     {
         $permissions = PermissionProvider::createModel();
-
         $permissionId = Input::get('permissionIdSearch');
         if(!empty($permissionId))
         {
@@ -42,7 +40,7 @@ class PermissionController extends BaseController
         if(Request::ajax())
         {
             $html = View::make(Config::get('syntara::views.permissions-list'), array('permissions' => $permissions))->render();
-            
+
             return Response::json(array('html' => $html));
         }
 
