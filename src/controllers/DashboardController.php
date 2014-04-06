@@ -40,7 +40,6 @@ class DashboardController extends BaseController
     {
         try
         {
-
             $validator = new UserValidator(Input::all(), 'login');
 
             if(!$validator->passes())
