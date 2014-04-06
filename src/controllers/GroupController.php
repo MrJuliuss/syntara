@@ -67,11 +67,10 @@ class GroupController extends BaseController
     */
     public function postCreate()
     {
-        $permissionsValues = Input::get('permission');
         $groupname = Input::get('groupname');
         $permissions = array();
         
-        $errors = $this->_validateGroup($permissionsValues, $groupname, $permissions);
+        $errors = $this->_validateGroup(Input::get('permission'), $groupname, $permissions);
         if(!empty($errors))
         {
             return Response::json(array('groupCreated' => false, 'errorMessages' => $errors));
@@ -105,7 +104,6 @@ class GroupController extends BaseController
         try
         {
             $group = Sentry::getGroupProvider()->findById($groupId);
-
             $permissions = PermissionProvider::findAll();
 
             $groupPermissions = array();
@@ -182,11 +180,10 @@ class GroupController extends BaseController
      */
     public function putShow($groupId)
     {
-        $permissionsValues = Input::get('permission');
         $groupname = Input::get('groupname');
         $permissions = array();
 
-        $errors = $this->_validateGroup($permissionsValues, $groupname, $permissions);
+        $errors = $this->_validateGroup(Input::get('permission'), $groupname, $permissions);
         if(!empty($errors))
         {
             return Response::json(array('groupUpdated' => false, 'errorMessages' => $errors));
@@ -276,11 +273,8 @@ class GroupController extends BaseController
     {
         try
         {
-            $userId = Input::get('userId');
-            $groupId = Input::get('groupId');
-
-            $user = Sentry::getUserProvider()->findById($userId);
-            $group = Sentry::getGroupProvider()->findById($groupId);
+            $user = Sentry::getUserProvider()->findById(Input::get('userId'));
+            $group = Sentry::getGroupProvider()->findById(Input::get('groupId'));
             $user->addGroup($group);
 
             return Response::json(array('userAdded' => true, 'message' => trans('syntara::groups.messages.user-add-success'), 'messageType' => 'success'));
