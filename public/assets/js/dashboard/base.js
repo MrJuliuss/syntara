@@ -130,7 +130,7 @@ var showRegisterFormAjaxErrors = function(errors)
     {
         for(var i in errors[errorType])
         {
-            $('input[name="'+errorType+'"]').closest('.form-group').append('<span class="label label-danger error-'+errorType+'">'+errors[errorType][i]+'</span>');
+            $('[name="'+errorType+'"]').closest('.form-group').append('<span class="label label-danger error-'+errorType+'">'+errors[errorType][i]+'</span>');
         }
     }
 };
