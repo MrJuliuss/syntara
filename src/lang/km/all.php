@@ -2,7 +2,7 @@
 
 return array(
     'remember' => 'ចង​ចាំ​ខ្ញុំ',
-    'signin' => 'ចុះ​ឈ្មោះ',
+    'signin' => 'ចូល',
     'email' => 'អ៊ីមែល',
     'password' => 'ពាក្យ​សម្ងាត់',
     'error' => 'កំហុស !',
