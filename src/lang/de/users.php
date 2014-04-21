@@ -18,8 +18,8 @@
     'banned-at' => 'Gesperrt am',
     'messages' => array(
         'not-found' => 'User nicht gefunden!',
-        'user-email-exists' => 'Es exitiert bereits ein User mit dieser E-Mail Adresse.',
-        'user-name-exists' => 'Es exitiert bereits ein User mit diesem Usernamen.',
+        'user-email-exists' => 'Es existiert bereits ein User mit dieser E-Mail Adresse.',
+        'user-name-exists' => 'Es existiert bereits ein User mit diesem Usernamen.',
         'remove-own-user' => "Sie können sich nicht selbt löschen!",
         'remove-success' =>  'User gelöscht..',
         'activate-already' => 'User ist bereits aktiviert.',
