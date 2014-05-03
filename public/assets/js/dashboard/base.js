@@ -43,7 +43,7 @@ $(document).ready(function()
         return false;
     }).on('change', '.table tbody tr td input:checkbox', function()
     {
-        var parent = $(this).parents('.table'); 
+        var parent = $(this).parents('.table');
         if(parent.find("tbody tr td input:checkbox:checked").length >= 1)
         {
             $('#delete-item').css('display', 'inline-block');
@@ -70,7 +70,7 @@ $(document).ready(function()
     $('#search-form').on('submit', function()
     {
         var sArray = $(this).serializeArray();
-        ajaxContent(document.URL, ".ajax-content", sArray, false);
+        ajaxContent([location.protocol,'//', location.host, location.pathname].join(''), ".ajax-content", sArray, false);
 
         return false;
     });
@@ -110,7 +110,7 @@ var showStatusMessage = function(message, type)
 {
     $('.status-message').remove();
     $('.label-danger').remove();
-    
+
     var html = '<div class="row status-message">\n\
                         <div class="col-lg-12">\n\
                             <div class="alert alert-'+type+'">\n\
@@ -118,7 +118,7 @@ var showStatusMessage = function(message, type)
                             </div>\n\
                         </div>\n\
                 </div>';
-            
+
     $(html).prependTo('#main-container').hide().fadeIn(900);
 };
 
