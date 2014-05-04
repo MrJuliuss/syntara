@@ -41,10 +41,10 @@ $(document).ready(function()
         ajaxContent($(this).attr('href'), ".ajax-content", null, true);
 
         return false;
-    }).on('change', '.table tbody tr td input:checkbox', function()
+    }).on('change', '.table tbody input:checkbox', function()
     {
-        var parent = $(this).parents('.table');
-        if(parent.find("tbody tr td input:checkbox:checked").length >= 1)
+        var parent = $(this).parents('.table'); 
+        if(parent.find("tbody input:checkbox:checked").length >= 1)
         {
             $('#delete-item').css('display', 'inline-block');
         }
@@ -57,12 +57,12 @@ $(document).ready(function()
         var parent = $(this).parents('.table');
         if($(this).is(':checked'))
         {
-            parent.find("tbody tr td input:checkbox").prop('checked', true);
+            parent.find("tbody input:checkbox").prop('checked', true);
             $('#delete-item').css('display', 'inline-block');
         }
         else
         {
-            parent.find("tbody > tr > td > input:checkbox").prop("checked", false);
+            parent.find("tbody input:checkbox").prop("checked", false);
             $('#delete-item').hide();
         }
     });
