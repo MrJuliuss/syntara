@@ -29,6 +29,9 @@ Syntara is an admin system for Laravel 4, made for user management easier.
     - Turkish (tr)
     - Dutch (nl)
     - Uyghur (ug)
+    - Khmer (km)
+    - Polish (pl)
+
 * RTL languages support
 
 ## Requirements
