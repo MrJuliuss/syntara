@@ -17,6 +17,7 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 * Groups & permissions management
 * Responsive design
 * i18n support :
+
 <table>
     <tr>
         <td>English (en)</td>
@@ -40,6 +41,7 @@ Syntara is an admin system for Laravel 4, made for user management easier.
         <td></td>
     </tr>
 </table>
+
 * RTL languages support
 
 ## Requirements
