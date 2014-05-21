@@ -38,7 +38,7 @@ Syntara is an admin system for Laravel 4, made for user management easier.
         <td>Uyghur (ug)</td>
         <td>Khmer (km) </td>
         <td>Polish (pl)</td>
-        <td></td>
+        <td>Brazilian Portuguese (pt-br)</td>
     </tr>
 </table>
 
