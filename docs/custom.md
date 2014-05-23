@@ -153,7 +153,7 @@ Create a permission
         'value' => 'new-permission',
         'description' => 'This is a new permission'
     );
-    $permissionModel = PermissionProvider::createPermission();
+    $permissionModel = PermissionProvider::createPermission($attributes);
 
 Create an empty permission
 
