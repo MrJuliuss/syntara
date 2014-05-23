@@ -98,7 +98,7 @@ View ```left-nav.blade.php``` example :
 
     <li class=""><a href=""><i class="glyphicon glyphicon-home"></i> <span>Home</span></a></li>
     <li class="dropdown" >
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-home"></i><span>Blog</span></a></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-home"></i> <span>Blog</span></a>
         <ul class="dropdown-menu">
             <li><a href="">Articles</a></li>
             <li><a href="">Comments</a></li>
@@ -153,7 +153,7 @@ Create a permission
         'value' => 'new-permission',
         'description' => 'This is a new permission'
     );
-    $permissionModel = PermissionProvider::createPermission();
+    $permissionModel = PermissionProvider::createPermission($attributes);
 
 Create an empty permission
 
