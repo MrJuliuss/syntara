@@ -137,7 +137,7 @@ In your custom development, you might need to use the permission system :
 
 ### Permission Provider
 
-    use PermissionProvider;
+    use MrJuliuss\Syntara\Facades\PermissionProvider;
 
 Find a permission by id
 
