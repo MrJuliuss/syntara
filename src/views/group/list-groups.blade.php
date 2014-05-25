@@ -25,7 +25,7 @@
         </td>
         <td style="text-align: center;">{{ $group->getId() }}</td>
         <td>{{ $group->getName() }}</td>
-        <td>{{ json_encode($group->getPermissions()) }}</td>
+        <td>{{ join(', ', array_keys($group->getPermissions())) }}</td>
         <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showGroup', $group->getId())}}">{{ trans('syntara::all.show') }}</a></td>
     </tr>
     @endforeach
