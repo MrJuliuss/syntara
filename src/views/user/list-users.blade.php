@@ -51,7 +51,7 @@
             {{ $group['name'] }},
         @endforeach
         </td>
-        <td class="hidden-xs">{{ join(', ', array_keys($user->getPermissions())) }}</td>
+        <td class="hidden-xs">{{ json_encode($user->getPermissions()) }}</td>
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
         <td class="hidden-xs">{{ $user->isActivated() ? trans('syntara::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('syntara::users.activate').'">'.trans('syntara::all.no').'</a>'}}</td>
