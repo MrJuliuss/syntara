@@ -117,6 +117,14 @@ To add your own favicon to Syntara, you need to use a view composer
     });
 
 
+## Lists
+
+** Not yet release, available only on development branch **
+
+Possibility to change number of items per page in lists (users/groups/permissions) 
+Change the ```item-perge-page``` value in the main config file : ```app/config/packages/mrjuliuss/syntara/config.php```
+
+
 ## Change validator rules
 
 Change rules in the published validator config file : ```app/config/packages/mrjuliuss/syntara/validator.php```
@@ -129,7 +137,7 @@ In your custom development, you might need to use the permission system :
 
 ### Permission Provider
 
-    use PermissionProvider;
+    use MrJuliuss\Syntara\Facades\PermissionProvider;
 
 Find a permission by id
 

@@ -1,6 +1,7 @@
 # Syntara
 
 Syntara is an admin system for Laravel 4, made for user management easier.
+
 [![Build Status](https://travis-ci.org/MrJuliuss/syntara.png?branch=master)](https://travis-ci.org/MrJuliuss/syntara)
 [![Latest Stable Version](https://poser.pugx.org/mrjuliuss/syntara/v/stable.png)](https://packagist.org/packages/mrjuliuss/syntara)
 [![Total Downloads](https://poser.pugx.org/mrjuliuss/syntara/downloads.png)](https://packagist.org/packages/mrjuliuss/syntara)
@@ -34,8 +35,8 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 
 ## Requirements
 
-* PHP 5.3+ (Syntara 1.1)
-* PHP 5.4+ (Syntara 1.2)
+* **Syntara 1.1.x** : PHP 5.3+ - Laravel 4.0.x
+* **Syntara 1.2.x** : PHP 5.4+ - Laravel 4.1.x
 
 ## Dependencies
 
@@ -45,12 +46,12 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 
 ## Contributions
 
-Thank you to [everyone](https://github.com/MrJuliuss/syntara/graphs/contributors) who has contributed to Syntara
+Thanks to all [contributors](https://github.com/MrJuliuss/syntara/graphs/contributors)
 
 ### Pull requests
 
-*Laravel 4 support, send pull request on 1.1 branch
-*Laravel 4.1 support, send pull requests on 1.2 branch
+* Laravel 4 support, send pull request on 1.1 branch
+* Laravel 4.1 support, send pull requests on 1.2 branch
 
 
 ## [Screenshots](http://mrjuliuss.github.io/syntara/docs/screenshots.html)
