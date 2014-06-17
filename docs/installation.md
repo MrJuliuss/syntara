@@ -9,7 +9,7 @@ If your application uses **Laravel 4.0** :
 
 ```"mrjuliuss/syntara": "1.1.*"```
 
-If your application uses **Laravel 4.1** :
+If your application uses **Laravel 4.1/4.2** :
 
 ```"mrjuliuss/syntara": "1.2.*"```
 
