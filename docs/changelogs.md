@@ -1,5 +1,24 @@
 #Versions
 
+##1.2.7
+
+* Laravel 4.2 support
+* Bulgarian & Brazilian portugese support
+* jQuery 2.1.1 update
+* Toggle switch update
+
+##1.2.6
+
+* Khmer & polish support
+* Bootstrap RTL update
+* Toggle switch update
+* PHPUnit 4
+* Js & css fixes
+
+1.1.22
+
+Same as 1.2.6
+
 ##1.2.5
 
 Same as 1.1.21
