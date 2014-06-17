@@ -15,7 +15,7 @@
 * PHPUnit 4
 * Js & css fixes
 
-1.1.22
+##1.1.22
 
 Same as 1.2.6
 
