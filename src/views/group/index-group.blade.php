@@ -11,7 +11,7 @@
                     <b>{{ trans('syntara::groups.all') }}</b>
                 </div>
                 <div class="module-body ajax-content">
-                     @include('syntara::group.list-groups')
+                    @include(Config::get('syntara::views.groups-list'))
                 </div>
             </section>
         </div>

@@ -11,7 +11,7 @@
                     <b>{{ trans('syntara::permissions.all') }}</b>
                 </div>
                 <div class="module-body ajax-content">
-                    @include('syntara::permission.list-permissions')
+                    @include(Config::get('syntara::views.permissions-list'))
                 </div>
             </section>
         </div>
