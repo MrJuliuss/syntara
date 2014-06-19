@@ -12,7 +12,7 @@
                     <b>{{ trans('syntara::users.all') }}</b>
                 </div>
                 <div class="module-body ajax-content">
-                    @include('syntara::user.list-users')
+                    @include(Config::get('syntara::views.users-list'))
                 </div>
             </section>
         </div>
