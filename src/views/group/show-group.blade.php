@@ -20,7 +20,7 @@
                             </div>
                              <div class="col-lg-4">
                                 @if($currentUser->hasAccess('permissions-management'))
-                                    @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                                    @include(Config::get('syntara::views.permissions-select'), array('permissions'=> $permissions))
                                 @endif
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                 <b>{{ trans('syntara::groups.groups-users-title') }}</b>
             </div>
             <div class="module-body ajax-content">
-                 @include('syntara::group.list-users-group')
+                @include(Config::get('syntara::views.users-in-group'))
             </div>
         </div>
     </div>
