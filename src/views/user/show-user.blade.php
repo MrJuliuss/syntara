@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-lg-5">
                             @if($currentUser->hasAccess('permissions-management'))
-                                @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                                @include(Config::get('syntara::views.permissions-select'), array('permissions'=> $permissions))
                             @endif
                         </div>
                         @if($user->getId() !== $currentUser->getId())

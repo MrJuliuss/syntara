@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-lg-4">
                             @if($currentUser->hasAccess('permissions-management'))
-                                @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
+                                @include(Config::get('syntara::views.permissions-select'), array('permissions'=> $permissions))
                             @endif
                             </div>
                         </div>
