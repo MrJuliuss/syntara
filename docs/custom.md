@@ -64,7 +64,7 @@ Where 'permission' is the name of your permission
 
 Example :
 
-    Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create.article', 
+    Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create-article',
     'uses' => 'MrJuliuss\Syntara\Controllers\ArticleController@getCreate'));
 
 ## Custom view
