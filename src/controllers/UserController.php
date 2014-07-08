@@ -336,11 +336,15 @@ class UserController extends BaseController
             $user->first_name = Input::get('first_name');
             $user->permissions = $permissions;
 
+            $currentUser = Sentry::getUser();
             $permissions = (empty($permissions)) ? '' : json_encode($permissions);
-            // delete permissions in db
-            DB::table('users')
-                ->where('id', $userId)
-                ->update(array('permissions' => $permissions));
+            $hasPermissionManagement = $currentUser->hasAccess('permissions-management') || $currentUser->hasAccess('superuser');
+            if($hasPermissionManagement === true)
+            {
+                DB::table('users')
+                    ->where('id', $userId)
+                    ->update(array('permissions' => $permissions));
+            }
 
             $pass = Input::get('pass');
             if(!empty($pass))
@@ -358,7 +362,7 @@ class UserController extends BaseController
                     $this->_banUser($userId, $banned);
                 }
 
-                if(Sentry::getUser()->hasAccess('user-group-management'))
+                if($currentUser->hasAccess('user-group-management'))
                 {
                     $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
                     $userGroups = $user->getGroups()->toArray();
