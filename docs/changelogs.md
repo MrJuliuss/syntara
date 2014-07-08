@@ -1,5 +1,20 @@
 #Versions
 
+##1.2.8
+
+* Bootstrap 3.2 upgrade
+* Fix favicon
+* jQuery 2.1.1
+* Fix item lists views not in config
+
+##1.1.23
+
+* Bootstrap 3.2 upgrade
+* Fix favicon
+* jQuery 2.1.1
+* Bulgarian support
+* Fix item lists views not in config
+
 ##1.2.7
 
 * Laravel 4.2 support
