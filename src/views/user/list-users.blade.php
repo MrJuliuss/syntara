@@ -45,7 +45,7 @@
         @endif
         <td class="hidden-xs" style="text-align: center;">{{ $user->getId() }}</td>
         <td >&nbsp;{{ $user->username }}</td>
-        <td class="visible-xs visible-lg">&nbsp;{{ $user->getLogin() }}</td>
+        <td class="visible-xs visible-lg">&nbsp;{{ $user->email }}</td>
         <td class="hidden-xs">
         @foreach($user->getGroups()->toArray() as $key => $group)
             {{ $group['name'] }},
