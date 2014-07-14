@@ -1,10 +1,10 @@
 <?php
 
 return array(
-    'required'         => "The field is required.",
-    'email'            => "The email is invalid.",
-    'alpha_dash'       => "The field should only contain letters, numbers and hyphens.",
-    'alpha'            => "The field should only contain letters.",
+    'required'         => "This field is required.",
+    'email'            => "This email is invalid.",
+    'alpha_dash'       => "This field should only contain letters, numbers and hyphens.",
+    'alpha'            => "This field should only contain letters.",
     'last_name.min'    => "The last name must have at least :min characters.",
     'last_name.max'    => "The last name must have less than :max characters.",
     'first_name.min'   => "The name must have at least :min characters.",
