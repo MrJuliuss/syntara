@@ -94,7 +94,12 @@ var ajaxContent = function(url, content, options, useSave)
     .done(function(data)
     {
         $(content).empty().html(data.html);
-        window.history.pushState(data, '', url);
+        if(typeof url !== "undefined" && url != window.location)
+        {
+            window.location.replace(url);
+            window.history.pushState(data, '', window.location);
+        }
+
         lastAjxOpt = options;
     });
 };
