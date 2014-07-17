@@ -34,16 +34,31 @@ class UserController extends BaseController
         {
             $emptyUsers = $emptyUsers->where('users.id', $userId);
         }
+
         $username = Input::get('usernameSearch');
         if(!empty($username))
         {
             $emptyUsers = $emptyUsers->where('username', 'LIKE', '%'.$username.'%');
         }
+
+        $firstName = Input::get('firstNameSearch');
+        if(!empty($firstName))
+        {
+            $emptyUsers = $emptyUsers->where('first_name', 'LIKE', '%'.$firstName.'%');
+        }
+
+        $lastName = Input::get('lastNameSearch');
+        if(!empty($lastName))
+        {
+            $emptyUsers = $emptyUsers->where('last_name', 'LIKE', '%'.$lastName.'%');
+        }
+
         $email = Input::get('emailSearch');
         if(!empty($email))
         {
             $emptyUsers = $emptyUsers->where('email', 'LIKE', '%'.$email.'%');
         }
+
         $bannedUsers = Input::get('bannedSearch');
         if(isset($bannedUsers) && $bannedUsers !== "")
         {
