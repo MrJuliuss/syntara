@@ -36,6 +36,14 @@
                             <input type="email" class="form-control" id="emailSearch" name="emailSearch">
                         </div>
                         <div class="form-group">
+                            <label for="lastNameSearch">{{ trans('syntara::users.last-name') }}</label>
+                            <input type="text" class="form-control" id="lastNameSearch" name="lastNameSearch">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstNameSearch">{{ trans('syntara::users.first-name') }}</label>
+                            <input type="text" class="form-control" id="firstNameSearch" name="firstNameSearch">
+                        </div>
+                        <div class="form-group">
                             <label for="bannedSearch">{{ trans('syntara::users.banned') }}</label>
                             <select class="form-control" id="bannedSearch" name="bannedSearch">
                                 <option>--</option>
