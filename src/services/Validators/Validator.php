@@ -1,5 +1,7 @@
 <?php namespace MrJuliuss\Syntara\Services\Validators;
 
+use Config;
+
 abstract class Validator {
 
     protected $attributes;
@@ -27,6 +29,16 @@ abstract class Validator {
         {
             $rules = static::$rules;
 
+        }
+
+        $loginAttribute = Config::get('cartalyst/sentry::users.login_attribute');
+        if($loginAttribute === 'email')
+        {
+            unset($rules['username']);
+        }
+        elseif($loginAttribute === 'username')
+        {
+            unset($rules['email']);
         }
         
         $messages = array();
