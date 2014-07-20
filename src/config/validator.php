@@ -17,6 +17,7 @@ return array(
             'first_name' => array('min:3', 'max:255', 'alpha_dash'),
             ),
         'login' => array(
+                'username' => array('required', 'min:3', 'max:255', 'alpha'),
                 'email' => array('required', 'email'),
                 'pass' => array('required', 'min:6', 'max:255'),
             ),

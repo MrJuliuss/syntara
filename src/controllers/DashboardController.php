@@ -28,7 +28,8 @@ class DashboardController extends BaseController
     */
     public function getLogin()
     {
-        $this->layout = View::make(Config::get('syntara::views.login'));
+        $loginAttribute = Config::get('cartalyst/sentry::users.login_attribute');
+        $this->layout = View::make(Config::get('syntara::views.login'), array('loginAttribute' => $loginAttribute));
         $this->layout->title = trans('syntara::all.titles.login');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.login');
     }
@@ -41,19 +42,21 @@ class DashboardController extends BaseController
         try
         {
             $validator = new UserValidator(Input::all(), 'login');
+            $loginAttribute = Config::get('cartalyst/sentry::users.login_attribute');
 
             if(!$validator->passes())
             {
                  return Response::json(array('logged' => false, 'errorMessages' => $validator->getErrors()));
             }
 
+
             $credentials = array(
-                'email'    => Input::get('email'),
+                $loginAttribute => Input::get($loginAttribute),
                 'password' => Input::get('pass'),
             );
 
             // authenticate user
-            Sentry::authenticate($credentials, Input::get('remember'));
+            Sentry::authenticate($credentials, (bool)Input::get('remember'));
         }
         catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
         {
