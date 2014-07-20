@@ -8,10 +8,11 @@ $(document).ready(function()
             remember = true;
         }
         
+        var sArray = $(this).serializeArray()
         $.ajax({
             "type": "POST",
             "url": window.location.href.toString(),
-            "data": {"email" : $('#email').val(), "pass" : $('#pass').val(), 'remember' : remember},
+            "data": sArray,
             "dataType": "json"
         }).done(function(result) 
         { 
