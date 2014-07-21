@@ -4,7 +4,7 @@
 
 ### Users list
 
-<img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" width="900" height="319" />
+<img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" width="900" height="455" />
 
 ### Create user 
 
