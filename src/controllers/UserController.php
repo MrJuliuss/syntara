@@ -353,7 +353,7 @@ class UserController extends BaseController
 
             $currentUser = Sentry::getUser();
             $permissions = (empty($permissions)) ? '' : json_encode($permissions);
-            $hasPermissionManagement = $currentUser->hasAccess('permissions-management') || $currentUser->hasAccess('superuser');
+            $hasPermissionManagement = $currentUser->hasAccess(Config::get('syntara::permissions.addUserPermission')) || $currentUser->hasAccess('superuser');
             if($hasPermissionManagement === true)
             {
                 DB::table('users')
@@ -377,7 +377,7 @@ class UserController extends BaseController
                     $this->_banUser($userId, $banned);
                 }
 
-                if($currentUser->hasAccess('user-group-management'))
+                if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
                 {
                     $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
                     $userGroups = $user->getGroups()->toArray();

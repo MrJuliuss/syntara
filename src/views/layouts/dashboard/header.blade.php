@@ -16,18 +16,18 @@
         <ul class="nav navbar-nav">
             <li class=""><a href="{{ URL::route('indexDashboard') }}"><i class="glyphicon glyphicon-home"></i> <span>{{ trans('syntara::navigation.index') }}</span></a></li>
             @if (Sentry::check())
-                @if($currentUser->hasAccess('view-users-list') || $currentUser->hasAccess('groups-management'))
+                @if($currentUser->hasAccess(Config::get('syntara::permissions.listUsers')) || $currentUser->hasAccess(Config::get('syntara::permissions.listGroups')))
                 <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span>{{ trans('syntara::navigation.users') }}</span></a>
                     <ul class="dropdown-menu">
-                        @if($currentUser->hasAccess('view-users-list'))
+                        @if($currentUser->hasAccess(Config::get('syntara::permissions.listUsers')))
                         <li><a href="{{ URL::route('listUsers') }}">{{ trans('syntara::navigation.users') }}</a></li>
                         @endif
 
-                        @if($currentUser->hasAccess('groups-management'))
+                        @if($currentUser->hasAccess(Config::get('syntara::permissions.listGroups')))
                         <li><a href="{{ URL::route('listGroups') }}">{{ trans('syntara::navigation.groups') }}</a></li>
                         @endif
-                        @if($currentUser->hasAccess('permissions-management'))
+                        @if($currentUser->hasAccess(Config::get('syntara::permissions.listPermissions')))
                         <li><a href="{{ URL::route('listPermissions') }}">{{ trans('syntara::navigation.permissions') }}</a></li>
                         @endif
                     </ul>

@@ -19,7 +19,7 @@
                                </div>
                             </div>
                             <div class="col-lg-4">
-                            @if($currentUser->hasAccess('permissions-management'))
+                            @if($currentUser->hasAccess(Config::get('syntara::permissions.addGroupPermission')))
                                 @include(Config::get('syntara::views.permissions-select'), array('permissions'=> $permissions))
                             @endif
                             </div>
