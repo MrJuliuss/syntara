@@ -67,6 +67,8 @@ class UserController extends BaseController
                 ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions', 'users.activated');
         }
 
+        $emptyUsers->distinct();
+
         $users = $emptyUsers->paginate(Config::get('syntara::config.item-perge-page'));
         $datas['links'] = $users->links();
         $datas['users'] = $users;
