@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="bannedSearch">{{ trans('syntara::users.banned') }}</label>
                             <select class="form-control" id="bannedSearch" name="bannedSearch">
-                                <option>--</option>
+                                <option value="">--</option>
                                 <option value="0">{{ trans('syntara::all.no') }}</option>
                                 <option value="1">{{ trans('syntara::all.yes') }}</option>
                             </select>
