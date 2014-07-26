@@ -9,7 +9,7 @@
 <table class="table table-striped table-bordered table-condensed">
 <thead>
     <tr>
-        @if($currentUser->hasAccess('user-group-management'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
         <th style="width:20px; text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
         <th style="width:20px; text-align: center;">ID</th>
@@ -20,7 +20,7 @@
 <tbody>
     @foreach ($users as $user)
     <tr>
-        @if($currentUser->hasAccess('user-group-management'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
         <td style="text-align: center;">
             <input type="checkbox" data-user-id="{{ $user->getId() }}">
         </td>
@@ -33,7 +33,7 @@
 </tbody>
 </table>
 
-@if(!empty($candidateUsers) && $currentUser->hasAccess('user-group-management'))
+@if(!empty($candidateUsers) && $currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
 <div class="row">
     <div class="col-lg-6" style="margin-bottom: 15px;">
         <select class="form-control" id="ungrouped-users-list" data-group-id="{{ $group->getId() }}">

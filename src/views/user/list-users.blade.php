@@ -2,11 +2,11 @@
     {{ $datas['users']->links(); }}
     
     <div style="float:right;">
-        @if($currentUser->hasAccess('delete-user'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.deleteUsers')))
         <a id="delete-item" class="btn btn-danger">{{ trans('syntara::all.delete') }}</a>
         @endif
 
-        @if($currentUser->hasAccess('create-user'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.newUser')))
         <a class="btn btn-info btn-new" href="{{ URL::route('newUser') }}">{{ trans('syntara::users.new') }}</a>
         @endif
     </div>
@@ -14,7 +14,7 @@
 <table class="table table-striped table-bordered table-condensed">
 <thead>
     <tr>
-        @if($currentUser->hasAccess('delete-user'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.deleteUsers')))
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
         <th class="col-lg-1 hidden-xs" style="text-align: center;">Id</th>
@@ -25,7 +25,7 @@
         <th class="col-lg-1 visible-lg">{{ trans('syntara::users.last-name') }}</th>
         <th class="col-lg-1 visible-lg">{{ trans('syntara::users.first-name') }}</th>
         <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.activated') }}</th>
-        @if($currentUser->hasAccess('update-user-info'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.putUser')))
         <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.banned') }}</th>
        
         <th class="col-lg-1" style="text-align: center;">{{ trans('syntara::all.show') }}</th>
@@ -38,7 +38,7 @@
     $throttle = $throttle = Sentry::findThrottlerByUserId($user->getId());
     ?>
     <tr>
-        @if($currentUser->hasAccess('delete-user'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.deleteUsers')))
         <td style="text-align: center;">
             <input type="checkbox" data-user-id="{{ $user->getId(); }}">
         </td>
@@ -55,7 +55,7 @@
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
         <td class="hidden-xs">{{ $user->isActivated() ? trans('syntara::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('syntara::users.activate').'">'.trans('syntara::all.no').'</a>'}}</td>
-        @if($currentUser->hasAccess('update-user-info'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.showUser')))
         <td class="hidden-xs">{{ $throttle->isBanned() ? trans('syntara::all.yes') : trans('syntara::all.no')}}</td>        
         <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showUser', $user->getId()) }}">{{ trans('syntara::all.show') }}</a></td>
         @endif

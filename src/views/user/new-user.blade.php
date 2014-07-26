@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                            @if($currentUser->hasAccess('user-group-management'))
+                            @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
                                 <label class="control-label">{{ trans('syntara::users.groups') }}</label>
                                 <div class="form-group">
                                 @foreach($groups as $group)
@@ -46,7 +46,7 @@
                                 </div>
                             @endif
                                 <div class="form-group">
-                                @if($currentUser->hasAccess('permissions-management'))
+                                @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserPermission')))
                                     @include('syntara::layouts.dashboard.permissions-select', array('permissions'=> $permissions))
                                 @endif
                                 </div>
