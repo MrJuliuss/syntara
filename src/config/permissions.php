@@ -21,5 +21,7 @@ return array(
         'newPermission' => 'permissions-management',
         'newPermissionPost' => 'permissions-management',
         'showPermission' => 'permissions-management',
-        'putPermission' => 'permissions-management'
+        'putPermission' => 'permissions-management',
+        'addUserPermission' => 'permissions-management',
+        'addGroupPermission' => 'permissions-management'
 );

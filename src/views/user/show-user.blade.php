@@ -43,7 +43,7 @@
 
                             @foreach($groups as $group)
                             <label class="checkbox-inline">
-                                @if($currentUser->hasAccess('user-group-management'))
+                                @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
                                 <input type="checkbox" id="groups[{{ $group->getId() }}]" name="groups[]" value="{{ $group->getId() }}" {{ ($user->inGroup($group)) ? 'checked="checked"' : ''}}>
                                 @endif
                                 {{ $group->getName() }}
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="col-lg-5">
-                            @if($currentUser->hasAccess('permissions-management'))
+                            @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserPermission')))
                                 @include(Config::get('syntara::views.permissions-select'), array('permissions'=> $permissions))
                             @endif
                         </div>
