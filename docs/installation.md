@@ -64,3 +64,11 @@ To update Syntara, you need to start an update via composer : ```composer update
 After this update, just start ```php artisan syntara:update```
 
 This command does the same as the install command, only it won't publish again the config files, overwriting your changes, allowing users to run any new database migrations or publish any new assets.
+
+## Configuration
+
+### Login
+
+Users can be logged using **email** (default) or **username**.
+
+In ```app/config/packages/cartalyst/sentry/config.php```, change ```login_attribute``` from ```email``` to ```username```.
