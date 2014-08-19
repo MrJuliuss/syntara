@@ -33,6 +33,7 @@ Syntara is an admin system for Laravel 4, made for user management easier.
     - Bulgarian (bg)
     - Brazilian portugese (pt-br)
     - German (de)
+    - Indonesian (id)
 
 * RTL languages support
 
@@ -55,6 +56,8 @@ Thanks to all [contributors](https://github.com/MrJuliuss/syntara/graphs/contrib
 
 * Laravel 4 support, send pull request on 1.1 branch
 * Laravel 4.1 & 4.2 support, send pull requests on 1.2 branch
+
+** Pull request send on master branch will refused **
 
 ## [Screenshots](http://mrjuliuss.github.io/syntara/docs/screenshots.html)
 
