@@ -1,5 +1,17 @@
 #Versions
 
+##1.2.9
+
+* Indonesian support
+* Add lastname & firstname filter in users list
+* Username / Email login
+* Fix permissions
+* Fix banned users search
+
+##1.1.24
+
+* Same as 1.2.9
+
 ##1.2.8
 
 * Bootstrap 3.2 upgrade
