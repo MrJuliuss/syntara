@@ -71,10 +71,6 @@ Thanks to all [contributors](https://github.com/MrJuliuss/syntara/graphs/contrib
 * Laravel 4 support, send pull request on 1.1 branch
 * Laravel 4.1 /4.2support, send pull requests on 1.2 branch
 
-### Todo
-
-* Forgot password
-
 ## <a href="http://mrjuliuss.github.io/syntara/docs/screenshots.html" target="_blank">Screenshots</a>
 
 ## <a href="http://mrjuliuss.github.io/syntara/docs/installation.html" target="_blank">Installation</a>
