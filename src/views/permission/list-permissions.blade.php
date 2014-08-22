@@ -29,7 +29,7 @@
 <tbody>
     @foreach ($permissions as $permission)
     <tr>
-        @if($currentUser->hasAccess(Config::get('syntara::permissions.deletePermission'))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.deletePermission')))
         <td style="text-align: center;">
             <input type="checkbox" data-permission-id="{{ $permission->getId(); }}">
         </td>
