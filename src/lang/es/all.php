@@ -21,6 +21,14 @@ return array(
         'banned' => 'Usuario baneado contacte al administrador.',
         'login-failed' => 'Lo sentimos. Revisa tus datos de acceso.',
         'denied' => 'Lo sentimos. Acceso denegado !',
+        'error' => array (
+             '404' => 'Se puede encontrar la página que está buscando.',
+             '404-title' => '404. Extraviado.',
+             '403' => 'Lo sentimos mucho, pero no se nos permite acceder a esta página.',
+             '403-title' => '403. Acceso denegado.',
+             '500' => 'Nos encontramos con algunos problemas. Lo sentimos. :-(.',
+             '500-title' => '500. Error Interno del Servidor.',
+         ),
     ),
     'titles' => array(
         'index' => 'Tablero de Mando',

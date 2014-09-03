@@ -8,7 +8,7 @@
         <div class="col-lg-12 offset3">
             <section class="module">
                 <div class="module-head">
-                    <b>{{ trans('syntara::all.error') }}</b>
+                    <b>{{ $title }}</b>
                 </div>
                 <div class="module-body">
                     <div class="alert alert-danger">
