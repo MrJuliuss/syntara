@@ -19,6 +19,6 @@ return array(
     'name.max'         => "Karakter untuk nama tidak melebihi :max.",
     'value.min'        => "Minimal karakter untuk nilai adalah :min.",
     'value.max'        => "Karakter untuk nilai tidak melebihi :max.",
-    'description.min'  => "Minimal karakter untuk keterangan adalah :min.",,
+    'description.min'  => "Minimal karakter untuk keterangan adalah :min.",
     'description.max'  => "Karakter untuk keterangan tidak melebihi :max.",
 );
