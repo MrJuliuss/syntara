@@ -48,7 +48,33 @@ Route::filter('hasPermissions', function($route, $request, $userPermission = nul
 
         if(!Sentry::getUser()->hasAccess($permission))
         {
-            return Redirect::route('accessDenied');
+            return App::abort(403);
         }
     }
+});
+
+App::error(function(Exception $exception, $code)
+{
+
+    View::share('currentUser', Sentry::getUser());
+    $message = !empty($exception->getMessage())?$exception->getMessage():Lang::trans('syntara::all.messages.error.403');
+    if(403 === $code)
+        return Response::view(Config::get('syntara::views.error'), array('message' => $message, 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.403-title')));
+
+    if(App::environment('production') || !Config::get('app.debug'))
+    {
+        switch ($code)
+        {
+
+            case 404:
+                return Response::view(Config::get('syntara::views.error'), array('message' => Lang::trans('syntara::all.messages.error.404'), 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.404-title')));
+
+            case 500:
+                return Response::view(Config::get('syntara::views.error'), array('message' => Lang::trans('syntara::all.messages.error.500'), 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.500-title')));
+
+            default:
+                return Response::view(Config::get('syntara::views.error'), array('message' => Lang::trans('syntara::all.messages.error.default'), 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.default-title')));
+        }
+    }
+
 });
