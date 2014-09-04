@@ -18,9 +18,17 @@ return array(
     'yes' => 'Oui',
     'no' => 'Non',
     'messages' => array(
-        'banned' => array("Utilisateur bannit, merci de contacter l'administrateur"),
+        'banned' => 'Utilisateur bannit, merci de contacter l\'administrateur',
         'login-failed' => 'Connexion impossible, vérifiez votre login et mot de passe.',
         'denied' => 'Désolé, accès réfusé !',
+        'error' => array (
+             '404' => 'Nous pouvons trouver la page que vous cherchez.',
+             '404-title'=>' 404. Pas trouvé.',
+             '403' => 'Nous sommes désolés, mais vous n\'êtes pas autorisé à accéder à cette page.',
+             '403-title'=>' 403. Accès refusé.',
+             '500' => 'Nous avons rencontré quelques problèmes. Désolé. :-(.',
+             '500-title'=>' 500. Erreur interne du serveur.',
+         ),
     ),
     'titles' => array(
         'index' => 'Tableau de bord',
