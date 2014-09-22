@@ -17,7 +17,9 @@ class SyntaraServiceProvider extends ServiceProvider
 
     public function boot() 
     {
-        $this->package('mrjuliuss/syntara');
+	$this->app->booting(function(){
+       	    $this->package('mrjuliuss/syntara');
+	});
         $this->loadIncludes();
     }
 
