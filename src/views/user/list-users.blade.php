@@ -25,7 +25,7 @@
         <th class="col-lg-1 visible-lg">{{ trans('syntara::users.last-name') }}</th>
         <th class="col-lg-1 visible-lg">{{ trans('syntara::users.first-name') }}</th>
         <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.activated') }}</th>
-        @if($currentUser->hasAccess(Config::get('syntara::permissions.putUser')))
+        @if($currentUser->hasAccess(Config::get('syntara::permissions.showUser')))
         <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.banned') }}</th>
        
         <th class="col-lg-1" style="text-align: center;">{{ trans('syntara::all.show') }}</th>
