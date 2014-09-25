@@ -55,11 +55,15 @@ Route::filter('hasPermissions', function($route, $request, $userPermission = nul
 
 App::error(function(Exception $exception, $code)
 {
-
     View::share('currentUser', Sentry::getUser());
-    $message = !empty($exception->getMessage())?$exception->getMessage():Lang::trans('syntara::all.messages.error.403');
+
+    $exceptionMessage = $exception->getMessage();
+    $message = !empty($exceptionMessage) ? $exceptionMessage : Lang::trans('syntara::all.messages.error.403');
+
     if(403 === $code)
+    {
         return Response::view(Config::get('syntara::views.error'), array('message' => $message, 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.403-title')));
+    }
 
     if(App::environment('production') || !Config::get('app.debug'))
     {
