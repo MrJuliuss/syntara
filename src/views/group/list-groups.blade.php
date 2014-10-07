@@ -13,7 +13,7 @@
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         <th class="col-lg-1" style="text-align: center;">Id</th>
         <th class="col-lg-2">{{ trans('syntara::all.name') }}</th>
-        <th class="col-lg-7">{{ trans('syntara::navigation.permissions') }}</th>
+        <th class="col-lg-7 hidden-xs">{{ trans('syntara::navigation.permissions') }}</th>
         <th class="col-lg-1" style="text-align: center;">{{ trans('syntara::all.show') }}</th>
     </tr>
 </thead>
@@ -25,7 +25,7 @@
         </td>
         <td style="text-align: center;">{{ $group->getId() }}</td>
         <td>{{ $group->getName() }}</td>
-        <td>{{ json_encode($group->getPermissions()) }}</td>
+        <td class="hidden-xs">{{ json_encode($group->getPermissions()) }}</td>
         <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showGroup', $group->getId())}}">{{ trans('syntara::all.show') }}</a></td>
     </tr>
     @endforeach
