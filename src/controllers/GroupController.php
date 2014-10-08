@@ -131,8 +131,7 @@ class GroupController extends BaseController
             }
 
             // get users in group
-            $users = Sentry::getUserProvider()->createModel()->join('users_groups', 'users.id', '=', 'users_groups.user_id')->where('users_groups.group_id', '=', $group->getId())
-                    ->paginate(Config::get('syntara::config.item-perge-page'));
+            $users = $group->users()->paginate(Config::get('syntara::config.item-perge-page'));
 
             // users not in group
             $candidateUsers = array();
