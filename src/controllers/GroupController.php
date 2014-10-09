@@ -124,12 +124,6 @@ class GroupController extends BaseController
                 catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
             }
 
-            $userids = array();
-            foreach(Sentry::getUserProvider()->findAllInGroup($group) as $user) 
-            {
-                $userids[] = $user->id;
-            }
-
             // get users in group
             $users = $group->users()->paginate(Config::get('syntara::config.item-perge-page'));
 
