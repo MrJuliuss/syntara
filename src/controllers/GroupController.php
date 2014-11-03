@@ -128,25 +128,27 @@ class GroupController extends BaseController
             $users = $group->users()->paginate(Config::get('syntara::config.item-perge-page'));
 
             // users not in group
-            $candidateUsers = array();
-            $allUsers = Sentry::getUserProvider()->findAll();
-            foreach($allUsers as $user)
-            {
-                if(!$user->inGroup($group))
+            $usersNotInGroup = Sentry::getUserProvider()
+                ->createModel()
+                ->newQuery()
+                ->whereNotIn('id', function($query) use ($groupId)
                 {
-                    $candidateUsers[] = $user;
-                }
-            }
+                    $query->select('user_id')
+                          ->from('users_groups')
+                          ->where('group_id', '=', $groupId);
+                })
+                ->get()
+                ->all();
 
             // ajax request : reload only content container
             if(Request::ajax())
             {
-                $html = View::make(Config::get('syntara::views.users-in-group'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();
+                $html = View::make(Config::get('syntara::views.users-in-group'), array('group' => $group, 'users' => $users, 'candidateUsers' => $usersNotInGroup))->render();
                 
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make(Config::get('syntara::views.group-edit'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
+            $this->layout = View::make(Config::get('syntara::views.group-edit'), array('group' => $group, 'users' => $users, 'candidateUsers' => $usersNotInGroup, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
