@@ -30,9 +30,11 @@ Route::filter('notAuth', function()
 
 Route::filter('hasPermissions', function($route, $request, $userPermission = null)
 {
-    if (Route::currentRouteNamed('putUser') && Sentry::getUser()->id == Request::segment(3) ||
-        Route::currentRouteNamed('showUser') && Sentry::getUser()->id == Request::segment(3))
-    {
+    if (
+        Route::currentRouteNamed('putUser') && Sentry::getUser()->id == Request::segment(3)
+        ||
+        Route::currentRouteNamed('showUser') && Sentry::getUser()->id == Request::segment(3)
+    ) {
     }
     else
     {
@@ -62,23 +64,49 @@ App::error(function(Exception $exception, $code)
 
     if(403 === $code)
     {
-        return Response::view(Config::get('syntara::views.error'), array('message' => $message, 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.403-title')));
+        return Response::view(
+            Config::get('syntara::views.error'),
+            array(
+                'message' => $message,
+                'code'=>$code,
+                'title'=>Lang::trans('syntara::all.messages.error.403-title')
+            )
+        );
     }
 
     if(App::environment('production') || !Config::get('app.debug'))
     {
         switch ($code)
         {
-
             case 404:
-                return Response::view(Config::get('syntara::views.error'), array('message' => Lang::trans('syntara::all.messages.error.404'), 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.404-title')));
+                return Response::view(
+                    Config::get('syntara::views.error'),
+                    array(
+                        'message' => Lang::trans('syntara::all.messages.error.404'),
+                        'code'=>$code,
+                        'title'=>Lang::trans('syntara::all.messages.error.404-title')
+                    )
+                );
 
             case 500:
-                return Response::view(Config::get('syntara::views.error'), array('message' => Lang::trans('syntara::all.messages.error.500'), 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.500-title')));
+                return Response::view(
+                    Config::get('syntara::views.error'),
+                    array(
+                        'message' => Lang::trans('syntara::all.messages.error.500'),
+                        'code'=>$code,
+                        'title'=>Lang::trans('syntara::all.messages.error.500-title')
+                    )
+                );
 
             default:
-                return Response::view(Config::get('syntara::views.error'), array('message' => Lang::trans('syntara::all.messages.error.default'), 'code'=>$code, 'title'=>Lang::trans('syntara::all.messages.error.default-title')));
+                return Response::view(
+                    Config::get('syntara::views.error'),
+                    array(
+                        'message' => Lang::trans('syntara::all.messages.error.default'),
+                        'code'=>$code,
+                        'title'=>Lang::trans('syntara::all.messages.error.default-title')
+                    )
+                );
         }
     }
-
 });
