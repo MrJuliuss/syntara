@@ -10,7 +10,7 @@ use Response;
 use Request;
 use URL;
 
-class PermissionController extends BaseController 
+class PermissionController extends BaseController
 {
     /**
     * List of permissions
@@ -19,26 +19,22 @@ class PermissionController extends BaseController
     {
         $permissions = PermissionProvider::createModel();
         $permissionId = Input::get('permissionIdSearch');
-        if(!empty($permissionId))
-        {
+        if(!empty($permissionId)) {
             $permissions = $permissions->where('id', $permissionId);
         }
         $permissionName = Input::get('permissionNameSearch');
-        if(!empty($permissionName))
-        {
+        if(!empty($permissionName)) {
             $permissions = $permissions->where('name', 'LIKE', '%'.$permissionName.'%');
         }
         $permissionValue = Input::get('permissionValueSearch');
-        if(!empty($permissionValue))
-        {
+        if(!empty($permissionValue)) {
             $permissions = $permissions->where('value', 'LIKE', '%'.$permissionValue.'%');
         }
 
         $permissions = $permissions->paginate(Config::get('syntara::config.item-perge-page'));
 
         // ajax request : reload only content container
-        if(Request::ajax())
-        {
+        if(Request::ajax()) {
             $html = View::make(Config::get('syntara::views.permissions-list'), array('permissions' => $permissions))->render();
 
             return Response::json(array('html' => $html));
@@ -64,21 +60,15 @@ class PermissionController extends BaseController
      */
     public function postCreate()
     {
-        try
-        {
+        try {
             $validator = new PermissionValidator(Input::all());
-            if(!$validator->passes())
-            {
+            if(!$validator->passes()) {
                 return Response::json(array('permissionCreated' => false, 'errorMessages' => $validator->getErrors()));
             }
 
             // create permission
             $permission = PermissionProvider::createPermission(Input::all());
-        }
-        catch (\MrJuliuss\Syntara\Models\Permissions\NameRequiredException $e) {}
-        catch (\MrJuliuss\Syntara\Models\Permissions\ValueRequiredException $e) {}
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e)
-        {
+        } catch (\MrJuliuss\Syntara\Models\Permissions\NameRequiredException $e) {} catch (\MrJuliuss\Syntara\Models\Permissions\ValueRequiredException $e) {} catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e) {
             return json_encode(array('permissionCreated' => false, 'message' => trans('syntara::permissions.messages.exists'), 'messageType' => 'danger'));
         }
 
@@ -91,10 +81,9 @@ class PermissionController extends BaseController
     */
     public function getShow($permissionId)
     {
-        try
-        {
+        try {
             $permission = PermissionProvider::findById($permissionId);
-            
+
             $this->layout = View::make(Config::get('syntara::views.permission-edit'), array(
                 'permission' => $permission,
             ));
@@ -111,9 +100,7 @@ class PermissionController extends BaseController
                      'icon' => ''
                     )
             );
-        }
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
-        {
+        } catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e) {
             $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::permissions.messages.not-found')));
         }
     }
@@ -125,11 +112,9 @@ class PermissionController extends BaseController
     */
     public function putShow($permissionId)
     {
-        try
-        {
+        try {
             $validator = new PermissionValidator(Input::all());
-            if(!$validator->passes())
-            {
+            if(!$validator->passes()) {
                 return Response::json(array('permissionUpdated' => false, 'errorMessages' => $validator->getErrors()));
             }
 
@@ -138,17 +123,12 @@ class PermissionController extends BaseController
             $permission->fill(Input::all());
 
             // Update the permission
-            if($permission->save())
-            {
+            if($permission->save()) {
                 return Response::json(array('permissionUpdated' => true, 'message' => trans('syntara::permissions.messages.update-success'), 'messageType' => 'success'));
-            }
-            else 
-            {
+            } else {
                 return Response::json(array('permissionUpdated' => false, 'message' => trans('syntara::permissions.messages.update-fail'), 'messageType' => 'danger'));
             }
-        }
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e)
-        {
+        } catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e) {
             return Response::json(array('permissionUpdated' => false, 'message' => trans('syntara::permissions.messages.exists'), 'messageType' => 'danger'));
         }
     }
@@ -158,13 +138,10 @@ class PermissionController extends BaseController
     */
     public function delete($permissionId)
     {
-        try
-        {
+        try {
             $permission = PermissionProvider::findById($permissionId);
             $permission->delete();
-        }
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
-        {
+        } catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e) {
             return Response::json(array('deletePermission' => false, 'message' => trans('syntara::permissions.messages.not-found'), 'messageType' => 'danger'));
         }
 

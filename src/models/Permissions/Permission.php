@@ -83,13 +83,11 @@ class Permission extends Model
      */
     public function validate()
     {
-        if(!$name = $this->getName())
-        {
+        if(!$name = $this->getName()) {
             throw new NameRequiredException("A name is required for a permission, none given.");
         }
 
-        if(!$value = $this->getValue())
-        {
+        if(!$value = $this->getValue()) {
             throw new ValueRequiredException("A value is required for a permission, none given.");
         }
 
@@ -97,8 +95,7 @@ class Permission extends Model
         $query = $this->newQuery();
         $persistedPermission = $query->where('value', '=', $value)->first();
 
-        if($persistedPermission and $persistedPermission->getId() != $this->getId())
-        {
+        if($persistedPermission and $persistedPermission->getId() != $this->getId()) {
             throw new PermissionExistsException("A permission already exists with value [$value], values must be unique for permissions.");
         }
 

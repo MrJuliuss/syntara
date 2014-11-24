@@ -2,8 +2,8 @@
 
 use Config;
 
-abstract class Validator {
-
+abstract class Validator
+{
     protected $attributes;
 
     protected $errors;
@@ -21,36 +21,28 @@ abstract class Validator {
     public function passes()
     {
         $rules = array();
-        if($this->level !== null)
-        {
+        if($this->level !== null) {
             $rules = static::$rules[$this->level];
-        }
-        else
-        {
+        } else {
             $rules = static::$rules;
 
         }
 
         $loginAttribute = Config::get('cartalyst/sentry::users.login_attribute');
-        if($loginAttribute === 'email')
-        {
+        if($loginAttribute === 'email') {
             unset($rules['username']);
-        }
-        elseif($loginAttribute === 'username')
-        {
+        } elseif($loginAttribute === 'username') {
             unset($rules['email']);
         }
-        
+
         $messages = array();
-        if(is_array(trans('syntara::validation')))
-        {
+        if(is_array(trans('syntara::validation'))) {
             $messages = trans('syntara::validation');
         }
 
         $validation = \Validator::make($this->attributes, $rules, $messages);
 
-        if($validation->passes())
-        {
+        if($validation->passes()) {
             return true;
         }
 
@@ -65,5 +57,3 @@ abstract class Validator {
     }
 
 }
-
-

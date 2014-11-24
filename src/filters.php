@@ -1,9 +1,7 @@
 <?php
 
-Route::filter('basicAuth', function()
-{
-    if(!Sentry::check())
-    {
+Route::filter('basicAuth', function () {
+    if(!Sentry::check()) {
         // save the attempted url
         Session::put('attemptedUrl', URL::current());
 
@@ -13,13 +11,10 @@ Route::filter('basicAuth', function()
     View::share('currentUser', Sentry::getUser());
 });
 
-Route::filter('notAuth', function()
-{
-    if(Sentry::check())
-    {
+Route::filter('notAuth', function () {
+    if(Sentry::check()) {
         $url = Session::get('attemptedUrl');
-        if(!isset($url))
-        {
+        if(!isset($url)) {
             $url = URL::route('indexDashboard');
         }
         Session::forget('attemptedUrl');
@@ -28,42 +23,33 @@ Route::filter('notAuth', function()
     }
 });
 
-Route::filter('hasPermissions', function($route, $request, $userPermission = null)
-{
+Route::filter('hasPermissions', function ($route, $request, $userPermission = null) {
     if (
         Route::currentRouteNamed('putUser') && Sentry::getUser()->id == Request::segment(3)
         ||
         Route::currentRouteNamed('showUser') && Sentry::getUser()->id == Request::segment(3)
     ) {
-    }
-    else
-    {
-        if($userPermission === null)
-        {
+    } else {
+        if($userPermission === null) {
             $permissions = Config::get('syntara::permissions');
             $permission = $permissions[Route::current()->getName()];
-        }
-        else
-        {
+        } else {
             $permission = $userPermission;
         }
 
-        if(!Sentry::getUser()->hasAccess($permission))
-        {
+        if(!Sentry::getUser()->hasAccess($permission)) {
             return App::abort(403);
         }
     }
 });
 
-App::error(function(Exception $exception, $code)
-{
+App::error(function (Exception $exception, $code) {
     View::share('currentUser', Sentry::getUser());
 
     $exceptionMessage = $exception->getMessage();
     $message = !empty($exceptionMessage) ? $exceptionMessage : Lang::trans('syntara::all.messages.error.403');
 
-    if(403 === $code)
-    {
+    if(403 === $code) {
         return Response::view(
             Config::get('syntara::views.error'),
             array(
@@ -74,10 +60,8 @@ App::error(function(Exception $exception, $code)
         );
     }
 
-    if(App::environment('production') || !Config::get('app.debug'))
-    {
-        switch ($code)
-        {
+    if(App::environment('production') || !Config::get('app.debug')) {
+        switch ($code) {
             case 404:
                 return Response::view(
                     Config::get('syntara::views.error'),

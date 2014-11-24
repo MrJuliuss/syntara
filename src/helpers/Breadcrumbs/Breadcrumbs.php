@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Helpers;
 
@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\URL;
 /**
 * Breadcrumb class
 */
-class Breadcrumbs 
+class Breadcrumbs
 {
     /**
     * Create breadcrumb
@@ -16,29 +16,26 @@ class Breadcrumbs
     */
     public static function create($items)
     {
-        if(empty($items))
-        {
+        if(empty($items)) {
             return;
         }
-        
+
         $crumbs = array();
-        foreach($items as $key => $item)
-        {
+        foreach($items as $key => $item) {
             $active = false;
-            if((count($items) - 1) === $key)
-            {
+            if((count($items) - 1) === $key) {
                 $active = true;
             }
             $crumbs[] = static::renderItem($item, $active);
         }
-        
+
         $html = '<div id="breadcrumb">';
         $html .= implode('', $crumbs);;
         $html .= '</div>';
-        
+
         return $html;
     }
-    
+
     /**
     * Render the current item
     * @param array $item part of the breadcrumb
@@ -48,14 +45,12 @@ class Breadcrumbs
     public static function renderItem($item, $active)
     {
         $class = "";
-        if($active === true)
-        {
+        if($active === true) {
             $class = "current";
         }
 
         $html = '<a href="'.URL::to($item["link"]).'" class="tip-bottom '.$class.'">';
-        if($item["icon"] !== '')
-        {
+        if($item["icon"] !== '') {
             $html .= '<i class="glyphicon '.$item["icon"].'"></i>';
         }
 

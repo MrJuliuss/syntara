@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AlterUserTable extends Migration 
+class AlterUserTable extends Migration
 {
 
     /**
@@ -12,8 +12,7 @@ class AlterUserTable extends Migration
     */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->string('username')->after('email');
             $table->unique('username');
         });

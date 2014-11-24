@@ -51,8 +51,7 @@ class PermissionProvider
      */
     public function findById($id)
     {
-        if(!$permission = $this->createModel()->newQuery()->find($id))
-        {
+        if(!$permission = $this->createModel()->newQuery()->find($id)) {
             throw new PermissionNotFoundException("A permission could not be found with ID [$id].");
         }
 
@@ -66,8 +65,7 @@ class PermissionProvider
      */
     public function findByValue($value)
     {
-        if(!$permission = $this->createModel()->newQuery()->where('value', '=', $value)->get()->first())
-        {
+        if(!$permission = $this->createModel()->newQuery()->where('value', '=', $value)->get()->first()) {
             throw new PermissionNotFoundException("A permission could not be found with Value [$value].");
         }
 

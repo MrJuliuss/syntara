@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return array(
     'index' => '控制面板',

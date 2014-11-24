@@ -3,8 +3,7 @@
 /**
  * Loggued routes without permission
  */
-Route::group(array('before' => 'basicAuth', 'prefix' => Config::get('syntara::config.uri')), function()
-{
+Route::group(array('before' => 'basicAuth', 'prefix' => Config::get('syntara::config.uri')), function () {
     Route::get('', array(
         'as' => 'indexDashboard',
         'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getIndex')
@@ -24,8 +23,7 @@ Route::group(array('before' => 'basicAuth', 'prefix' => Config::get('syntara::co
 /**
  * Loggued routes with permissions
  */
-Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::get('syntara::config.uri')), function()
-{
+Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::get('syntara::config.uri')), function () {
     /**
      * User routes
      */
@@ -144,8 +142,7 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
 /**
  * Unlogged routes
  */
-Route::group(array('before' => 'notAuth', 'prefix' => Config::get('syntara::config.uri')), function()
-{
+Route::group(array('before' => 'notAuth', 'prefix' => Config::get('syntara::config.uri')), function () {
     Route::get('login', array(
         'as' => 'getLogin',
         'uses' => 'MrJuliuss\Syntara\Controllers\DashboardController@getLogin')
@@ -157,8 +154,7 @@ Route::group(array('before' => 'notAuth', 'prefix' => Config::get('syntara::conf
     );
 });
 
-Route::group(array('prefix' => Config::get('syntara::config.uri')), function()
-{
+Route::group(array('prefix' => Config::get('syntara::config.uri')), function () {
     /**
      * Activate a user (with view)
      */

@@ -4,8 +4,8 @@ use Mockery as m;
 use MrJuliuss\Syntara\Models\Permissions\PermissionProvider;
 use PHPUnit_Framework_TestCase;
 
-class PermissionProviderTest extends PHPUnit_Framework_TestCase {
-
+class PermissionProviderTest extends PHPUnit_Framework_TestCase
+{
     /**
      * Close mockery.
      *
@@ -104,7 +104,7 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
     public function testFindingById()
     {
         $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
-        
+
         $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
