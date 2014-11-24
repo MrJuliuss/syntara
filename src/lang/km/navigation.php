@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return array(
     'index' => 'ផ្ទៃតាប្លូ',

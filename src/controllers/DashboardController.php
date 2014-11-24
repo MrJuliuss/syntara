@@ -39,13 +39,11 @@ class DashboardController extends BaseController
     */
     public function postLogin()
     {
-        try
-        {
+        try {
             $validator = new UserValidator(Input::all(), 'login');
             $loginAttribute = Config::get('cartalyst/sentry::users.login_attribute');
 
-            if(!$validator->passes())
-            {
+            if(!$validator->passes()) {
                  return Response::json(array('logged' => false, 'errorMessages' => $validator->getErrors()));
             }
 
@@ -57,13 +55,9 @@ class DashboardController extends BaseController
 
             // authenticate user
             Sentry::authenticate($credentials, (bool)Input::get('remember'));
-        }
-        catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
-        {
+        } catch(\Cartalyst\Sentry\Throttling\UserBannedException $e) {
             return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.banned'), 'errorType' => 'danger'));
-        }
-        catch (\RuntimeException $e)
-        {
+        } catch (\RuntimeException $e) {
             return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.login-failed'), 'errorType' => 'danger'));
         }
 

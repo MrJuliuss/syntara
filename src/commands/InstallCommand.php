@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Sentry;
 
-class InstallCommand extends Command 
+class InstallCommand extends Command
 {
 
     /**
@@ -57,8 +57,7 @@ class InstallCommand extends Command
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
 
         // create admin group
-        try
-        {
+        try {
             $this->info('Creating "Admin" group...');
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        => 'Admin',
@@ -68,9 +67,7 @@ class InstallCommand extends Command
             ));
 
             $this->info('"Admin" group created with success');
-        }
-        catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
-        {
+        } catch (\Cartalyst\Sentry\Groups\GroupExistsException $e) {
             $this->info('"Admin" group already exists');
         }
     }

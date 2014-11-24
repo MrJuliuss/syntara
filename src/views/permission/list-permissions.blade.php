@@ -1,6 +1,6 @@
 <div class="row upper-menu">
     {{ $permissions->links(); }}
-    
+
     <div style="float:right;">
         @if($currentUser->hasAccess(Config::get('syntara::permissions.deletePermission')))
         <a id="delete-item" class="btn btn-danger">{{ trans('syntara::all.delete') }}</a>

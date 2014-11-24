@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Breadcrumbs extends Facade 
+class Breadcrumbs extends Facade
 {
 
     /**

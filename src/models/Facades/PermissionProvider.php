@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class PermissionProvider extends Facade 
+class PermissionProvider extends Facade
 {
 
     /**

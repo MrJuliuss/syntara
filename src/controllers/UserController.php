@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Controllers;
 
@@ -15,7 +15,7 @@ use PermissionProvider;
 use DB;
 use Mail;
 
-class UserController extends BaseController 
+class UserController extends BaseController
 {
 
     /**
@@ -30,38 +30,32 @@ class UserController extends BaseController
 
         // users search
         $userId = Input::get('userIdSearch');
-        if(!empty($userId))
-        {
+        if(!empty($userId)) {
             $emptyUsers = $emptyUsers->where('users.id', $userId);
         }
 
         $username = Input::get('usernameSearch');
-        if(!empty($username))
-        {
+        if(!empty($username)) {
             $emptyUsers = $emptyUsers->where('username', 'LIKE', '%'.$username.'%');
         }
 
         $firstName = Input::get('firstNameSearch');
-        if(!empty($firstName))
-        {
+        if(!empty($firstName)) {
             $emptyUsers = $emptyUsers->where('first_name', 'LIKE', '%'.$firstName.'%');
         }
 
         $lastName = Input::get('lastNameSearch');
-        if(!empty($lastName))
-        {
+        if(!empty($lastName)) {
             $emptyUsers = $emptyUsers->where('last_name', 'LIKE', '%'.$lastName.'%');
         }
 
         $email = Input::get('emailSearch');
-        if(!empty($email))
-        {
+        if(!empty($email)) {
             $emptyUsers = $emptyUsers->where('email', 'LIKE', '%'.$email.'%');
         }
 
         $bannedUsers = Input::get('bannedSearch');
-        if(isset($bannedUsers) && $bannedUsers !== "")
-        {
+        if(isset($bannedUsers) && $bannedUsers !== "") {
             $emptyUsers = $emptyUsers->join('throttle', 'throttle.user_id', '=', 'users.id')
                 ->where('throttle.banned', '=', $bannedUsers)
                 ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions', 'users.activated');
@@ -74,13 +68,12 @@ class UserController extends BaseController
         $datas['users'] = $users;
 
         // ajax request : reload only content container
-        if(Request::ajax())
-        {
+        if(Request::ajax()) {
             $html = View::make(Config::get('syntara::views.users-list'), array('datas' => $datas))->render();
 
             return Response::json(array('html' => $html));
         }
-        
+
         $this->layout = View::make(Config::get('syntara::views.users-index'), array('datas' => $datas));
         $this->layout->title = trans('syntara::users.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
@@ -104,15 +97,13 @@ class UserController extends BaseController
     */
     public function postCreate()
     {
-        try
-        {
+        try {
             $validator = new UserValidator(Input::all(), 'create');
 
             $permissionsValues = Input::get('permission');
             $permissions = $this->_formatPermissions($permissionsValues);
 
-            if(!$validator->passes())
-            {
+            if(!$validator->passes()) {
                 return Response::json(array('userCreated' => false, 'errorMessages' => $validator->getErrors()));
             }
 
@@ -128,20 +119,16 @@ class UserController extends BaseController
 
             // activate user
             $activationCode = $user->getActivationCode();
-            if(Config::get('syntara::config.user-activation') === 'auto')
-            {
+            if(Config::get('syntara::config.user-activation') === 'auto') {
                 $user->attemptActivation($activationCode);
-            }
-            elseif(Config::get('syntara::config.user-activation') === 'email')
-            {
+            } elseif(Config::get('syntara::config.user-activation') === 'email') {
                 $datas = array(
                     'code' => $activationCode,
                     'username' => $user->username
                 );
 
                 // send email
-                Mail::queue(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
-                {
+                Mail::queue(Config::get('syntara::mails.user-activation-view'), $datas, function ($message) use ($user) {
                     $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'))
                             ->subject(Config::get('syntara::mails.user-activation-object'));
                     $message->to($user->getLogin());
@@ -149,24 +136,17 @@ class UserController extends BaseController
             }
 
             $groups = Input::get('groups');
-            if(isset($groups) && is_array($groups))
-            {
-                foreach($groups as $groupId)
-                {
+            if(isset($groups) && is_array($groups)) {
+                foreach($groups as $groupId) {
                     $group = Sentry::getGroupProvider()->findById($groupId);
                     $user->addGroup($group);
                 }
             }
-        }
-        catch (\Cartalyst\Sentry\Users\LoginRequiredException $e){} // already catch by validators
+        } catch (\Cartalyst\Sentry\Users\LoginRequiredException $e){} // already catch by validators
         catch (\Cartalyst\Sentry\Users\PasswordRequiredException $e){} // already catch by validators
-        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){}
-        catch (\Cartalyst\Sentry\Users\UserExistsException $e)
-        {
+        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){} catch (\Cartalyst\Sentry\Users\UserExistsException $e) {
             return json_encode(array('userCreated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
-        }
-        catch(\Exception $e)
-        {
+        } catch(\Exception $e) {
             return Response::json(array('userCreated' => false, 'message' => trans('syntara::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
 
@@ -180,20 +160,14 @@ class UserController extends BaseController
      */
     public function delete($userId)
     {
-        try
-        {
-            if($userId !== Sentry::getUser()->getId())
-            {
+        try {
+            if($userId !== Sentry::getUser()->getId()) {
                 $user = Sentry::getUserProvider()->findById($userId);
                 $user->delete();
-            }
-            else
-            {
+            } else {
                 return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.remove-own-user'), 'messageType' => 'danger'));
             }
-        }
-        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserNotFoundException $e) {
             return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
         }
 
@@ -207,18 +181,13 @@ class UserController extends BaseController
      */
     public function putActivate($userId)
     {
-        try
-        {
+        try {
             $user = Sentry::getUserProvider()->findById($userId);
             $activationCode = $user->getActivationCode();
             $user->attemptActivation($activationCode);
-        }
-        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserNotFoundException $e) {
             return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
-        }
-        catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e) {
             return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.activate-already'), 'messageType' => 'danger'));
         }
 
@@ -232,25 +201,19 @@ class UserController extends BaseController
     public function getActivate($activationCode)
     {
         $activated = false;
-        try
-        {
+        try {
             // Find the user using the activation code
             $user = Sentry::getUserProvider()->findByActivationCode($activationCode);
 
             // Attempt to activate the user
-            if($user->attemptActivation($activationCode))
-            {
+            if($user->attemptActivation($activationCode)) {
                 $message = trans("Your account is successfully activated.");
                 $activated = true;
-            }
-            else
-            {
+            } else {
                 // User activation failed
                 $message = trans("Your account could not be activated.");
             }
-        }
-        catch(\Exception $e)
-        {
+        } catch(\Exception $e) {
             // User not found, activation found or other errors
             $message = trans("Your account could not be activated.");
         }
@@ -264,8 +227,7 @@ class UserController extends BaseController
     */
     public function getShow($userId)
     {
-        try
-        {
+        try {
             $user = Sentry::getUserProvider()->findById($userId);
             $throttle = Sentry::getThrottleProvider()->findByUserId($userId);
             $groups = Sentry::getGroupProvider()->findAll();
@@ -273,26 +235,20 @@ class UserController extends BaseController
             // get user permissions
             $permissions = PermissionProvider::findAll();
             $userPermissions = array();
-            foreach($user->getPermissions() as $permissionValue => $key)
-            {
-                try
-                {
+            foreach($user->getPermissions() as $permissionValue => $key) {
+                try {
                     $p = PermissionProvider::findByValue($permissionValue);
-                    foreach($permissions as $key => $permission)
-                    {
-                        if($p->getId() === $permission->getId())
-                        {
+                    foreach($permissions as $key => $permission) {
+                        if($p->getId() === $permission->getId()) {
                             $userPermissions[] = $permission;
                             unset($permissions[$key]);
                         }
                     }
-                }
-                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+                } catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
             }
 
             // ajax request : reload only content container
-            if(Request::ajax())
-            {
+            if(Request::ajax()) {
                 $html = View::make(Config::get('syntara::views.user-informations'), array('user' => $user, 'throttle' => $throttle))->render();
 
                 return Response::json(array('html' => $html));
@@ -319,9 +275,7 @@ class UserController extends BaseController
                      'icon' => ''
                     )
             );
-        }
-        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserNotFoundException $e) {
             $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::users.messages.not-found')));
         }
     }
@@ -333,12 +287,10 @@ class UserController extends BaseController
     */
     public function putShow($userId)
     {
-        try
-        {
+        try {
             $validator = new UserValidator(Input::all(), 'update');
 
-            if(!$validator->passes())
-            {
+            if(!$validator->passes()) {
                 return Response::json(array('userUpdated' => false, 'errorMessages' => $validator->getErrors()));
             }
 
@@ -356,46 +308,37 @@ class UserController extends BaseController
             $currentUser = Sentry::getUser();
             $permissions = (empty($permissions)) ? '' : json_encode($permissions);
             $hasPermissionManagement = $currentUser->hasAccess(Config::get('syntara::permissions.addUserPermission')) || $currentUser->hasAccess('superuser');
-            if($hasPermissionManagement === true)
-            {
+            if($hasPermissionManagement === true) {
                 DB::table('users')
                     ->where('id', $userId)
                     ->update(array('permissions' => $permissions));
             }
 
             $pass = Input::get('pass');
-            if(!empty($pass))
-            {
+            if(!empty($pass)) {
                 $user->password = $pass;
             }
 
             // Update the user
-            if($user->save())
-            {
+            if($user->save()) {
                 // if the user has permission to update
                 $banned = Input::get('banned');
-                if(isset($banned) && Sentry::getUser()->getId() !== $user->getId())
-                {
+                if(isset($banned) && Sentry::getUser()->getId() !== $user->getId()) {
                     $this->_banUser($userId, $banned);
                 }
 
-                if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
-                {
+                if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup'))) {
                     $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
                     $userGroups = $user->getGroups()->toArray();
-                    
-                    foreach($userGroups as $group)
-                    {
-                        if(!in_array($group['id'], $groups))
-                        {
+
+                    foreach($userGroups as $group) {
+                        if(!in_array($group['id'], $groups)) {
                             $group = Sentry::getGroupProvider()->findById($group['id']);
                             $user->removeGroup($group);
                         }
                     }
-                    if(isset($groups) && is_array($groups))
-                    {
-                        foreach($groups as $groupId)
-                        {
+                    if(isset($groups) && is_array($groups)) {
+                        foreach($groups as $groupId) {
                             $group = Sentry::getGroupProvider()->findById($groupId);
                             $user->addGroup($group);
                         }
@@ -403,18 +346,12 @@ class UserController extends BaseController
                 }
 
                 return Response::json(array('userUpdated' => true, 'message' => trans('syntara::users.messages.update-success'), 'messageType' => 'success'));
-            }
-            else 
-            {
+            } else {
                 return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.update-fail'), 'messageType' => 'danger'));
             }
-        }
-        catch(\Cartalyst\Sentry\Users\UserExistsException $e)
-        {
+        } catch(\Cartalyst\Sentry\Users\UserExistsException $e) {
             return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
-        }
-        catch(\Exception $e)
-        {
+        } catch(\Exception $e) {
             return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
     }
@@ -422,10 +359,8 @@ class UserController extends BaseController
     protected function _formatPermissions($permissionsValues)
     {
         $permissions = array();
-        if(!empty($permissionsValues))
-        {
-            foreach($permissionsValues as $key => $permission)
-            {
+        if(!empty($permissionsValues)) {
+            foreach($permissionsValues as $key => $permission) {
                $permissions[$key] = 1;
             }
         }
@@ -436,12 +371,9 @@ class UserController extends BaseController
     protected function _banUser($userId, $value)
     {
         $throttle = Sentry::findThrottlerByUserId($userId);
-        if($value === 'no' && $throttle->isBanned() === true)
-        {
+        if($value === 'no' && $throttle->isBanned() === true) {
             $throttle->unBan();
-        }
-        elseif($value === 'yes' && $throttle->isBanned() === false)
-        {
+        } elseif($value === 'yes' && $throttle->isBanned() === false) {
             $throttle->ban();
         }
     }

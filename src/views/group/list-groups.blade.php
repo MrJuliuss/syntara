@@ -1,11 +1,11 @@
 <div class="row upper-menu">
     {{ $groups->links(); }}
-    
+
     <div style="float:right;">
         <a id="delete-item" class="btn btn-danger  groups">{{ trans('syntara::all.delete') }}</a>
         <a class="btn btn-info btn-new" href="{{ URL::route('newGroup') }}">{{ trans('syntara::groups.new') }}</a>
     </div>
-    
+
 </div>
 <table class="table table-striped table-bordered table-condensed">
 <thead>

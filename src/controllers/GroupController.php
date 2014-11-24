@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Controllers;
 
@@ -14,7 +14,7 @@ use Request;
 use DB;
 use URL;
 
-class GroupController extends BaseController 
+class GroupController extends BaseController
 {
     /**
     * List of groups
@@ -25,31 +25,28 @@ class GroupController extends BaseController
 
         // Ajax search
         $groupId = Input::get('groupIdSearch');
-        if(!empty($groupId))
-        {
+        if(!empty($groupId)) {
             $emptyGroup = $emptyGroup->where('id', $groupId);
         }
         $groupname = Input::get('groupnameSearch');
-        if(!empty($groupname))
-        {
+        if(!empty($groupname)) {
             $emptyGroup = $emptyGroup->where('name', 'LIKE', '%'.$groupname.'%');
         }
 
         $groups = $emptyGroup->paginate(Config::get('syntara::config.item-perge-page'));
 
         // ajax: reload only the content container
-        if(Request::ajax())
-        {
+        if(Request::ajax()) {
             $html = View::make(Config::get('syntara::views.groups-list'), array('groups' => $groups))->render();
-            
+
             return Response::json(array('html' => $html));
         }
-        
+
         $this->layout = View::make(Config::get('syntara::views.groups-index'), array('groups' => $groups));
         $this->layout->title = trans('syntara::groups.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.groups');
     }
-    
+
     /**
     * Show create group view
     */
@@ -69,59 +66,46 @@ class GroupController extends BaseController
     {
         $groupname = Input::get('groupname');
         $permissions = array();
-        
+
         $errors = $this->_validateGroup(Input::get('permission'), $groupname, $permissions);
-        if(!empty($errors))
-        {
+        if(!empty($errors)) {
             return Response::json(array('groupCreated' => false, 'errorMessages' => $errors));
-        }
-        else 
-        {
-            try
-            {
+        } else {
+            try {
                 // create group
                 Sentry::getGroupProvider()->create(array(
                     'name' => $groupname,
                     'permissions' => $permissions,
                 ));
-            }
-            catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
-            catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
-            {
+            } catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {} catch (\Cartalyst\Sentry\Groups\GroupExistsException $e) {
                 return Response::json(array('groupCreated' => false, 'message' => trans('syntara::groups.messages.exists'), 'messageType' => 'danger'));
             }
         }
 
         return Response::json(array('groupCreated' => true,  'redirectUrl' => URL::route('listGroups')));
     }
-    
+
     /**
      * Show group
      * @param type $groupId
      */
     public function getShow($groupId)
     {
-        try
-        {
+        try {
             $group = Sentry::getGroupProvider()->findById($groupId);
             $permissions = PermissionProvider::findAll();
 
             $groupPermissions = array();
-            foreach($group->getPermissions() as $permissionValue => $key)
-            {
-                try
-                {
+            foreach($group->getPermissions() as $permissionValue => $key) {
+                try {
                     $p = PermissionProvider::findByValue($permissionValue);
-                    foreach($permissions as $key => $permission)
-                    {
-                        if($p->getId() === $permission->getId())
-                        {
+                    foreach($permissions as $key => $permission) {
+                        if($p->getId() === $permission->getId()) {
                             $groupPermissions[] = $permission;
                             unset($permissions[$key]);
                         }
                     }
-                }
-                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+                } catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
             }
 
             // get users in group
@@ -131,8 +115,7 @@ class GroupController extends BaseController
             $usersNotInGroup = Sentry::getUserProvider()
                 ->createModel()
                 ->newQuery()
-                ->whereNotIn('id', function($query) use ($groupId)
-                {
+                ->whereNotIn('id', function ($query) use ($groupId) {
                     $query->select('user_id')
                           ->from('users_groups')
                           ->where('group_id', '=', $groupId);
@@ -141,30 +124,27 @@ class GroupController extends BaseController
                 ->all();
 
             // ajax request : reload only content container
-            if(Request::ajax())
-            {
+            if(Request::ajax()) {
                 $html = View::make(Config::get('syntara::views.users-in-group'), array('group' => $group, 'users' => $users, 'candidateUsers' => $usersNotInGroup))->render();
-                
+
                 return Response::json(array('html' => $html));
             }
-            
+
             $this->layout = View::make(Config::get('syntara::views.group-edit'), array('group' => $group, 'users' => $users, 'candidateUsers' => $usersNotInGroup, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
-                    'title' => trans('syntara::breadcrumbs.groups'), 
-                    'link' => URL::route('listGroups'), 
+                    'title' => trans('syntara::breadcrumbs.groups'),
+                    'link' => URL::route('listGroups'),
                     'icon' => 'glyphicon-list-alt'
-                ), 
+                ),
                 array(
-                    'title' => $group->name, 
-                    'link' => URL::current(), 
+                    'title' => $group->name,
+                    'link' => URL::current(),
                     'icon' => ''
                 )
             );
-        }
-        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e) {
             $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::groups.messages.not-found')));
         }
     }
@@ -179,14 +159,10 @@ class GroupController extends BaseController
         $permissions = array();
 
         $errors = $this->_validateGroup(Input::get('permission'), $groupname, $permissions);
-        if(!empty($errors))
-        {
+        if(!empty($errors)) {
             return Response::json(array('groupUpdated' => false, 'errorMessages' => $errors));
-        }
-        else 
-        {
-            try
-            {
+        } else {
+            try {
                 $group = Sentry::getGroupProvider()->findById($groupId);
                 $group->name = $groupname;
                 $group->permissions = $permissions;
@@ -197,23 +173,17 @@ class GroupController extends BaseController
                     ->where('id', $groupId)
                     ->update(array('permissions' => $permissions));
 
-                if($group->save())
-                {
+                if($group->save()) {
                     return Response::json(array('groupUpdated' => true, 'message' => trans('syntara::groups.messages.success'), 'messageType' => 'success'));
-                }
-                else 
-                {
+                } else {
                     return Response::json(array('groupUpdated' => false, 'message' => trans('syntara::groups.messages.try'), 'messageType' => 'danger'));
                 }
-            }
-            catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
-            catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
-            {
+            } catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {} catch (\Cartalyst\Sentry\Groups\GroupExistsException $e) {
                 return Response::json(array('groupUpdated' => false, 'message' => trans('syntara::groups.messages.exists'), 'messageType' => 'danger'));
             }
         }
     }
-       
+
     /**
      * Delete group
      * @param  int $groupId
@@ -221,19 +191,16 @@ class GroupController extends BaseController
      */
     public function delete($groupId)
     {
-        try
-        {
+        try {
             $group = Sentry::getGroupProvider()->findById($groupId);
             $group->delete();
-        }
-        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e) {
             return Response::json(array('deletedGroup' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
         }
-        
+
         return Response::json(array('deletedGroup' => true, 'message' => trans('syntara::groups.messages.delete-success'), 'messageType' => 'success'));
     }
-    
+
     /**
      * Remove user from group
      * @param int $groupId
@@ -242,44 +209,34 @@ class GroupController extends BaseController
      */
     public function deleteUserFromGroup($groupId, $userId)
     {
-        try
-        {
+        try {
             $user = Sentry::getUserProvider()->findById($userId);
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->removeGroup($group);
-            
+
             return Response::json(array('userDeleted' => true, 'message' => trans('syntara::groups.messages.user-removed-success'), 'messageType' => 'success'));
-        }
-        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserNotFoundException $e) {
             return Response::json(array('userDeleted' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
-        }
-        catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-        {
+        } catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e) {
             return Response::json(array('userDeleted' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
         }
     }
-    
+
     /**
      * Add a user in a group
      * @return Response
      */
     public function addUserInGroup()
     {
-        try
-        {
+        try {
             $user = Sentry::getUserProvider()->findById(Input::get('userId'));
             $group = Sentry::getGroupProvider()->findById(Input::get('groupId'));
             $user->addGroup($group);
 
             return Response::json(array('userAdded' => true, 'message' => trans('syntara::groups.messages.user-add-success'), 'messageType' => 'success'));
-        }
-        catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserNotFoundException $e) {
             return Response::json(array('userAdded' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
-        }
-        catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-        {
+        } catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e) {
             return Response::json(array('userAdded' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
         }
     }
@@ -294,10 +251,8 @@ class GroupController extends BaseController
     {
         $errors = array();
         // validate permissions
-        if(!empty($permissionsValues))
-        {
-            foreach($permissionsValues as $key => $permission)
-            {
+        if(!empty($permissionsValues)) {
+            foreach($permissionsValues as $key => $permission) {
                $permissions[$key] = 1;
             }
         }
@@ -305,11 +260,10 @@ class GroupController extends BaseController
         $validator = new GroupValidator(Input::all());
 
         $gnErrors = array();
-        if(!$validator->passes())
-        {
+        if(!$validator->passes()) {
             $gnErrors = $validator->getErrors();
         }
-        
+
         return $gnErrors;
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Commands;
 
@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Config;
 use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 
-class UserSeedCommand extends Command 
+class UserSeedCommand extends Command
 {
 
     /**
@@ -41,8 +41,7 @@ class UserSeedCommand extends Command
      */
     public function fire()
     {
-        try 
-        {
+        try {
             $email = $this->argument('email');
             $pass = $this->argument('password');
             $username = $this->argument('username');
@@ -55,19 +54,14 @@ class UserSeedCommand extends Command
                 ),
             'create');
 
-            if(!$validator->passes())
-            {
-                foreach($validator->getErrors() as $key => $messages)
-                {
+            if(!$validator->passes()) {
+                foreach($validator->getErrors() as $key => $messages) {
                     $this->info(ucfirst($key).' :');
-                    foreach($messages as $message)
-                    {
+                    foreach($messages as $message) {
                         $this->error($message);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 // Create the user
                 $user = \Sentry::getUserProvider()->create(array(
                     'email'    => $email,
@@ -78,8 +72,7 @@ class UserSeedCommand extends Command
                 $activationCode = $user->getActivationCode();
                 $user->attemptActivation($activationCode);
 
-                if($groupName !== NULL)
-                {
+                if($groupName !== NULL) {
                     $group = \Sentry::getGroupProvider()->findByName($groupName);
 
                     $user->addGroup($group);
@@ -87,13 +80,9 @@ class UserSeedCommand extends Command
 
                 $this->info('User created with success');
             }
-        }
-        catch (\Cartalyst\Sentry\Users\UserExistsException $e)
-        {
+        } catch (\Cartalyst\Sentry\Users\UserExistsException $e) {
             $this->error('User already exists !');
-        }
-        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-        {
+        } catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e) {
             $this->error('Group '.$groupName.' does not exists !');
         }
     }

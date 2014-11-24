@@ -1,6 +1,6 @@
 <div class="row upper-menu">
     {{ $datas['users']->links(); }}
-    
+
     <div style="float:right;">
         @if($currentUser->hasAccess(Config::get('syntara::permissions.deleteUsers')))
         <a id="delete-item" class="btn btn-danger">{{ trans('syntara::all.delete') }}</a>
@@ -27,7 +27,7 @@
         <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.activated') }}</th>
         @if($currentUser->hasAccess(Config::get('syntara::permissions.showUser')))
         <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.banned') }}</th>
-       
+
         <th class="col-lg-1" style="text-align: center;">{{ trans('syntara::all.show') }}</th>
         @endif
     </tr>
@@ -47,8 +47,7 @@
         <td >&nbsp;{{ $user->username }}</td>
         <td class="visible-xs visible-lg">&nbsp;{{ $user->email }}</td>
         <td class="hidden-xs">
-        @foreach($user->getGroups()->toArray() as $key => $group)
-            {{ $group['name'] }},
+        @foreach($user->getGroups()->toArray() as $key => $group) {{ $group['name'] }},
         @endforeach
         </td>
         <td class="hidden-xs">{{ json_encode($user->getPermissions()) }}</td>
@@ -56,7 +55,7 @@
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
         <td class="hidden-xs">{{ $user->isActivated() ? trans('syntara::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('syntara::users.activate').'">'.trans('syntara::all.no').'</a>'}}</td>
         @if($currentUser->hasAccess(Config::get('syntara::permissions.showUser')))
-        <td class="hidden-xs">{{ $throttle->isBanned() ? trans('syntara::all.yes') : trans('syntara::all.no')}}</td>        
+        <td class="hidden-xs">{{ $throttle->isBanned() ? trans('syntara::all.yes') : trans('syntara::all.no')}}</td>
         <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showUser', $user->getId()) }}">{{ trans('syntara::all.show') }}</a></td>
         @endif
     </tr>

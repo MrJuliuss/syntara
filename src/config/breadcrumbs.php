@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return array(
     'dashboard' => array(
@@ -27,7 +27,7 @@ return array(
             'title' => trans('syntara::breadcrumbs.users'),
             'link' => URL::route('listUsers'),
             'icon' => 'glyphicon-user'
-        ), 
+        ),
         array(
             'title' => trans('syntara::breadcrumbs.new-user'),
             'link' => URL::current(),

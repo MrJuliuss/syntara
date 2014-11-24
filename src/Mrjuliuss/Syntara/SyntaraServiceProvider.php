@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace MrJuliuss\Syntara;
+namespace Mrjuliuss\Syntara;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Environment;
@@ -15,7 +15,7 @@ class SyntaraServiceProvider extends ServiceProvider
     */
     protected $defer = false;
 
-    public function boot() 
+    public function boot()
     {
         $this->package('mrjuliuss/syntara');
         $this->loadIncludes();
@@ -32,29 +32,26 @@ class SyntaraServiceProvider extends ServiceProvider
         $this->app['config']->package('mrjuliuss/syntara', __DIR__.'/../../config');
 
         // add the user seed command to the application
-        $this->app['create:user'] = $this->app->share(function($app)
-        {
+        $this->app['create:user'] = $this->app->share(function ($app) {
             return new Commands\UserSeedCommand($app);
         });
 
         // add the install command to the application
-        $this->app['syntara:install'] = $this->app->share(function($app)
-        {
+        $this->app['syntara:install'] = $this->app->share(function ($app) {
             return new Commands\InstallCommand($app);
         });
 
         // add the update command to the application
-        $this->app['syntara:update'] = $this->app->share(function($app)
-        {
+        $this->app['syntara:update'] = $this->app->share(function ($app) {
             return new Commands\UpdateCommand($app);
         });
-        
+
         // register helpers
         $this->registerHelpers();
 
         // register models
         $this->registerModels();
-        
+
         // add commands
         $this->commands('create:user');
         $this->commands('syntara:install');
@@ -100,14 +97,12 @@ class SyntaraServiceProvider extends ServiceProvider
     public function registerHelpers()
     {
         // register breadcrumbs
-        $this->app['breadcrumbs'] = $this->app->share(function()
-        {
+        $this->app['breadcrumbs'] = $this->app->share(function () {
             return new \MrJuliuss\Syntara\Helpers\Breadcrumbs();
         });
-        
+
         // shortcut so developers don't need to add an Alias in app/config/app.php
-        $this->app->booting(function()
-        {
+        $this->app->booting(function () {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Breadcrumbs', 'MrJuliuss\Syntara\Facades\Breadcrumbs');
         });
@@ -116,17 +111,15 @@ class SyntaraServiceProvider extends ServiceProvider
     public function registerModels()
     {
         // register permission provider
-        $this->app['permissionProvider'] = $this->app->share(function()
-        {
+        $this->app['permissionProvider'] = $this->app->share(function () {
             return new \MrJuliuss\Syntara\Models\Permissions\PermissionProvider();
         });
-        
+
         // add permission provider to aliases
-        $this->app->booting(function()
-        {
+        $this->app->booting(function () {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('PermissionProvider', 'MrJuliuss\Syntara\Facades\PermissionProvider');
         });
     }
-    
+
 }

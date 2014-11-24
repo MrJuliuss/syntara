@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MrJuliuss\Syntara\Controllers;
 
@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
 use Config;
 
-class BaseController extends Controller 
+class BaseController extends Controller
 {
     /**
     * Setup the layout used by the controller.
