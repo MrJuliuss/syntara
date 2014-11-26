@@ -1,6 +1,6 @@
 <?php
 
-namespace Mrjuliuss\Syntara;
+namespace MrJuliuss\Syntara;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Environment;
