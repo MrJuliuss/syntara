@@ -2,6 +2,7 @@
 
 Syntara is an admin system for Laravel 4, made for user management easier.
 
+**Because of a dependency to Sentry 2, Syntara 1.x will not support Laravel 5. Syntara 2 will be develop in 2015 (not sure), with Laravel 5 and without Sentry 2. If you want to help to the development, any help is appreciated.** 
 
 [![Build Status](https://travis-ci.org/MrJuliuss/syntara.png?branch=master)](https://travis-ci.org/MrJuliuss/syntara)
 [![Latest Stable Version](https://poser.pugx.org/mrjuliuss/syntara/v/stable.png)](https://packagist.org/packages/mrjuliuss/syntara)
@@ -55,10 +56,6 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 
 * Syntara 1.1.x : PHP 5.3+ - Laravel 4.0.x **(deprecated)**
 * Syntara 1.2.x : PHP 5.4+ - Laravel 4.1.x & 4.2.x
-
-## Todo
-
-* Laravel 5 support
 
 ## Dependencies
 
