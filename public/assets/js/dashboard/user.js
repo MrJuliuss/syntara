@@ -65,7 +65,7 @@ $(function()
         {
             $.ajax(
             {
-                "url": window.location.href.toString()+"/../user/"+$(this).data('user-id'),
+                "url": window.location.href.toString().split('?')[0]+"/../user/"+$(this).data('user-id'),
                 "type": "DELETE"
             }).done(function(result)
             {
