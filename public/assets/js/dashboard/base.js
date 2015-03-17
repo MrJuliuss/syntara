@@ -96,8 +96,7 @@ var ajaxContent = function(url, content, options, useSave)
         $(content).empty().html(data.html);
         if(typeof url !== "undefined" && url != window.location)
         {
-            window.location.replace(url);
-            window.history.pushState(data, '', window.location);
+            window.history.pushState(data, '', this.url);
         }
 
         lastAjxOpt = options;
