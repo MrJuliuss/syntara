@@ -65,7 +65,7 @@ $(function()
         {
             $.ajax(
             {
-                url: window.location.href.toString()+'/../group/'+$(this).data('group-id'),
+                url: window.location.href.toString().split('?')[0]+'/../group/'+$(this).data('group-id'),
                 type: "DELETE",
                 datatype: "json"
             }).done(function(result)

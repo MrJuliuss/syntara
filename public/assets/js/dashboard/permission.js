@@ -58,7 +58,7 @@ $(function()
         {
             $.ajax(
             {
-                "url": window.location.href.toString()+"/../permission/"+$(this).data('permission-id'),
+                "url": window.location.href.toString().split('?')[0]+"/../permission/"+$(this).data('permission-id'),
                 "type": "DELETE"
             }).done(function(result)
             {
