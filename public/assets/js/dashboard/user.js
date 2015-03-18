@@ -81,7 +81,7 @@ $(function()
 
         $.ajax({
             "type": "PUT",
-            "url": window.location.href.toString()+'/../user/'+userId+'/activate/',
+            "url": window.location.href.toString().split('?')[0]+'/../user/'+userId+'/activate/',
             "data": {userId : userId},
             "dataType": "json"
         }).done(function(result)
